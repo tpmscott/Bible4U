@@ -6,6 +6,7 @@
     </description>
     <access origin="*"></access>
     <allow-navigation href="https://biblehub.com/*" /> 
+    <allow-navigation href="https://www.blueletterbible.org/*" /> 
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <platform name="ios">
