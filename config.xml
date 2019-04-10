@@ -4,6 +4,10 @@
     <description>
         The Bible4U app is to read Bible. 
     </description>
+    <access origin="*"></access>
+    <allow-navigation href="https://biblehub.com/*" /> 
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
     <platform name="ios">
         <icon height="167" src="resources/icon/ios/icon-83.5@2x.png" width="167" />
         <icon height="76" src="resources/icon/ios/icon-76.png" width="76" />
