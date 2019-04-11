@@ -190,6 +190,15 @@ function Hide_Original_text_web2(){
 
 }
 
+function Hide_Original_text_web(){
+
+   chgFrame12( 0 , 0 );
+
+}
+
+
+
+
 //20180903
 
 function Go_to_Original_text_web2(){

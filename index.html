@@ -3097,7 +3097,7 @@ function Set_NKJV() {
 <td></td>
 
 <td>
-<a href="javascript:;" onclick="Go_to_Original_text_web()">原文-1</a>
+<a id="a12" href="javascript:;" onclick="change12()">原文-1</a>
 </td>
 
 <td></td>
@@ -3966,6 +3966,32 @@ function change5() {
 
 	}			
 }
+
+var isShow_12 = false;
+function change12() {
+	if(!isShow_12) {  // 原文-1
+
+		isShow_12 = true;
+                //show_tool_area();
+		document.getElementById('a12').innerText = "藏原文-1";
+
+                Go_to_Original_text_web();
+
+	}
+	else {        // 藏原文-1
+
+		isShow_12 = false;
+                //hide_tool_area();
+		document.getElementById('a12').innerText = "原文-1";
+
+                Hide_Original_text_web();
+
+	}			
+}
+
+
+
+
 
 
 var isShow_CE = false;  // Chinese English Mode
