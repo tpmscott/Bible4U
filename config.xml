@@ -42,4 +42,5 @@
         <splash height="2208" src="resources/splash/ios/Default-736h.png" width="1242" />
         <splash height="1242" src="resources/splash/ios/Default-Landscape-736h.png" width="2208" />
     </platform>
+    <icon src="resources/icon.png" />
 </widget>
