@@ -7,7 +7,8 @@
     <access origin="*"></access>
     <allow-navigation href="https://biblehub.com/*" /> 
     <allow-navigation href="https://www.blueletterbible.org/*" /> 
-    <allow-navigation href="http://bible.fhl.net/*" /> 
+    <allow-navigation href="http://bible.fhl.net/new/parsing*" /> 
+    <allow-navigation href="http://bible.fhl.net/new/fhlwhparsing*" /> 
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <platform name="ios">
