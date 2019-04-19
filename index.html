@@ -1256,7 +1256,7 @@ function Class_Mode() {
    document.getElementById("container5").style.visibility='hidden'; // hide
    document.getElementById("container5").style.height = "0%";
 
-   document.getElementById("BV").style.visibility='hidden'; // hide
+   //document.getElementById("BV").style.visibility='hidden'; // hide
    document.getElementById("DVN").style.visibility='hidden'; // hide
    document.getElementById("顯示").style.visibility='hidden'; // hide
    //document.getElementById("原文-1").style.visibility='hidden'; // hide
@@ -1341,7 +1341,7 @@ function Input_Chap_Mode() {
    document.getElementById("container1").style.height = "0%";
    document.getElementById("container2").style.height = "0%";
 
-   document.getElementById("BV").style.visibility='hidden'; // hide
+   //document.getElementById("BV").style.visibility='hidden'; // hide
    document.getElementById("DVN").style.visibility='hidden'; // hide
    document.getElementById("顯示").style.visibility='hidden'; // hide
    //document.getElementById("原文-1").style.visibility='hidden'; // hide
@@ -1387,7 +1387,7 @@ function Input_Vers_Mode() {
    document.getElementById("container1").style.height = "0%";
    document.getElementById("container2").style.height = "0%";
 
-   document.getElementById("BV").style.visibility='hidden'; // hide
+   //document.getElementById("BV").style.visibility='hidden'; // hide
    document.getElementById("DVN").style.visibility='hidden'; // hide
    document.getElementById("顯示").style.visibility='hidden'; // hide
    //document.getElementById("原文-1").style.visibility='hidden'; // hide
@@ -1433,7 +1433,7 @@ function Input_ToVers_Mode() {
    document.getElementById("container1").style.height = "0%";
    document.getElementById("container2").style.height = "0%";
 
-   document.getElementById("BV").style.visibility='hidden'; // hide
+   //document.getElementById("BV").style.visibility='hidden'; // hide
    document.getElementById("DVN").style.visibility='hidden'; // hide
    document.getElementById("顯示").style.visibility='hidden'; // hide
    //document.getElementById("原文-1").style.visibility='hidden'; // hide
@@ -3838,10 +3838,7 @@ function Set_NKJV() {
 //<div id="tool_area" style="height:0px;">
 </script>
 
-<div id="tool_area_1" style="height:0px;visibility:hidden">
-
-<table>
-<tr>
+<div id="tool_area_5" style="height:0px;visibility:hidden">
 
 <td>
 <form name="BV" id="BV" style="font-size:14pt">
@@ -3852,15 +3849,23 @@ function Set_NKJV() {
 </form>
 </td>
 
+</div>
 
 
-<td></td>
+<div id="tool_area_1" style="height:0px;visibility:hidden">
+
+<table>
+<tr>
+
+<td><button style="color:red"  onclick="Delete_All_History()">Del History</button></td>
+<td><button style="color:red"  onclick="Delete_All_Bookmarks()">Del BM</button></td>
+
+<td></td><td></td><td></td>
 
 <td>
 <a id="a12" href="javascript:;" onclick="change12()">原文-1</a>
 </td>
 
-<td></td>
 
 <td></td>
 
@@ -4297,8 +4302,7 @@ function Qmaxverse(index,index2) {   // find out maximum verse of chapter of boo
 
 <td></td><td></td><td></td>
 
-<td><button style="color:red"  onclick="Delete_All_History()">Del History</button></td>
-<td><button style="color:red"  onclick="Delete_All_Bookmarks()">Del BM</button></td>
+<td><button onclick="Hide_All()">Hide All</button></td>
 
 <td></td><td></td><td></td>
 
@@ -4330,7 +4334,7 @@ function Qmaxverse(index,index2) {   // find out maximum verse of chapter of boo
 
 <td></td><td></td><td></td>
 
-<td><button onclick="Hide_All()">Hide All</button></td>
+
 
 </tr>
 
@@ -4634,7 +4638,7 @@ function change2() {
                 show_tool_area();
 		document.getElementById('a2').innerText = "隱藏工具區";
 
-                document.getElementById("BV").style.visibility='visible'; // hide
+                //document.getElementById("BV").style.visibility='visible'; // hide
                 //document.getElementById("原文-1").style.visibility='visible'; // hide
                 //document.getElementById("原文-2").style.visibility='visible'; // hide
          
@@ -4654,7 +4658,7 @@ function change2() {
                 hide_tool_area();
 		document.getElementById('a2').innerText = "顯示工具區";
 
-                document.getElementById("BV").style.visibility='hidden'; // hide
+                //document.getElementById("BV").style.visibility='hidden'; // hide
                 //document.getElementById("原文-1").style.visibility='hidden'; // hide
                 //document.getElementById("原文-2").style.visibility='hidden'; // hide
 
