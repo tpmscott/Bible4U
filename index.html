@@ -769,7 +769,7 @@ function Hide_a7(){
 
 
 </head>
-<body onload="Hide_a7();Read_Bookmark2();Read_Bookmark1();V_or_H_Mode();setachap();; return false;" text="#000000" link="#0000ff" alink="#ffffff" vlink="#0000ff" background="back5.jpg">
+<body onload="Hide_a7();Read_Bookmark2();Read_Bookmark1();Init_History();Init_BM3();V_or_H_Mode();setachap();; return false;" text="#000000" link="#0000ff" alink="#ffffff" vlink="#0000ff" background="back5.jpg">
 
 
 <table><tr><td>
@@ -1493,6 +1493,12 @@ function Set_Enter() { // add on 2019.03.11
 }
 
 
+var BookMK3 = [] ;  // Array for Reading from LocalStorage
+var BookMK4 = [] ;
+var BookMK5 = [] ;
+var VerseHIS = [] ;
+
+
 var VersHis = [] ;
 var VersHis_B = [] ;
 var VersHis_C = [] ;
@@ -1669,6 +1675,113 @@ function Write_Bookmark(arg1) { // arg1 = VersBMLen, including Deleted items
 
 } // End of function Write_Bookmark()
 
+
+function Write_Bookmark3(){   // Write to LocalStorage
+
+
+   var VersBM3_B_Len = VersBM3_B.length;
+
+
+   var BookMK3_Content = VersBM3_B_Len ;
+
+   for (i = 0; i < VersBM3_B_Len; i++) {
+   //for (i = (VersBM2_B_Len-1); i > -1; i--) {
+
+      //BookMK2[i+1] = VersBM2_B[i];
+      //BookMK2[i+2] = VersBM2_C[i];
+      //BookMK2[i+3] = VersBM2_V[i];
+      //BookMK2[i+4] = VersBM2_T[i];
+
+      var tmp_B = VersBM3_B[i];
+      var tmp_C = VersBM3_C[i];
+      var tmp_V = VersBM3_V[i];
+      var tmp_T = VersBM3_T[i];
+
+      var tmp_B_string = tmp_B.toString();
+      var tmp_C_string = tmp_C.toString();
+      var tmp_V_string = tmp_V.toString();
+      var tmp_T_string = tmp_T.toString();
+
+      BookMK3_Content = BookMK3_Content + ',' + tmp_B_string+ ',' + tmp_C_string + ',' + tmp_V_string + ',' + tmp_T_string;
+      
+      //BookMK2_Content = BookMK2_Content + ',';
+
+      //BookMK2_Content = BookMK2_Content + ',';
+
+   }   
+
+   //BookMK2_Content = BookMK2_Content + ');';
+
+
+   // Start Writing to Local Storage
+
+   localStorage.VersBM3 = BookMK3_Content;
+
+   //localStorage.VersBM3 = '2,65,4,5,10,0,0,10,0'; // For Testing
+
+   // End of Writing to Local Storage
+
+
+
+} // End of function Write_Bookmark3()
+
+
+
+function Write_History(){   // Write to LocalStorage
+
+
+   var VersHis_B_Len = VersHis_B.length;
+
+
+   var VerseHIS_Content = VersHis_B_Len ;
+
+   for (i = 0; i < VersHis_B_Len; i++) {
+   //for (i = (VersBM2_B_Len-1); i > -1; i--) {
+
+      //BookMK2[i+1] = VersBM2_B[i];
+      //BookMK2[i+2] = VersBM2_C[i];
+      //BookMK2[i+3] = VersBM2_V[i];
+      //BookMK2[i+4] = VersBM2_T[i];
+
+      var tmp_B = VersHis_B[i];
+      var tmp_C = VersHis_C[i];
+      var tmp_V = VersHis_V[i];
+      var tmp_T = VersHis_T[i];
+
+      var tmp_B_string = tmp_B.toString();
+      var tmp_C_string = tmp_C.toString();
+      var tmp_V_string = tmp_V.toString();
+      var tmp_T_string = tmp_T.toString();
+
+      VerseHIS_Content = VerseHIS_Content + ',' + tmp_B_string+ ',' + tmp_C_string + ',' + tmp_V_string + ',' + tmp_T_string;
+      
+      //BookMK2_Content = BookMK2_Content + ',';
+
+      //BookMK2_Content = BookMK2_Content + ',';
+
+   }   
+
+   //BookMK2_Content = BookMK2_Content + ');';
+
+
+   // Start Writing to Local Storage
+
+   localStorage.VersHis = VerseHIS_Content;
+
+   //localStorage.VersBM3 = BookMK3_Content;
+
+   //localStorage.VersBM3 = '2,65,4,5,10,0,0,10,0'; // For Testing
+
+   // End of Writing to Local Storage
+
+
+
+} // End of function Write_History()
+
+
+
+
+
 function Read_Bookmark() {  // Read from files to Bookmark Array Only, Do Not Show ***
 
    const remote = require('electron').remote;
@@ -1796,6 +1909,173 @@ function Read_Bookmark2() {
    }
 
 }  // End of function Read_Bookmark2()
+
+
+function Init_History(){ // Read from LocalStorage
+                         // Write to VersHis_B
+                         // Write to VersHis_C
+                         // Write to VersHis_V
+                         // Write to VersHis_T
+                         // Write to VersHis
+
+   // Start Reading from LocalStorage
+
+   if(localStorage.VersHis) {
+      //localStorage.VersHis = localStorage.VersHis;
+   }else {
+      localStorage.VersHis = '0';
+      //localStorage.VersHis = '2,65,4,5,10,0,0,10,0'; // For Testing
+   }
+
+     // String to Array -- seperator ","
+
+     var str3 = localStorage.VersHis;
+     var VerseHIS = str3.split(",");
+
+     // End of String to Array -- seperator ","
+
+
+   // End of Reading from LocalStorage
+
+
+   // -- Write to VersHis, from VerseHIS
+
+   var VerseHIS_Len = Number(VerseHIS[0]);  // record how many VerseHIS records
+
+   if(VerseHIS_Len==1){
+
+      Delete_All_History();
+
+   }
+
+   //alert(BookMK2_Len);
+
+   for (i = 0; i < VerseHIS_Len; i++) {
+
+      //BookMK2[i+1] = VersBM2_B[i];  // arg1
+      //BookMK2[i+2] = VersBM2_C[i];  // arg2
+      //BookMK2[i+3] = VersBM2_V[i];  // arg3  
+      //BookMK2[i+4] = VersBM2_T[i];  // arg4
+
+      VersHis_B[i] = Number(VerseHIS[4*i+1]);  // arg1
+      VersHis_C[i] = Number(VerseHIS[4*i+2]);  // arg2
+      VersHis_V[i] = Number(VerseHIS[4*i+3]);  // arg3  
+      VersHis_T[i] = Number(VerseHIS[4*i+4]);  // arg4
+
+      var tmp_B = VersHis_B[i];  // arg1
+      var tmp_C = VersHis_C[i];  // arg2
+      var tmp_V = VersHis_V[i];  // arg3  
+      var tmp_T = VersHis_T[i];  // arg4
+
+       var VBM_Bname = BookAbbr4[tmp_B]; // arg1
+       var VBM_Chap = tmp_C + 1;
+       var VBM_Vers = tmp_V;
+       var VBM_To_Vers = tmp_T;
+
+       if(tmp_T>tmp_V)
+          var VBM = VBM_Bname + ' ' + VBM_Chap + ':' + VBM_Vers + '~' + VBM_To_Vers; 
+       else
+          var VBM = VBM_Bname + ' ' + VBM_Chap + ':' + VBM_Vers; 
+
+       //if(arg3==999 && arg4==999) {
+
+       //   var VBM = VBM_Bname + ' ' + VBM_Chap;
+
+       //}
+    
+       //VersBM2.unshift(VBM);  // Put in new record
+
+
+       VersHis[i]=VBM;  // Put in new record
+
+   }
+
+
+}  // End of function Init_History()
+
+
+
+function Init_BM3(){ // Read from LocalStorage
+                     // Write to VersBM3_B
+                     // Write to VersBM3_C
+                     // Write to VersBM3_V
+                     // Write to VersBM3_T
+                     // Write to VersBM3
+
+   // Start Reading from LocalStorage
+
+   if(localStorage.VersBM3) {
+      //localStorage.VersBM3 = localStorage.VersBM3;
+   }else {
+      localStorage.VersBM3 = '0';
+      //localStorage.VersBM3 = '2,65,4,5,10,0,0,10,0'; // For Testing
+   }
+
+     // String to Array -- seperator ","
+
+     var str3 = localStorage.VersBM3;
+     var BookMK3 = str3.split(",");
+
+     // End of String to Array -- seperator ","
+
+
+   // End of Reading from LocalStorage
+
+
+   // -- Write to VersBM3, from BookMK3
+
+   var BookMK3_Len = Number(BookMK3[0]);  // record how many Bookmark3 records
+
+   if(BookMK3_Len==1){
+
+      Delete_Bookmarks3();
+
+   }
+
+   //alert(BookMK2_Len);
+
+   for (i = 0; i < BookMK3_Len; i++) {
+
+      //BookMK2[i+1] = VersBM2_B[i];  // arg1
+      //BookMK2[i+2] = VersBM2_C[i];  // arg2
+      //BookMK2[i+3] = VersBM2_V[i];  // arg3  
+      //BookMK2[i+4] = VersBM2_T[i];  // arg4
+
+      VersBM3_B[i] = Number(BookMK3[4*i+1]);  // arg1
+      VersBM3_C[i] = Number(BookMK3[4*i+2]);  // arg2
+      VersBM3_V[i] = Number(BookMK3[4*i+3]);  // arg3  
+      VersBM3_T[i] = Number(BookMK3[4*i+4]);  // arg4
+
+      var tmp_B = VersBM3_B[i];  // arg1
+      var tmp_C = VersBM3_C[i];  // arg2
+      var tmp_V = VersBM3_V[i];  // arg3  
+      var tmp_T = VersBM3_T[i];  // arg4
+
+       var VBM_Bname = BookAbbr4[tmp_B]; // arg1
+       var VBM_Chap = tmp_C + 1;
+       var VBM_Vers = tmp_V;
+       var VBM_To_Vers = tmp_T;
+
+       if(tmp_T>tmp_V)
+          var VBM = VBM_Bname + ' ' + VBM_Chap + ':' + VBM_Vers + '~' + VBM_To_Vers; 
+       else
+          var VBM = VBM_Bname + ' ' + VBM_Chap + ':' + VBM_Vers; 
+
+       //if(arg3==999 && arg4==999) {
+
+       //   var VBM = VBM_Bname + ' ' + VBM_Chap;
+
+       //}
+    
+       //VersBM2.unshift(VBM);  // Put in new record
+
+
+       VersBM3[i]=VBM;  // Put in new record
+
+   }
+
+
+}  // End of function Init_BM3()
 
 
 
@@ -2094,7 +2374,7 @@ function History_to_Bookmarks3() { // 將資料 由 History 轉至 Bookmark3, 先清空 B
 
     Show_Bookmark3_Only();
 
-    //Write_Bookmark1();
+    Write_Bookmark3();
 
 
 }  // End of function History_to_Bookmarks3()
@@ -2584,6 +2864,8 @@ function Delete_All_History() { // 刪除所有Array中資料
 
    //}); // End of dialog.showMessageBox()
 
+   Write_History();
+
 }  // End of function Delete_All_History()
 
 
@@ -2809,6 +3091,8 @@ function Show_History(arg1,arg2,arg3,arg4) { // 將資料存至 Array 並顯示
        document.getElementById("Vers_history").innerHTML = text1;
 
     }
+
+    Write_History();
 
 }  // End of function Show_History()
 
