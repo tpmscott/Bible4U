@@ -845,14 +845,14 @@ function Hide_a7(){
 <a id="a7" href="javascript:;" onclick="change7()">¤¤/­^</a>
 </td>
 
-<td></td><td></td><td></td><td></td><td></td>
+<td></td><td></td><td></td>
 
 <td>
-<a id="a633" href="javascript:;" onclick="Open_Note();">O_N</a>
+<a id="a633" href="javascript:;" onclick="Open_Note();">ON</a>
 </td>
 <td></td>
 <td>
-<a id="a634" href="javascript:;" onclick="Close_Note();">C_N</a>
+<a id="a634" href="javascript:;" onclick="Close_Note();">CN</a>
 </td>
 
 <td>
@@ -6006,11 +6006,26 @@ function change8() {
 
 <div id="container0" style="height:0%;width:100%;overflow:auto;">
 
+<table>
+<form name="ANNO_FORM">
+
+<tr>
+<td>
+<input type="text" style="font-size:20pt" size="40" name="B11aa" id="IAI_1t" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+<input align="right" type="button" name="B11a" value="Save" onclick="ANNO();write_textarea_1(word44a);write_textarea_1a(ANNO_S1);write_textarea_1b(ANNO_S1a); return false;">
+<input type="button" name="B11b" value="Read" onclick="read_textarea_1();read_textarea_1a();read_textarea_1b();Show_Page_A1(); return false;">
+<input type="button" name="B11c" value="Clear" onclick="clear_textarea_1();Show_Page_A1(); return false;">
+</td>
+</tr>
+
 <tr>
 <td>
 <textarea cols="50" rows="10" name="A1" id="A1" style="font-size:20pt" Wrap="Off" onkeyup="getLineNumber(this, document.getElementById('lineNo_A1'));getPageNumber_A1();" onmouseup="this.onkeyup();" onfocus="Mousetrap.pause();" onBlur="Mousetrap.unpause();clean_lineNo_A1()"></textarea>
 </td>
 </tr>
+
+</form>
+</table>
 
 </div>
 
