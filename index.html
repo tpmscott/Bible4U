@@ -845,7 +845,15 @@ function Hide_a7(){
 <a id="a7" href="javascript:;" onclick="change7()">¤¤/­^</a>
 </td>
 
+<td></td><td></td><td></td><td></td><td></td>
 
+<td>
+<a id="a633" href="javascript:;" onclick="Open_Note();">O_N</a>
+</td>
+<td></td>
+<td>
+<a id="a634" href="javascript:;" onclick="Close_Note();">C_N</a>
+</td>
 
 <td>
 <input class="topfont2" type="button" id="etest" value="e" onclick="return false;">
@@ -1272,6 +1280,18 @@ function Class_Mode() {
 
    document.getElementById("bible_verse_table").style.height = "0%";
    document.getElementById("bible_verse_table").style.visibility='hidden'; 
+
+}
+
+function Open_Note() {
+
+   document.getElementById("container0").style.height = "40%";
+
+}
+
+function Close_Note() {
+
+   document.getElementById("container0").style.height = "0%";
 
 }
 
@@ -5982,6 +6002,19 @@ function change8() {
 
 
 <iframe id="iframe1" src="" width="0" height="0"></iframe>
+
+
+<div id="container0" style="height:0%;width:100%;overflow:auto;">
+
+<tr>
+<td>
+<textarea cols="50" rows="10" name="A1" id="A1" style="font-size:20pt" Wrap="Off" onkeyup="getLineNumber(this, document.getElementById('lineNo_A1'));getPageNumber_A1();" onmouseup="this.onkeyup();" onfocus="Mousetrap.pause();" onBlur="Mousetrap.unpause();clean_lineNo_A1()"></textarea>
+</td>
+</tr>
+
+</div>
+
+
 
 <div id="container1" style="height:0%;width:50%;float:left;">
 
