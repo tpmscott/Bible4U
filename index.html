@@ -796,19 +796,19 @@ function Hide_a7(){
 <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 
 <td>
-<input style="font-size:14pt" type="button" name="M222" value="Book" ontouchstart="Input_Book_Mode();efocus(); return false;">
+<input style="font-size:14pt" type="button" name="M222" value="Book" ontouchstart="Input_Book_Mode();Close_Note();efocus(); return false;">
 </td>
 
 <td></td><td></td>
 
 <td>
-<input style="font-size:14pt" type="button" name="M222" value="Chap" ontouchstart="keyFunction2('c');Input_Chap_Mode();; return false;">
+<input style="font-size:14pt" type="button" name="M222" value="Chap" ontouchstart="keyFunction2('c');Close_Note();Input_Chap_Mode();; return false;">
 </td>
 
 <td></td><td></td>
 
 <td>
-<input style="font-size:14pt" type="button" name="M222" value="Verse" ontouchstart="keyFunction2('v');Input_Vers_Mode();; return false;">
+<input style="font-size:14pt" type="button" name="M222" value="Verse" ontouchstart="keyFunction2('v');Close_Note();Input_Vers_Mode();; return false;">
 </td>
 
 <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
@@ -1288,7 +1288,7 @@ function Open_Note() {
 function Close_Note() {
 
    document.getElementById("container0").style.height = "0%";
-   efocus(); // add 20190430
+   efocus2(); // add 20190430
 
 }
 
