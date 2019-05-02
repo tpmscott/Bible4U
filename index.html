@@ -796,19 +796,19 @@ function Hide_a7(){
 <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 
 <td>
-<input style="font-size:14pt" type="button" name="M222" value="Book" ontouchstart="Input_Book_Mode();Close_Note();efocus(); return false;">
+<input style="font-size:14pt" type="button" name="M222" value="Book" ontouchstart="Close_Note();write_textarea_1();Input_Book_Mode();efocus(); return false;">
 </td>
 
 <td></td><td></td>
 
 <td>
-<input style="font-size:14pt" type="button" name="M222" value="Chap" ontouchstart="keyFunction2('c');Close_Note();Input_Chap_Mode();; return false;">
+<input style="font-size:14pt" type="button" name="M222" value="Chap" ontouchstart="Close_Note();write_textarea_1();keyFunction2('c');Input_Chap_Mode();; return false;">
 </td>
 
 <td></td><td></td>
 
 <td>
-<input style="font-size:14pt" type="button" name="M222" value="Verse" ontouchstart="keyFunction2('v');Close_Note();Input_Vers_Mode();; return false;">
+<input style="font-size:14pt" type="button" name="M222" value="Verse" ontouchstart="Close_Note();write_textarea_1();keyFunction2('v');Input_Vers_Mode();; return false;">
 </td>
 
 <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
@@ -1288,11 +1288,12 @@ function Open_Note() {
 function Close_Note() {
 
    document.getElementById("container0").style.height = "0%";
-   efocus2(); // add 20190430
+   //efocus(); // add 20190430
 
 }
 
 function Input_Book_Mode() {
+
 
    //Mode_Study=0;  // 1 means Mode-On, 0 means Mode-Off
    //Mode_Class=1;  // 1 means Mode-On, 0 means Mode-Off
@@ -6309,7 +6310,7 @@ function Click_Note5() {
 
 <tr>
 <td>
-<textarea cols="50" rows="10" name="A1" id="A1" style="font-size:20pt" Wrap="Off" onkeyup="getLineNumber(this, document.getElementById('lineNo_A1'));getPageNumber_A1();" onmouseup="this.onkeyup();" onfocus="Mousetrap.pause();" onBlur="Mousetrap.unpause();clean_lineNo_A1()"></textarea>
+<textarea cols="50" rows="10" name="A1" id="A1" style="font-size:20pt" Wrap="Off" onkeyup=";" onmouseup=";" onfocus="Mousetrap.pause();" onBlur="Mousetrap.unpause();"></textarea>
 <a id="a634" href="javascript:;" onclick="Close_Note();write_textarea_1();">Close</a>
 </td>
 </tr>
