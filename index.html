@@ -848,7 +848,7 @@ function Hide_a7(){
 <td></td><td></td><td></td>
 
 <td>
-<a id="a633" href="javascript:;" onclick="Open_Note();read_textarea_1();">Note</a>
+<a id="a633" href="javascript:;" onclick="Open_Note();Pre_Set_Mode();read_textarea_1();">Note</a>
 </td>
 
 <td>
@@ -1288,6 +1288,7 @@ function Open_Note() {
 function Close_Note() {
 
    document.getElementById("container0").style.height = "0%";
+   efocus(); // add 20190430
 
 }
 
@@ -4966,22 +4967,22 @@ function Qmaxverse(index,index2) {   // find out maximum verse of chapter of boo
 
 <tr>
 
-<td><button style="color:blue"  onclick="Show_History_Only()">Show History</button></td>
+<td><button style="color:blue"  onclick="Show_History_Only();Pre_Set_Mode()">Show History</button></td>
 <td><button onclick="Hide_History_Only()">Hide History</button></td>
 
 <td></td><td></td><td></td>
 
-<td><button style="color:blue"  onclick="Show_Bookmark_Only()">Show BM</button></td>
+<td><button style="color:blue"  onclick="Show_Bookmark_Only();Pre_Set_Mode()">Show BM</button></td>
 <td><button onclick="Hide_Bookmark_Only()">Hide BM</button></td>
 
 <td></td><td></td><td></td>
 
-<td><button style="color:blue"  onclick="Show_Bookmark1_Only()">Show BM1</button></td>
+<td><button style="color:blue"  onclick="Show_Bookmark1_Only();Pre_Set_Mode()">Show BM1</button></td>
 <td><button onclick="Hide_Bookmark1_Only()">Hide BM1</button></td>
 
 <td></td><td></td><td></td>
 
-<td><button style="color:blue"  onclick="Show_Bookmark2_Only()">Show BM2</button></td>
+<td><button style="color:blue"  onclick="Show_Bookmark2_Only();Pre_Set_Mode()">Show BM2</button></td>
 <td><button onclick="Hide_Bookmark2_Only()">Hide BM2</button></td>
 
 <td></td><td></td><td></td>
@@ -4992,21 +4993,23 @@ function Qmaxverse(index,index2) {   // find out maximum verse of chapter of boo
 
 <td><button style="color:green"  onclick="Write_Bookmark()">Save BM</button></td>
 
+
+
 </tr>
 
 <tr>
 
-<td><button style="color:blue" onclick="Show_Bookmark3_Only()">Show BM3</button></td>
+<td><button style="color:blue" onclick="Show_Bookmark3_Only();Pre_Set_Mode()">Show BM3</button></td>
 <td><button onclick="Hide_Bookmark3_Only()">Hide BM3</button></td>
 
 <td></td><td></td><td></td>
 
-<td><button style="color:blue"  onclick="Show_Bookmark4_Only()">Show BM4</button></td>
+<td><button style="color:blue"  onclick="Show_Bookmark4_Only();Pre_Set_Mode()">Show BM4</button></td>
 <td><button onclick="Hide_Bookmark4_Only()">Hide BM4</button></td>
 
 <td></td><td></td><td></td>
 
-<td><button style="color:blue"  onclick="Show_Bookmark5_Only()">Show BM5</button></td>
+<td><button style="color:blue"  onclick="Show_Bookmark5_Only();Pre_Set_Mode()">Show BM5</button></td>
 <td><button onclick="Hide_Bookmark5_Only()">Hide BM5</button></td>
 
 <td></td><td></td><td></td>
@@ -5024,6 +5027,7 @@ function Qmaxverse(index,index2) {   // find out maximum verse of chapter of boo
 
 </table>
 
+
 <div style="font-size:2pt"> <HR width="100%"> </div>
 
 </div>
@@ -5040,6 +5044,10 @@ function Qmaxverse(index,index2) {   // find out maximum verse of chapter of boo
 
 
 <script>
+
+
+
+
 
 // clear_bookmark(document.ClearBookmark.na.selectedIndex);
 
