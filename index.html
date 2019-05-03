@@ -771,8 +771,6 @@ function Hide_a7(){
 </head>
 <body onload="Hide_a7();Read_Bookmark2();Read_Bookmark1();Init_History();Init_BM();Init_BM3();Init_BM4();Init_BM5();V_or_H_Mode();setachap();; return false;" text="#000000" link="#0000ff" alink="#ffffff" vlink="#0000ff" background="back5.jpg">
 
-<div id="All_containers" style="overflow:auto;">
-
 
 <table><tr><td>
 
@@ -798,19 +796,19 @@ function Hide_a7(){
 <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 
 <td>
-<input style="font-size:14pt" type="button" name="M222" value="Book" ontouchstart="Close_Note();write_textarea_1();Input_Book_Mode();efocus(); return false;">
+<input style="font-size:14pt" type="button" name="M222" value="Book" ontouchstart="Input_Book_Mode();efocus(); return false;">
 </td>
 
 <td></td><td></td>
 
 <td>
-<input style="font-size:14pt" type="button" name="M222" value="Chap" ontouchstart="Close_Note();write_textarea_1();keyFunction2('c');Input_Chap_Mode();; return false;">
+<input style="font-size:14pt" type="button" name="M222" value="Chap" ontouchstart="keyFunction2('c');Input_Chap_Mode();; return false;">
 </td>
 
 <td></td><td></td>
 
 <td>
-<input style="font-size:14pt" type="button" name="M222" value="Verse" ontouchstart="Close_Note();write_textarea_1();keyFunction2('v');Input_Vers_Mode();; return false;">
+<input style="font-size:14pt" type="button" name="M222" value="Verse" ontouchstart="keyFunction2('v');Input_Vers_Mode();; return false;">
 </td>
 
 <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
@@ -6321,7 +6319,17 @@ function Click_Note5() {
 <tr>
 <td>
 <textarea cols="50" rows="10" name="A1" id="A1" style="font-size:20pt" Wrap="Off" onkeyup=";" onmouseup=";" onfocus="Mousetrap.pause();" onBlur="Mousetrap.unpause();"></textarea>
-<a id="a634" href="javascript:;" onclick="Close_Note();write_textarea_1();Up_to_Top();">Close</a>
+
+</td>
+
+<td>
+<input style="font-size:14pt" type="button" name="M222" value="Book" ontouchstart="Close_Note();write_textarea_1();Input_Book_Mode();efocus(); return false;">
+<p>&nbsp; </p>
+<input style="font-size:14pt" type="button" name="M222" value="Chap" ontouchstart="Close_Note();write_textarea_1();keyFunction2('c');Input_Chap_Mode();; return false;">
+<p>&nbsp; </p>
+<input style="font-size:14pt" type="button" name="M222" value="Verse" ontouchstart="Close_Note();write_textarea_1();keyFunction2('v');Input_Vers_Mode();; return false;">
+<p>&nbsp; </p>
+<a id="a634" href="javascript:;" onclick="Close_Note();write_textarea_1();">Close</a>
 </td>
 </tr>
 
@@ -6750,8 +6758,6 @@ function Click_Note5() {
 
 </div>
 
-
-</div>
 
 </body>
 </html>
