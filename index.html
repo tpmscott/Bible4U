@@ -1294,7 +1294,7 @@ function Close_Note() {
 
 function Up_to_Top() {
 
-   document.getElementById("All_containers").scrollTop = 0;
+   window.scrollTo(0, 0);
 
 }
 
@@ -6329,7 +6329,7 @@ function Click_Note5() {
 <p>&nbsp; </p>
 <input style="font-size:11pt" type="button" name="M222" value="Verse" ontouchstart="Close_Note();write_textarea_1();keyFunction2('v');Input_Vers_Mode();; return false;">
 <p>&nbsp; </p>
-<a id="a634" href="javascript:;" onclick="Close_Note();write_textarea_1();">Close</a>
+<a id="a634" href="javascript:;" onclick="Close_Note();write_textarea_1();Up_to_Top();">Close</a>
 </td>
 </tr>
 
