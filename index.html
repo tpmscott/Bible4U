@@ -771,6 +771,8 @@ function Hide_a7(){
 </head>
 <body onload="Hide_a7();Read_Bookmark2();Read_Bookmark1();Init_History();Init_BM();Init_BM3();Init_BM4();Init_BM5();V_or_H_Mode();setachap();; return false;" text="#000000" link="#0000ff" alink="#ffffff" vlink="#0000ff" background="back5.jpg">
 
+<div id="All_containers" style="overflow:auto;">
+
 
 <table><tr><td>
 
@@ -1291,6 +1293,14 @@ function Close_Note() {
    //efocus(); // add 20190430
 
 }
+
+function Up_to_Top() {
+
+   document.getElementById("All_containers").scrollTop = 0;
+
+}
+
+
 
 function Input_Book_Mode() {
 
@@ -6311,7 +6321,7 @@ function Click_Note5() {
 <tr>
 <td>
 <textarea cols="50" rows="10" name="A1" id="A1" style="font-size:20pt" Wrap="Off" onkeyup=";" onmouseup=";" onfocus="Mousetrap.pause();" onBlur="Mousetrap.unpause();"></textarea>
-<a id="a634" href="javascript:;" onclick="Close_Note();write_textarea_1();">Close</a>
+<a id="a634" href="javascript:;" onclick="Close_Note();write_textarea_1();Up_to_Top();">Close</a>
 </td>
 </tr>
 
@@ -6737,6 +6747,9 @@ function Click_Note5() {
 </div>
 
 </div>
+
+</div>
+
 
 </div>
 
