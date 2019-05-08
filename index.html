@@ -769,7 +769,7 @@ function Hide_a7(){
 
 
 </head>
-<body onload="Hide_a7();Read_Bookmark2();Read_Bookmark1();Init_History();Init_BM();Init_BM3();Init_BM4();Init_BM5();V_or_H_Mode();setachap();; return false;" text="#000000" link="#0000ff" alink="#ffffff" vlink="#0000ff" background="back5.jpg">
+<body onload="Hide_a7();Read_Bookmark2();Read_Bookmark1();Init_History();Init_BM();Init_BM3();Init_BM4();Init_BM5();Init_Notes_List();V_or_H_Mode();setachap();; return false;" text="#000000" link="#0000ff" alink="#ffffff" vlink="#0000ff" background="back5.jpg">
 
 
 <table><tr><td>
@@ -1522,6 +1522,7 @@ function Set_Enter() { // add on 2019.03.11
 var BookMK3 = [] ;  // Array for Reading from LocalStorage
 var BookMK4 = [] ;
 var BookMK5 = [] ;
+var BookMKNote = [] ;
 var VerseHIS = [] ;
 
 
@@ -1569,6 +1570,18 @@ var VersBM1_tmp_V = [] ;
 var VersBM1_tmp_T = [] ;
 
 
+var VersBMNote = [] ;   // for verse bookmarkNote
+var VersBMNote_B = [] ;
+var VersBMNote_C = [] ;
+var VersBMNote_V = [] ;
+var VersBMNote_T = [] ;
+
+var VersBMNote_tmp_B = [] ;
+var VersBMNote_tmp_C = [] ;
+var VersBMNote_tmp_V = [] ;
+var VersBMNote_tmp_T = [] ;
+
+
 var VersBM3 = [] ;   // for verse bookmark3
 var VersBM3_B = [] ;
 var VersBM3_C = [] ;
@@ -1604,7 +1617,7 @@ var VersBM5_tmp_V = [] ;
 var VersBM5_tmp_T = [] ;
 
 
-
+var Notes_List = [] ; // for Notes List stored in DB
 
 
 //function Write_Bookmark(arg1) { // arg1 = VersBMLen, including Deleted items
@@ -1889,6 +1902,34 @@ function Write_Bookmark5(){   // Write to LocalStorage
 
 } // End of function Write_Bookmark5()
 
+
+function write_to_Notes_List() {
+
+   //var Notes_List_Content = Notes_List.toString();
+
+   var Notes_List_Len = Number(Notes_List[0]);
+
+   var j = Notes_List_Len + 1;
+
+   var Notes_List_Content = Notes_List_Len ;
+
+   for (i = 1; i < j ; i++) {
+
+      var tmp_B = Notes_List[i];
+      var tmp_B_string = tmp_B.toString();
+      Notes_List_Content = Notes_List_Content + ',' + tmp_B_string
+
+   }
+
+   // Start Writing to Local Storage
+
+   localStorage.Notes_List = Notes_List_Content;
+
+   //localStorage.VersBM3 = '2,65,4,5,10,0,0,10,0'; // For Testing
+
+   // End of Writing to Local Storage
+
+} // End of function write_to_Notes_List()
 
 
 function Write_History(){   // Write to LocalStorage
@@ -2228,6 +2269,96 @@ function Init_BM(){ // Read from LocalStorage
 
 }  // End of function Init_BM()
 
+
+function Init_BMNote(){ // Read from LocalStorage
+                        // Write to VersBMNote_B
+                        // Write to VersBMNote_C
+                        // Write to VersBMNote_V
+                        // Write to VersBMNote_T
+                        // Write to VersBMNote
+
+   // Start Reading from LocalStorage
+
+   var N_String = G_N_String;
+
+   var N_String_Verses = N_String + '_Verses';
+
+
+   //if(localStorage.VersBM3) {
+   //   //localStorage.VersBM3 = localStorage.VersBM3;
+   //}else {
+   //   localStorage.VersBM3 = '0';
+   //   //localStorage.VersBM3 = '2,65,4,5,10,0,0,10,0'; // For Testing
+   //}
+
+     // String to Array -- seperator ","
+
+     //var str3 = localStorage.VersBM3;
+     var str3 = localStorage.getItem(N_String_Verses);
+     var BookMKNote = str3.split(",");
+
+     // End of String to Array -- seperator ","
+
+
+   // End of Reading from LocalStorage
+
+
+   // -- Write to VersBMNote, from BookMKNote
+
+   var BookMKNote_Len = Number(BookMKNote[0]);  // record how many BookmarkNote records
+
+   Delete_BookmarksNote();
+
+   //if(BookMKNote_Len==1){
+
+   //   Delete_BookmarksNote();
+
+   //}
+
+   //alert(BookMK2_Len);
+
+   for (i = 0; i < BookMKNote_Len; i++) {
+
+      //BookMK2[i+1] = VersBM2_B[i];  // arg1
+      //BookMK2[i+2] = VersBM2_C[i];  // arg2
+      //BookMK2[i+3] = VersBM2_V[i];  // arg3  
+      //BookMK2[i+4] = VersBM2_T[i];  // arg4
+
+      VersBMNote_B[i] = Number(BookMKNote[4*i+1]);  // arg1
+      VersBMNote_C[i] = Number(BookMKNote[4*i+2]);  // arg2
+      VersBMNote_V[i] = Number(BookMKNote[4*i+3]);  // arg3  
+      VersBMNote_T[i] = Number(BookMKNote[4*i+4]);  // arg4
+
+      var tmp_B = VersBMNote_B[i];  // arg1
+      var tmp_C = VersBMNote_C[i];  // arg2
+      var tmp_V = VersBMNote_V[i];  // arg3  
+      var tmp_T = VersBMNote_T[i];  // arg4
+
+       var VBM_Bname = BookAbbr4[tmp_B]; // arg1
+       var VBM_Chap = tmp_C + 1;
+       var VBM_Vers = tmp_V;
+       var VBM_To_Vers = tmp_T;
+
+       if(tmp_T>tmp_V)
+          var VBM = VBM_Bname + ' ' + VBM_Chap + ':' + VBM_Vers + '~' + VBM_To_Vers; 
+       else
+          var VBM = VBM_Bname + ' ' + VBM_Chap + ':' + VBM_Vers; 
+
+       //if(arg3==999 && arg4==999) {
+
+       //   var VBM = VBM_Bname + ' ' + VBM_Chap;
+
+       //}
+    
+       //VersBM2.unshift(VBM);  // Put in new record
+
+
+       VersBMNote[i]=VBM;  // Put in new record
+
+   }
+
+
+}  // End of function Init_BMNote()
 
 
 function Init_BM3(){ // Read from LocalStorage
@@ -2843,6 +2974,35 @@ function History_to_Bookmarks5() { // 將資料 由 History 轉至 Bookmark5, 先清空 B
 }  // End of function History_to_Bookmarks5()
 
 
+function Delete_BookmarksNote() { // 刪除BookmarksNote Array中資料
+
+
+         //Delete BookmarksNote -- Start
+
+           //var text1, VersHisLen, i;
+           //VersHisLen = VersHis.length;
+           //text1 = "Verse History<br>";
+
+           var text1, VersBMNoteLen, i;
+           VersBMNoteLen = VersBMNote.length;
+
+           VersBMNote.splice(0, VersBMNoteLen);
+           VersBMNote_B.splice(0, VersBMNoteLen);
+           VersBMNote_C.splice(0, VersBMNoteLen);
+           VersBMNote_V.splice(0, VersBMNoteLen);
+           VersBMNote_T.splice(0, VersBMNoteLen);
+
+           //if(Show_History_F==1) { // 1 means Show, 0 means Hide
+
+           //   document.getElementById("Vers_history").innerHTML = text1;
+
+           //}
+
+         //Delete All History -- End
+
+
+}  // End of function Delete_BookmarksNote()
+
 
 function Delete_Bookmarks3() { // 刪除Bookmarks3 Array中資料
 
@@ -2932,6 +3092,17 @@ function Delete_Bookmarks5() { // 刪除Bookmarks5 Array中資料
 
 
 }  // End of function Delete_Bookmarks5()
+
+function Delete_Notes_List() { // 刪除Notes_List Array中資料
+
+
+           var Notes_List_Len;
+           Notes_List_Len = Notes_List[0];
+           Notes_List[0] = 0;
+
+           Notes_List.splice(1, Notes_List_Len);
+
+}
 
 
 
@@ -3335,6 +3506,8 @@ var Show_Bookmark1_F = 1; // 1 means Show, 0 means Hide
 var Show_Bookmark3_F = 1; // 1 means Show, 0 means Hide
 var Show_Bookmark4_F = 1; // 1 means Show, 0 means Hide
 var Show_Bookmark5_F = 1; // 1 means Show, 0 means Hide
+
+var Show_BookmarkNote_F = 1; // 1 means Show, 0 means Hide
 
 
 function Show_History_Only() { // Show all items in VersHis Array
@@ -3970,9 +4143,58 @@ function Show_Bookmark2_Only() {   // Show all items in Bookmark2 *** Only ***
 }   // End of function Show_Bookmark2_Only()
 
 
+function Show_BookmarkNote_Only() {   // Show all items in BookmarkNote *** Only ***
+                                      // Do Not Write all items to files ***
+
+    Show_BookmarkNote_F = 1; // 1 means Show, 0 means Hide
+
+    var text1, VersBMNoteLen, i;
+
+
+    VersBMNoteLen = VersBMNote.length;
+
+    text1 = "Note Verses<br>";
+
+
+    for (i = (VersBMNoteLen-1); i > -1; i--) {   // Show Verse BookmarksNote
+
+
+        if(VersBMNote[i]=="Deleted"){
+           // Do nothing
+        }
+        else {
+
+
+           if(VersBMNote_V[i]==999 && VersBMNote_T[i]==999) {
+
+              //text1 += '<button onclick="Delete_Bookmark2('+i+');return false;">-</button> <a href="" onClick="Show_His_BM_Vers3(' + VersBM2_B[i] + ',' + VersBM2_C[i] + '); return false;">' + VersBM2[i] + '</a><br>';
+
+           } 
+           else {   
+
+              //text1 += '<button onclick="return false;">O</button> <a href="" onClick="Show_His_BM_Vers2(' + VersBM2_B[i] + ',' + VersBM2_C[i] + ',' + VersBM2_V[i] + ',' + VersBM2_T[i] + '); return false;">' + VersBM2[i] + '</a><br>';
+
+              text1 += '<button onclick=";return false;">O</button> <a href="" id="9'+VersBMNote_B[i]+VersBMNote_C[i]+VersBMNote_V[i]+VersBMNote_T[i]+i+'0" onClick="Show_His_BM_Vers2(' + VersBMNote_B[i] + ',' + VersBMNote_C[i] + ',' + VersBMNote_V[i] + ',' + VersBMNote_T[i] + ');change_color(9'+VersBMNote_B[i]+VersBMNote_C[i]+VersBMNote_V[i]+VersBMNote_T[i]+i+'0);return false;">' + VersBMNote[i] + '</a><br>';
+
+           }
+
+        }
+
+    }
+
+    document.getElementById("His_Container").style.width = "16%";
+    document.getElementById("Bible_Container").style.width = "84%";
+
+    //V_or_H_Mode();
+
+    document.getElementById("Note_Verses").innerHTML = text1;
+
+
+}   // End of function Show_BookmarkNote_Only()
+
+
 function Show_Bookmark3_Only() {   // Show all items in Bookmark3 *** Only ***
                                    // Do Not Write all items to files ***
-
 
     Show_Bookmark3_F = 1; // 1 means Show, 0 means Hide
 
@@ -4176,7 +4398,7 @@ function Hide_Bookmark_Only() {   // Show all items in Bookmark *** Only ***
 
     }
 
-   if(Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
+   if(Show_BookmarkNote_F==0 && Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
 
       document.getElementById("His_Container").style.width = "0%";
       document.getElementById("Bible_Container").style.width = "100%";
@@ -4242,7 +4464,7 @@ function Hide_Bookmark1_Only() {   // Show all items in Bookmark1 *** Only ***
 
     }
 
-   if(Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
+   if(Show_BookmarkNote_F==0 && Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
 
       document.getElementById("His_Container").style.width = "0%";
       document.getElementById("Bible_Container").style.width = "100%";
@@ -4307,7 +4529,7 @@ function Hide_Bookmark2_Only() {   // Show all items in Bookmark2 *** Only ***
 
     }
 
-   if(Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
+   if(Show_BookmarkNote_F==0 && Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
 
       document.getElementById("His_Container").style.width = "0%";
       document.getElementById("Bible_Container").style.width = "100%";
@@ -4318,6 +4540,35 @@ function Hide_Bookmark2_Only() {   // Show all items in Bookmark2 *** Only ***
 
 
 }   // End of function Hide_Bookmark2_Only()
+
+
+function Hide_BookmarkNote_Only() {   // Show all items in BookmarkNote *** Only ***
+                                      // Do Not Write all items to files ***
+
+    Show_BookmarkNote_F = 0; // 1 means Show, 0 means Hide
+
+    //var text1, VersBM3Len, i;
+
+
+    //VersBM3Len = VersBM3.length;
+
+    //text1 = "Verse Bookmarks3<br>";
+
+    //for (i = 0; i < VersBMLen; i++) {   // Show Verse Bookmarks1
+
+
+
+   if(Show_BookmarkNote_F==0 && Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
+
+      document.getElementById("His_Container").style.width = "0%";
+      document.getElementById("Bible_Container").style.width = "100%";
+
+   }
+
+    document.getElementById("Note_Verses").innerHTML = "";
+
+
+}   // End of function Hide_BookmarkNote_Only()
 
 
 function Hide_Bookmark3_Only() {   // Show all items in Bookmark3 *** Only ***
@@ -4336,7 +4587,7 @@ function Hide_Bookmark3_Only() {   // Show all items in Bookmark3 *** Only ***
 
 
 
-   if(Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
+   if(Show_BookmarkNote_F==0 && Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
 
       document.getElementById("His_Container").style.width = "0%";
       document.getElementById("Bible_Container").style.width = "100%";
@@ -4365,7 +4616,7 @@ function Hide_Bookmark4_Only() {   // Show all items in Bookmark4 *** Only ***
 
 
 
-   if(Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
+   if(Show_BookmarkNote_F==0 && Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
 
       document.getElementById("His_Container").style.width = "0%";
       document.getElementById("Bible_Container").style.width = "100%";
@@ -4394,7 +4645,7 @@ function Hide_Bookmark5_Only() {   // Show all items in Bookmark5 *** Only ***
 
 
 
-   if(Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
+   if(Show_BookmarkNote_F==0 && Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
 
       document.getElementById("His_Container").style.width = "0%";
       document.getElementById("Bible_Container").style.width = "100%";
@@ -4417,6 +4668,7 @@ function Hide_All(){
    Show_Bookmark3_F=0;
    Show_Bookmark2_F=0;
    Show_Bookmark1_F=0;
+   Show_BookmarkNote_F=0;
 
    document.getElementById("His_Container").style.width = "0%";
    document.getElementById("Bible_Container").style.width = "100%";
@@ -4428,6 +4680,7 @@ function Hide_All(){
    document.getElementById("Vers_bookmark3").innerHTML = "";
    document.getElementById("Vers_bookmark2").innerHTML = "";
    document.getElementById("Vers_bookmark1").innerHTML = "";
+   document.getElementById("Note_Verses").innerHTML = "";
 
 
 }   // End of function Hide_All()
@@ -5102,6 +5355,88 @@ function setup_open_window()
 // store.set('windowBounds', { width, height, x, y });
 
 
+
+function passWord() {
+var testV = 1;
+var pass1 = prompt('Please Enter Your Password',' ');
+
+while (testV < 3) {
+if (!pass1) 
+history.go(-1);
+if (pass1.toLowerCase() == "jitlomf") {
+   //alert('You Got it Right!');
+   //window.open('protectpage.html');
+   Show_Notes_List();
+break;
+} 
+testV+=1;
+var pass1 = 
+prompt('Access Denied - Password Incorrect, Please Try Again.','Password');
+}
+if (pass1.toLowerCase()!="password" & testV ==3) 
+history.go(-1);
+return " ";
+} 
+
+var pass1="";
+
+function Input_passWord_1() { // Show Input password area
+
+   document.getElementById("tool_area_6").style.visibility='visible';
+   document.getElementById("tool_area_6").style.height='10px';
+
+   document.getElementById("tool_area_8").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.height='0px';
+
+}
+
+function passWord_1() { // Display and Input pass1
+
+   document.getElementById("tool_area_6").style.visibility='hidden';
+
+   pass1 = document.getElementById("pwd").value;
+
+   passWord_2();
+
+} // End of function passWord_1()
+
+
+function passWord_2() { // Check pass1
+
+   //var testV = 1;
+   //var pass1 = prompt('Please Enter Your Password',' ');
+
+   //while (testV < 3) {
+
+   //   if (!pass1) 
+   //      history.go(-1);
+
+      if (pass1.toLowerCase() == "jitlomf") {
+
+         document.getElementById("tool_area_8").style.visibility='visible';
+
+         Show_n_Delete_Notes_List();
+
+         //alert('You Got it Right!');
+         //window.open('protectpage.html');
+         //Show_Notes_List();
+         //break;
+      } 
+
+   //   testV+=1;
+   //   var pass1 = 
+   //   prompt('Access Denied - Password Incorrect, Please Try Again.','Password');
+   //}
+
+   //if (pass1.toLowerCase()!="password" & testV ==3) 
+   //   history.go(-1);
+
+   //return " ";
+
+} // End of function passWord_2()
+
+
 function write_A1() // 將讀經進度寫入記錄檔1, "Reading-Bible-Record-1.json"
 {
    //var fso_w1=new ActiveXObject("Scripting.FileSystemObject");
@@ -5756,6 +6091,66 @@ function read_textarea_1_Note5(){  // 20190427 -- Read from LocalStorage
 
 } // End of function read_textarea_1_Note5()
 
+function read_textarea_1_NoteDB(){ 
+
+      //var N_String = document.Note_DB_FORM.Note3aa.value ; // Name String 
+
+      //G_N_String = N_String;
+
+      var N_String = G_N_String;
+
+      var N_String_Topic = N_String + '_Topic';
+
+      var N_String_Content = N_String + '_Content';
+
+      var N_String_Verses = N_String + '_Verses';
+
+
+   // Start Reading from LocalStorage
+
+      if(localStorage.N_String_Topic) {
+
+      }else {
+         localStorage.N_String_Topic = '';
+
+      }
+
+      if(localStorage.N_String_Content) {
+
+      }else {
+         localStorage.N_String_Content = '';
+
+      }
+
+      if(localStorage.N_String_Verses) {
+
+      }else {
+         localStorage.N_String_Verses = '';
+
+      }
+
+      //document.getElementById("IAI_1t").value = localStorage.N_String_Topic;
+
+      //document.getElementById("A1").value = localStorage.N_String_Content;
+
+
+
+      //document.getElementById("IAI_1t").value = localStorage.190504Sat1_Topic;  // for test
+
+      document.getElementById("IAI_1t").value = localStorage.getItem(N_String_Topic);
+
+
+      //document.getElementById("A1").value = localStorage.190504Sat1_Content;    // for test
+
+      document.getElementById("A1").value = localStorage.getItem(N_String_Content);
+
+      Init_BMNote();
+
+      Show_BookmarkNote_Only();
+
+
+} // End of functio read_textarea_1_NoteDB()
+
 
 function clear_textarea_1(){  // 
 
@@ -5764,6 +6159,257 @@ function clear_textarea_1(){  //
 
 }  // End of function clear_textarea_1()
 
+//var Note_Name_String;
+
+
+function Show_Notes_List() { // show Name and Topic
+
+   //Notes_List = ["3","190504Sat1","190505Sun1","190506Mon1"]; // for debug  
+
+   var Notes_List_Len = Number(Notes_List[0]);
+   var text1;
+   text1 = "Notes List<br>";
+
+   for (i = 1; i < Notes_List_Len + 1; i++) {
+
+      var N_String = Notes_List[i];
+      var N_String_Topic = N_String + '_Topic';
+
+      var Topic_String = localStorage.getItem(N_String_Topic); // localStorage.getItem("lastname")
+
+      //text1 += '<button onclick="Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers2(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a><br>';      
+    
+      text1 += '<a href="" onClick="Show_Select_Note(' + i + ');return false;">' + Notes_List[i] + '</a> : ' + Topic_String + '<br>';      
+
+      //text1 += '<button onclick="Show_Select_Note(' + i + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_Select_Note(' + Notes_List[i] + ');return false;">' + Notes_List[i] + '</a><br>';
+
+
+   }
+
+   document.getElementById("tool_area_6").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.height='0px';
+
+   document.getElementById("tool_area_8").style.visibility='visible';
+
+   document.getElementById("Notes_List").innerHTML = text1;
+
+
+}  // End of function Show_Notes_List()
+
+
+function Show_n_Delete_Notes_List() { // show Name and Topic and Delete Button
+
+   //Notes_List = ["3","190504Sat1","190505Sun1","190506Mon1"]; // for debug  
+
+   var Notes_List_Len = Number(Notes_List[0]);
+   var text1;
+   text1 = "Notes List<br>";
+
+   for (i = 1; i < Notes_List_Len + 1; i++) {
+
+      var N_String = Notes_List[i];
+      var N_String_Topic = N_String + '_Topic';
+
+      var Topic_String = localStorage.getItem(N_String_Topic); // localStorage.getItem("lastname")
+
+      //text1 += '<button onclick="Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers2(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a><br>';      
+    
+      text1 += '<button onclick=" ;return false;"> Delete </button> --> ' + '<a href="" onClick="Show_Select_Note(' + i + ');return false;">' + Notes_List[i] + '</a> : ' + Topic_String + '<br>';      
+
+      //text1 += '<button onclick="Show_Select_Note(' + i + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_Select_Note(' + Notes_List[i] + ');return false;">' + Notes_List[i] + '</a><br>';
+      
+
+   }
+
+   document.getElementById("Notes_List").innerHTML = text1;
+
+
+}  // End of function Show_n_Delete_Notes_List()
+
+
+function Show_Select_Note(arg1,arg2,arg3,arg4) {
+
+   var N_String = Notes_List[arg1];
+   //var N_String = arg1;
+   G_N_String = N_String;
+   document.getElementById("NoteDB").value = N_String;
+   document.getElementById("NoteDB").style.visibility='visible';
+   Click_NoteDB();
+
+}
+
+
+var G_N_String; // Global Name string
+
+function Note3_to_DB(){ // copy localStorage.Note3_Topic to localStorage.N_String_Topic
+                        // copy localStorage.Note3_Content to localStorage.N_String_Content
+                        // copy localStorage.VersBM3 to localStorage.N_String_Verses
+                        // temply store to localStorage, finally store to indexedDB
+
+      var N_String = document.Note_DB_FORM.Note3aa.value ; // Name String 
+
+      // Check whether Name exist
+
+         var Notes_List_Len = Number(Notes_List[0]);
+
+         var N_String_exist = 0; // 0 means not exist, 1 means exist
+
+         for (i = 1; i < Notes_List_Len+1 ; i++) {
+
+            if( Notes_List[i]==N_String ) {
+
+               N_String_exist=1; // 0 means not exist, 1 means exist
+            }
+
+         }
+
+
+      // End of Check
+
+
+      // Save to localStorage.Notes_List
+
+         if (N_String_exist==1) { // 0 means not exist, 1 means exist
+
+            // Display item exist already
+            var Exist_Message = 'Name existed';
+            document.getElementById("Notes_List").innerHTML = Exist_Message;
+
+         }
+         else if (N_String_exist==0) { // 0 means not exist, 1 means exist
+
+            Notes_List[Notes_List_Len+1] = N_String; // add to array Notes_List
+
+            Notes_List[0] = Notes_List_Len + 1; // Modify the array Notes_List
+ 
+            var Debug_Message = "Notes_List = ";
+
+            document.getElementById("Notes_List").innerHTML =  Debug_Message + Notes_List; // for debug
+
+            write_to_Notes_List(); // write to localStorage
+
+            G_N_String = N_String;
+
+         }
+
+         
+
+
+      // End of Save to localStorage.Notes_List
+
+
+      // Copy Note3 to DB
+
+      if (N_String_exist==0) { // 0 means not exist, 1 means exist
+
+         var N_String_Topic = N_String + '_Topic';
+
+         var N_String_Content = N_String + '_Content';
+
+         var N_String_Verses = N_String + '_Verses';
+
+         document.getElementById("NoteDB").value = N_String;
+
+         //localStorage.N_String_Topic = localStorage.Note3_Topic;
+
+         localStorage.setItem(N_String_Topic,localStorage.Note3_Topic); // Can't use above way
+
+         //localStorage.N_String_Content = localStorage.Note3_Content;
+
+         localStorage.setItem(N_String_Content,localStorage.Note3_Content); // Can't use above way
+
+         localStorage.setItem(N_String_Verses,localStorage.VersBM3);  // copy localStorage.VersBM3 
+                                                                      // to localStorage.N_String_Verses
+
+         document.getElementById("NoteDB").style.visibility='visible';
+
+      } // End of if (N_String_exist==0)
+
+
+} // End of function Note3_to_DB()
+
+
+function Display_DB_Tools() {
+
+   document.getElementById("tool_area_7").style.visibility='visible';
+
+}
+
+function Hide_DB_Tools() {
+
+   document.getElementById("tool_area_7").style.visibility='hidden';
+   document.getElementById("tool_area_6").style.visibility='hidden';
+   document.getElementById("tool_area_8").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.height='0px';
+
+}
+
+function Save_Note_to_DB() {
+
+   document.getElementById("tool_area_6").style.visibility='hidden';
+   document.getElementById("tool_area_8").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.visibility='visible';
+   document.getElementById("tool_area_9").style.height='20px';
+
+}
+
+
+function Init_Notes_List() { // ex: '1,190504Sat1'
+
+                     // Read from localStorage.Notes_List
+                     // Write to array Notes_List
+                     // Notes_List_Len = Number(Notes_List[0])
+
+   // Start Reading from LocalStorage
+
+   if(localStorage.Notes_List) {
+      //localStorage.Notes_List = '2,190504Sat1,190506Sun1'; // For Testing
+   }else {
+      localStorage.Notes_List = '0';
+      //localStorage.Notes_List = '2,190504Sat1,190505Sun1'; // For Testing
+   }
+
+     // String to Array Notes_List -- seperator "," 
+
+     var str3 = localStorage.Notes_List;
+     Notes_List = str3.split(",");
+
+     // End of String to Array -- seperator ","
+
+
+   // End of Reading from LocalStorage
+
+
+   // -- Write to Notes_List, from Notes_List_tmp
+
+   var Notes_List_Len = Number(Notes_List[0]);  // record how many Notes_List records
+
+   if(Notes_List_Len==0){
+
+      //Delete_Bookmarks4();
+
+   }
+
+   //alert(BookMK2_Len);
+
+
+}  // End of function Init_Notes_List()
+
+
+function Click_NoteDB() {
+
+   Note_Seleted="NoteDB";
+
+   read_textarea_1_NoteDB();
+
+   document.getElementById("Note3").style.color="black";
+   document.getElementById("Note4").style.color="black";
+   document.getElementById("Note5").style.color="black";
+   document.getElementById("NoteDB").style.color="blue";
+
+} // End of function Click_NoteDB()
 
 function Click_Note3() {
 
@@ -5782,11 +6428,15 @@ function Click_Note3() {
       read_textarea_1_Note3();  // Read Note3 from LocalStorage
 
    }
+   else if(Note_Seleted=="NoteDB") {
+      read_textarea_1_Note3();  // Read Note3 from LocalStorage
+   }
 
    Note_Seleted="3";
    document.getElementById("Note3").style.color="blue";
    document.getElementById("Note4").style.color="black";
    document.getElementById("Note5").style.color="black";
+   document.getElementById("NoteDB").style.color="black";
 
 }  // End of function Click_Note3()
 
@@ -5807,11 +6457,15 @@ function Click_Note4() {
       read_textarea_1_Note4();  // Read Note4 from LocalStorage
 
    }
+   else if(Note_Seleted=="NoteDB") {
+      read_textarea_1_Note4();  // Read Note4 from LocalStorage
+   }
 
    Note_Seleted="4";
    document.getElementById("Note3").style.color="black";
    document.getElementById("Note4").style.color="blue";
    document.getElementById("Note5").style.color="black";
+   document.getElementById("NoteDB").style.color="black";
 
 }  // End of function Click_Note4()
 
@@ -5832,11 +6486,15 @@ function Click_Note5() {
       read_textarea_1_Note5();  // Read Note5 from LocalStorage
 
    }
+   else if(Note_Seleted=="NoteDB") {
+      read_textarea_1_Note5();  // Read Note5 from LocalStorage
+   }
 
    Note_Seleted="5";
    document.getElementById("Note3").style.color="black";
    document.getElementById("Note4").style.color="black";
    document.getElementById("Note5").style.color="blue";
+   document.getElementById("NoteDB").style.color="black";
 
 }  // End of function Click_Note5()
 
@@ -5845,6 +6503,8 @@ function Click_Note5() {
 </script>
 
 <div id="His_Container" style="height:600px;width:0%;float:left;font-size:14pt;overflow:auto;">
+
+  <p id="Note_Verses"></p>
 
   <p id="Vers_bookmark5"></p>
 
@@ -6329,7 +6989,7 @@ function Click_Note5() {
 <p>&nbsp; </p>
 <input style="font-size:10pt" type="button" name="M222" value="Verse" ontouchstart="Close_Note();write_textarea_1();Up_to_Top();keyFunction2('v');Input_Vers_Mode();; return false;">
 <p>&nbsp; </p>
-<a id="a634" href="javascript:;" onclick="Close_Note();write_textarea_1();Up_to_Top();">Close</a>
+<a id="a634" href="javascript:;" onclick="Close_Note();write_textarea_1();Up_to_Top();Hide_BookmarkNote_Only();">Close</a>
 </td>
 </tr>
 
@@ -6358,7 +7018,22 @@ function Click_Note5() {
 <td></td><td></td><td></td><td></td><td></td><td></td>
 
 <td>
-<input type="button" name="B116" style="font-size:16pt;color:black" id="NoteDB" value="NoteDB" onclick="Click_NoteDB(); return false;">
+<input type="button" name="B116" style="font-size:16pt;color:black;visibility:hidden" id="NoteDB" value="NoteDB" onclick="Click_NoteDB(); return false;">
+</td>
+
+<td></td><td></td><td></td><td></td><td></td><td></td>
+<td></td><td></td><td></td><td></td><td></td><td></td>
+<td></td><td></td><td></td><td></td><td></td><td></td>
+<td></td><td></td><td></td><td></td><td></td><td></td>
+
+<td>
+<input type="button" name="B116" style="font-size:16pt;color:black;" id="MoreDBTool" value="More" onclick="Display_DB_Tools();Init_Notes_List(); return false;">
+</td>
+
+<td></td><td></td>
+
+<td>
+<input type="button" name="B216" style="font-size:16pt;color:black;" id="LessDBTool" value="Less" onclick="Hide_DB_Tools(); return false;">
 </td>
 
 </tr>
@@ -6366,14 +7041,53 @@ function Click_Note5() {
 
 <tr><td>&nbsp;</td></tr>
 
+<div id="tool_area_7" style="visibility:hidden">
+
+<table>
+<tr>
+
+<td>
+<input type="button" name="B113" style="font-size:16pt;color:black" id="Save_to_DB" value="Save to DB" onclick="Save_Note_to_DB(); return false;">
+</td>
+
+<td></td><td></td><td></td><td></td><td></td><td></td>
+
+<td>
+<input type="button" name="B114" style="font-size:16pt;color:black" id="Notes_List_in_DB" value="Notes List in DB" onclick="Show_Notes_List(); return false;">
+</td>
+
+<td></td><td></td><td></td><td></td><td></td><td></td>
+
+<td>
+<input type="button" name="B115" style="font-size:16pt;color:black" id="Exp_Imp_DB" value="Exp/Imp DB" onclick="; return false;">
+</td>
+
+<td></td><td></td><td></td><td></td><td></td><td></td>
+
+<td>
+<input type="button" name="B116" style="font-size:16pt;color:black" id="Delete_Notes_in_DB" value="Delete Notes in DB" onclick="Input_passWord_1(); return false;">
+</td>
+
+</tr>
+</table>
+
+</div>
+
+
+
+<div id="tool_area_9" style="height:0px;visibility:hidden">
+
 <table>
 <form name="Note_DB_FORM">
+
+<tr><td> &nbsp </td></tr>
+<tr><td> &nbsp </td></tr>
 
 <tr>
 <td>
 Note3 => 
 <input type="text" style="font-size:18pt" size="10" name="Note3aa" id="Note3aaa" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
-<input align="right" type="button" name="B11a" value="Run" onclick="; return false;">
+<input align="right" type="button" name="B11a" value="Run" onclick="Note3_to_DB(); return false;">
 </td>
 </tr>
 
@@ -6385,8 +7099,37 @@ Note4 =>
 </td>
 </tr>
 
+<tr>
+<td>
+Note5 => 
+<input type="text" style="font-size:18pt" size="10" name="Note5aa" id="Note5aaa" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+<input align="right" type="button" name="B11a" value="Run" onclick="; return false;">
+</td>
+</tr>
+
 </form>
 </table>
+
+</div>
+
+
+
+<div id="tool_area_6" style="height:0px;visibility:hidden">
+
+  <tr><td>&nbsp</td></tr>
+
+  Password: <input type="password" style="font-size:16pt" id="pwd" name="pwd" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">  
+
+  <input type="button" name="B121" style="font-size:16pt;color:black" value="Submit" onclick="passWord_1(); return false;">
+
+</div>
+
+<div id="tool_area_8" style="visibility:hidden">
+
+  <p style="font-size:20pt" id="Notes_List"></p>
+
+</div>
+
 
 
 </div>
