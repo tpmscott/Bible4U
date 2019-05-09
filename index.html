@@ -6294,8 +6294,8 @@ function Note3_to_DB(){ // copy localStorage.Note3_Topic to localStorage.N_Strin
          if (N_String_exist==1) { // 0 means not exist, 1 means exist
 
             // Display item exist already
-            var Exist_Message = 'Name existed';
-            document.getElementById("Notes_List").innerHTML = Exist_Message;
+            var Exist_Message = N_String + ' -- name existed';
+            document.getElementById("Note3_Message").innerHTML = Exist_Message;
 
          }
          else if (N_String_exist==0) { // 0 means not exist, 1 means exist
@@ -6304,9 +6304,9 @@ function Note3_to_DB(){ // copy localStorage.Note3_Topic to localStorage.N_Strin
 
             Notes_List[0] = Notes_List_Len + 1; // Modify the array Notes_List
  
-            var Debug_Message = "Notes_List = ";
+            var Succeed_Message = N_String + ' -- saving to DB succeeded';
 
-            document.getElementById("Notes_List").innerHTML =  Debug_Message + Notes_List; // for debug
+            document.getElementById("Note3_Message").innerHTML =  Succeed_Message; 
 
             write_to_Notes_List(); // write to localStorage
 
@@ -6349,6 +6349,185 @@ function Note3_to_DB(){ // copy localStorage.Note3_Topic to localStorage.N_Strin
 
 
 } // End of function Note3_to_DB()
+
+
+function Note4_to_DB(){ // copy localStorage.Note4_Topic to localStorage.N_String_Topic
+                        // copy localStorage.Note4_Content to localStorage.N_String_Content
+                        // copy localStorage.VersBM4 to localStorage.N_String_Verses
+                        // temply store to localStorage, finally store to indexedDB
+
+      var N_String = document.Note_DB_FORM.Note4aa.value ; // Name String 
+
+      // Check whether Name exist
+
+         var Notes_List_Len = Number(Notes_List[0]);
+
+         var N_String_exist = 0; // 0 means not exist, 1 means exist
+
+         for (i = 1; i < Notes_List_Len+1 ; i++) {
+
+            if( Notes_List[i]==N_String ) {
+
+               N_String_exist=1; // 0 means not exist, 1 means exist
+            }
+
+         }
+
+
+      // End of Check
+
+
+      // Save to localStorage.Notes_List
+
+         if (N_String_exist==1) { // 0 means not exist, 1 means exist
+
+            // Display item exist already
+            var Exist_Message = N_String + ' -- name existed';
+            document.getElementById("Note4_Message").innerHTML = Exist_Message;
+
+         }
+         else if (N_String_exist==0) { // 0 means not exist, 1 means exist
+
+            Notes_List[Notes_List_Len+1] = N_String; // add to array Notes_List
+
+            Notes_List[0] = Notes_List_Len + 1; // Modify the array Notes_List
+ 
+            var Succeed_Message = N_String + ' -- saving to DB succeeded';
+
+            document.getElementById("Note4_Message").innerHTML =  Succeed_Message; 
+
+            write_to_Notes_List(); // write to localStorage
+
+            G_N_String = N_String;
+
+         }
+
+         
+
+
+      // End of Save to localStorage.Notes_List
+
+
+      // Copy Note4 to DB
+
+      if (N_String_exist==0) { // 0 means not exist, 1 means exist
+
+         var N_String_Topic = N_String + '_Topic';
+
+         var N_String_Content = N_String + '_Content';
+
+         var N_String_Verses = N_String + '_Verses';
+
+         document.getElementById("NoteDB").value = N_String;
+
+         //localStorage.N_String_Topic = localStorage.Note4_Topic;
+
+         localStorage.setItem(N_String_Topic,localStorage.Note4_Topic); // Can't use above way
+
+         //localStorage.N_String_Content = localStorage.Note4_Content;
+
+         localStorage.setItem(N_String_Content,localStorage.Note4_Content); // Can't use above way
+
+         localStorage.setItem(N_String_Verses,localStorage.VersBM4);  // copy localStorage.VersBM4 
+                                                                      // to localStorage.N_String_Verses
+
+         document.getElementById("NoteDB").style.visibility='visible';
+
+      } // End of if (N_String_exist==0)
+
+
+} // End of function Note4_to_DB()
+
+
+function Note5_to_DB(){ // copy localStorage.Note5_Topic to localStorage.N_String_Topic
+                        // copy localStorage.Note5_Content to localStorage.N_String_Content
+                        // copy localStorage.VersBM5 to localStorage.N_String_Verses
+                        // temply store to localStorage, finally store to indexedDB
+
+      var N_String = document.Note_DB_FORM.Note5aa.value ; // Name String 
+
+      // Check whether Name exist
+
+         var Notes_List_Len = Number(Notes_List[0]);
+
+         var N_String_exist = 0; // 0 means not exist, 1 means exist
+
+         for (i = 1; i < Notes_List_Len+1 ; i++) {
+
+            if( Notes_List[i]==N_String ) {
+
+               N_String_exist=1; // 0 means not exist, 1 means exist
+            }
+
+         }
+
+
+      // End of Check
+
+
+      // Save to localStorage.Notes_List
+
+         if (N_String_exist==1) { // 0 means not exist, 1 means exist
+
+            // Display item exist already
+            var Exist_Message = N_String + ' -- name existed';
+            document.getElementById("Note5_Message").innerHTML = Exist_Message;
+
+         }
+         else if (N_String_exist==0) { // 0 means not exist, 1 means exist
+
+            Notes_List[Notes_List_Len+1] = N_String; // add to array Notes_List
+
+            Notes_List[0] = Notes_List_Len + 1; // Modify the array Notes_List
+ 
+            var Succeed_Message = N_String + ' -- saving to DB succeeded';
+
+            document.getElementById("Note5_Message").innerHTML =  Succeed_Message; 
+
+            write_to_Notes_List(); // write to localStorage
+
+            G_N_String = N_String;
+
+         }
+
+         
+
+
+      // End of Save to localStorage.Notes_List
+
+
+      // Copy Note5 to DB
+
+      if (N_String_exist==0) { // 0 means not exist, 1 means exist
+
+         var N_String_Topic = N_String + '_Topic';
+
+         var N_String_Content = N_String + '_Content';
+
+         var N_String_Verses = N_String + '_Verses';
+
+         document.getElementById("NoteDB").value = N_String;
+
+         //localStorage.N_String_Topic = localStorage.Note5_Topic;
+
+         localStorage.setItem(N_String_Topic,localStorage.Note5_Topic); // Can't use above way
+
+         //localStorage.N_String_Content = localStorage.Note5_Content;
+
+         localStorage.setItem(N_String_Content,localStorage.Note5_Content); // Can't use above way
+
+         localStorage.setItem(N_String_Verses,localStorage.VersBM5);  // copy localStorage.VersBM5 
+                                                                      // to localStorage.N_String_Verses
+
+         document.getElementById("NoteDB").style.visibility='visible';
+
+      } // End of if (N_String_exist==0)
+
+
+} // End of function Note5_to_DB()
+
+
+
 
 var More_Mode = 0; // 1 means More Mode
 var Less_mode = 1; // 1 means Less Mode, default is Lsee Mode
@@ -7124,6 +7303,7 @@ function Click_Note5() {
 Note3 => 
 <input type="text" style="font-size:18pt" size="10" name="Note3aa" id="Note3aaa" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
 <input align="right" type="button" name="B11a" value="Run" onclick="Note3_to_DB(); return false;">
+<ins style="font-size:18pt" id="Note3_Message"></ins>
 </td>
 </tr>
 
@@ -7131,7 +7311,8 @@ Note3 =>
 <td>
 Note4 => 
 <input type="text" style="font-size:18pt" size="10" name="Note4aa" id="Note4aaa" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
-<input align="right" type="button" name="B11a" value="Run" onclick="; return false;">
+<input align="right" type="button" name="B11a" value="Run" onclick="Note4_to_DB(); return false;">
+<ins style="font-size:18pt" id="Note4_Message"></ins>
 </td>
 </tr>
 
@@ -7139,7 +7320,8 @@ Note4 =>
 <td>
 Note5 => 
 <input type="text" style="font-size:18pt" size="10" name="Note5aa" id="Note5aaa" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
-<input align="right" type="button" name="B11a" value="Run" onclick="; return false;">
+<input align="right" type="button" name="B11a" value="Run" onclick="Note5_to_DB(); return false;">
+<ins style="font-size:18pt" id="Note5_Message"></ins>
 </td>
 </tr>
 
