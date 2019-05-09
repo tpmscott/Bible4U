@@ -1281,7 +1281,7 @@ function Class_Mode() {
 
 function Open_Note() {
 
-   document.getElementById("container0").style.height = "40%"; // 原為 40%
+   document.getElementById("container0").style.height = "35%"; // 原為 40%
 
 }
 
@@ -4565,7 +4565,13 @@ function Hide_BookmarkNote_Only() {   // Show all items in BookmarkNote *** Only
 
    }
 
-    document.getElementById("Note_Verses").innerHTML = "";
+   if(Less_mode==1) { // Less Mode
+
+      document.getElementById("Note_Verses").innerHTML = "";
+
+   }
+
+   //document.getElementById("Note_Verses").innerHTML = "";
 
 
 }   // End of function Hide_BookmarkNote_Only()
