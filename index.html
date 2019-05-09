@@ -1281,7 +1281,7 @@ function Class_Mode() {
 
 function Open_Note() {
 
-   document.getElementById("container0").style.height = "40%";
+   document.getElementById("container0").style.height = "35%"; // ньм░ 40%
 
 }
 
@@ -6329,14 +6329,26 @@ function Note3_to_DB(){ // copy localStorage.Note3_Topic to localStorage.N_Strin
 
 } // End of function Note3_to_DB()
 
+var More_Mode = 0; // 1 means More Mode
+var Less_mode = 1; // 1 means Less Mode, default is Lsee Mode
 
-function Display_DB_Tools() {
+function Display_DB_Tools() { // More Mode
+
+   More_Mode = 1;
+   Less_mode = 0;
+
+   document.getElementById("container0").style.height = "50%";
 
    document.getElementById("tool_area_7").style.visibility='visible';
 
 }
 
-function Hide_DB_Tools() {
+function Hide_DB_Tools() { // Less Mode
+
+   More_Mode = 0;
+   Less_mode = 1;
+
+   document.getElementById("container0").style.height = "30%";
 
    document.getElementById("tool_area_7").style.visibility='hidden';
    document.getElementById("tool_area_6").style.visibility='hidden';
@@ -7021,7 +7033,6 @@ function Click_Note5() {
 <input type="button" name="B116" style="font-size:16pt;color:black;visibility:hidden" id="NoteDB" value="NoteDB" onclick="Click_NoteDB(); return false;">
 </td>
 
-<td></td><td></td><td></td><td></td><td></td><td></td>
 <td></td><td></td><td></td><td></td><td></td><td></td>
 <td></td><td></td><td></td><td></td><td></td><td></td>
 <td></td><td></td><td></td><td></td><td></td><td></td>
