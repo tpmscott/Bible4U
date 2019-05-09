@@ -1281,7 +1281,16 @@ function Class_Mode() {
 
 function Open_Note() {
 
-   document.getElementById("container0").style.height = "35%"; // 原為 40%
+   if(More_Mode==1) {  // More Mode
+
+      document.getElementById("container0").style.height = "60%"; // 原為 40%
+
+   }
+   else if(Less_mode==1) { // Less Mode
+
+      document.getElementById("container0").style.height = "35%"; // 原為 40%
+
+   }
 
 }
 
@@ -3691,6 +3700,12 @@ function Show_His_BM_Vers2(arg1,arg2,arg3,arg4) {
    Mode_Input_Chap = 0; // 1 means press "Chap" button
    Mode_Input_Vers = 0; // 1 means press "Verse" button
    Mode_Input_ToVers = 0; // 1 means press "ToVerse" button
+
+   if(More_Mode==1) {  // More Mode
+
+      Close_Note();
+
+   }
 
 }  // End of function Show_His_BM_Vers2()
 
