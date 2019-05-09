@@ -1281,7 +1281,7 @@ function Class_Mode() {
 
 function Open_Note() {
 
-   document.getElementById("container0").style.height = "35%"; // 原為 40%
+   document.getElementById("container0").style.height = "30%"; // 原為 40%
 
 }
 
@@ -6337,9 +6337,11 @@ function Display_DB_Tools() { // More Mode
    More_Mode = 1;
    Less_mode = 0;
 
-   document.getElementById("container0").style.height = "50%";
+   document.getElementById("container0").style.height = "60%";
 
    document.getElementById("tool_area_7").style.visibility='visible';
+
+   document.getElementById("A1").rows="18";
 
 }
 
@@ -6349,6 +6351,8 @@ function Hide_DB_Tools() { // Less Mode
    Less_mode = 1;
 
    document.getElementById("container0").style.height = "30%";
+
+   document.getElementById("A1").rows="10";
 
    document.getElementById("tool_area_7").style.visibility='hidden';
    document.getElementById("tool_area_6").style.visibility='hidden';
