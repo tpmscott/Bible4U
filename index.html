@@ -3704,6 +3704,8 @@ function Show_His_BM_Vers2(arg1,arg2,arg3,arg4) {
    if(More_Mode==1) {  // More Mode
 
       Close_Note();
+      write_textarea_1();
+      Up_to_Top();
 
    }
 
@@ -4580,11 +4582,11 @@ function Hide_BookmarkNote_Only() {   // Show all items in BookmarkNote *** Only
 
    }
 
-   if(Less_mode==1) { // Less Mode
+   //if(Less_mode==1) { // Less Mode
 
       document.getElementById("Note_Verses").innerHTML = "";
 
-   }
+   //}
 
    //document.getElementById("Note_Verses").innerHTML = "";
 
