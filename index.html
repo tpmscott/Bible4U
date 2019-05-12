@@ -1299,6 +1299,10 @@ function Close_Note() {
    document.getElementById("container0").style.height = "0%";
    //efocus(); // add 20190430
 
+   Delete_Note_Item_No = 0;  // 0 means No Delete action, 1 means delete first item
+
+   document.getElementById("tool_area_10").style.visibility='hidden';
+
 }
 
 function Up_to_Top() {
@@ -3543,7 +3547,7 @@ function Show_History_Only() { // Show all items in VersHis Array
         }
         else {
 
-           text1 += '<button onclick="Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers2(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a><br>';
+           text1 += '<button onclick="Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a><br>';
 
         }
 
@@ -3659,7 +3663,7 @@ function Show_History(arg1,arg2,arg3,arg4) { // 將資料存至 Array 並顯示
         }
         else {
 
-           text1 += '<button onclick="Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers2(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a><br>';
+           text1 += '<button onclick="Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a><br>';
 
         }
 
@@ -3710,6 +3714,43 @@ function Show_His_BM_Vers2(arg1,arg2,arg3,arg4) {
    }
 
 }  // End of function Show_His_BM_Vers2()
+
+
+function Show_His_BM_Vers4(arg1,arg2,arg3,arg4) {
+
+   now_Book = arg1;  // add on 2018.08.19
+   now_Chap = arg2;  // add on 2018.08.19
+   now_Verse = arg3;  // add on 2018.08.19
+   now_To_Verse = arg4;  // add on 2018.08.19
+
+   readchapter(arg1, arg2, arg3, arg4);
+
+   if(Mode_Input_Book==1 || Mode_Input_Chap==1 || Mode_Input_Vers==1 || Mode_Input_ToVers==1){
+
+      Pre_Set_Mode();
+      Set_Enter();
+      keyFunction2('enter');efocus(); return false; // Add on 2019.03.12   
+
+   }
+
+   Mode_Show_His_BM = 1; // 1 means press Verse History or Verse Bookmarks
+   // Reset
+   Mode_Input_Book = 0; // 1 means press "Book" button
+   Mode_Input_Chap = 0; // 1 means press "Chap" button
+   Mode_Input_Vers = 0; // 1 means press "Verse" button
+   Mode_Input_ToVers = 0; // 1 means press "ToVerse" button
+
+//   if(More_Mode==1) {  // More Mode
+
+      Close_Note();
+      write_textarea_1();
+      Up_to_Top();
+
+//   }
+
+}  // End of function Show_His_BM_Vers4()
+
+
 
 // Item put into VersBM_Buf_B... first, then compare with VersBM_B...
 // if it not exist then add into VersBM_B...
@@ -5412,6 +5453,8 @@ function Input_passWord_1() { // Show Input password area
    document.getElementById("tool_area_9").style.visibility='hidden';
    document.getElementById("tool_area_9").style.height='0px';
 
+   document.getElementById("tool_area_10").style.visibility='hidden';
+
 }
 
 function passWord_1() { // Display and Input pass1
@@ -6217,6 +6260,10 @@ function Show_Notes_List() { // show Name and Topic
 
    document.getElementById("Notes_List").innerHTML = text1;
 
+   Delete_Note_Item_No = 0;  // 0 means No Delete action, 1 means delete first item
+
+   document.getElementById("tool_area_10").style.visibility='hidden';
+
 
 }  // End of function Show_Notes_List()
 
@@ -6238,10 +6285,11 @@ function Show_n_Delete_Notes_List() { // show Name and Topic and Delete Button
 
       //text1 += '<button onclick="Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers2(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a><br>';      
     
-      text1 += '<button onclick=" ;return false;"> Delete </button> --> ' + '<a href="" onClick="Show_Select_Note(' + i + ');return false;">' + Notes_List[i] + '</a> : ' + Topic_String + '<br>';      
+      //-- original use -- text1 += '<button onclick=" ;return false;"> Delete </button> --> ' + '<a href="" onClick="Show_Select_Note(' + i + ');return false;">' + Notes_List[i] + '</a> : ' + Topic_String + '<br>';      
 
-      //text1 += '<button onclick="Show_Select_Note(' + i + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_Select_Note(' + Notes_List[i] + ');return false;">' + Notes_List[i] + '</a><br>';
-      
+
+      text1 += '<button onclick="Confirm_Delete_Note(' + i + ');return false;"> Delete </button> --> ' + '<a href="" onClick="Show_Select_Note(' + i + ');return false;">' + Notes_List[i] + '</a> : ' + Topic_String + '<br>';      
+ 
 
    }
 
@@ -6261,6 +6309,141 @@ function Show_Select_Note(arg1,arg2,arg3,arg4) {
    Click_NoteDB();
 
 }
+
+var Delete_Note_Item_No = 0; // 0 means No Delete action, 1 means delete first item
+
+function Confirm_Delete_Note(arg1) {
+
+   var N_String = Notes_List[arg1];
+
+   Delete_Note_Item_No = Number(arg1);
+
+   var C_Message = 'Delete ' + N_String + '?';
+
+   document.getElementById("Confirm_Message").innerHTML =  C_Message;
+
+   document.getElementById("tool_area_10").style.visibility='visible';
+
+}
+
+
+function Cancel_Delete() { 
+
+   Delete_Note_Item_No = 0;  // 0 means No Delete action, 1 means delete first item
+
+   document.getElementById("tool_area_10").style.visibility='hidden';
+
+}
+
+
+function Delete_Select_Note() {
+
+   if(Delete_Note_Item_No==0) {  // 0 means No Delete action, 1 means delete first item
+      // Do nothing
+   }
+   else {  // Delete Selected Item
+
+      var N_String = Notes_List[Delete_Note_Item_No];
+
+      Click_Note3();
+      document.getElementById("NoteDB").style.visibility='hidden';
+      Hide_BookmarkNote_Only();
+
+      // Delete localStorage.N_String_Topic
+      //        localStorage.N_String_Content
+      //        localStorage.N_String_Verses
+
+      // localStorage.removeItem("mytime");
+
+
+      // Remove Item from localStorage
+
+           var N_String_Topic = N_String + '_Topic';
+
+           var N_String_Content = N_String + '_Content';
+
+           var N_String_Verses = N_String + '_Verses';
+
+           localStorage.removeItem(N_String_Topic);
+
+           localStorage.removeItem(N_String_Content);
+
+           localStorage.removeItem(N_String_Verses);
+
+      // Delete record from Notes_List[]
+
+           var Notes_List_Len = Number(Notes_List[0]);
+
+           Notes_List.splice(Delete_Note_Item_No,1);
+
+           Notes_List[0] = Notes_List_Len - 1; // Modify the array Notes_List
+
+      // Write the content of Notes_List[] to localStorage.Notes_List
+
+           write_to_Notes_List();
+
+      // Display new List
+
+           Show_n_Delete_Notes_List();     
+
+   } // End of if(Delete_Note_Item_No==0) {
+
+   // After Delete, set Delete_Note_Item_No=0
+
+   Delete_Note_Item_No = 0;  // 0 means No Delete action, 1 means delete first item
+
+   document.getElementById("tool_area_10").style.visibility='hidden';
+
+}  // End of function Delete_Select_Note()
+
+
+function Delete_Select_Note_Old(arg1) {
+
+   var N_String = Notes_List[arg1];
+
+   Click_Note3();
+   document.getElementById("NoteDB").style.visibility='hidden';
+   Hide_BookmarkNote_Only();
+
+   // Delete localStorage.N_String_Topic
+   //        localStorage.N_String_Content
+   //        localStorage.N_String_Verses
+
+   // localStorage.removeItem("mytime");
+
+   // Remove Item from localStorage
+
+         var N_String_Topic = N_String + '_Topic';
+
+         var N_String_Content = N_String + '_Content';
+
+         var N_String_Verses = N_String + '_Verses';
+
+         localStorage.removeItem(N_String_Topic);
+
+         localStorage.removeItem(N_String_Content);
+
+         localStorage.removeItem(N_String_Verses);
+
+   // Delete record from Notes_List[]
+
+         var Notes_List_Len = Number(Notes_List[0]);
+
+         Notes_List.splice(arg1,1);
+
+         Notes_List[0] = Notes_List_Len - 1; // Modify the array Notes_List
+
+   // Write the content of Notes_List[] to localStorage.Notes_List
+
+         write_to_Notes_List();
+
+   // Display new List
+
+         Show_n_Delete_Notes_List();     
+
+}  // End of function Delete_Select_Note_Old(arg1)
+
+
 
 
 var G_N_String; // Global Name string
@@ -6562,6 +6745,10 @@ function Hide_DB_Tools() { // Less Mode
    document.getElementById("tool_area_9").style.visibility='hidden';
    document.getElementById("tool_area_9").style.height='0px';
 
+   Delete_Note_Item_No = 0;  // 0 means No Delete action, 1 means delete first item
+
+   document.getElementById("tool_area_10").style.visibility='hidden';
+
 }
 
 function Save_Note_to_DB() {
@@ -6570,6 +6757,10 @@ function Save_Note_to_DB() {
    document.getElementById("tool_area_8").style.visibility='hidden';
    document.getElementById("tool_area_9").style.visibility='visible';
    document.getElementById("tool_area_9").style.height='20px';
+
+   Delete_Note_Item_No = 0;  // 0 means No Delete action, 1 means delete first item
+
+   document.getElementById("tool_area_10").style.visibility='hidden';
 
 }
 
@@ -7343,6 +7534,19 @@ Note5 =>
   <input type="button" name="B121" style="font-size:16pt;color:black" value="Submit" onclick="passWord_1(); return false;">
 
 </div>
+
+
+<div id="tool_area_10" style="visibility:hidden">
+
+<td>
+  <ins style="font-size:18pt;color:red" id="Confirm_Message"></ins>
+  <input type="button" name="B121" style="font-size:16pt;color:black" value="Yes" onclick="Delete_Select_Note(); return false;">
+  or
+  <input type="button" name="B121" style="font-size:16pt;color:black" value="No" onclick="Cancel_Delete(); return false;">
+</td>
+
+</div>
+
 
 <div id="tool_area_8" style="visibility:hidden">
 
