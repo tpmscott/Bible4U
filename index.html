@@ -1279,7 +1279,11 @@ function Class_Mode() {
 
 }
 
+var Note_Opened = 0; // 1 means opened, 0 means close
+
 function Open_Note() {
+
+   Note_Opened = 1; // 1 means opened, 0 means close
 
    if(More_Mode==1) {  // More Mode
 
@@ -1295,6 +1299,8 @@ function Open_Note() {
 }
 
 function Close_Note() {
+
+   Note_Opened = 0; // 1 means opened, 0 means close
 
    document.getElementById("container0").style.height = "0%";
    //efocus(); // add 20190430
@@ -3547,7 +3553,15 @@ function Show_History_Only() { // Show all items in VersHis Array
         }
         else {
 
-           text1 += '<button onclick="Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a><br>';
+           var Vers_Copy = VersHis[i]; // New Add
+
+           var vers_id = 'myV' + i.toString();  // New Add
+
+           //text1 += '<button onclick="Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a><br>';
+
+           // New Modify
+           text1 += '<button onclick="copyFunction(' + i + ');Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a> <input type="text" style="width:5px" value="' + Vers_Copy + '" id="' + vers_id + '"><br>';
+
 
         }
 
@@ -3663,7 +3677,17 @@ function Show_History(arg1,arg2,arg3,arg4) { // 將資料存至 Array 並顯示
         }
         else {
 
-           text1 += '<button onclick="Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a><br>';
+           var Vers_Copy = VersHis[i]; // New Add
+
+           var vers_id = 'myV' + i.toString();  // New Add
+
+           //text1 += '<button onclick="Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a><br>';
+
+
+           // New Modify
+           text1 += '<button onclick="copyFunction(' + i + ');Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a> <input type="text" style="width:5px" value="' + Vers_Copy + '" id="' + vers_id + '"><br>';
+
+
 
         }
 
@@ -3680,6 +3704,21 @@ function Show_History(arg1,arg2,arg3,arg4) { // 將資料存至 Array 並顯示
     Write_History();
 
 }  // End of function Show_History()
+
+
+function copyFunction(arg1) {
+
+   if(Note_Opened==1) {  // 1 means opened, 0 means close
+
+      var vers_id = 'myV' + arg1.toString();
+      var copyText = document.getElementById(vers_id);
+      copyText.select();
+      document.execCommand("copy");
+
+   }
+
+}
+
 
 function Show_His_BM_Vers2(arg1,arg2,arg3,arg4) {
 
@@ -3773,6 +3812,13 @@ function Show_Bookmark(arg1,arg2,arg3,arg4) {   // Add new item to Bookmark
                                                 // Show all items in Bookmark
                                                 // Write all items to files
 
+   if(Note_Opened==1) { // 1 means opened, 0 means close
+
+      // Do Nothing
+
+   }
+   else if(Note_Opened==0) { // 1 means opened, 0 means close
+
 
          // Clear Tmp Array 
 
@@ -3788,100 +3834,54 @@ function Show_Bookmark(arg1,arg2,arg3,arg4) {   // Add new item to Bookmark
              
          //}
 
-    //VersBM_Buf_B.unshift(arg1); 
-    //VersBM_Buf_C.unshift(arg2); 
-    //VersBM_Buf_V.unshift(arg3); 
-    //VersBM_Buf_T.unshift(arg4); 
+       //VersBM_Buf_B.unshift(arg1); 
+       //VersBM_Buf_C.unshift(arg2); 
+       //VersBM_Buf_V.unshift(arg3); 
+       //VersBM_Buf_T.unshift(arg4); 
 
 
-    var VerseBM_existence = 0; // 0 means No duplicate, 1 means found duplicate
+       var VerseBM_existence = 0; // 0 means No duplicate, 1 means found duplicate
 
 
-    //if(Verse_Bookmark_Empty==0) { // 0 means empty, 1 means not empty
+       //if(Verse_Bookmark_Empty==0) { // 0 means empty, 1 means not empty
 
-    //}
-
-
-    var VersBM_B_Len = VersBM_B.length; 
-
-    //var VersBM_Active_Len=0; // Take away the Deleted items // 2018.07.24
-
-    //var VersBM_Add_F; // 0 means < Bookmark_file_No, 1 means = Bookmark_file_No // 2018.07.24
-
-    VersBM_Deleted_Len=0; // 2018.07.24
-
-       for (i = 0; i < VersBM_B_Len; i++) { // 2018.07.24
-
-          if(VersBM[i]=="Deleted"){
-
-             VersBM_Deleted_Len = VersBM_Deleted_Len + 1;
-
-          }
-
-       }
-
-       VersBM_Active_Len = VersBM_B_Len - VersBM_Deleted_Len; // 2018.07.24
-
-       if(VersBM_Active_Len==Bookmark_file_No) { // 2018.07.24
-
-          VersBM_Add_F=1;
-
-          alert('You have reached the max Bookmarks: '+ Bookmark_file_No + ' , you can increase it by changing Bookmark_file_No in bible2.html'); 
-
-       }else if(VersBM_Active_Len<Bookmark_file_No) { // 2018.07.24
-
-          VersBM_Add_F=0;
-
-       }
+       //}
 
 
-    if(VersBM_B_Len==0) { // means VersBM_B is empty
+       var VersBM_B_Len = VersBM_B.length; 
 
-       VersBM_B.unshift(arg1); 
-       VersBM_C.unshift(arg2); 
-       VersBM_V.unshift(arg3); 
-       VersBM_T.unshift(arg4); 
+       //var VersBM_Active_Len=0; // Take away the Deleted items // 2018.07.24
 
-       var VBM_Bname = BookAbbr4[arg1]; // arg1
-       var VBM_Chap = arg2 + 1;
-       var VBM_Vers = arg3;
-       var VBM_To_Vers = arg4;
+       //var VersBM_Add_F; // 0 means < Bookmark_file_No, 1 means = Bookmark_file_No // 2018.07.24
 
-       if(arg4>arg3)
-          var VBM = VBM_Bname + ' ' + VBM_Chap + ':' + VBM_Vers + '~' + VBM_To_Vers; 
-       else
-          var VBM = VBM_Bname + ' ' + VBM_Chap + ':' + VBM_Vers; 
+       VersBM_Deleted_Len=0; // 2018.07.24
 
-       if(arg3==999 && arg4==999) {
+          for (i = 0; i < VersBM_B_Len; i++) { // 2018.07.24
 
-          var VBM = VBM_Bname + ' ' + VBM_Chap;
+             if(VersBM[i]=="Deleted"){
 
-       }
-    
-       VersBM.unshift(VBM);  // Put in new record
-
-    }    
-    //else {
-    else if(VersBM_Add_F==0){ // 2018.07.24
-
-       for (i = 0; i < VersBM_B_Len; i++) {
-
-          if(VersBM_B_Len>0) {
-
-             //if(VersBM_B[i]==VersBM_Buf_B[0] && VersBM_C[i]==VersBM_Buf_C[0] && VersBM_V[i]==VersBM_Buf_V[0] && VersBM_T[i]==VersBM_Buf_T[0]) {
-
-             if(VersBM_B[i]==arg1 && VersBM_C[i]==arg2 && VersBM_V[i]==arg3 && VersBM_T[i]==arg4) {
-
-                VerseBM_existence = 1; // 0 means No duplicate, 1 means found duplicate
+                VersBM_Deleted_Len = VersBM_Deleted_Len + 1;
 
              }
 
           }
 
-       }
+          VersBM_Active_Len = VersBM_B_Len - VersBM_Deleted_Len; // 2018.07.24
 
-  
-       if(VerseBM_existence==0) { // 0 means No duplicate, 1 means found duplicate
+          if(VersBM_Active_Len==Bookmark_file_No) { // 2018.07.24
+
+             VersBM_Add_F=1;
+
+             alert('You have reached the max Bookmarks: '+ Bookmark_file_No + ' , you can increase it by changing Bookmark_file_No in bible2.html'); 
+
+          }else if(VersBM_Active_Len<Bookmark_file_No) { // 2018.07.24
+
+             VersBM_Add_F=0;
+
+          }
+
+
+       if(VersBM_B_Len==0) { // means VersBM_B is empty
 
           VersBM_B.unshift(arg1); 
           VersBM_C.unshift(arg2); 
@@ -3906,9 +3906,55 @@ function Show_Bookmark(arg1,arg2,arg3,arg4) {   // Add new item to Bookmark
     
           VersBM.unshift(VBM);  // Put in new record
 
-       } // End of (VerseBM_existence==0)
+       }    
+       //else {
+       else if(VersBM_Add_F==0){ // 2018.07.24
 
-    } // End of if(VersBM_B_Len==0)
+          for (i = 0; i < VersBM_B_Len; i++) {
+
+             if(VersBM_B_Len>0) {
+
+                //if(VersBM_B[i]==VersBM_Buf_B[0] && VersBM_C[i]==VersBM_Buf_C[0] && VersBM_V[i]==VersBM_Buf_V[0] && VersBM_T[i]==VersBM_Buf_T[0]) {
+
+                if(VersBM_B[i]==arg1 && VersBM_C[i]==arg2 && VersBM_V[i]==arg3 && VersBM_T[i]==arg4) {
+
+                   VerseBM_existence = 1; // 0 means No duplicate, 1 means found duplicate
+
+                }
+
+             }
+
+          }
+
+  
+          if(VerseBM_existence==0) { // 0 means No duplicate, 1 means found duplicate
+
+             VersBM_B.unshift(arg1); 
+             VersBM_C.unshift(arg2); 
+             VersBM_V.unshift(arg3); 
+             VersBM_T.unshift(arg4); 
+
+             var VBM_Bname = BookAbbr4[arg1]; // arg1
+             var VBM_Chap = arg2 + 1;
+             var VBM_Vers = arg3;
+             var VBM_To_Vers = arg4;
+
+             if(arg4>arg3)
+                var VBM = VBM_Bname + ' ' + VBM_Chap + ':' + VBM_Vers + '~' + VBM_To_Vers; 
+             else
+                var VBM = VBM_Bname + ' ' + VBM_Chap + ':' + VBM_Vers; 
+
+             if(arg3==999 && arg4==999) {
+
+                var VBM = VBM_Bname + ' ' + VBM_Chap;
+
+             }
+    
+             VersBM.unshift(VBM);  // Put in new record
+
+          } // End of (VerseBM_existence==0)
+
+       } // End of if(VersBM_B_Len==0)
 
 
     //var VerseBM_existence = 0; // 0 means No duplicate, 1 means found duplicate
@@ -3940,63 +3986,67 @@ function Show_Bookmark(arg1,arg2,arg3,arg4) {   // Add new item to Bookmark
     //   VersBM.splice(0, 1);
     //}
 
-    var text1, VersBMLen, i;
+       var text1, VersBMLen, i;
 
 
-    VersBMLen = VersBM.length;
+       VersBMLen = VersBM.length;
 
-    text1 = "Verse Bookmarks<br>";
+       text1 = "Verse Bookmarks<br>";
 
-    //for (i = 0; i < VersBMLen; i++) {   // Show Verse Bookmarks
+       //for (i = 0; i < VersBMLen; i++) {   // Show Verse Bookmarks
 
-    for (i = (VersBMLen-1); i > -1; i--) {   // Show Verse Bookmarks
+       for (i = (VersBMLen-1); i > -1; i--) {   // Show Verse Bookmarks
 
-        //text1 += '<a href="" onClick="return false;">' + VersBM[i] + '</a><br>';
+           //text1 += '<a href="" onClick="return false;">' + VersBM[i] + '</a><br>';
 
-        //text1 += '<button onclick="return false;">-</button> <a href="" onClick="return false;">' + VersBM[i] + '</a><br>';
+           //text1 += '<button onclick="return false;">-</button> <a href="" onClick="return false;">' + VersBM[i] + '</a><br>';
 
-        if(VersBM[i]=="Deleted"){
-           // Do nothing
-        }
-        else {
+           if(VersBM[i]=="Deleted"){
+              // Do nothing
+           }
+           else {
 
-           //Show_His_BM_Vers(
+              //Show_His_BM_Vers(
 
-           //text1 += '<button onclick="Delete_Bookmark('+i+');return false;">-</button> <a href="" onClick="return false;">' + VersBM[i] + '</a><br>';
+              //text1 += '<button onclick="Delete_Bookmark('+i+');return false;">-</button> <a href="" onClick="return false;">' + VersBM[i] + '</a><br>';
 
 
-           if(VersBM_V[i]==999 && VersBM_T[i]==999) {
+              if(VersBM_V[i]==999 && VersBM_T[i]==999) {
 
-              text1 += '<button onclick="Delete_Bookmark('+i+');return false;">-</button> <a href="" onClick="Show_His_BM_Vers3(' + VersBM_B[i] + ',' + VersBM_C[i] + '); return false;">' + VersBM[i] + '</a><br>';
+                 text1 += '<button onclick="Delete_Bookmark('+i+');return false;">-</button> <a href="" onClick="Show_His_BM_Vers3(' + VersBM_B[i] + ',' + VersBM_C[i] + '); return false;">' + VersBM[i] + '</a><br>';
 
-           } 
-           else {   
+              } 
+              else {   
 
-              text1 += '<button onclick="Delete_Bookmark('+i+');return false;">-</button> <a href="" onClick="Show_His_BM_Vers2(' + VersBM_B[i] + ',' + VersBM_C[i] + ',' + VersBM_V[i] + ',' + VersBM_T[i] + '); return false;">' + VersBM[i] + '</a><br>';
+                 text1 += '<button onclick="Delete_Bookmark('+i+');return false;">-</button> <a href="" onClick="Show_His_BM_Vers2(' + VersBM_B[i] + ',' + VersBM_C[i] + ',' + VersBM_V[i] + ',' + VersBM_T[i] + '); return false;">' + VersBM[i] + '</a><br>';
 
-              //text1 += '<button onclick="Delete_Bookmark('+i+');Write_Bookmark();return false;">-</button> <a href="" onClick="Show_His_BM_Vers2(' + VersBM_B[i] + ',' + VersBM_C[i] + ',' + VersBM_V[i] + ',' + VersBM_T[i] + '); return false;">' + VersBM[i] + '</a><br>';
+                 //text1 += '<button onclick="Delete_Bookmark('+i+');Write_Bookmark();return false;">-</button> <a href="" onClick="Show_His_BM_Vers2(' + VersBM_B[i] + ',' + VersBM_C[i] + ',' + VersBM_V[i] + ',' + VersBM_T[i] + '); return false;">' + VersBM[i] + '</a><br>';
+
+              }
+
+
+              //text1 += '<button onclick="Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a><br>';
+
+              //text1 += '<button onclick="Delete_Bookmark('+i+');return false;">-</button> <a href="" onClick="Show_His_BM_Vers(' + VersBM_B[i] + ',' + VersBM_C[i] + ',' + VersBM_V[i] + ',' VersBM_T[i] + ');return false;">' + VersBM[i] + '</a><br>';
+
+              //text1 += '<button onclick="Delete_Bookmark('+i+');return false;">-</button> <a href="" onClick="Show_His_BM_Vers(' + VersBM_B[i] + ',' + VersBM_C[i] + ',' + VersBM_V[i] + ',' VersBM_T[i] + ');return false;">' + VersBM[i] + '</a><br>';
 
            }
 
 
-           //text1 += '<button onclick="Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a><br>';
 
-           //text1 += '<button onclick="Delete_Bookmark('+i+');return false;">-</button> <a href="" onClick="Show_His_BM_Vers(' + VersBM_B[i] + ',' + VersBM_C[i] + ',' + VersBM_V[i] + ',' VersBM_T[i] + ');return false;">' + VersBM[i] + '</a><br>';
+            //<button onclick="Delete_Bookmark(i)">+</button>
+       }
 
-           //text1 += '<button onclick="Delete_Bookmark('+i+');return false;">-</button> <a href="" onClick="Show_His_BM_Vers(' + VersBM_B[i] + ',' + VersBM_C[i] + ',' + VersBM_V[i] + ',' VersBM_T[i] + ');return false;">' + VersBM[i] + '</a><br>';
+       document.getElementById("Vers_bookmark").innerHTML = text1;
 
-        }
+       //Write_Bookmark(VersBMLen); // write all bookmark to files, // mark temp on 2018.08.22
+
+       //Write_Bookmark();
 
 
+   }  // End of if(Note_Opened==1)
 
-//<button onclick="Delete_Bookmark(i)">+</button>
-    }
-
-    document.getElementById("Vers_bookmark").innerHTML = text1;
-
-    //Write_Bookmark(VersBMLen); // write all bookmark to files, // mark temp on 2018.08.22
-
-    //Write_Bookmark();
 
 }  // End of function Show_Bookmark()
 
