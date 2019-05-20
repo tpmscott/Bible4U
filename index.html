@@ -853,15 +853,6 @@ function Hide_a7(){
 
 <td></td><td></td><td></td>
 
-<td>
-<input type="button" value="Copy Verse" onclick="copyFunction2();">
-</td>
-
-
-
-<td>
-<input type="text" style="font-size:20pt" size="5" id="Copy_Test" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
-</td>
 
 <td>
 <input class="topfont2" type="button" id="etest" value="e" onclick="return false;">
@@ -3572,7 +3563,7 @@ function Show_History_Only() { // Show all items in VersHis Array
            //text1 += '<button onclick="Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a><br>';
 
            // New Modify
-           text1 += '<button onclick="copyFunction(' + i + ');Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a> <input type="text" style="width:5px" value="' + Vers_Copy + '" id="' + vers_id + '"><br>';
+           text1 += '<button onclick="copyFunction2(' + i + ');Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a> <input type="text" style="width:5px" value="' + Vers_Copy + '" id="' + vers_id + '"><br>';
 
 
         }
@@ -3697,7 +3688,7 @@ function Show_History(arg1,arg2,arg3,arg4) { // 將資料存至 Array 並顯示
 
 
            // New Modify
-           text1 += '<button onclick="copyFunction(' + i + ');Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a> <input type="text" style="width:5px" value="' + Vers_Copy + '" id="' + vers_id + '"><br>';
+           text1 += '<button onclick="copyFunction2(' + i + ');Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a> <input type="text" style="width:5px" value="' + Vers_Copy + '" id="' + vers_id + '"><br>';
 
 
 
@@ -3731,7 +3722,21 @@ function copyFunction(arg1) {
 
 }
 
-function copyFunction2() {
+function copyFunction2(arg1) {
+
+   if(Note_Opened==1) {  // 1 means opened, 0 means close
+
+      var vers_id = 'myV' + arg1.toString();
+      select_all_and_copy(document.getElementById(vers_id));
+
+   }
+
+   //select_all_and_copy(document.getElementById("Copy_Test"));
+
+}
+
+
+function copyFunction2_Old() { // for test, OK
 
    select_all_and_copy(document.getElementById("Copy_Test"));
 
