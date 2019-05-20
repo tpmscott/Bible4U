@@ -851,6 +851,18 @@ function Hide_a7(){
 <a id="a633" href="javascript:;" onclick="Open_Note();Pre_Set_Mode();read_textarea_1();">Note</a>
 </td>
 
+<td></td><td></td><td></td>
+
+<td>
+<input type="button" value="Copy Verse" onclick="copyFunction2();">
+</td>
+
+
+
+<td>
+<input type="text" style="font-size:20pt" size="5" id="Copy_Test" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+</td>
+
 <td>
 <input class="topfont2" type="button" id="etest" value="e" onclick="return false;">
 </td>
@@ -3717,6 +3729,83 @@ function copyFunction(arg1) {
 
    }
 
+}
+
+function copyFunction2() {
+
+   select_all_and_copy(document.getElementById("Copy_Test"));
+
+}
+
+
+function select_all_and_copy(el)
+{
+    // Copy textarea, pre, div, etc.
+            if (document.body.createTextRange) {
+        // IE
+        var textRange = document.body.createTextRange();
+        textRange.moveToElementText(el);
+        textRange.select();
+        textRange.execCommand("Copy");   
+                        tooltip(el, "Copied!"); 
+    }
+            else if (window.getSelection && document.createRange) {
+        // non-IE
+        var editable = el.contentEditable; // Record contentEditable status of element
+        var readOnly = el.readOnly; // Record readOnly status of element
+            el.contentEditable = true; // iOS will only select text on non-form elements if contentEditable = true;
+            el.readOnly = false; // iOS will not select in a read only form element
+        var range = document.createRange();
+        range.selectNodeContents(el);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range); // Does not work for Firefox if a textarea or input
+        if (el.nodeName == "TEXTAREA" || el.nodeName == "INPUT")
+            el.select(); // Firefox will only select a form element with select()
+        if (el.setSelectionRange && navigator.userAgent.match(/ipad|ipod|iphone/i))
+            el.setSelectionRange(0, 999999); // iOS only selects "form" elements with SelectionRange
+        el.contentEditable = editable; // Restore previous contentEditable status
+        el.readOnly = readOnly; // Restore previous readOnly status
+                if (document.queryCommandSupported("copy"))
+                {
+                                    var successful = document.execCommand('copy'); 
+                            if (successful) tooltip(el, "Copied to clipboard.");
+                            else tooltip(el, "Press CTRL+C to copy");
+                        }
+                        else
+                        {
+                                    if (!navigator.userAgent.match(/ipad|ipod|iphone|android|silk/i))
+                                                tooltip(el, "Press CTRL+C to copy");
+                        }
+    }
+} // end function select_all_and_copy(el) 
+
+function tooltip(el, message)
+{
+            var scrollLeft = document.body.scrollLeft || document.documentElement.scrollLeft;
+            var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            var x = parseInt(el.getBoundingClientRect().left) + scrollLeft + 10;
+            var y = parseInt(el.getBoundingClientRect().top) + scrollTop + 10;
+            if (!document.getElementById("copy_tooltip"))
+            {
+                        var tooltip = document.createElement('div');
+                        tooltip.id = "copy_tooltip";
+                        tooltip.style.position = "absolute";
+                        tooltip.style.border = "1px solid black";
+                        tooltip.style.background = "#dbdb00";
+                        tooltip.style.opacity = 1;
+                        tooltip.style.transition = "opacity 0.3s";
+                        document.body.appendChild(tooltip);
+            }
+            else
+            {
+                        var tooltip = document.getElementById("copy_tooltip")
+            }
+            tooltip.style.opacity = 1;
+            tooltip.style.left = x + "px";
+            tooltip.style.top = y + "px";
+            tooltip.innerHTML = message;
+            setTimeout(function() { tooltip.style.opacity = 0; }, 2000);
 }
 
 
