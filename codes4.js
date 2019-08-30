@@ -8599,7 +8599,7 @@ function Read_and_Decrypt_Comcare_Key() {
 
    if(Key_input==decryptedName_Str) {
 
-      document.getElementById("Decrypted_Name").innerHTML = 'Same';
+      //document.getElementById("Decrypted_Name").innerHTML = 'Same';
 
       document.getElementById("My_Note_Content").style.visibility='visible';
       document.getElementById("My_Note_Content").style.height = "84%";
@@ -8608,7 +8608,7 @@ function Read_and_Decrypt_Comcare_Key() {
    }
    else {
 
-      document.getElementById("Decrypted_Name").innerHTML = 'Different';
+      //document.getElementById("Decrypted_Name").innerHTML = 'Different';
 
       document.getElementById("My_Note_Content").style.visibility='hidden';
       document.getElementById("My_Note_Content").style.height = "0%";
