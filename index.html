@@ -141,7 +141,7 @@
 <SCRIPT LANGUAGE="JavaScript" SRC="codes4.js"></SCRIPT>
 <SCRIPT LANGUAGE="JavaScript" SRC="KeyFunction.js"></SCRIPT>
 <SCRIPT LANGUAGE="JavaScript" SRC="BookMarks2.js"></SCRIPT>
-<SCRIPT LANGUAGE="JavaScript" SRC="BookMarks1.js"></SCRIPT>
+
 
 <script src="aes.js"></script>
 
@@ -771,7 +771,7 @@ function Hide_a7(){
 
 
 </head>
-<body onload="Hide_a7();Read_Bookmark2();Read_Bookmark1();Init_History();Init_BM();Init_BM3();Init_BM4();Init_BM5();Init_Notes_List();V_or_H_Mode();setachap();; return false;" text="#000000" link="#0000ff" alink="#ffffff" vlink="#0000ff" background="back5.jpg">
+<body onload="Hide_a7();Read_Bookmark2();Init_History();Init_BM();Init_BM1();Init_BM3();Init_BM4();Init_BM5();Init_Notes_List();V_or_H_Mode();setachap();; return false;" text="#000000" link="#0000ff" alink="#ffffff" vlink="#0000ff" background="back5.jpg">
 
 
 <table><tr><td>
@@ -2437,6 +2437,89 @@ function Init_BMNote(){ // Read from LocalStorage
 
 
 }  // End of function Init_BMNote()
+
+
+function Init_BM1(){ // Read from LocalStorage
+                     // Write to VersBM1_B
+                     // Write to VersBM1_C
+                     // Write to VersBM1_V
+                     // Write to VersBM1_T
+                     // Write to VersBM1
+
+   // Start Reading from LocalStorage
+
+   if(localStorage.VersBM1) {
+      //localStorage.VersBM3 = localStorage.VersBM3;
+   }else {
+      localStorage.VersBM1 = '0';
+      //localStorage.VersBM3 = '2,65,4,5,10,0,0,10,0'; // For Testing
+   }
+
+     // String to Array -- seperator ","
+
+     var str1 = localStorage.VersBM1;
+     var BookMK1 = str1.split(",");
+
+     // End of String to Array -- seperator ","
+
+
+   // End of Reading from LocalStorage
+
+
+   // -- Write to VersBM1, from BookMK1
+
+   var BookMK1_Len = Number(BookMK1[0]);  // record how many Bookmark1 records
+
+   if(BookMK1_Len==1){
+
+      Delete_Bookmarks1();
+
+   }
+
+   //alert(BookMK2_Len);
+
+   for (i = 0; i < BookMK1_Len; i++) {
+
+      //BookMK2[i+1] = VersBM2_B[i];  // arg1
+      //BookMK2[i+2] = VersBM2_C[i];  // arg2
+      //BookMK2[i+3] = VersBM2_V[i];  // arg3  
+      //BookMK2[i+4] = VersBM2_T[i];  // arg4
+
+      VersBM1_B[i] = Number(BookMK1[4*i+1]);  // arg1
+      VersBM1_C[i] = Number(BookMK1[4*i+2]);  // arg2
+      VersBM1_V[i] = Number(BookMK1[4*i+3]);  // arg3  
+      VersBM1_T[i] = Number(BookMK1[4*i+4]);  // arg4
+
+      var tmp_B = VersBM1_B[i];  // arg1
+      var tmp_C = VersBM1_C[i];  // arg2
+      var tmp_V = VersBM1_V[i];  // arg3  
+      var tmp_T = VersBM1_T[i];  // arg4
+
+       var VBM_Bname = BookAbbr4[tmp_B]; // arg1
+       var VBM_Chap = tmp_C + 1;
+       var VBM_Vers = tmp_V;
+       var VBM_To_Vers = tmp_T;
+
+       if(tmp_T>tmp_V)
+          var VBM = VBM_Bname + ' ' + VBM_Chap + ':' + VBM_Vers + '~' + VBM_To_Vers; 
+       else
+          var VBM = VBM_Bname + ' ' + VBM_Chap + ':' + VBM_Vers; 
+
+       //if(arg3==999 && arg4==999) {
+
+       //   var VBM = VBM_Bname + ' ' + VBM_Chap;
+
+       //}
+    
+       //VersBM2.unshift(VBM);  // Put in new record
+
+
+       VersBM1[i]=VBM;  // Put in new record
+
+   }
+
+
+}  // End of function Init_BM1()
 
 
 function Init_BM3(){ // Read from LocalStorage
