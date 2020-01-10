@@ -1546,6 +1546,8 @@ function Set_Enter() { // add on 2019.03.11
 var BookMK3 = [] ;  // Array for Reading from LocalStorage
 var BookMK4 = [] ;
 var BookMK5 = [] ;
+var BookMK1 = [] ;
+//var BookMK2 = [] ;
 var BookMKNote = [] ;
 var VerseHIS = [] ;
 
@@ -1775,6 +1777,58 @@ function Write_Bookmark() { // arg1 = VersBMLen, including Deleted items
    //}
 
 } // End of function Write_Bookmark()
+
+
+
+function Write_Bookmark1(){   // Write to LocalStorage
+
+
+   var VersBM1_B_Len = VersBM1_B.length;
+
+
+   var BookMK1_Content = VersBM1_B_Len ;
+
+   for (i = 0; i < VersBM1_B_Len; i++) {
+   //for (i = (VersBM2_B_Len-1); i > -1; i--) {
+
+      //BookMK2[i+1] = VersBM2_B[i];
+      //BookMK2[i+2] = VersBM2_C[i];
+      //BookMK2[i+3] = VersBM2_V[i];
+      //BookMK2[i+4] = VersBM2_T[i];
+
+      var tmp_B = VersBM1_B[i];
+      var tmp_C = VersBM1_C[i];
+      var tmp_V = VersBM1_V[i];
+      var tmp_T = VersBM1_T[i];
+
+      var tmp_B_string = tmp_B.toString();
+      var tmp_C_string = tmp_C.toString();
+      var tmp_V_string = tmp_V.toString();
+      var tmp_T_string = tmp_T.toString();
+
+      BookMK1_Content = BookMK1_Content + ',' + tmp_B_string+ ',' + tmp_C_string + ',' + tmp_V_string + ',' + tmp_T_string;
+      
+      //BookMK2_Content = BookMK2_Content + ',';
+
+      //BookMK2_Content = BookMK2_Content + ',';
+
+   }   
+
+   //BookMK2_Content = BookMK2_Content + ');';
+
+
+   // Start Writing to Local Storage
+
+   localStorage.VersBM1 = BookMK1_Content;
+
+   //localStorage.VersBM3 = '2,65,4,5,10,0,0,10,0'; // For Testing
+
+   // End of Writing to Local Storage
+
+
+
+} // End of function Write_Bookmark1()
+
 
 
 function Write_Bookmark3(){   // Write to LocalStorage
@@ -2902,6 +2956,39 @@ function History_to_Bookmarks() { // 將資料 由 History 轉至 Bookmark
 
 
 
+function BM_to_Bookmarks1() { // 將資料 由 BM 轉至 Bookmark1, 先清空 Bookmark1
+
+
+    Delete_Bookmarks1();
+  
+    var text1, VersBMLen, i;
+
+
+    VersBMLen = VersBM.length;
+
+    //var VersBM1_B_Len = VersBM1_B.length; 
+
+
+
+    for (i = (VersBMLen-1); i > -1; i--) {    
+
+    //for (i = 0; i < VersHisLen; i++) {   
+ 
+
+        Show_Bookmark1_Add_Group(VersBM_B[i],VersBM_C[i],VersBM_V[i],VersBM_T[i]);    
+
+       
+    }
+
+    Show_Bookmark1_Only();
+
+    Write_Bookmark1();
+
+
+}  // End of function BM_to_Bookmarks1()
+
+
+
 function History_to_Bookmarks3() { // 將資料 由 History 轉至 Bookmark3, 先清空 Bookmark3
 
 
@@ -3028,6 +3115,36 @@ function Delete_BookmarksNote() { // 刪除BookmarksNote Array中資料
 }  // End of function Delete_BookmarksNote()
 
 
+function Delete_Bookmarks1() { // 刪除Bookmarks1 Array中資料
+
+
+         //Delete Bookmarks1 -- Start
+
+           //var text1, VersHisLen, i;
+           //VersHisLen = VersHis.length;
+           //text1 = "Verse History<br>";
+
+           var text1, VersBM1Len, i;
+           VersBM1Len = VersBM1.length;
+
+           VersBM1.splice(0, VersBM1Len);
+           VersBM1_B.splice(0, VersBM1Len);
+           VersBM1_C.splice(0, VersBM1Len);
+           VersBM1_V.splice(0, VersBM1Len);
+           VersBM1_T.splice(0, VersBM1Len);
+
+           //if(Show_History_F==1) { // 1 means Show, 0 means Hide
+
+           //   document.getElementById("Vers_history").innerHTML = text1;
+
+           //}
+
+         //Delete All History -- End
+
+
+}  // End of function Delete_Bookmarks1()
+
+
 function Delete_Bookmarks3() { // 刪除Bookmarks3 Array中資料
 
 
@@ -3127,6 +3244,101 @@ function Delete_Notes_List() { // 刪除Notes_List Array中資料
            Notes_List.splice(1, Notes_List_Len);
 
 }
+
+
+function Show_Bookmark1_Add_Group(arg1,arg2,arg3,arg4) {   // Add new item to Bookmark1
+                                                // Show all items in Bookmark1
+                                                // Write all items to files
+                                                // For adding many items, after finished write once out side the function
+
+
+    var VerseBM1_existence = 0; // 0 means No duplicate, 1 means found duplicate
+
+
+    var VersBM1_B_Len = VersBM1_B.length; 
+
+
+
+    if(VersBM1_B_Len==0) { // means VersBM1_B is empty
+
+       VersBM1_B.unshift(arg1); 
+       VersBM1_C.unshift(arg2); 
+       VersBM1_V.unshift(arg3); 
+       VersBM1_T.unshift(arg4); 
+
+       var VBM_Bname = BookAbbr4[arg1]; // arg1
+       var VBM_Chap = arg2 + 1;
+       var VBM_Vers = arg3;
+       var VBM_To_Vers = arg4;
+
+       if(arg4>arg3)
+          var VBM = VBM_Bname + ' ' + VBM_Chap + ':' + VBM_Vers + '~' + VBM_To_Vers; 
+       else
+          var VBM = VBM_Bname + ' ' + VBM_Chap + ':' + VBM_Vers; 
+
+       if(arg3==999 && arg4==999) {
+
+          var VBM = VBM_Bname + ' ' + VBM_Chap;
+
+       }
+    
+       VersBM1.unshift(VBM);  // Put in new record
+
+    }    
+    else {
+
+       //for (i = 0; i < VersBM1_B_Len; i++) {  // Mark on 2020.01.09
+
+       //   if(VersBM1_B_Len>0) {
+
+       //      if(VersBM1_B[i]==arg1 && VersBM1_C[i]==arg2 && VersBM1_V[i]==arg3 && VersBM1_T[i]==arg4) { //20190303
+
+       //         VerseBM1_existence = 1; // 0 means No duplicate, 1 means found duplicate
+
+       //      }
+
+       //   }
+
+       //}
+
+  
+       if(VerseBM1_existence==0) { // 0 means No duplicate, 1 means found duplicate
+
+          VersBM1_B.unshift(arg1); 
+          VersBM1_C.unshift(arg2); 
+          VersBM1_V.unshift(arg3); 
+          VersBM1_T.unshift(arg4); 
+
+          var VBM_Bname = BookAbbr4[arg1]; // arg1
+          var VBM_Chap = arg2 + 1;
+          var VBM_Vers = arg3;
+          var VBM_To_Vers = arg4;
+
+          if(arg4>arg3)
+             var VBM = VBM_Bname + ' ' + VBM_Chap + ':' + VBM_Vers + '~' + VBM_To_Vers; 
+          else
+             var VBM = VBM_Bname + ' ' + VBM_Chap + ':' + VBM_Vers; 
+
+          if(arg3==999 && arg4==999) {
+
+             var VBM = VBM_Bname + ' ' + VBM_Chap;
+
+          }
+    
+          VersBM1.unshift(VBM);  // Put in new record
+
+       } // End of (VerseBM1_existence==0)
+
+    } // End of if(VersBM1_B_Len==0)
+
+
+    var text1, VersBM1Len, i;
+
+    VersBM1Len = VersBM1.length;
+
+
+}  // End of function Show_Bookmark1_Add_Group()
+
 
 
 
@@ -4022,7 +4234,15 @@ function Show_Bookmark(arg1,arg2,arg3,arg4) {   // Add new item to Bookmark
 
                 //if(VersBM_B[i]==VersBM_Buf_B[0] && VersBM_C[i]==VersBM_Buf_C[0] && VersBM_V[i]==VersBM_Buf_V[0] && VersBM_T[i]==VersBM_Buf_T[0]) {
 
-                if(VersBM_B[i]==arg1 && VersBM_C[i]==arg2 && VersBM_V[i]==arg3 && VersBM_T[i]==arg4) {
+                //Mark on 20200108
+                //if(VersBM_B[i]==arg1 && VersBM_C[i]==arg2 && VersBM_V[i]==arg3 && VersBM_T[i]==arg4) {
+
+                //   VerseBM_existence = 1; // 0 means No duplicate, 1 means found duplicate
+
+                //}
+
+                //Add on 20200108
+                if(VersBM_B[0]==arg1 && VersBM_C[0]==arg2 && VersBM_V[0]==arg3 && VersBM_T[0]==arg4) {
 
                    VerseBM_existence = 1; // 0 means No duplicate, 1 means found duplicate
 
@@ -5084,6 +5304,12 @@ function Set_NKJV() {
 <td>
 <a id="b99" href="javascript:;" onclick="change8()">英介</a>
 </td>
+
+<td></td><td></td><td></td>
+<td></td><td></td><td></td>
+<td></td><td></td><td></td>
+
+<td><button style="color:red"  onclick="BM_to_Bookmarks1()">BM->BM1</button></td>
 
 </tr>
 </table>
