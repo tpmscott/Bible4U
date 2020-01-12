@@ -3837,7 +3837,11 @@ function Show_History_Only() { // Show all items in VersHis Array
 
     VersHisLen = VersHis.length;
 
-    text1 = "Verse History<br>";
+    //text1 = "Verse History<br>";
+
+    text1 = '<p id="myCopyVerse_Display">' + '</p><br>';
+
+    text1 += "Verse History <br>";
 
 
     for (i = 0; i < VersHisLen; i++) {        
@@ -3996,11 +4000,11 @@ function Show_History(arg1,arg2,arg3,arg4) { // 將資料存至 Array 並顯示
            // New Modify
            //text1 += '<button onclick="copyFunction2(' + i + ');Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a> <input type="text" style="width:80px" value="' + Vers_Copy + '" id="' + vers_id + '"><br>';
 
-           // Mark on 2020.01.12
-           //text1 += '<button onclick="copyFunction2(' + i + ');Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" id="' + vers_id + '" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a> <br>';
+           // 
+           text1 += '<button onclick="copyFunction2(' + i + ');Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" id="' + vers_id + '" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a> <br>';
 
-           // Add on 2020.01.12
-           text1 += '<button onclick="copyFunction3(' + i + ');Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" id="' + vers_id + '" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a> <br>';
+           // Add on 2020.01.12 for test with copyFunction3()
+           //text1 += '<button onclick="copyFunction3(' + i + ');Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" id="' + vers_id + '" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a> <br>';
 
 
         }
@@ -4013,7 +4017,7 @@ function Show_History(arg1,arg2,arg3,arg4) { // 將資料存至 Array 並顯示
 
        //<input type="text" value="Hello World" id="myCopyVerse">
 
-       text1 += '<input type="text" id="myCopyVerse">' + '<br>';
+       //text1 += '<input type="text" id="myCopyVerse">' + '<br>';
 
        //text1 += '<button onclick="copyFunction2(' + i + ');Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" id="' + vers_id + '" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a> <br>';              
 
@@ -4137,7 +4141,12 @@ function select_all_and_copy(el,arg1)
                             if (successful) {
                                var tmp1_message = VersHis[arg1];
                                var tmp2_message = tmp1_message + ' copied.';
-                               tooltip(el, tmp2_message);
+
+                               var e2 = document.getElementById("myCopyVerse_Display");  //add on 2020.01.12
+
+                               tooltip(e2, tmp2_message);    //add on 2020.01.12
+
+                               //tooltip(el, tmp2_message);  // Mark on 2020.01.12
                                //tooltip(el, "Copied to clipboard.");
                             }
                             else tooltip(el, "Press CTRL+C to copy");
