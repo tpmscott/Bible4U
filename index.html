@@ -3964,16 +3964,13 @@ function Show_History(arg1,arg2,arg3,arg4) { // 將資料存至 Array 並顯示
 
     VersHisLen = VersHis.length;
 
+    //text1 += '<input type="text" id="myCopyVerse">' + '<br>';
 
-    text1 = "Verse History<br>";
+    text1 = '<p id="myCopyVerse_Display">' + '</p><br>';
 
+    text1 += "Verse History <br>";
 
-    //<input type="text" value="Hello World" id="myCopyVerse">
-
-    text1 += '<input type="text" id="myCopyVerse">' + '<br>';
-
-    //text1 += '<button onclick="copyFunction2(' + i + ');Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" id="' + vers_id + '" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a> <br>';              
-
+    //text1 += '<input type="text" id="myCopyVerse">' + '<br>';
 
 
     for (i = 0; i < VersHisLen; i++) {        
@@ -4013,6 +4010,13 @@ function Show_History(arg1,arg2,arg3,arg4) { // 將資料存至 Array 並顯示
     }  // End of for loop
 
     if(Show_History_F==1) { // 1 means Show, 0 means Hide
+
+       //<input type="text" value="Hello World" id="myCopyVerse">
+
+       text1 += '<input type="text" id="myCopyVerse">' + '<br>';
+
+       //text1 += '<button onclick="copyFunction2(' + i + ');Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" id="' + vers_id + '" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a> <br>';              
+
 
        document.getElementById("Vers_history").innerHTML = text1;
 
@@ -4058,12 +4062,26 @@ function copyFunction3(arg1) {
 
       document.getElementById("myCopyVerse").value = VersHis[arg1];
 
+      // Copy to the clipboard
       var copyText = document.getElementById("myCopyVerse");
       copyText.select();
       copyText.setSelectionRange(0, 99999)
       document.execCommand("copy");
 
-      document.getElementById("myCopyVerse").value = VersHis[arg1] + ' copied.';
+      document.getElementById("myCopyVerse").value = VersHis[arg1] + ' copied.';  
+      //document.getElementById("myCopyVerse").value = VersHis[arg1] + ' copied.';  //"Vers_history"
+
+
+      //var vers_id = 'myV' + arg1.toString();
+
+      var tmp1_message = VersHis[arg1];
+      var tmp2_message = tmp1_message + ' copied.';
+
+      //var el = document.getElementById(vers_id);
+      var el = document.getElementById("myCopyVerse_Display");  //"myCopyVerse"
+
+      tooltip(el,tmp2_message);
+
 
       //var vers_id = 'myV' + arg1.toString();                         // 原為 vers_id, 2020.1.11 改為 vers_id_1
                                                                        // 若改為 myV_1, 則不 work
