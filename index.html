@@ -3964,7 +3964,17 @@ function Show_History(arg1,arg2,arg3,arg4) { // 將資料存至 Array 並顯示
 
     VersHisLen = VersHis.length;
 
+
     text1 = "Verse History<br>";
+
+
+    //<input type="text" value="Hello World" id="myCopyVerse">
+
+    text1 += '<input type="text" id="myCopyVerse">' + '<br>';
+
+    //text1 += '<button onclick="copyFunction2(' + i + ');Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" id="' + vers_id + '" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a> <br>';              
+
+
 
     for (i = 0; i < VersHisLen; i++) {        
 
@@ -3989,15 +3999,18 @@ function Show_History(arg1,arg2,arg3,arg4) { // 將資料存至 Array 並顯示
            // New Modify
            //text1 += '<button onclick="copyFunction2(' + i + ');Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a> <input type="text" style="width:80px" value="' + Vers_Copy + '" id="' + vers_id + '"><br>';
 
-           text1 += '<button onclick="copyFunction2(' + i + ');Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" id="' + vers_id + '" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a> <br>';
+           // Mark on 2020.01.12
+           //text1 += '<button onclick="copyFunction2(' + i + ');Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" id="' + vers_id + '" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a> <br>';
 
+           // Add on 2020.01.12
+           text1 += '<button onclick="copyFunction3(' + i + ');Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" id="' + vers_id + '" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a> <br>';
 
 
         }
 
         //<button onclick="Show_Bookmark(VersHis_B[i],..,VersHis_T[i])">+</button>
        
-    }
+    }  // End of for loop
 
     if(Show_History_F==1) { // 1 means Show, 0 means Hide
 
@@ -4027,15 +4040,42 @@ function copyFunction2(arg1) {
 
    if(Note_Opened==1) {  // 1 means opened, 0 means close
 
-      var vers_id = 'myV' + arg1.toString();
-      select_all_and_copy(document.getElementById(vers_id),arg1);
+      var vers_id = 'myV' + arg1.toString();                         // 原為 vers_id, 2020.1.11 改為 vers_id_1
+                                                                       // 若改為 myV_1, 則不 work
+      select_all_and_copy(document.getElementById(vers_id),arg1);    // 原為 vers_id, 2020.1.11 改為 vers_id_1
       //select_all_and_copy(document.getElementById(vers_id));
 
    }
 
    //select_all_and_copy(document.getElementById("Copy_Test"));
 
-}
+}  // End of function copyFunction2
+
+
+function copyFunction3(arg1) {
+
+   if(Note_Opened==1) {  // 1 means opened, 0 means close
+
+      document.getElementById("myCopyVerse").value = VersHis[arg1];
+
+      var copyText = document.getElementById("myCopyVerse");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999)
+      document.execCommand("copy");
+
+      document.getElementById("myCopyVerse").value = VersHis[arg1] + ' copied.';
+
+      //var vers_id = 'myV' + arg1.toString();                         // 原為 vers_id, 2020.1.11 改為 vers_id_1
+                                                                       // 若改為 myV_1, 則不 work
+      //select_all_and_copy(document.getElementById(vers_id),arg1);    // 原為 vers_id, 2020.1.11 改為 vers_id_1
+      //select_all_and_copy(document.getElementById(vers_id));
+
+   }
+
+   //select_all_and_copy(document.getElementById("Copy_Test"));
+
+}  // End of function copyFunction3
+
 
 
 function copyFunction2_Old() { // for test, OK
