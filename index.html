@@ -141,6 +141,10 @@
 <SCRIPT LANGUAGE="JavaScript" SRC="codes4.js"></SCRIPT>
 <SCRIPT LANGUAGE="JavaScript" SRC="KeyFunction.js"></SCRIPT>
 <SCRIPT LANGUAGE="JavaScript" SRC="BookMarks2.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="Mark_Line.js"></SCRIPT>
+
+
+<script src="idb-keyval.js"></script>
 
 
 <script src="aes.js"></script>
@@ -4147,6 +4151,13 @@ function select_all_and_copy(el,arg1)
                                tooltip(e2, tmp2_message);    //add on 2020.01.12
 
                                //tooltip(el, tmp2_message);  // Mark on 2020.01.12
+
+
+                               //var tmp3_message = "";
+                               //var e2 = document.getElementById("myCopyVerse_Display");  //add on 2020.01.12
+                               //tooltip2(e2, tmp3_message);    //add on 2020.01.12
+
+
                                //tooltip(el, "Copied to clipboard.");
                             }
                             else tooltip(el, "Press CTRL+C to copy");
@@ -4184,8 +4195,44 @@ function tooltip(el, message)
             tooltip.style.left = x + "px";
             tooltip.style.top = y + "px";
             tooltip.innerHTML = message;
-            setTimeout(function() { tooltip.style.opacity = 0; }, 2000);
-}
+            setTimeout(function() { tooltip.style.opacity = 0; }, 2000); // 2000
+
+            
+            //var tmp3_message = "";
+            //var e2 = document.getElementById("myCopyVerse_Display");  //add on 2020.01.12
+            //tooltip2(e2, tmp3_message);    //add on 2020.01.12
+
+}  // End of function tooltip(el, message)
+
+
+function tooltip2(el, message)
+{
+            var scrollLeft = document.body.scrollLeft || document.documentElement.scrollLeft;
+            var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            var x = parseInt(el.getBoundingClientRect().left) + scrollLeft + 10;
+            var y = parseInt(el.getBoundingClientRect().top) + scrollTop + 10;
+            if (!document.getElementById("copy_tooltip2"))
+            {
+                        var tooltip2 = document.createElement('div2');
+                        tooltip2.id = "copy_tooltip2";
+                        tooltip2.style.position = "absolute";
+                        tooltip2.style.border = "1px solid black";
+                        tooltip2.style.background = "#dbdb00";
+                        tooltip2.style.opacity = 1;
+                        tooltip2.style.transition = "opacity 0.3s";
+                        document.body.appendChild(tooltip2);
+            }
+            else
+            {
+                        var tooltip2 = document.getElementById("copy_tooltip2")
+            }
+            tooltip2.style.opacity = 1;
+            tooltip2.style.left = x + "px";
+            tooltip2.style.top = y + "px";
+            tooltip2.innerHTML = message;
+            setTimeout(function() { tooltip2.style.opacity = 0; }, 2000);
+
+} // End of function tooltip2(el, message)
 
 
 function Show_His_BM_Vers2(arg1,arg2,arg3,arg4) {

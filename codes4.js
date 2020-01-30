@@ -4611,8 +4611,36 @@ function readchapter(bnum, cnum ,snum , to_snum) {
             document.getElementById(Lnum++).innerHTML = oneline_1_num;
             document.getElementById(Lvers++).innerHTML = oneline_1_vers;
 
-            document.getElementById(Rnum++).innerHTML = oneline_2_num;
-            document.getElementById(Rvers++).innerHTML = oneline_2_vers;
+            //document.getElementById(Rnum++).innerHTML = oneline_2_num; // j
+
+
+//  '<a href="" id="' + vers_id + '" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a> <br>';
+
+            // add on 2020.01.28
+            oneline_2_num = '<a href="" " onClick="Add_or_Remove_mark_line(' + bnum + ',' + cnum + ',' + j + ');return false;">' + j + '</a>';
+
+            document.getElementById(Rnum++).innerHTML = oneline_2_num; // j
+
+            check_n_set_mark_line(bnum,cnum,j,Rvers);  // add on 2020.01.28
+
+            // add on 2020.01.27 for test changing mark-line color by 
+            //                        document.getElementById("myP2").style.color = "blue";
+
+            //if(bnum==1 && cnum==20 && j==15){  // Exo 21:15 , test
+
+            //   document.getElementById(Rvers).style.color = "red";
+
+            //} 
+            //else {
+
+            //   document.getElementById(Rvers).style.color = "black";
+
+            //}
+
+            // end of test
+
+            document.getElementById(Rvers++).innerHTML = oneline_2_vers;    
+
 
 
             if(disp_secs_a == "1") {
