@@ -259,11 +259,12 @@ async function addBook() {
   let color = +prompt("Book color?");
   let book_no = +prompt("Book No?");
   let chap_no = +prompt("Chap No?");
+  let vers_no = +prompt("Vers No?");
 
   let tx = db.transaction('books', 'readwrite');
 
   try {
-    await tx.objectStore('books').add({name, color, book_no, chap_no});
+    await tx.objectStore('books').add({name, color, book_no, chap_no, vers_no});
     await list();
   } catch(err) {
     if (err.name == 'ConstraintError') {
