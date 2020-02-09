@@ -141,10 +141,11 @@
 <SCRIPT LANGUAGE="JavaScript" SRC="codes4.js"></SCRIPT>
 <SCRIPT LANGUAGE="JavaScript" SRC="KeyFunction.js"></SCRIPT>
 <SCRIPT LANGUAGE="JavaScript" SRC="BookMarks2.js"></SCRIPT>
-<SCRIPT LANGUAGE="JavaScript" SRC="Mark_Line.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="Mark_Line_V2.js"></SCRIPT>
 
 
-<script src="idb-keyval.js"></script>
+
+<script src="idb.min.js"></script>
 
 
 <script src="aes.js"></script>
@@ -154,6 +155,8 @@
 <script src="mousetrap-global-bind.min.js"></script>
 
 <script Language="JavaScript">
+
+
 
 
 //font-family:arial; 
@@ -775,7 +778,7 @@ function Hide_a7(){
 
 
 </head>
-<body onload="Hide_a7();Read_Bookmark2();Init_History();Init_BM();Init_BM1();Init_BM3();Init_BM4();Init_BM5();Init_Notes_List();V_or_H_Mode();setachap();; return false;" text="#000000" link="#0000ff" alink="#ffffff" vlink="#0000ff" background="back5.jpg">
+<body onload="Hide_a7();Read_Bookmark2();Init_History();Init_BM();Init_BM1();Init_BM3();Init_BM4();Init_BM5();Init_Notes_List();V_or_H_Mode();init_Bible4U_DB();setachap();; return false;" text="#000000" link="#0000ff" alink="#ffffff" vlink="#0000ff" background="back5.jpg">
 
 
 <table><tr><td>
@@ -867,6 +870,19 @@ function Hide_a7(){
 </td></tr></table>
 
 <script>
+
+//let db;
+
+
+//async function init_Bible4U_DB() {
+//  db = await idb.openDb('Bible4U_DB', 1, db => {
+//    db.createObjectStore('Mark_Line_Records', {keyPath: 'ML_Verse'});   // mean : ML_Verse is primary key
+//    ObjectStore.createIndex('book_no', 'book_no', { unique: false });
+//    ObjectStore.createIndex('chap_no', 'chap_no', { unique: false });
+//  });
+//}
+
+
 
 var Search_Word="";
 
@@ -3830,6 +3846,8 @@ var Show_Bookmark3_F = 1; // 1 means Show, 0 means Hide
 var Show_Bookmark4_F = 1; // 1 means Show, 0 means Hide
 var Show_Bookmark5_F = 1; // 1 means Show, 0 means Hide
 
+var Show_MLs_F = 1; // 1 means Show, 0 means Hide
+
 var Show_BookmarkNote_F = 1; // 1 means Show, 0 means Hide
 
 
@@ -4977,6 +4995,9 @@ function Show_Bookmark5_Only() {   // Show all items in Bookmark5 *** Only ***
 
 
 
+
+
+
 function Hide_Bookmark_Only() {   // Show all items in Bookmark *** Only ***
                                                      // Do Not Write all items to files ***
 
@@ -5029,7 +5050,7 @@ function Hide_Bookmark_Only() {   // Show all items in Bookmark *** Only ***
 
     }
 
-   if(Show_BookmarkNote_F==0 && Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
+   if(Show_MLs_F==0 && Show_BookmarkNote_F==0 && Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
 
       document.getElementById("His_Container").style.width = "0%";
       document.getElementById("Bible_Container").style.width = "100%";
@@ -5095,7 +5116,7 @@ function Hide_Bookmark1_Only() {   // Show all items in Bookmark1 *** Only ***
 
     }
 
-   if(Show_BookmarkNote_F==0 && Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
+   if(Show_MLs_F==0 && Show_BookmarkNote_F==0 && Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
 
       document.getElementById("His_Container").style.width = "0%";
       document.getElementById("Bible_Container").style.width = "100%";
@@ -5160,7 +5181,7 @@ function Hide_Bookmark2_Only() {   // Show all items in Bookmark2 *** Only ***
 
     }
 
-   if(Show_BookmarkNote_F==0 && Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
+   if(Show_MLs_F==0 && Show_BookmarkNote_F==0 && Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
 
       document.getElementById("His_Container").style.width = "0%";
       document.getElementById("Bible_Container").style.width = "100%";
@@ -5189,7 +5210,7 @@ function Hide_BookmarkNote_Only() {   // Show all items in BookmarkNote *** Only
 
 
 
-   if(Show_BookmarkNote_F==0 && Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
+   if(Show_MLs_F==0 && Show_BookmarkNote_F==0 && Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
 
       document.getElementById("His_Container").style.width = "0%";
       document.getElementById("Bible_Container").style.width = "100%";
@@ -5224,7 +5245,7 @@ function Hide_Bookmark3_Only() {   // Show all items in Bookmark3 *** Only ***
 
 
 
-   if(Show_BookmarkNote_F==0 && Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
+   if(Show_MLs_F==0 && Show_BookmarkNote_F==0 && Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
 
       document.getElementById("His_Container").style.width = "0%";
       document.getElementById("Bible_Container").style.width = "100%";
@@ -5253,7 +5274,7 @@ function Hide_Bookmark4_Only() {   // Show all items in Bookmark4 *** Only ***
 
 
 
-   if(Show_BookmarkNote_F==0 && Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
+   if(Show_MLs_F==0 && Show_BookmarkNote_F==0 && Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
 
       document.getElementById("His_Container").style.width = "0%";
       document.getElementById("Bible_Container").style.width = "100%";
@@ -5282,7 +5303,7 @@ function Hide_Bookmark5_Only() {   // Show all items in Bookmark5 *** Only ***
 
 
 
-   if(Show_BookmarkNote_F==0 && Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
+   if(Show_MLs_F==0 && Show_BookmarkNote_F==0 && Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
 
       document.getElementById("His_Container").style.width = "0%";
       document.getElementById("Bible_Container").style.width = "100%";
@@ -5306,6 +5327,7 @@ function Hide_All(){
    Show_Bookmark2_F=0;
    Show_Bookmark1_F=0;
    Show_BookmarkNote_F=0;
+   Show_MLs_F=0;
 
    document.getElementById("His_Container").style.width = "0%";
    document.getElementById("Bible_Container").style.width = "100%";
@@ -5318,6 +5340,7 @@ function Hide_All(){
    document.getElementById("Vers_bookmark2").innerHTML = "";
    document.getElementById("Vers_bookmark1").innerHTML = "";
    document.getElementById("Note_Verses").innerHTML = "";
+   document.getElementById("Vers_MLs").innerHTML = ""; 
 
 
 }   // End of function Hide_All()
@@ -5927,6 +5950,23 @@ function Qmaxverse(index,index2) {   // find out maximum verse of chapter of boo
 <td></td><td></td><td></td>
 
 
+</tr>
+
+<tr>
+
+<td><button onclick="Show_All_ML_Only();Pre_Set_Mode()">All ML</button></td>
+
+<td><button onclick="Show_Book_ML_Only();Pre_Set_Mode()">Book ML</button></td>
+
+<td></td><td></td><td></td>
+
+<td><button onclick="Show_Chap_ML_Only();Pre_Set_Mode()">Chap ML</button></td>
+
+<td></td><td></td><td></td><td></td>
+
+<td><button onclick="Hide_ML_Only()">Hide ML</button></td>
+
+
 
 </tr>
 
@@ -6325,11 +6365,11 @@ function change2() {
          
                 if(isShow == true){
                    document.getElementById("tool_area_2").style.height='50px';
-                   document.getElementById("tool_area_3").style.height='80px';// 原為50px
+                   document.getElementById("tool_area_3").style.height='80px';// 原為80px
                 }
                 else{
                    document.getElementById("tool_area_2").style.height='30px';
-                   document.getElementById("tool_area_3").style.height='60px';// 原為30px
+                   document.getElementById("tool_area_3").style.height='80px';// 原為60px
                 }
 
 	}
@@ -7494,6 +7534,8 @@ function Click_Note5() {
 <div id="His_Container" style="height:600px;width:0%;float:left;font-size:14pt;overflow:auto;">
 
   <p id="Note_Verses"></p>
+
+  <p id="Vers_MLs"></p>
 
   <p id="Vers_bookmark5"></p>
 
