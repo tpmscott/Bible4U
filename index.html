@@ -52,10 +52,6 @@ init();
 async function init() {
   db = await idb.openDb('booksDb', 1, db => {
     db.createObjectStore('books', {keyPath: 'name'});   // mean : name is primary key
-    ObjectStore.createIndex('color_no', 'color_no', { unique: false });
-    ObjectStore.createIndex('book_no', 'book_no', { unique: false });
-    ObjectStore.createIndex('chap_no', 'chap_no', { unique: false });
-    ObjectStore.createIndex('vers_no', 'vers_no', { unique: false });
   });
   db2 = await idb.openDb('keyval-store', 1, db => {
     db.createObjectStore('keyval', {keyPath: 'key'});   // mean : name is primary key
@@ -256,7 +252,7 @@ async function clearBooks() {
 
 async function addBook() {
   let name = prompt("Book name?");
-  let color = +prompt("Book color?");
+  let color_no = +prompt("Book color?");
   let book_no = +prompt("Book No?");
   let chap_no = +prompt("Chap No?");
   let vers_no = +prompt("Vers No?");
@@ -264,7 +260,7 @@ async function addBook() {
   let tx = db.transaction('books', 'readwrite');
 
   try {
-    await tx.objectStore('books').add({name, color, book_no, chap_no, vers_no});
+    await tx.objectStore('books').add({name,color_no, book_no, chap_no, vers_no});
     await list();
   } catch(err) {
     if (err.name == 'ConstraintError') {
