@@ -452,10 +452,6 @@ async function Show_All_ML_Only() {   // Show all items in ML *** Only ***
 async function Show_Book_ML_Only() {   // Show items belong to certain book in ML *** Only ***
                                    // Do Not Write all items to files ***
 
-   //if(arg1==nowbook) { // only show Mark Line belong to nowbook
-
-   //var Book_tmp = i + '_';
-   //Book_Verse_Count = await db.books.where('name').startsWithIgnoreCase(Book_tmp).count();
 
    var Book_Verse_Count = 0;
 
@@ -470,15 +466,19 @@ async function Show_Book_ML_Only() {   // Show items belong to certain book in M
 
    Show_MLs_F = 1; // 1 means Show, 0 means Hide
 
-   var text1;
+   //var text1;
 
-   text1 = "Book MLs<br>";
+   //text1 = "Book MLs<br>";
 
 
    if(Book_Verse_Count<Book_Verse_Count_Value ) { // for Bible4U set 25, Bible2U set 13, Test set 5
                              // Display all MLs
 
       if (Verse) {
+
+         var text1;
+
+         text1 = "Book MLs<br>";
 
          for (i = 0; i < Verse.length; i++) {
 
@@ -511,7 +511,11 @@ async function Show_Book_ML_Only() {   // Show items belong to certain book in M
       }  // End of if (Verse)
 
    }  // End of Display all MLs ------------
-   else {  // Display count number of each chapter
+   else if(Book_Verse_Count>Book_Verse_Count_Value - 1 ){  // Display count number of each chapter
+
+      var text1;
+
+      text1 = "Book MLs<br>";
 
       var Chap_Verse_Count = 0;
 
@@ -522,13 +526,16 @@ async function Show_Book_ML_Only() {   // Show items belong to certain book in M
       for (i = 0; i < Book_Max_Chap_No; i++) {
 
          //var Book_tmp2 = nowbook + '_' + i;
-         var Book_tmp2 = nowbook + '_' + i;
+         //var Book_tmp2 = nowbook + '_' + i;
+         var Book_tmp2 = nowbook + '_' + i + '_';
 
          Chap_Verse_Count = await db.books.where('name').startsWithIgnoreCase(Book_tmp2).count();
 
+         var First_Verse = await db.books.where('name').startsWithIgnoreCase(Book_tmp2).first();
+
          if(Chap_Verse_Count>0) {
 
-            var First_Verse = await db.books.where('name').startsWithIgnoreCase(Book_tmp2).first();
+            //var First_Verse = await db.books.where('name').startsWithIgnoreCase(Book_tmp2).first();
 
             var argN = First_Verse.name;
             var arg1 = First_Verse.book_no;
