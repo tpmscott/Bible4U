@@ -888,6 +888,7 @@ async function Imp_to_books_Test2Db() {  // New for V5
 
 
    if(Imp_Word!='' && Imp_Word.length>5 && Imp_Word.substr(0, 5)=='i!^_^') { // Do pre-check
+                                                                             // For ML import
 
       //Split String "str" into Array "res"
       //var str = "i!^_^,2,18,18,2,20200302,65,4,9,20200304";  // <-- test Data
@@ -943,7 +944,7 @@ async function Imp_to_books_Test2Db() {  // New for V5
 
       }  // End of for (i = 0; i < imp_records_no; i++)
 
-      var imp_mesg = imp_successed_no + ' imported';
+      var imp_mesg = 'ML ' + imp_successed_no + ' imported';
 
       myExp_Db_Display.innerHTML = imp_mesg;
 
@@ -985,7 +986,7 @@ async function Exp_from_books_Test2Db() { // New for V5
 
      } // End of for (i = 0; i < Verse.length; i++)
 
-     var mesg1 = Verse_Count + ' exported'
+     var mesg1 = 'ML ' + Verse_Count + ' exported'
 
      //Exp_to_books_Test2Db.value = mesg1;
 
@@ -1162,7 +1163,7 @@ async function Exp_from_books_Test2Db_late_than() { // New for V6
 
         } // End of for (i = 0; i < Verse.length; i++)
 
-        var mesg1 = Verse_Count + ' exported'
+        var mesg1 = 'ML ' + Verse_Count + ' exported'
 
         //Exp_to_books_Test2Db.value = mesg1;
 
@@ -1186,7 +1187,7 @@ async function Exp_from_books_Test2Db_late_than() { // New for V6
   }
   else {
 
-     myExp_Db_Display.innerHTML = '0 exported';
+     myExp_Db_Display.innerHTML = 'ML 0 exported';
 
   } // End of if(Late_than_date!='')
 
@@ -1230,7 +1231,7 @@ async function Exp_from_books_Test2Db_startWith() { // New for V6
 
         } // End of for (i = 0; i < Verse.length; i++)
 
-        var mesg1 = Verse_Count + ' exported'
+        var mesg1 = 'ML ' + Verse_Count + ' exported'
 
         //Exp_to_books_Test2Db.value = mesg1;
 
@@ -1254,7 +1255,7 @@ async function Exp_from_books_Test2Db_startWith() { // New for V6
   }
   else {
 
-     myExp_Db_Display.innerHTML = '0 exported';
+     myExp_Db_Display.innerHTML = 'ML 0 exported';
 
   } // End of if(Late_than_date!='')
 
