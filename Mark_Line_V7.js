@@ -1274,7 +1274,7 @@ function Open_Chap_Note() {  // New for V7
 
    //if(More_Mode==1) {  // More Mode
 
-      document.getElementById("container6").style.height = "22%"; // 原為 25%, 21%
+      document.getElementById("container6").style.height = "23%"; // 原為 25%, 21%, 22%
 
    //}
    //else if(Less_mode==1) { // Less Mode
