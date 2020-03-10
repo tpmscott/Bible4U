@@ -141,7 +141,7 @@
 <SCRIPT LANGUAGE="JavaScript" SRC="codes4.js"></SCRIPT>
 <SCRIPT LANGUAGE="JavaScript" SRC="KeyFunction.js"></SCRIPT>
 <SCRIPT LANGUAGE="JavaScript" SRC="BookMarks2.js"></SCRIPT>
-<SCRIPT LANGUAGE="JavaScript" SRC="Mark_Line_V6.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="Mark_Line_V7.js"></SCRIPT>
 
 
 
@@ -170,6 +170,18 @@
 
 
 //font-family:arial; 
+
+
+// "container0" for Note
+// "container1" for Chinese Bible
+// "container2" for English Bible
+// "container3" for Class_Mode
+// "container4" for Input_Book_Mode
+// "container5" for My_Note
+// "container6" for Chap Note, New for V7
+
+
+
 
 // Define global variables
 var selectedbook = 0;
@@ -5980,7 +5992,7 @@ function Qmaxverse(index,index2) {   // find out maximum verse of chapter of boo
 
 <td></td><td></td><td></td>
 
-<td><button onclick="">Chap Note</button></td>
+<td><button onclick="Open_Chap_Note();">Chap Note</button></td>
 
 
 </tr>
@@ -8066,6 +8078,36 @@ function Click_Note5() {
 
 
 <iframe id="iframe1" src="" width="0" height="0"></iframe>
+
+
+<div id="container6" style="height:0%;width:100%;overflow:auto;">
+
+<table>
+<form name="Chap_Note_FORM">
+
+<tr>
+
+<td>
+<textarea cols="50" rows="10" name="Chap_Note_Textarea" id="Chap_Note_Textarea" style="font-size:20pt" Wrap="Off" onkeyup=";" onmouseup=";" onfocus="Mousetrap.pause();" onBlur="Mousetrap.unpause();"></textarea>
+</td>
+
+<td>
+<input style="font-size:10pt" type="button" name="M222" value="Book" ontouchstart="Close_Note();write_textarea_1();Up_to_Top();Input_Book_Mode();efocus(); return false;">
+<p>&nbsp; </p>
+<input style="font-size:10pt" type="button" name="M222" value="Chap" ontouchstart="Close_Note();write_textarea_1();Up_to_Top();keyFunction2('c');Input_Chap_Mode();; return false;">
+<p>&nbsp; </p>
+<input style="font-size:10pt" type="button" name="M222" value="Verse" ontouchstart="Close_Note();write_textarea_1();Up_to_Top();keyFunction2('v');Input_Vers_Mode();; return false;">
+<p>&nbsp; </p>
+<a id="a634" href="javascript:;" onclick="Close_Chap_Note();Up_to_Top();">Close</a>
+</td>
+
+</tr>
+
+</form>
+</table>
+
+</div>
+
 
 
 <div id="container0" style="height:0%;width:100%;overflow:auto;">
