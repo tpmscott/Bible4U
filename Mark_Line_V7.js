@@ -44,6 +44,10 @@ async function init_Bible4U_DB() {
      dbT2.version(1).stores({
          books: 'name,date'
      });
+     dbT2.version(2).stores({      // New for V7
+         books: 'name,date',
+         ChapNote: 'name,date'
+     });
 
    // End of Declare Database
 
@@ -1297,3 +1301,111 @@ function Close_Chap_Note() {  // New for V7
    //document.getElementById("tool_area_10").style.visibility='hidden';
 
 }  // End of function Close_Chap_Note()
+
+async function Read_Chap_Note() {  // New for V7
+              
+   // Read-Only Mode
+
+   var Book_tmp = nowbook + '_' + nowchapter;
+
+   let Verse = await dbT2.ChapNote.get(Book_tmp);
+
+   if (Verse) {
+
+      var content = Verse.content;
+      document.getElementById("Chap_Note_Textarea").value = content;
+
+      document.getElementById("Chap_Note_Textarea").readOnly = true;
+
+   }
+   else {
+
+      document.getElementById("Chap_Note_Textarea").value = '';
+
+      document.getElementById("Chap_Note_Textarea").readOnly = true;
+
+   }
+
+}  // End of function Read_Chap_Note()
+
+
+async function Edit_Chap_Note() {  // New for V7
+              
+   // Edit Mode
+
+   var Book_tmp = nowbook + '_' + nowchapter;
+
+   let Verse = await dbT2.ChapNote.get(Book_tmp);
+
+   if (Verse) {
+
+      var content = Verse.content;
+      document.getElementById("Chap_Note_Textarea").value = content;
+
+      document.getElementById("Chap_Note_Textarea").readOnly = false;
+
+   }
+   else {
+
+      document.getElementById("Chap_Note_Textarea").value = '';
+
+      document.getElementById("Chap_Note_Textarea").readOnly = false;
+
+   }
+
+}  // End of function Edit_Chap_Note()
+
+
+async function Save_Chap_Note() {  // New for V7
+
+
+   var Book_tmp = nowbook + '_' + nowchapter;
+
+   let Verse = await dbT2.ChapNote.get(Book_tmp);
+
+   if (Verse) {  // Exist so update
+
+      // table.update(key, changes)
+      // db.friends.update(2, {name: "Number 2"})
+
+      var content_tmp = document.getElementById("Chap_Note_Textarea").value;
+
+      if (content_tmp == '' ) {
+
+         dbT2.ChapNote.delete(Book_tmp);
+
+      }
+      else {
+
+         dbT2.ChapNote.update(Book_tmp, {content: content_tmp  });
+
+      }
+
+   }
+   else {  // Not Exist so Add new
+
+       // Add new
+
+       let name = nowbook + '_' + nowchapter;
+       let content = document.getElementById("Chap_Note_Textarea").value;
+       let date = ML_Date();
+
+       try {
+
+         dbT2.ChapNote.add({name,date, content});
+
+       } catch(err) {
+         if (err.name == 'ConstraintError') {
+           alert("Such Verse exists in DB already");
+         } else {
+           throw err;
+         }
+       }
+
+       // End of Add new
+
+   }
+
+
+}  // End of function Save_Chap_Note()
+
