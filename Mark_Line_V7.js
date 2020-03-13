@@ -1409,3 +1409,170 @@ async function Save_Chap_Note() {  // New for V7
 
 }  // End of function Save_Chap_Note()
 
+
+async function Show_All_ChapNote_Only() {   // New for V7
+                                  
+
+   //Show_MLs_F = 1; // 1 means Show, 0 means Hide
+
+   var text1;
+
+   text1 = "All Chap Note<br>";
+
+   var Book_ChapNote_Count = 0;
+
+
+   for (i = 0; i < 66; i++) {
+
+      var Book_tmp = i + '_';
+      Book_ChapNote_Count = await dbT2.ChapNote.where('name').startsWithIgnoreCase(Book_tmp).count(); // New for V4
+      //Book_Verse_Count = await db.books.where('name').startsWithIgnoreCase(Book_tmp).count();
+
+      if(Book_ChapNote_Count>0) {
+
+         var First_Verse = await dbT2.ChapNote.where('name').startsWithIgnoreCase(Book_tmp).first(); // New for V4
+         //var First_Verse = await db.books.where('name').startsWithIgnoreCase(Book_tmp).first();
+
+         var argN = First_Verse.name;
+
+         var res = argN.split("_");
+
+         var arg1 = res[0];  // tmp_book_no
+         var arg2 = res[1];  // tmp_chap_no
+         var arg3 = 1;  // tmp_vers_no
+         var arg4 = 1;  // tmp_vers_no
+
+         //var arg1 = First_Verse.book_no;
+         //var arg2 = First_Verse.chap_no;
+         //var arg3 = First_Verse.vers_no;
+         //var arg4 = First_Verse.vers_no;
+
+         var VH_Bname = BookAbbr4[i];
+
+         var Book_Count_Str = VH_Bname + ' (' + Book_ChapNote_Count + ')';
+
+         //var Book_Count_Str = VH_Bname + ' (' + Book_Verse_Count + ')' + '<br>';
+
+         //text1 += Book_Count_Str;
+
+         text1 += '<button onclick=";return false;">O</button> <a href="" onClick="Show_His_BM_Vers2(' + arg1 + ',' + arg2 + ',' + arg3 + ',' + arg4 + ');Show_Book_ChapNote_Only();return false;">' + Book_Count_Str + '</a><br>';
+
+
+
+         //VersML_B.push(arg1); 
+         //VersML_C.push(arg2); 
+         //VersML_V.push(arg3); 
+         //VersML_T.push(arg4); 
+
+      }
+      else {  // no data
+
+
+      }
+
+
+   }  // End of for (i = 0; i < 66; i++)
+
+
+
+    document.getElementById("His_Container").style.width = "16%";
+    document.getElementById("Bible_Container").style.width = "84%";
+
+    //V_or_H_Mode();
+
+    document.getElementById("Chap_Notes").innerHTML = text1;
+
+    document.getElementById("Chap_Note_Textarea").value = '';
+
+    document.getElementById("Chap_Note_Textarea").readOnly = true;
+
+    //Read_Chap_Note();
+
+
+}   // End of function Show_All_ChapNote_Only()
+
+
+async function Show_Book_ChapNote_Only() {  // New for V7
+
+   //var Book_Verse_Count = 0;
+
+   var Book_tmp = nowbook + '_';
+
+   //Book_Verse_Count = await dbT2.ChapNote.where('name').startsWithIgnoreCase(Book_tmp).count();
+
+   let Verse = await dbT2.ChapNote.where('name').startsWithIgnoreCase(Book_tmp).toArray(); 
+
+      if (Verse) {
+
+         var text1;
+
+         text1 = "Book Chap Note<br>";
+
+         for (i = 0; i < Verse.length; i++) {
+
+            //var tmp_book_no = Verse[i].book_no;
+            //var tmp_chap_no = Verse[i].chap_no;
+            //var tmp_vers_no = Verse[i].vers_no;
+
+            var argN = Verse[i].name;
+
+            var res = argN.split("_");
+
+            //var str = "22_11";
+            //var res = str.split("_");
+            //document.getElementById("demo").innerHTML = res[1];            
+
+            var arg1 = res[0];  // tmp_book_no
+            var arg2 = res[1];  // tmp_chap_no
+            var arg3 = 1;  // tmp_vers_no
+            var arg4 = 1;  // tmp_vers_no
+
+            var VH_Bname = BookAbbr4[arg1]; // arg1,  // BookAbbr3 改為 BookAbbr4 on 2018.08.22
+            var VH_Chap = Number(arg2) + 1;
+            var VH_Vers = arg3;
+            var VH_To_Vers = arg4;
+
+            if(arg4>arg3)
+               var VH = VH_Bname + ' ' + VH_Chap + ':' + VH_Vers + '~' + VH_To_Vers; 
+            else
+               var VH = VH_Bname + ' ' + VH_Chap ; 
+               //var VH = VH_Bname + ' ' + VH_Chap + ':' + VH_Vers; 
+
+            text1 += '<button onclick=";return false;">O</button> <a href="" onClick="Show_His_BM_Vers2(' + arg1 + ',' + arg2 + ',' + arg3 + ',' + arg4 + ');Read_Chap_Note();return false;">' + VH + '</a><br>';
+
+         } // End of for (i = 0; i < Verse.length; i++)
+
+      }
+      else {
+
+      }  // End of if (Verse)
+
+    document.getElementById("His_Container").style.width = "16%";
+    document.getElementById("Bible_Container").style.width = "84%";
+
+    //V_or_H_Mode();
+
+    document.getElementById("Chap_Notes").innerHTML = text1;
+
+
+
+}   // End of function Show_Book_ChapNote_Only()
+
+
+function Hide_ChapNote_Only() {   // Show all items in Bookmark5 *** Only ***
+                                   // Do Not Write all items to files ***
+
+    //Show_MLs_F=0; // 1 means Show, 0 means Hide
+
+
+   //if(Show_MLs_F==0 && Show_BookmarkNote_F==0 && Show_History_F==0 && Show_Bookmark_F==0 && Show_Bookmark1_F==0 && Show_Bookmark2_F==0 && Show_Bookmark3_F==0 && Show_Bookmark4_F==0 && Show_Bookmark5_F==0) { // 1 means Show, 0 means Hide
+
+      //document.getElementById("His_Container").style.width = "0%";
+      //document.getElementById("Bible_Container").style.width = "100%";
+
+   //}
+
+    document.getElementById("Chap_Notes").innerHTML = "";
+
+
+}   // End of function Hide_ChapNote_Only()

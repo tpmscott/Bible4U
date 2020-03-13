@@ -5993,6 +5993,9 @@ function Qmaxverse(index,index2) {   // find out maximum verse of chapter of boo
 <td></td><td></td><td></td>
 
 <td><button onclick="Open_Chap_Note();Read_Chap_Note();">Chap Note</button></td>
+<td><button onclick=";">R30 Ch No</button></td>
+<td><button onclick="Hide_ChapNote_Only();">Hide Ch No</button></td>
+
 
 
 </tr>
@@ -7562,6 +7565,8 @@ function Click_Note5() {
 
   <p id="Note_Verses"></p>
 
+  <p id="Chap_Notes"></p>
+
   <p id="Vers_MLs"></p>
 
   <p id="Vers_bookmark5"></p>
@@ -8096,7 +8101,7 @@ function Click_Note5() {
 <p>&nbsp; </p>
 <input style="font-size:10pt" type="button" name="M222" value="Save" onclick="Save_Chap_Note(); return false;">
 <p>&nbsp; </p>
-<input style="font-size:10pt" type="button" name="M222" value="List" ontouchstart="; return false;">
+<input style="font-size:10pt" type="button" name="M222" value="List" onclick="Show_All_ChapNote_Only(); return false;">
 <p>&nbsp; </p>
 <a id="a634" href="javascript:;" onclick="Close_Chap_Note();Up_to_Top();">Close</a>
 </td>
