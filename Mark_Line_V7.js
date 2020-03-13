@@ -1576,3 +1576,61 @@ function Hide_ChapNote_Only() {   // Show all items in Bookmark5 *** Only ***
 
 
 }   // End of function Hide_ChapNote_Only()
+
+
+async function Show_Recent_ChapNote_Only() {  // New for V7
+
+  let Verse = await dbT2.ChapNote.orderBy('date').reverse().limit(30).toArray();  // order by chap_no, from big to small
+                                                                                // Recent 30
+      if (Verse) {
+
+         var text1;
+
+         text1 = "R30 Chap Note<br>";
+
+         for (i = 0; i < Verse.length; i++) {
+
+            var argN = Verse[i].name;
+
+            var res = argN.split("_");
+
+            //var str = "22_11";
+            //var res = str.split("_");
+            //document.getElementById("demo").innerHTML = res[1];  
+
+            var arg1 = res[0];  // tmp_book_no
+            var arg2 = res[1];  // tmp_chap_no
+            var arg3 = 1;  // tmp_vers_no
+            var arg4 = 1;  // tmp_vers_no
+
+            var VH_Bname = BookAbbr4[arg1]; // arg1,  // BookAbbr3 改為 BookAbbr4 on 2018.08.22
+            var VH_Chap = Number(arg2) + 1;
+            var VH_Vers = arg3;
+            var VH_To_Vers = arg4;
+
+            if(arg4>arg3)
+               var VH = VH_Bname + ' ' + VH_Chap + ':' + VH_Vers + '~' + VH_To_Vers; 
+            else
+               var VH = VH_Bname + ' ' + VH_Chap ; 
+               //var VH = VH_Bname + ' ' + VH_Chap + ':' + VH_Vers; 
+
+            text1 += '<button onclick=";return false;">O</button> <a href="" onClick="Show_His_BM_Vers2(' + arg1 + ',' + arg2 + ',' + arg3 + ',' + arg4 + ');Read_Chap_Note();return false;">' + VH + '</a><br>';
+
+         } // End of for (i = 0; i < Verse.length; i++)
+
+      }
+      else {
+
+      }  // End of if (Verse)
+
+    document.getElementById("His_Container").style.width = "16%";
+    document.getElementById("Bible_Container").style.width = "84%";
+
+    //V_or_H_Mode();
+
+    document.getElementById("Chap_Notes").innerHTML = text1;
+
+
+}   // End of function Show_Recent_ChapNote_Only()
+
+
