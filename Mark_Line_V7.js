@@ -891,8 +891,8 @@ async function Imp_to_books_Test2Db() {  // New for V5
    var Imp_Word = document.getElementById("Imp_to_books_Test2Db").value;
 
 
-   if(Imp_Word!='' && Imp_Word.length>5 && Imp_Word.substr(0, 5)=='i!^_^') { // Do pre-check
-                                                                             // For ML import
+   if(Imp_Word!='' && Imp_Word.length>5 && Imp_Word.substr(0, 5)=='i!^_^') { // For ML import
+                                                                             // Do pre-check
 
       //Split String "str" into Array "res"
       //var str = "i!^_^,2,18,18,2,20200302,65,4,9,20200304";  // <-- test Data
@@ -952,13 +952,118 @@ async function Imp_to_books_Test2Db() {  // New for V5
 
       myExp_Db_Display.innerHTML = imp_mesg;
 
-   }  // End of if(Imp_Word!='' 
+   }  // End of if(Imp_Word!=''...// For ML import
 
-   //if(Imp_Word=='test77') {     // for test
 
-   //   Show_Recent_ML_Only();Pre_Set_Mode();
+   if(Imp_Word!='' && Imp_Word.length>5 && Imp_Word.substr(0, 5)=='cn^_^') { // For Chap Note import,  New for V7
+                                                                             // Do pre-check
 
-   //}
+      //Split String "str" into Array "res"
+      //var str = "i!^_^,2,18,18,2,20200302,65,4,9,20200304";  // <-- test Data
+      //var str = "i!^_^,3,18,18,2,20200302,65,4,9,20200304,18,18,4,20200304";  // <-- test Data
+      //var str = "i!^_^,4,18,18,2,20200302,65,4,9,20200304,18,18,4,20200304,65,4,10,20200305";  // <-- test Data
+      //var res = str.split(",");
+
+      var Imp_Word_Real_Str = Imp_Word.substr(6, Imp_Word.length);
+
+      var Imp_Tmp = Imp_Word_Real_Str.split("|");  // Imp_Tmp is an Array 
+
+      var imp_records_no = Imp_Tmp[0];
+
+      var update_no = 0;
+
+      var add_no = 0;
+
+      var del_no = 0;
+
+      for (i = 0; i < imp_records_no; i++) {
+
+         var N_tmp = Imp_Tmp[3*i+1];  // name
+         var D_tmp = Imp_Tmp[3*i+2];  // date
+         var C_tmp = Imp_Tmp[3*i+3];  // content
+
+         // Decrypt Content
+
+         //var encryptedName = localStorage.MyNote;
+
+         //var Key_input = document.getElementById("Key").value;
+
+         //var decryptedName  = CryptoJS.AES.decrypt(encryptedName.toString(), Key_input); // secret key 123
+
+         //var decryptedName_Str = decryptedName.toString(CryptoJS.enc.Utf8);
+
+         var encryptedContent = C_tmp;
+
+         var Key_input = '2020Chapter03Note15'; // for Encrypt and Decrypt Exp & Imp Chap Note
+
+         var decryptedContent  = CryptoJS.AES.decrypt(encryptedContent.toString(), Key_input); 
+
+         var decryptedContent_Str = decryptedContent.toString(CryptoJS.enc.Utf8);
+
+
+
+
+         let Verse = await dbT2.ChapNote.get(N_tmp);
+
+         if (Verse) {  // Exist so update
+
+            //var content_tmp = C_tmp;
+
+            var content_tmp = decryptedContent_Str;
+
+            if (content_tmp == '' ) {
+ 
+               dbT2.ChapNote.delete(N_tmp);
+
+               del_no = del_no + 1;
+
+            }
+            else {
+            
+               dbT2.ChapNote.update(N_tmp, {content: content_tmp  });
+
+               update_no = update_no + 1;
+
+            }
+         }
+         else {  // Not Exist so Add new
+
+            // Add new
+
+            let name = N_tmp;
+            let date = D_tmp;
+            //let content = C_tmp;
+            let content = decryptedContent_Str;
+
+
+            try {
+
+              dbT2.ChapNote.add({name,date, content});
+
+              add_no = add_no + 1;
+
+            } catch(err) {
+              if (err.name == 'ConstraintError') {
+                alert("Such Verse exists in DB already");
+              } else {
+                throw err;
+              }
+            }
+
+            // End of Add new
+
+          }
+
+
+      }  // End of for (i = 0; i < imp_records_no; i++)
+
+
+      var imp_mesg = 'ChapNote ' + update_no + ' updated, ' + add_no + ' added, ' + del_no + ' deleted.';
+
+      myExp_Db_Display.innerHTML = imp_mesg;
+
+
+   }  // End of if(Imp_Word!=''...// For Chap Note import
 
 
 }
@@ -1634,3 +1739,118 @@ async function Show_Recent_ChapNote_Only() {  // New for V7
 }   // End of function Show_Recent_ChapNote_Only()
 
 
+async function Exp_from_ChapNote_Test2Db_Old() { // New for V7 ,  Not in Use
+
+
+  let Verse = await dbT2.ChapNote.toArray();
+
+  var Verse_Count = Verse.length;
+
+  if (Verse) {
+
+     //var text = 'i!^_^,' + Verse_Count.toString();
+
+     //var text = 'cn^_^,' + Verse_Count.toString();
+
+     var text = 'cn^_^|' + Verse_Count.toString();  // change seprator to "|"
+
+
+     for (i = 0; i < Verse.length; i++) {
+
+        let name = Verse[i].name;
+        let date = Verse[i].date;
+        let content = Verse[i].content;
+
+        text += '|' + name + '|' + date + '|' + content;  // change seprator to "|"
+
+        //text += ',' + name + ',' + date + ',' + content;
+
+
+     } // End of for (i = 0; i < Verse.length; i++)
+
+     var mesg1 = 'ChapNote ' + Verse_Count + ' exported'
+
+     //Exp_to_books_Test2Db.value = mesg1;
+
+     //myExp_Db_Display.innerHTML = text;
+     //Exp_to_books_Test2Db.value = text;  // Imp_to_books_Test2Db
+     //Imp_to_books_Test2Db.value = text;  // Imp_to_books_Test2Db
+
+     document.getElementById("Imp_to_books_Test2Db").value = text;
+
+     copyFunction5(mesg1);
+
+     //myExp_Db_Display.innerHTML = "";
+
+
+  } // End of if (Verse)
+
+} // End of function Exp_from_ChapNote_Test2Db_Old()
+
+
+async function Exp_from_ChapNote_Test2Db() { // New for V7
+
+
+  let Verse = await dbT2.ChapNote.toArray();
+
+  var Verse_Count = Verse.length;
+
+  if (Verse) {
+
+     //var text = 'i!^_^,' + Verse_Count.toString();
+
+     //var text = 'cn^_^,' + Verse_Count.toString();
+
+     var text = 'cn^_^|' + Verse_Count.toString();  // change seprator to "|"
+
+
+     for (i = 0; i < Verse.length; i++) {
+
+        let name = Verse[i].name;
+        let date = Verse[i].date;
+        let content = Verse[i].content;
+
+        // Encrypt Content then Exp
+
+        //var Nametext_input = document.getElementById("MyNote_A1").value; 
+
+        //var Key_input = document.getElementById("Key").value; 
+
+        //var encryptedName = CryptoJS.AES.encrypt(Nametext_input, Key_input);
+
+        var Key_input = '2020Chapter03Note15'; // for Encrypt and Decrypt Exp & Imp Chap Note
+
+        var encryptedContent = CryptoJS.AES.encrypt(content, Key_input);
+
+        //var encryptedName_Str = encryptedName.toString();
+
+        //var encryptedContent_Str = encryptedContent.toString();
+
+
+        text += '|' + name + '|' + date + '|' + encryptedContent;  // change seprator to "|"
+
+        //text += '|' + name + '|' + date + '|' + content;  // change seprator to "|"
+
+        //text += ',' + name + ',' + date + ',' + content;
+
+
+     } // End of for (i = 0; i < Verse.length; i++)
+
+     var mesg1 = 'ChapNote ' + Verse_Count + ' exported'
+
+     //Exp_to_books_Test2Db.value = mesg1;
+
+     //myExp_Db_Display.innerHTML = text;
+     //Exp_to_books_Test2Db.value = text;  // Imp_to_books_Test2Db
+     //Imp_to_books_Test2Db.value = text;  // Imp_to_books_Test2Db
+
+     document.getElementById("Imp_to_books_Test2Db").value = text;
+
+     copyFunction5(mesg1);
+
+     //myExp_Db_Display.innerHTML = "";
+
+
+  } // End of if (Verse)
+
+} // End of function Exp_from_ChapNote_Test2Db()
