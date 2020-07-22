@@ -3113,6 +3113,38 @@ function BM_to_Bookmarks1() { // 將資料 由 BM 轉至 Bookmark1, 先清空 Bookmark1
 }  // End of function BM_to_Bookmarks1()
 
 
+function BM_to_Bookmarks5() { // 將資料 由 BM 轉至 Bookmark5, 先清空 Bookmark5
+
+
+    Delete_Bookmarks5();  
+  
+    var text1, VersBMLen, i;
+
+
+    VersBMLen = VersBM.length;
+
+    //var VersBM1_B_Len = VersBM1_B.length; 
+
+
+
+    for (i = (VersBMLen-1); i > -1; i--) {    
+
+    //for (i = 0; i < VersHisLen; i++) {   
+ 
+
+        Show_Bookmark5_Add_Group(VersBM_B[i],VersBM_C[i],VersBM_V[i],VersBM_T[i]);    
+
+       
+    }
+
+    Show_Bookmark5_Only();
+
+    Write_Bookmark5();
+
+
+}  // End of function BM_to_Bookmarks5()
+
+
 
 function History_to_Bookmarks3() { // 將資料 由 History 轉至 Bookmark3, 先清空 Bookmark3
 
@@ -3696,19 +3728,19 @@ function Show_Bookmark5_Add_Group(arg1,arg2,arg3,arg4) {   // Add new item to Bo
     }    
     else {
 
-       for (i = 0; i < VersBM5_B_Len; i++) {
+       //for (i = 0; i < VersBM5_B_Len; i++) {   // Mark on 2020.07.22
 
-          if(VersBM5_B_Len>0) {
+       //   if(VersBM5_B_Len>0) {
 
-             if(VersBM5_B[i]==arg1 && VersBM5_C[i]==arg2 && VersBM5_V[i]==arg3 && VersBM5_T[i]==arg4) { //20190303
+       //      if(VersBM5_B[i]==arg1 && VersBM5_C[i]==arg2 && VersBM5_V[i]==arg3 && VersBM5_T[i]==arg4) { //20190303
 
-                VerseBM5_existence = 1; // 0 means No duplicate, 1 means found duplicate
+       //         VerseBM5_existence = 1; // 0 means No duplicate, 1 means found duplicate
 
-             }
+       //      }
 
-          }
+       //   }
 
-       }
+       //}
 
   
        if(VerseBM5_existence==0) { // 0 means No duplicate, 1 means found duplicate
@@ -5552,6 +5584,7 @@ function Set_NKJV() {
 <td></td><td></td><td></td>
 
 <td><button style="color:red"  onclick="BM_to_Bookmarks1()">BM->BM1</button></td>
+<td><button style="color:red"  onclick="BM_to_Bookmarks5()">BM->BM5</button></td>
 
 </tr>
 </table>
@@ -7414,7 +7447,7 @@ function Save_Note_to_DB() {
 }
 
 
-function Sermon(){
+function Show_Sermon(){
 
    var word44aa=document.ANNO_FORM.A1.value;
    var word44bb=ConvertBR(word44aa);
@@ -7422,6 +7455,12 @@ function Sermon(){
 
    //word_4444 =  word44 ;
    document.getElementById("ANNO_C").innerHTML = word44cc;   
+
+}
+
+function Hide_Sermon(){
+
+   document.getElementById("ANNO_C").innerHTML = "";   
 
 }
 
@@ -8176,7 +8215,8 @@ function Click_Note5() {
 <input align="right" type="button" name="B11a" value="Save" onclick="write_textarea_1(); return false;">
 <input type="button" name="B11b" value="Read" onclick="read_textarea_1(); return false;">
 <input type="button" name="B11c" value="Clear" onclick="clear_textarea_1(); return false;">
-<input type="button" name="B11s" value="Sermon" onclick="Sermon(); return false;">
+<input type="button" name="B11s" value="Show Sermon" onclick="Show_Sermon(); return false;">
+<input type="button" name="B11h" value="Hide Sermon" onclick="Hide_Sermon(); return false;">
 </td>
 </tr>
 
