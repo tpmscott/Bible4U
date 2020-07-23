@@ -7458,6 +7458,22 @@ function Show_Sermon(){
 
 }
 
+function Show_Name(arg){
+ 
+   //localStorage.Note3_Topic = document.ANNO_FORM.B11aa.value;
+
+   var Topic = document.ANNO_FORM.B11aa.value;
+
+   var Topic_Add = arg;
+
+   Topic = Topic + '----' + Topic_Add;
+
+   //document.getElementById("IAI_1t").value = ;
+
+   document.ANNO_FORM.B11aa.value = Topic;
+
+}
+
 function Show_Name_List(){
 
    document.getElementById("Sermon_Speakers").style.height = "50%";
@@ -8231,6 +8247,8 @@ function Click_Note5() {
    郭淼義 許琮瑋 翁秀民 楊恩加 陳效謙 薛福山 陳展志 陳頌祈 黃明仁 <br>
    黎為昇傳道 施福安傳道 邵銘恩長老 邵偉昕 邵奕昕 柯獻中 梁賢聖 <br>
    Anderson Tan ----<br> 
+   <a href="javascript:;" onclick="Show_Name('陳恩光執事');">陳恩光執事</a>
+   <a href="javascript:;" onclick="Show_Name('柯恩宏執事');">柯恩宏執事</a>
 
  </div>
 
