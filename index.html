@@ -7458,11 +7458,30 @@ function Show_Sermon(){
 
 }
 
-function Hide_Sermon(){
+function Show_Name_List(){
 
-   document.getElementById("ANNO_C").innerHTML = "";   
+   document.getElementById("Sermon_Speakers").style.height = "50%";
 
 }
+
+function Hide_Name_List(){
+
+   document.getElementById("Sermon_Speakers").style.height = "0%";
+
+}
+
+
+function Show_Sermon(){
+
+   var word44aa=document.ANNO_FORM.A1.value;
+   var word44bb=ConvertBR(word44aa);
+   var word44cc=word44bb.replace(/\n/g,"<br />");
+
+   //word_4444 =  word44 ;
+   document.getElementById("ANNO_C").innerHTML = word44cc;   
+
+}
+
 
 function ConvertBR(input) {
 // Converts carriage returns 
@@ -8206,6 +8225,15 @@ function Click_Note5() {
 
  <div id="ANNO_C" style=";font-size:20pt;font-family:標楷體;overflow:hidden;line-width:1920px;"></div>
 
+ <div id="Sermon_Speakers" style="font-size:20pt;font-family:標楷體;height:0%;width:100%;overflow:auto;">
+
+   陳恩光執事 柯恩宏執事 李雅各執事 柯宇恆 施志恩 Lawrence
+   郭淼義 許琮瑋 翁秀民 楊恩加 陳效謙 薛福山 陳展志 陳頌祈 黃明仁
+   黎為昇傳道 施福安傳道 邵銘恩長老 邵偉昕 邵奕昕 柯獻中 梁賢聖 
+   Anderson Tan ----
+
+ </div>
+
 <table>
 <form name="ANNO_FORM">
 
@@ -8217,6 +8245,8 @@ function Click_Note5() {
 <input type="button" name="B11c" value="Clear" onclick="clear_textarea_1(); return false;">
 <input type="button" name="B11s" value="Show Sermon" onclick="Show_Sermon(); return false;">
 <input type="button" name="B11h" value="Hide Sermon" onclick="Hide_Sermon(); return false;">
+<input type="button" name="B11s" value="Show Name List" onclick="Show_Name_List(); return false;">
+<input type="button" name="B11h" value="Hide Name List" onclick="Hide_Name_List(); return false;">
 </td>
 </tr>
 
