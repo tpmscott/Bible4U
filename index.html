@@ -6910,6 +6910,84 @@ function clear_textarea_1(){  //
 //var Note_Name_String;
 
 
+function Prepare_Note3_Name() {
+
+   var DateStr = Note_Date();
+   document.getElementById("Note3aaa").value = DateStr;
+
+}
+
+function Prepare_Note4_Name() {
+
+   var DateStr = Note_Date();
+   document.getElementById("Note4aaa").value = DateStr;
+
+}
+
+function Prepare_Note5_Name() {
+
+   var DateStr = Note_Date();
+   document.getElementById("Note5aaa").value = DateStr;
+
+}
+
+
+function Note_Date() {
+
+   var d = new Date();
+   var Y = d.getFullYear();
+   var M = d.getMonth() + 1;
+   var D = d.getDate();
+   var h = d.getHours();  // 0-23
+   //var m = d.getMinutes();
+   var WeekDay = d.getDay(); // 0-6, Sunday is 0, Monday is 1, and so on.
+
+   if(WeekDay=='0') WeekDay = 'Sun';
+   if(WeekDay=='1') WeekDay = 'Mon';
+   if(WeekDay=='2') WeekDay = 'Tue';
+   if(WeekDay=='3') WeekDay = 'Wed';
+   if(WeekDay=='4') WeekDay = 'Thu';
+   if(WeekDay=='5') WeekDay = 'Fri';
+   if(WeekDay=='6') WeekDay = 'Sat';
+
+   //var M_Str = M.toString();
+
+   //if(M_Str=='0') M_Str = '00';
+   if(M=='1') M = '01';
+   if(M=='2') M = '02';
+   if(M=='3') M = '03';
+   if(M=='4') M = '04';
+   if(M=='5') M = '05';
+   if(M=='6') M = '06';
+   if(M=='7') M = '07';
+   if(M=='8') M = '08';
+   if(M=='9') M = '09';
+
+
+   //var D_Str = D.toString();
+
+   //if(M_Str=='0') M_Str = '00';
+   if(D=='1') D = '01';
+   if(D=='2') D = '02';
+   if(D=='3') D = '03';
+   if(D=='4') D = '04';
+   if(D=='5') D = '05';
+   if(D=='6') D = '06';
+   if(D=='7') D = '07';
+   if(D=='8') D = '08';
+   if(D=='9') D = '09';
+
+
+
+   var Date_Str = Y.toString() + M.toString() + D.toString() + WeekDay ;
+
+   return Date_Str;   
+
+
+}
+
+
+
 function Show_Notes_List() { // show Name and Topic
 
    //Notes_List = ["3","190504Sat1","190505Sun1","190506Mon1"]; // for debug  
@@ -8409,7 +8487,7 @@ function Click_Note5() {
 
 <tr>
 <td>
-Note3 => 
+<input align="right" type="button" name="B11a" value="Note3 =>" onclick="History_to_Bookmarks3();Prepare_Note3_Name(); return false;">
 <input type="text" style="font-size:18pt" size="10" name="Note3aa" id="Note3aaa" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
 <input align="right" type="button" name="B11a" value="Run" onclick="Note3_to_DB(); return false;">
 <ins style="font-size:18pt" id="Note3_Message"></ins>
@@ -8418,7 +8496,7 @@ Note3 =>
 
 <tr>
 <td>
-Note4 => 
+<input align="right" type="button" name="B11a" value="Note4 =>" onclick="History_to_Bookmarks4();Prepare_Note4_Name(); return false;">
 <input type="text" style="font-size:18pt" size="10" name="Note4aa" id="Note4aaa" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
 <input align="right" type="button" name="B11a" value="Run" onclick="Note4_to_DB(); return false;">
 <ins style="font-size:18pt" id="Note4_Message"></ins>
@@ -8427,7 +8505,7 @@ Note4 =>
 
 <tr>
 <td>
-Note5 => 
+<input align="right" type="button" name="B11a" value="Note5 =>" onclick="History_to_Bookmarks5();Prepare_Note5_Name(); return false;">
 <input type="text" style="font-size:18pt" size="10" name="Note5aa" id="Note5aaa" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
 <input align="right" type="button" name="B11a" value="Run" onclick="Note5_to_DB(); return false;">
 <ins style="font-size:18pt" id="Note5_Message"></ins>
