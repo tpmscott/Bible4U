@@ -6653,6 +6653,13 @@ function read_textarea_1(){  // 20190427 -- Read from LocalStorage
 
       }
 
+      if(localStorage.Note3_Speaker) {  // Add on 2020.07.27
+
+      }else {
+         localStorage.Note3_Speaker = '';
+
+      }
+
       if(localStorage.Note3_Content) {
 
       }else {
@@ -6661,6 +6668,8 @@ function read_textarea_1(){  // 20190427 -- Read from LocalStorage
       }
 
       document.getElementById("IAI_1t").value = localStorage.Note3_Topic;
+
+      document.getElementById("IAI_2t").value = localStorage.Note3_Speaker;  // Add on 2020.07.27
 
       document.getElementById("A1").value = localStorage.Note3_Content;
 
@@ -6675,6 +6684,13 @@ function read_textarea_1(){  // 20190427 -- Read from LocalStorage
 
       }
 
+      if(localStorage.Note4_Speaker) {  // Add on 2020.07.27
+
+      }else {
+         localStorage.Note4_Speaker = '';
+
+      }
+
       if(localStorage.Note4_Content) {
 
       }else {
@@ -6683,6 +6699,8 @@ function read_textarea_1(){  // 20190427 -- Read from LocalStorage
       }
 
       document.getElementById("IAI_1t").value = localStorage.Note4_Topic;
+
+      document.getElementById("IAI_2t").value = localStorage.Note4_Speaker;  // Add on 2020.07.27
 
       document.getElementById("A1").value = localStorage.Note4_Content;
 
@@ -6697,6 +6715,13 @@ function read_textarea_1(){  // 20190427 -- Read from LocalStorage
 
       }
 
+      if(localStorage.Note5_Speaker) {  // Add on 2020.07.27
+
+      }else {
+         localStorage.Note5_Speaker = '';
+
+      }
+
       if(localStorage.Note5_Content) {
 
       }else {
@@ -6705,6 +6730,8 @@ function read_textarea_1(){  // 20190427 -- Read from LocalStorage
       }
 
       document.getElementById("IAI_1t").value = localStorage.Note5_Topic;
+
+      document.getElementById("IAI_2t").value = localStorage.Note5_Speaker;  // Add on 2020.07.27
 
       document.getElementById("A1").value = localStorage.Note5_Content;
 
@@ -6719,6 +6746,8 @@ function write_textarea_1(){  // write textarea content to LocalStorage
 
       localStorage.Note3_Topic = document.ANNO_FORM.B11aa.value;  
 
+      localStorage.Note3_Speaker = document.ANNO_FORM.B22aa.value;  // Add on 2020.07.27
+
       localStorage.Note3_Content = document.ANNO_FORM.A1.value;
 
    } // End of Note_Seleted==3
@@ -6727,6 +6756,8 @@ function write_textarea_1(){  // write textarea content to LocalStorage
 
       localStorage.Note4_Topic = document.ANNO_FORM.B11aa.value;  
 
+      localStorage.Note4_Speaker = document.ANNO_FORM.B22aa.value;  // Add on 2020.07.27
+
       localStorage.Note4_Content = document.ANNO_FORM.A1.value;
 
    } // End of Note_Seleted==4
@@ -6734,6 +6765,8 @@ function write_textarea_1(){  // write textarea content to LocalStorage
    if(Note_Seleted=="5") {
 
       localStorage.Note5_Topic = document.ANNO_FORM.B11aa.value;  
+
+      localStorage.Note5_Speaker = document.ANNO_FORM.B22aa.value;  // Add on 2020.07.27
 
       localStorage.Note5_Content = document.ANNO_FORM.A1.value;
 
@@ -6746,6 +6779,8 @@ function write_textarea_1_Note3(){
 
       localStorage.Note3_Topic = document.ANNO_FORM.B11aa.value;  
 
+      localStorage.Note3_Speaker = document.ANNO_FORM.B22aa.value;  // Add on 2020.07.27
+
       localStorage.Note3_Content = document.ANNO_FORM.A1.value;
 
 }
@@ -6754,13 +6789,17 @@ function write_textarea_1_Note4(){
 
       localStorage.Note4_Topic = document.ANNO_FORM.B11aa.value;  
 
+      localStorage.Note4_Speaker = document.ANNO_FORM.B22aa.value;  // Add on 2020.07.27
+
       localStorage.Note4_Content = document.ANNO_FORM.A1.value;
 
 }
 
 function write_textarea_1_Note5(){
 
-      localStorage.Note5_Topic = document.ANNO_FORM.B11aa.value;  
+      localStorage.Note5_Topic = document.ANNO_FORM.B11aa.value; 
+
+      localStorage.Note5_Speaker = document.ANNO_FORM.B22aa.value;  // Add on 2020.07.27 
 
       localStorage.Note5_Content = document.ANNO_FORM.A1.value;
 
@@ -6778,6 +6817,13 @@ function read_textarea_1_Note3(){  // 20190427 -- Read from LocalStorage
 
       }
 
+      if(localStorage.Note3_Speaker) {  // Add on 2020.07.27
+
+      }else {
+         localStorage.Note3_Speaker = '';
+
+      }
+
       if(localStorage.Note3_Content) {
 
       }else {
@@ -6786,6 +6832,8 @@ function read_textarea_1_Note3(){  // 20190427 -- Read from LocalStorage
       }
 
       document.getElementById("IAI_1t").value = localStorage.Note3_Topic;
+
+      document.getElementById("IAI_2t").value = localStorage.Note3_Speaker;  // Add on 2020.07.27
 
       document.getElementById("A1").value = localStorage.Note3_Content;
 
@@ -6802,6 +6850,13 @@ function read_textarea_1_Note4(){  // 20190427 -- Read from LocalStorage
 
       }
 
+      if(localStorage.Note4_Speaker) {  // Add on 2020.07.27
+
+      }else {
+         localStorage.Note4_Speaker = '';
+
+      }
+
       if(localStorage.Note4_Content) {
 
       }else {
@@ -6810,6 +6865,8 @@ function read_textarea_1_Note4(){  // 20190427 -- Read from LocalStorage
       }
 
       document.getElementById("IAI_1t").value = localStorage.Note4_Topic;
+
+      document.getElementById("IAI_2t").value = localStorage.Note4_Speaker;  // Add on 2020.07.27
 
       document.getElementById("A1").value = localStorage.Note4_Content;
 
@@ -6826,6 +6883,13 @@ function read_textarea_1_Note5(){  // 20190427 -- Read from LocalStorage
 
       }
 
+      if(localStorage.Note5_Speaker) {  // Add on 2020.07.27
+
+      }else {
+         localStorage.Note5_Speaker = '';
+
+      }
+
       if(localStorage.Note5_Content) {
 
       }else {
@@ -6834,6 +6898,8 @@ function read_textarea_1_Note5(){  // 20190427 -- Read from LocalStorage
       }
 
       document.getElementById("IAI_1t").value = localStorage.Note5_Topic;
+
+      document.getElementById("IAI_2t").value = localStorage.Note5_Speaker;  // Add on 2020.07.27
 
       document.getElementById("A1").value = localStorage.Note5_Content;
 
@@ -6904,6 +6970,7 @@ function clear_textarea_1(){  //
 
       document.getElementById("A1").value="";
       document.getElementById("IAI_1t").value="";
+      document.getElementById("IAI_2t").value="";  // Add on 2020.07.27
 
 }  // End of function clear_textarea_1()
 
@@ -7540,15 +7607,15 @@ function Show_Name(arg){
  
    //localStorage.Note3_Topic = document.ANNO_FORM.B11aa.value;
 
-   var Topic = document.ANNO_FORM.B11aa.value;
+   //var Topic = document.ANNO_FORM.B11aa.value;
 
    var Topic_Add = arg;
 
-   Topic = Topic + '----' + Topic_Add;
+   //Topic = Topic + '----' + Topic_Add;
 
    //document.getElementById("IAI_1t").value = ;
 
-   document.ANNO_FORM.B11aa.value = Topic;
+   document.ANNO_FORM.B22aa.value = Topic_Add;
 
    write_textarea_1();
 
@@ -8374,7 +8441,8 @@ function Click_Note5() {
 </tr>
 <tr>
 <td>
-<input type="text" style="font-size:20pt" size="36" name="B11aa" id="IAI_1t" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+<input type="text" style="font-size:20pt" size="27" name="B11aa" id="IAI_1t" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+<input type="text" style="font-size:20pt" size="9" name="B22aa" id="IAI_2t" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
 <input align="right" type="button" name="B11a" value="Save" onclick="write_textarea_1(); return false;">
 <input type="button" name="B11b" value="Read" onclick="read_textarea_1(); return false;">
 <input type="button" name="B11c" value="Clear" onclick="clear_textarea_1(); return false;">
