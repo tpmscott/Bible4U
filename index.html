@@ -3145,6 +3145,30 @@ function BM_to_Bookmarks5() { // 將資料 由 BM 轉至 Bookmark5, 先清空 Bookmark5
 }  // End of function BM_to_Bookmarks5()
 
 
+function Clicked_History_to_Bookmarks3() {
+
+   // Display Please input Speaker
+   var Exist_Message = 'History to Bookmarks3 Succeed';
+   document.getElementById("Note3_Message").innerHTML = Exist_Message;
+
+}
+
+function Clicked_History_to_Bookmarks4() {
+
+   // Display Please input Speaker
+   var Exist_Message = 'History to Bookmarks4 Succeed';
+   document.getElementById("Note4_Message").innerHTML = Exist_Message;
+
+}
+
+function Clicked_History_to_Bookmarks5() {
+
+   // Display Please input Speaker
+   var Exist_Message = 'History to Bookmarks5 Succeed';
+   document.getElementById("Note5_Message").innerHTML = Exist_Message;
+
+}
+
 
 function History_to_Bookmarks3() { // 將資料 由 History 轉至 Bookmark3, 先清空 Bookmark3
 
@@ -9339,7 +9363,8 @@ function Click_Note5() {
 
 <tr>
 <td>
-<input align="right" type="button" name="B11a" value="Note3 =>" onclick="History_to_Bookmarks3();Prepare_Note3_Name(); return false;">
+<input align="right" style="color:red" type="button" name="B11a" value="His->BM3" onclick="History_to_Bookmarks3();Clicked_History_to_Bookmarks3(); return false;">
+<input align="right" type="button" name="B11a" value="Note3 =>" onclick="Prepare_Note3_Name(); return false;">
 <input type="text" style="font-size:18pt" size="14" name="Note3aa" id="Note3aaa" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
 <input align="right" type="button" name="B11a" value="Run" onclick="Note3_to_indexedDB(); return false;">
 <ins style="font-size:18pt" id="Note3_Message"></ins>
@@ -9348,7 +9373,8 @@ function Click_Note5() {
 
 <tr>
 <td>
-<input align="right" type="button" name="B11a" value="Note4 =>" onclick="History_to_Bookmarks4();Prepare_Note4_Name(); return false;">
+<input align="right" style="color:red" type="button" name="B11a" value="His->BM4" onclick="History_to_Bookmarks4();Clicked_History_to_Bookmarks4(); return false;">
+<input align="right" type="button" name="B11a" value="Note4 =>" onclick="Prepare_Note4_Name(); return false;">
 <input type="text" style="font-size:18pt" size="14" name="Note4aa" id="Note4aaa" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
 <input align="right" type="button" name="B11a" value="Run" onclick="Note4_to_indexedDB(); return false;">
 <ins style="font-size:18pt" id="Note4_Message"></ins>
@@ -9357,7 +9383,8 @@ function Click_Note5() {
 
 <tr>
 <td>
-<input align="right" type="button" name="B11a" value="Note5 =>" onclick="History_to_Bookmarks5();Prepare_Note5_Name(); return false;">
+<input align="right" style="color:red" type="button" name="B11a" value="His->BM5" onclick="History_to_Bookmarks5();Clicked_History_to_Bookmarks5(); return false;">
+<input align="right" type="button" name="B11a" value="Note5 =>" onclick="Prepare_Note5_Name(); return false;">
 <input type="text" style="font-size:18pt" size="14" name="Note5aa" id="Note5aaa" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
 <input align="right" type="button" name="B11a" value="Run" onclick="Note5_to_indexedDB(); return false;">
 <ins style="font-size:18pt" id="Note5_Message"></ins>
