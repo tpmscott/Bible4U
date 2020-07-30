@@ -141,7 +141,7 @@
 <SCRIPT LANGUAGE="JavaScript" SRC="codes4.js"></SCRIPT>
 <SCRIPT LANGUAGE="JavaScript" SRC="KeyFunction.js"></SCRIPT>
 <SCRIPT LANGUAGE="JavaScript" SRC="BookMarks2.js"></SCRIPT>
-<SCRIPT LANGUAGE="JavaScript" SRC="Mark_Line_V7.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="Mark_Line_V11.js"></SCRIPT>
 
 
 
@@ -6966,6 +6966,162 @@ function read_textarea_1_NoteDB(){
 } // End of functio read_textarea_1_NoteDB()
 
 
+async function read_textarea_1_NoteDB_from_indexedDB(){ 
+
+   // Read-Only Mode
+
+      var N_String = G_N_String;
+
+
+   // Start Reading from indexedDB
+
+      var Name_tmp = N_String;
+
+      let Verse = await dbT2.SermonNote.get(Name_tmp);
+
+      if (Verse) {  // Exist
+
+         var speaker = Verse.Speaker;
+         var topic = Verse.Topic;
+         var content = Verse.Content;
+         var verses = Verse.Verses;
+
+         document.getElementById("IAI_2t").value = speaker;  // Speaker
+         document.getElementById("IAI_1t").value = topic;    // Topic
+         document.getElementById("A1").value = content;      // Content
+
+         //document.getElementById("IAI_2t").readOnly = true;  // Mark temparaly
+         //document.getElementById("IAI_1t").readOnly = true;  // Mark temparaly
+         //document.getElementById("A1").readOnly = true;      // Mark temparaly
+
+
+         //let Name = Name_tmp;
+         //let Speaker = localStorage.Note3_Speaker; 
+         //let Topic = localStorage.Note3_Topic; 
+         //let Content = localStorage.Note3_Content;
+         //let Verses = localStorage.VersBM3;
+
+      }
+      else {
+
+         var speaker = "";
+         var topic = "";
+         var content = "";
+         var verses = "";
+
+         document.getElementById("IAI_2t").value = speaker;  // Speaker
+         document.getElementById("IAI_1t").value = topic;    // Topic
+         document.getElementById("A1").value = content;      // Content
+
+      }
+
+   
+
+   // Start Reading from LocalStorage
+
+      //if(localStorage.N_String_Topic) {
+
+      //}else {
+      //   localStorage.N_String_Topic = '';
+
+      //}
+
+      //if(localStorage.N_String_Content) {
+
+      //}else {
+      //   localStorage.N_String_Content = '';
+
+      //}
+
+      //if(localStorage.N_String_Verses) {
+
+      //}else {
+      //   localStorage.N_String_Verses = '';
+
+      //}
+
+      ////document.getElementById("IAI_1t").value = localStorage.N_String_Topic;
+
+      ////document.getElementById("A1").value = localStorage.N_String_Content;
+
+
+
+      ////document.getElementById("IAI_1t").value = localStorage.190504Sat1_Topic;  // for test
+
+      //document.getElementById("IAI_1t").value = localStorage.getItem(N_String_Topic);
+
+
+      ////document.getElementById("A1").value = localStorage.190504Sat1_Content;    // for test
+
+      //document.getElementById("A1").value = localStorage.getItem(N_String_Content);
+
+
+     
+      //Init_BMNote();            // Mark temparaly
+
+        // Read from indexedDB
+            // Write to VersBMNote_B
+            // Write to VersBMNote_C
+            // Write to VersBMNote_V
+            // Write to VersBMNote_T
+            // Write to VersBMNote
+
+            // String to Array -- seperator ","
+
+            //var str3 = localStorage.VersBM3;
+            //var str3 = localStorage.getItem(N_String_Verses);
+            var str3 = verses;
+
+              var BookMKNote = str3.split(",");
+
+            // End of String to Array -- seperator ","
+
+        // End of Reading from indexedDB
+
+
+        // -- Write to VersBMNote, from BookMKNote
+
+        var BookMKNote_Len = Number(BookMKNote[0]);  // record how many BookmarkNote records
+
+        Delete_BookmarksNote();
+
+        for (i = 0; i < BookMKNote_Len; i++) {
+
+           VersBMNote_B[i] = Number(BookMKNote[4*i+1]);  // arg1
+           VersBMNote_C[i] = Number(BookMKNote[4*i+2]);  // arg2
+           VersBMNote_V[i] = Number(BookMKNote[4*i+3]);  // arg3  
+           VersBMNote_T[i] = Number(BookMKNote[4*i+4]);  // arg4
+
+           var tmp_B = VersBMNote_B[i];  // arg1
+           var tmp_C = VersBMNote_C[i];  // arg2
+           var tmp_V = VersBMNote_V[i];  // arg3  
+           var tmp_T = VersBMNote_T[i];  // arg4
+
+           var VBM_Bname = BookAbbr4[tmp_B]; // arg1
+           var VBM_Chap = tmp_C + 1;
+           var VBM_Vers = tmp_V;
+           var VBM_To_Vers = tmp_T;
+
+           if(tmp_T>tmp_V)
+              var VBM = VBM_Bname + ' ' + VBM_Chap + ':' + VBM_Vers + '~' + VBM_To_Vers; 
+           else
+              var VBM = VBM_Bname + ' ' + VBM_Chap + ':' + VBM_Vers; 
+
+           VersBMNote[i]=VBM;  // Put in new record
+
+        } // End of for (i = 0; i < BookMKNote_Len; i++)
+
+
+      //End of Init_BMNote();
+
+      Show_BookmarkNote_Only(); // Mark temparaly
+
+
+} // End of async function read_textarea_1_NoteDB_from_indexedDB()
+
+
+
+
 function clear_textarea_1(){  // 
 
       document.getElementById("A1").value="";
@@ -7054,8 +7210,92 @@ function Note_Date() {
 }
 
 
+async function Show_Notes_List2() { // show Name and Topic
+                                    // for Notes stored in indexedDB
+
+  //let Verse = await dbT2.SermonNote.get(Name_tmp);
+  let Verse = await dbT2.SermonNote.reverse().toArray();
+
+  if (Verse) {
+
+     if (Verse.length) {
+
+        var text1;
+        text1 = "Notes List<br>";
+
+        for (var i = 0; i < Verse.length ; i++) {
+
+           // arg1: Name, arg2: Speaker, arg3:Topic
+
+           var arg1 = Verse[i].Name;
+
+           var arg2 = Verse[i].Speaker;
+
+           var arg3 = Verse[i].Topic; // onClick="Show_Select_Note2('20200729Wed3')
+
+           //text1 += '<a href="" "onClick="\"' + arg1 + '\");return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br>';      
+
+
+           text1 += '<a href="" onClick="Show_Select_Note2(\'' + arg1 + '\');return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br>';      
+
+
+
+        } // End of for (var i = 0; i < Verse.length ; i++)
+
+     } else {
+       //listElem.innerHTML = '<li>No Data</li>'
+     }
+
+  }
+  else {
+
+     //listElem.innerHTML = 'No Data';
+
+  }
+
+
+
+
+   //Notes_List = ["3","190504Sat1","190505Sun1","190506Mon1"]; // for debug  
+
+   //var Notes_List_Len = Number(Notes_List[0]);
+   //var text1;
+   //text1 = "Notes List<br>";
+
+   //for (i = 1; i < Notes_List_Len + 1; i++) {
+
+   //   var N_String = Notes_List[i];
+   //   var N_String_Topic = N_String + '_Topic';
+
+   //   var Topic_String = localStorage.getItem(N_String_Topic); // localStorage.getItem("lastname")
+
+   //   //text1 += '<button onclick="Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers2(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a><br>';      
+    
+   //   text1 += '<a href="" onClick="Show_Select_Note(' + i + ');return false;">' + Notes_List[i] + '</a> : ' + Topic_String + '<br>';      
+
+   //   //text1 += '<button onclick="Show_Select_Note(' + i + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_Select_Note(' + Notes_List[i] + ');return false;">' + Notes_List[i] + '</a><br>';
+
+
+   //}
+
+   document.getElementById("tool_area_6").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.height='0px';
+
+   document.getElementById("tool_area_8").style.visibility='visible';
+
+   document.getElementById("Notes_List").innerHTML = text1;
+
+   Delete_Note_Item_No = 0;  // 0 means No Delete action, 1 means delete first item
+
+   document.getElementById("tool_area_10").style.visibility='hidden';
+
+
+}  // End of function Show_Notes_List2()
+
 
 function Show_Notes_List() { // show Name and Topic
+                             // for Notes stored in LocalStorage
 
    //Notes_List = ["3","190504Sat1","190505Sun1","190506Mon1"]; // for debug  
 
@@ -7133,9 +7373,31 @@ function Show_Select_Note(arg1,arg2,arg3,arg4) {
    G_N_String = N_String;
    document.getElementById("NoteDB").value = N_String;
    document.getElementById("NoteDB").style.visibility='visible';
+
+         set_NoteDB_reading_from(1); // 0 means initial value  // Add on 20200729
+                                     // 1 means localStorage
+                                     // 2 means indexedDB
+
    Click_NoteDB();
 
 }
+
+function Show_Select_Note2(arg1,arg2,arg3,arg4) {
+
+   //var N_String = Notes_List[arg1];
+   var N_String = arg1;
+   G_N_String = N_String;
+   document.getElementById("NoteDB").value = N_String;
+   document.getElementById("NoteDB").style.visibility='visible';
+
+         set_NoteDB_reading_from(2); // 0 means initial value  // Add on 20200729
+                                     // 1 means localStorage
+                                     // 2 means indexedDB
+
+   Click_NoteDB();
+
+}
+
 
 var Delete_Note_Item_No = 0; // 0 means No Delete action, 1 means delete first item
 
@@ -7357,10 +7619,514 @@ function Note3_to_DB(){ // copy localStorage.Note3_Topic to localStorage.N_Strin
 
          document.getElementById("NoteDB").style.visibility='visible';
 
+         set_NoteDB_reading_from(1); // 0 means initial value
+                                     // 1 means localStorage
+                                     // 2 means indexedDB
+
       } // End of if (N_String_exist==0)
 
 
 } // End of function Note3_to_DB()
+
+
+var NoteDB_reading_from = 0; // 0 means initial value
+                             // 1 means localStorage
+                             // 2 means indexedDB
+
+function set_NoteDB_reading_from(arg) {
+
+   NoteDB_reading_from = arg;
+
+}
+
+
+
+async function Note3_to_indexedDB(){ // copy localStorage.Note3_Topic to indexedDB
+                               // copy localStorage.Note3_Speaker to indexedDB
+                               // copy localStorage.Note3_Content to indexedDB
+                               // copy localStorage.VersBM3 to indexedDB
+
+      var N_String = document.Note_DB_FORM.Note3aa.value ; // Name String 
+
+      // Check whether Name exist
+
+         //var Book_tmp = nowbook + '_' + nowchapter;
+
+         var Name_tmp = document.Note_DB_FORM.Note3aa.value ; // Name String
+
+         let Verse = await dbT2.SermonNote.get(Name_tmp);
+
+         var N_String_exist = 0; // 0 means not exist, 1 means exist
+
+         var Topic_Null = 0; // 0 means Null, 1 means Not Null // Add on 20200730
+
+         var Speaker_Null = 0; // 0 means Null, 1 means Not Null // Add on 20200730
+
+         var N_String_Null = 0; // 0 means Null, 1 means Not Null // Add on 20200730
+
+         if (Verse) {  // Exist
+
+            N_String_exist=1; // 0 means not exist, 1 means exist
+
+         }
+         else {  // Not Exist
+
+         }
+
+      // End of Check
+
+
+      // Display Message
+
+         if (N_String_exist==1) { // 0 means not exist, 1 means exist
+
+            // Display item exist already
+            var Exist_Message = N_String + ' -- name existed';
+            document.getElementById("Note3_Message").innerHTML = Exist_Message;
+
+         }
+         else if (N_String_exist==0) { // 0 means not exist, 1 means exist
+
+            //Notes_List[Notes_List_Len+1] = N_String; // add to array Notes_List
+
+            //Notes_List[0] = Notes_List_Len + 1; // Modify the array Notes_List
+
+            if(localStorage.Note3_Topic == '') {
+
+               // Display Please input Topic
+               var Exist_Message = ' Please input Topic';
+               document.getElementById("Note3_Message").innerHTML = Exist_Message;
+
+            }
+            else if (localStorage.Note3_Speaker == '') {
+
+               // Display Please input Speaker
+               var Exist_Message = ' Please input Speaker';
+               document.getElementById("Note3_Message").innerHTML = Exist_Message;
+
+            }
+            else if (N_String == '') {
+
+               // Display Please click Note3 =>
+               var Exist_Message = ' Please click Note3 =>';
+               document.getElementById("Note3_Message").innerHTML = Exist_Message;
+
+            }
+            else {
+
+               var Succeed_Message = N_String + ' -- saving to indexedDB succeeded';
+
+               document.getElementById("Note3_Message").innerHTML =  Succeed_Message; 
+
+               //write_to_Notes_List(); // write to localStorage
+
+               G_N_String = N_String;
+
+               Topic_Null = 1;    // 0 means Null, 1 means Not Null // Add on 20200730
+
+               Speaker_Null = 1;  // 0 means Null, 1 means Not Null // Add on 20200730 
+
+               N_String_Null = 1; // 0 means Null, 1 means Not Null // Add on 20200730 
+
+            }
+ 
+
+
+         }        
+
+      // End of Display Message
+
+
+      // Copy Note3(localStorage) to indexedDB
+
+      if (N_String_exist==0 && Topic_Null == 1 && Speaker_Null == 1 && N_String_Null == 1) { 
+                                                  // N_String_exist= 0 means not exist, 1 means exist
+                                                  // Topic_Null= 0     means Null, 1 means Not Null // Add on 20200730
+                                                  // Speaker_Null= 0   means Null, 1 means Not Null // Add on 20200730
+
+         // Add new
+
+         let Name = Name_tmp;
+         let Speaker = localStorage.Note3_Speaker; 
+         let Topic = localStorage.Note3_Topic; 
+         let Content = localStorage.Note3_Content;
+         let Verses = localStorage.VersBM3;
+
+         //let Speaker = document.getElementById("IAI_2t").value; 
+         //let Topic = document.getElementById("IAI_1t").value; 
+         //let Content = document.getElementById("A1").value;
+
+         try {
+
+           dbT2.SermonNote.add({Name,Speaker,Topic,Content,Verses });
+
+         } catch(err) {
+           if (err.name == 'ConstraintError') {
+             alert("Such Verse exists in indexedDB already");
+           } else {
+             throw err;
+           }
+         }
+
+         // End of Add new
+
+
+         //var N_String_Topic = N_String + '_Topic';
+
+         //var N_String_Content = N_String + '_Content';
+
+         //var N_String_Verses = N_String + '_Verses';
+
+         document.getElementById("NoteDB").value = N_String;
+
+         ////localStorage.N_String_Topic = localStorage.Note3_Topic;
+
+         //localStorage.setItem(N_String_Topic,localStorage.Note3_Topic); // Can't use above way
+
+         ////localStorage.N_String_Content = localStorage.Note3_Content;
+
+         //localStorage.setItem(N_String_Content,localStorage.Note3_Content); // Can't use above way
+
+         //localStorage.setItem(N_String_Verses,localStorage.VersBM3);  // copy localStorage.VersBM3 
+                                                                      // to localStorage.N_String_Verses
+
+         document.getElementById("NoteDB").style.visibility='visible';
+
+         set_NoteDB_reading_from(2); // 0 means initial value
+                                     // 1 means localStorage
+                                     // 2 means indexedDB
+
+      } // End of if (N_String_exist==0)
+
+
+} // End of function Note3_to_indexedDB()
+
+
+
+async function Note4_to_indexedDB(){ // copy localStorage.Note4_Topic to indexedDB
+                               // copy localStorage.Note4_Speaker to indexedDB
+                               // copy localStorage.Note4_Content to indexedDB
+                               // copy localStorage.VersBM4 to indexedDB
+
+      var N_String = document.Note_DB_FORM.Note4aa.value ; // Name String 
+
+      // Check whether Name exist
+
+         //var Book_tmp = nowbook + '_' + nowchapter;
+
+         var Name_tmp = document.Note_DB_FORM.Note4aa.value ; // Name String
+
+         let Verse = await dbT2.SermonNote.get(Name_tmp);
+
+         var N_String_exist = 0; // 0 means not exist, 1 means exist
+
+         var Topic_Null = 0; // 0 means Null, 1 means Not Null // Add on 20200730
+
+         var Speaker_Null = 0; // 0 means Null, 1 means Not Null // Add on 20200730
+
+         var N_String_Null = 0; // 0 means Null, 1 means Not Null // Add on 20200730
+
+         if (Verse) {  // Exist
+
+            N_String_exist=1; // 0 means not exist, 1 means exist
+
+         }
+         else {  // Not Exist
+
+         }
+
+      // End of Check
+
+
+      // Display Message
+
+         if (N_String_exist==1) { // 0 means not exist, 1 means exist
+
+            // Display item exist already
+            var Exist_Message = N_String + ' -- name existed';
+            document.getElementById("Note4_Message").innerHTML = Exist_Message;
+
+         }
+         else if (N_String_exist==0) { // 0 means not exist, 1 means exist
+
+            //Notes_List[Notes_List_Len+1] = N_String; // add to array Notes_List
+
+            //Notes_List[0] = Notes_List_Len + 1; // Modify the array Notes_List
+
+            if(localStorage.Note4_Topic == '') {
+
+               // Display Please input Topic
+               var Exist_Message = ' Please input Topic';
+               document.getElementById("Note4_Message").innerHTML = Exist_Message;
+
+            }
+            else if (localStorage.Note4_Speaker == '') {
+
+               // Display Please input Speaker
+               var Exist_Message = ' Please input Speaker';
+               document.getElementById("Note4_Message").innerHTML = Exist_Message;
+
+            }
+            else if (N_String == '') {
+
+               // Display Please click Note4 =>
+               var Exist_Message = ' Please click Note4 =>';
+               document.getElementById("Note4_Message").innerHTML = Exist_Message;
+
+            }
+            else {
+
+               var Succeed_Message = N_String + ' -- saving to indexedDB succeeded';
+
+               document.getElementById("Note4_Message").innerHTML =  Succeed_Message; 
+
+               //write_to_Notes_List(); // write to localStorage
+
+               G_N_String = N_String;
+
+               Topic_Null = 1;    // 0 means Null, 1 means Not Null // Add on 20200730
+
+               Speaker_Null = 1;  // 0 means Null, 1 means Not Null // Add on 20200730 
+
+               N_String_Null = 1; // 0 means Null, 1 means Not Null // Add on 20200730 
+
+            }
+ 
+
+
+         }        
+
+      // End of Display Message
+
+
+      // Copy Note3(localStorage) to indexedDB
+
+      if (N_String_exist==0 && Topic_Null == 1 && Speaker_Null == 1 && N_String_Null == 1) { 
+                                                  // N_String_exist= 0 means not exist, 1 means exist
+                                                  // Topic_Null= 0     means Null, 1 means Not Null // Add on 20200730
+                                                  // Speaker_Null= 0   means Null, 1 means Not Null // Add on 20200730
+
+         // Add new
+
+         let Name = Name_tmp;
+         let Speaker = localStorage.Note4_Speaker; 
+         let Topic = localStorage.Note4_Topic; 
+         let Content = localStorage.Note4_Content;
+         let Verses = localStorage.VersBM4;
+
+         //let Speaker = document.getElementById("IAI_2t").value; 
+         //let Topic = document.getElementById("IAI_1t").value; 
+         //let Content = document.getElementById("A1").value;
+
+         try {
+
+           dbT2.SermonNote.add({Name,Speaker,Topic,Content,Verses });
+
+         } catch(err) {
+           if (err.name == 'ConstraintError') {
+             alert("Such Verse exists in indexedDB already");
+           } else {
+             throw err;
+           }
+         }
+
+         // End of Add new
+
+
+         //var N_String_Topic = N_String + '_Topic';
+
+         //var N_String_Content = N_String + '_Content';
+
+         //var N_String_Verses = N_String + '_Verses';
+
+         document.getElementById("NoteDB").value = N_String;
+
+         ////localStorage.N_String_Topic = localStorage.Note3_Topic;
+
+         //localStorage.setItem(N_String_Topic,localStorage.Note3_Topic); // Can't use above way
+
+         ////localStorage.N_String_Content = localStorage.Note3_Content;
+
+         //localStorage.setItem(N_String_Content,localStorage.Note3_Content); // Can't use above way
+
+         //localStorage.setItem(N_String_Verses,localStorage.VersBM3);  // copy localStorage.VersBM3 
+                                                                      // to localStorage.N_String_Verses
+
+         document.getElementById("NoteDB").style.visibility='visible';
+
+         set_NoteDB_reading_from(2); // 0 means initial value
+                                     // 1 means localStorage
+                                     // 2 means indexedDB
+
+      } // End of if (N_String_exist==0)
+
+
+} // End of function Note4_to_indexedDB()
+
+
+async function Note5_to_indexedDB(){ // copy localStorage.Note5_Topic to indexedDB
+                               // copy localStorage.Note5_Speaker to indexedDB
+                               // copy localStorage.Note5_Content to indexedDB
+                               // copy localStorage.VersBM5 to indexedDB
+
+      var N_String = document.Note_DB_FORM.Note5aa.value ; // Name String 
+
+      // Check whether Name exist
+
+         //var Book_tmp = nowbook + '_' + nowchapter;
+
+         var Name_tmp = document.Note_DB_FORM.Note5aa.value ; // Name String
+
+         let Verse = await dbT2.SermonNote.get(Name_tmp);
+
+         var N_String_exist = 0; // 0 means not exist, 1 means exist
+
+         var Topic_Null = 0; // 0 means Null, 1 means Not Null // Add on 20200730
+
+         var Speaker_Null = 0; // 0 means Null, 1 means Not Null // Add on 20200730
+
+         var N_String_Null = 0; // 0 means Null, 1 means Not Null // Add on 20200730
+
+         if (Verse) {  // Exist
+
+            N_String_exist=1; // 0 means not exist, 1 means exist
+
+         }
+         else {  // Not Exist
+
+         }
+
+      // End of Check
+
+
+      // Display Message
+
+         if (N_String_exist==1) { // 0 means not exist, 1 means exist
+
+            // Display item exist already
+            var Exist_Message = N_String + ' -- name existed';
+            document.getElementById("Note5_Message").innerHTML = Exist_Message;
+
+         }
+         else if (N_String_exist==0) { // 0 means not exist, 1 means exist
+
+            //Notes_List[Notes_List_Len+1] = N_String; // add to array Notes_List
+
+            //Notes_List[0] = Notes_List_Len + 1; // Modify the array Notes_List
+
+            if(localStorage.Note5_Topic == '') {
+
+               // Display Please input Topic
+               var Exist_Message = ' Please input Topic';
+               document.getElementById("Note5_Message").innerHTML = Exist_Message;
+
+            }
+            else if (localStorage.Note5_Speaker == '') {
+
+               // Display Please input Speaker
+               var Exist_Message = ' Please input Speaker';
+               document.getElementById("Note5_Message").innerHTML = Exist_Message;
+
+            }
+            else if (N_String == '') {
+
+               // Display Please click Note5 =>
+               var Exist_Message = ' Please click Note5 =>';
+               document.getElementById("Note5_Message").innerHTML = Exist_Message;
+
+            }
+            else {
+
+               var Succeed_Message = N_String + ' -- saving to indexedDB succeeded';
+
+               document.getElementById("Note5_Message").innerHTML =  Succeed_Message; 
+
+               //write_to_Notes_List(); // write to localStorage
+
+               G_N_String = N_String;
+
+               Topic_Null = 1;    // 0 means Null, 1 means Not Null // Add on 20200730
+
+               Speaker_Null = 1;  // 0 means Null, 1 means Not Null // Add on 20200730 
+
+               N_String_Null = 1; // 0 means Null, 1 means Not Null // Add on 20200730 
+
+            }
+ 
+
+
+         }        
+
+      // End of Display Message
+
+
+      // Copy Note3(localStorage) to indexedDB
+
+      if (N_String_exist==0 && Topic_Null == 1 && Speaker_Null == 1 && N_String_Null == 1) { 
+                                                  // N_String_exist= 0 means not exist, 1 means exist
+                                                  // Topic_Null= 0     means Null, 1 means Not Null // Add on 20200730
+                                                  // Speaker_Null= 0   means Null, 1 means Not Null // Add on 20200730
+
+         // Add new
+
+         let Name = Name_tmp;
+         let Speaker = localStorage.Note5_Speaker; 
+         let Topic = localStorage.Note5_Topic; 
+         let Content = localStorage.Note5_Content;
+         let Verses = localStorage.VersBM5;
+
+         //let Speaker = document.getElementById("IAI_2t").value; 
+         //let Topic = document.getElementById("IAI_1t").value; 
+         //let Content = document.getElementById("A1").value;
+
+         try {
+
+           dbT2.SermonNote.add({Name,Speaker,Topic,Content,Verses });
+
+         } catch(err) {
+           if (err.name == 'ConstraintError') {
+             alert("Such Verse exists in indexedDB already");
+           } else {
+             throw err;
+           }
+         }
+
+         // End of Add new
+
+
+         //var N_String_Topic = N_String + '_Topic';
+
+         //var N_String_Content = N_String + '_Content';
+
+         //var N_String_Verses = N_String + '_Verses';
+
+         document.getElementById("NoteDB").value = N_String;
+
+         ////localStorage.N_String_Topic = localStorage.Note3_Topic;
+
+         //localStorage.setItem(N_String_Topic,localStorage.Note3_Topic); // Can't use above way
+
+         ////localStorage.N_String_Content = localStorage.Note3_Content;
+
+         //localStorage.setItem(N_String_Content,localStorage.Note3_Content); // Can't use above way
+
+         //localStorage.setItem(N_String_Verses,localStorage.VersBM3);  // copy localStorage.VersBM3 
+                                                                      // to localStorage.N_String_Verses
+
+         document.getElementById("NoteDB").style.visibility='visible';
+
+         set_NoteDB_reading_from(2); // 0 means initial value
+                                     // 1 means localStorage
+                                     // 2 means indexedDB
+
+      } // End of if (N_String_exist==0)
+
+
+} // End of function Note5_to_indexedDB()
+
+
+
+
 
 
 function Note4_to_DB(){ // copy localStorage.Note4_Topic to localStorage.N_String_Topic
@@ -7619,6 +8385,8 @@ function Show_Name(arg){
 
    write_textarea_1();
 
+   Hide_Name_List();
+
 }
 
 function Show_Name_List(){
@@ -7722,7 +8490,17 @@ function Click_NoteDB() {
 
    Note_Seleted="NoteDB";
 
-   read_textarea_1_NoteDB();
+   if(NoteDB_reading_from == 1) {
+
+      read_textarea_1_NoteDB(); // mark on 20200728
+
+   }
+
+   if(NoteDB_reading_from == 2) {
+
+      read_textarea_1_NoteDB_from_indexedDB(); // add on 20200728
+
+   }
 
    document.getElementById("Note3").style.color="black";
    document.getElementById("Note4").style.color="black";
@@ -8525,7 +9303,11 @@ function Click_Note5() {
 <td></td><td></td><td></td><td></td><td></td><td></td>
 
 <td>
-<input type="button" name="B114" style="font-size:16pt;color:black" id="Notes_List_in_DB" value="Notes List in DB" onclick="Show_Notes_List(); return false;">
+<input type="button" name="B114" style="font-size:16pt;color:black" id="Notes_List_in_DB" value="Notes List in LocalStorage" onclick="Show_Notes_List(); return false;">
+</td>
+
+<td>
+<input type="button" name="B114" style="font-size:16pt;color:black" id="Notes_List_in_DB2" value="Notes List in indexedDB" onclick="Show_Notes_List2(); return false;">
 </td>
 
 <td></td><td></td><td></td><td></td><td></td><td></td>
@@ -8559,7 +9341,7 @@ function Click_Note5() {
 <td>
 <input align="right" type="button" name="B11a" value="Note3 =>" onclick="History_to_Bookmarks3();Prepare_Note3_Name(); return false;">
 <input type="text" style="font-size:18pt" size="14" name="Note3aa" id="Note3aaa" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
-<input align="right" type="button" name="B11a" value="Run" onclick="Note3_to_DB(); return false;">
+<input align="right" type="button" name="B11a" value="Run" onclick="Note3_to_indexedDB(); return false;">
 <ins style="font-size:18pt" id="Note3_Message"></ins>
 </td>
 </tr>
@@ -8568,7 +9350,7 @@ function Click_Note5() {
 <td>
 <input align="right" type="button" name="B11a" value="Note4 =>" onclick="History_to_Bookmarks4();Prepare_Note4_Name(); return false;">
 <input type="text" style="font-size:18pt" size="14" name="Note4aa" id="Note4aaa" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
-<input align="right" type="button" name="B11a" value="Run" onclick="Note4_to_DB(); return false;">
+<input align="right" type="button" name="B11a" value="Run" onclick="Note4_to_indexedDB(); return false;">
 <ins style="font-size:18pt" id="Note4_Message"></ins>
 </td>
 </tr>
@@ -8577,7 +9359,7 @@ function Click_Note5() {
 <td>
 <input align="right" type="button" name="B11a" value="Note5 =>" onclick="History_to_Bookmarks5();Prepare_Note5_Name(); return false;">
 <input type="text" style="font-size:18pt" size="14" name="Note5aa" id="Note5aaa" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
-<input align="right" type="button" name="B11a" value="Run" onclick="Note5_to_DB(); return false;">
+<input align="right" type="button" name="B11a" value="Run" onclick="Note5_to_indexedDB(); return false;">
 <ins style="font-size:18pt" id="Note5_Message"></ins>
 </td>
 </tr>
