@@ -7252,7 +7252,7 @@ async function Show_Notes_List2() { // show Name and Topic
      if (Verse.length) {
 
         var text1;
-        text1 = "Notes List<br>";
+        text1 = "Notes List -- indexedDB<br>";
 
         for (var i = 0; i < Verse.length ; i++) {
 
@@ -7285,30 +7285,6 @@ async function Show_Notes_List2() { // show Name and Topic
   }
 
 
-
-
-   //Notes_List = ["3","190504Sat1","190505Sun1","190506Mon1"]; // for debug  
-
-   //var Notes_List_Len = Number(Notes_List[0]);
-   //var text1;
-   //text1 = "Notes List<br>";
-
-   //for (i = 1; i < Notes_List_Len + 1; i++) {
-
-   //   var N_String = Notes_List[i];
-   //   var N_String_Topic = N_String + '_Topic';
-
-   //   var Topic_String = localStorage.getItem(N_String_Topic); // localStorage.getItem("lastname")
-
-   //   //text1 += '<button onclick="Show_Bookmark(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_His_BM_Vers2(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a><br>';      
-    
-   //   text1 += '<a href="" onClick="Show_Select_Note(' + i + ');return false;">' + Notes_List[i] + '</a> : ' + Topic_String + '<br>';      
-
-   //   //text1 += '<button onclick="Show_Select_Note(' + i + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + '+' + '</button>' + ' ' + '<a href="" onClick="Show_Select_Note(' + Notes_List[i] + ');return false;">' + Notes_List[i] + '</a><br>';
-
-
-   //}
-
    document.getElementById("tool_area_6").style.visibility='hidden';
    document.getElementById("tool_area_9").style.visibility='hidden';
    document.getElementById("tool_area_9").style.height='0px';
@@ -7332,7 +7308,7 @@ function Show_Notes_List() { // show Name and Topic
 
    var Notes_List_Len = Number(Notes_List[0]);
    var text1;
-   text1 = "Notes List<br>";
+   text1 = "Notes List -- LocalStorage<br>";
 
    for (i = 1; i < Notes_List_Len + 1; i++) {
 
@@ -9643,6 +9619,56 @@ New
 
 
 <div id="tool_area_8" style="visibility:hidden">
+
+  <div id="tool_area_11" >
+
+     <table>
+     <tr>
+
+     <td>
+     <p style="font-size:20pt" ><b>Search: </b></p>
+     </td>
+     <td>
+     <input type="button" name="B113" style="font-size:16pt;color:black" id="All" value="All" onclick="; return false;">
+     </td>  
+    
+     <td></td><td></td><td></td>
+
+     <td>
+     <input type="button" name="B113" style="font-size:16pt;color:black" id="Recent 30" value="Recent 30" onclick="; return false;">
+     </td>  
+
+     <td></td><td></td><td></td>
+
+     <td>
+     <input type="button" name="B113" style="font-size:16pt;color:black" id="Speaker=" value="Speaker=" onclick="; return false;">
+     <input type="text" style="font-size:18pt" size="9" name="Speaker_text" id="Speaker_text" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+     </td> 
+
+     </tr>
+     </table>
+
+     <table>
+     <tr>
+
+     <td>
+     <input type="button" name="B113" style="font-size:16pt;color:black" id="Time=" value="Time=" onclick="; return false;">
+     <input type="text" style="font-size:18pt" size="6" name="Time_text" id="Time_text" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+     </td> 
+
+     <td></td><td></td><td></td>
+
+     <td>
+     <input type="button" name="B113" style="font-size:16pt;color:black" id="Time Between" value="Time Between" onclick="; return false;">
+     <input type="text" style="font-size:18pt" size="6" name="Time_start" id="Time_start" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+     -
+     <input type="text" style="font-size:18pt" size="6" name="Time_end" id="Time_end" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+     </td> 
+
+     </tr>
+     </table>
+
+  </div>
 
   <p style="font-size:20pt" id="Notes_List"></p>
 
