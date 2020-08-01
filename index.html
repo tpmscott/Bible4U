@@ -7178,6 +7178,13 @@ function Prepare_Note5_Name() {
 
 }
 
+function Prepare_Note6_Name() {
+
+      var N_String = document.getElementById("NoteDB").value ; 
+      document.getElementById("Note6aaa").value = N_String ; // Name String , Old
+
+}
+
 
 function Note_Date() {
 
@@ -8148,6 +8155,208 @@ async function Note5_to_indexedDB(){ // copy localStorage.Note5_Topic to indexed
 
 } // End of function Note5_to_indexedDB()
 
+
+
+async function Textarea_to_indexedDB(){ // copy Name to indexedDB
+                                        // copy Topic to indexedDB
+                                        // copy Speaker to indexedDB
+                                        // copy Content to indexedDB
+                                        // copy localStorage.N_String_Verses to indexedDB
+
+                                        //let Speaker = document.getElementById("IAI_2t").value; 
+                                        //let Topic = document.getElementById("IAI_1t").value; 
+                                        //let Content = document.getElementById("A1").value;
+                                        //document.getElementById("NoteDB").value = N_String; // Name String 
+
+
+      //var N_String = document.getElementById("NoteDB").value ; // Name String , Old & New
+
+      var N_String_Old = document.getElementById("Note6aaa").value ; // Name String , Old
+      var N_String_New = document.getElementById("Note7aaa").value ; // Name String , New
+
+      var Speaker_tmp = document.getElementById("IAI_2t").value;
+      var Topic_tmp = document.getElementById("IAI_1t").value;
+      var Content_tmp = document.getElementById("A1").value;
+
+
+
+      // Check whether Name exist
+
+         //var Book_tmp = nowbook + '_' + nowchapter;
+
+         //var Name_tmp = N_String ; // Name String
+
+         var Name_tmp = N_String_New ; // Name String
+
+         let Verse = await dbT2.SermonNote.get(Name_tmp);
+
+         var N_String_exist = 0; // 0 means not exist, 1 means exist
+
+         var Topic_Null = 0; // 0 means Null, 1 means Not Null // Add on 20200730
+
+         var Speaker_Null = 0; // 0 means Null, 1 means Not Null // Add on 20200730
+
+         var N_String_Null = 0; // 0 means Null, 1 means Not Null // Add on 20200730
+
+         if (Verse) {  // Exist
+
+            N_String_exist=1; // 0 means not exist, 1 means exist
+
+         }
+         else {  // Not Exist
+
+         }
+
+      // End of Check
+
+
+      // Display Message
+
+         if (N_String_exist==1) { // 0 means not exist, 1 means exist
+
+            // Display item exist already
+            var Exist_Message = N_String_New + ' -- name existed';
+            document.getElementById("Note6_Message").innerHTML = Exist_Message;
+
+         }
+         else if (N_String_exist==0) { // 0 means not exist, 1 means exist
+
+            //Notes_List[Notes_List_Len+1] = N_String; // add to array Notes_List
+
+            //Notes_List[0] = Notes_List_Len + 1; // Modify the array Notes_List
+
+            if( Topic_tmp == '') {
+
+               // Display Please input Topic
+               var Exist_Message = ' Please input Topic';
+               document.getElementById("Note6_Message").innerHTML = Exist_Message;
+
+            }
+            else if ( Speaker_tmp == '') {
+
+               // Display Please input Speaker
+               var Exist_Message = ' Please input Speaker';
+               document.getElementById("Note6_Message").innerHTML = Exist_Message;
+
+            }
+            else if (N_String_New == '') {
+
+               // Display Please click Textarea & NoteBM =>
+               var Exist_Message = ' Please click Textarea & NoteBM =>';
+               document.getElementById("Note6_Message").innerHTML = Exist_Message;
+
+            }
+            else {
+
+               var Succeed_Message = N_String_New + ' -- saving to indexedDB succeeded';
+
+               document.getElementById("Note6_Message").innerHTML =  Succeed_Message; 
+
+               //write_to_Notes_List(); // write to localStorage
+
+               G_N_String = N_String_New; // N_String_New
+
+               Topic_Null = 1;    // 0 means Null, 1 means Not Null // Add on 20200730
+
+               Speaker_Null = 1;  // 0 means Null, 1 means Not Null // Add on 20200730 
+
+               N_String_Null = 1; // 0 means Null, 1 means Not Null // Add on 20200730 
+
+            }
+ 
+
+
+         }        
+
+      // End of Display Message
+
+
+      // Copy Note3(localStorage) to indexedDB
+
+      if (N_String_exist==0 && Topic_Null == 1 && Speaker_Null == 1 && N_String_Null == 1) { 
+                                                  // N_String_exist= 0 means not exist, 1 means exist
+                                                  // Topic_Null= 0     means Null, 1 means Not Null // Add on 20200730
+                                                  // Speaker_Null= 0   means Null, 1 means Not Null // Add on 20200730
+
+         //var N_String_Verses = N_String + '_Verses'; 
+
+         var N_String_Verses = N_String_Old + '_Verses'; // N_String_Old
+
+         // Start Reading from LocalStorage
+
+         if(localStorage.N_String_Verses) {
+
+         }else {
+            localStorage.N_String_Verses = '';
+
+         }   
+
+         var Verses_tmp = localStorage.getItem(N_String_Verses);
+
+         // End Reading from LocalStorage               
+
+
+
+         // Add new
+
+         let Name = Name_tmp; // N_String_New
+         let Speaker = Speaker_tmp; 
+         let Topic = Topic_tmp; 
+         let Content = Content_tmp;
+         let Verses = Verses_tmp;
+
+         //var Speaker_tmp = document.getElementById("IAI_2t").value;
+         //var Topic_tmp = document.getElementById("IAI_1t").value;
+         //var Content_tmp = document.getElementById("A1").value;
+
+         //let Speaker = document.getElementById("IAI_2t").value; 
+         //let Topic = document.getElementById("IAI_1t").value; 
+         //let Content = document.getElementById("A1").value;
+
+         try {
+
+           dbT2.SermonNote.add({Name,Speaker,Topic,Content,Verses });
+
+         } catch(err) {
+           if (err.name == 'ConstraintError') {
+             alert("Such Verse exists in indexedDB already");
+           } else {
+             throw err;
+           }
+         }
+
+         // End of Add new
+
+
+         //var N_String_Topic = N_String + '_Topic';
+
+         //var N_String_Content = N_String + '_Content';
+
+         //var N_String_Verses = N_String + '_Verses';
+
+         document.getElementById("NoteDB").value = N_String_New;  // N_String_New
+
+         ////localStorage.N_String_Topic = localStorage.Note3_Topic;
+
+         //localStorage.setItem(N_String_Topic,localStorage.Note3_Topic); // Can't use above way
+
+         ////localStorage.N_String_Content = localStorage.Note3_Content;
+
+         //localStorage.setItem(N_String_Content,localStorage.Note3_Content); // Can't use above way
+
+         //localStorage.setItem(N_String_Verses,localStorage.VersBM3);  // copy localStorage.VersBM3 
+                                                                      // to localStorage.N_String_Verses
+
+         document.getElementById("NoteDB").style.visibility='visible';
+
+         set_NoteDB_reading_from(2); // 0 means initial value
+                                     // 1 means localStorage
+                                     // 2 means indexedDB
+
+      } // End of if (N_String_exist==0)
+
+
+} // End of function Textarea_to_indexedDB()
 
 
 
@@ -9388,6 +9597,18 @@ function Click_Note5() {
 <input type="text" style="font-size:18pt" size="14" name="Note5aa" id="Note5aaa" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
 <input align="right" type="button" name="B11a" value="Run" onclick="Note5_to_indexedDB(); return false;">
 <ins style="font-size:18pt" id="Note5_Message"></ins>
+</td>
+</tr>
+
+<tr>
+<td>
+<input align="right" type="button" name="B11a" value="Textarea & NoteBM =>" onclick="Prepare_Note6_Name(); return false;">
+Old
+<input type="text" style="font-size:18pt" size="14" name="Note6aa" id="Note6aaa" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+New
+<input type="text" style="font-size:18pt" size="14" name="Note7aa" id="Note7aaa" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+<input align="right" type="button" name="B11a" value="Run" onclick="Textarea_to_indexedDB(); return false;">
+<ins style="font-size:18pt" id="Note6_Message"></ins>
 </td>
 </tr>
 
