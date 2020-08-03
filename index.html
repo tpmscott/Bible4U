@@ -7570,6 +7570,254 @@ async function Show_Notes_List2_Time_Between() { // show Name and Topic
 }  // End of function Show_Notes_List2_Time_Between()
 
 
+
+async function Show_Notes_List2_Time_and_Speaker_Equal() { // show Name and Topic
+                                    // for Notes stored in indexedDB
+
+  //let Verse = await dbT2.SermonNote.get(Name_tmp);
+  //let Verse = await dbT2.SermonNote.reverse().toArray();
+
+  //let Verse = await dbT2.SermonNote.reverse().limit(30).toArray(); // Recent 30
+
+
+  var startWith_date = document.getElementById("Time_text").value;
+
+  var speaker_tmp = document.getElementById("Speaker_text").value;
+
+
+
+  //if(startWith_date!='') {
+
+  //   let Verse = await dbT2.SermonNote.where('Name').startsWithIgnoreCase(startWith_date).toArray();
+
+  //}
+
+  //let Verse = await dbT2.SermonNote.where('Name').startsWithIgnoreCase('20200729').toArray(); // for test
+
+
+
+  if(startWith_date=='') {
+
+     var text1;
+     text1 = "Notes List -- indexedDB<br>";
+     text1 += 'Please input Time. Ex:<b>2020</b> or <b>202007</b>';
+
+  }
+  else if(speaker_tmp=='') {
+
+     var text1;
+     text1 = "Notes List -- indexedDB<br>";
+     text1 += 'Please input the name of Speaker. Ex:<b>黎為昇傳道</b>';
+
+  }
+  else {
+ 
+     //let Verse = await dbT2.SermonNote.where('Name').startsWithIgnoreCase(startWith_date).reverse().toArray();
+
+     //let Verse = await dbT2.SermonNote.where('Speaker').startsWithIgnoreCase(speaker_tmp).reverse().toArray();
+
+     //let Verse = await dbT2.SermonNote.where('Name').aboveOrEqual(start_date).and(function (SN) { return SN.Name <= end_date; }).reverse().toArray();
+
+     //let Verse = await dbT2.SermonNote.where('Speaker').startsWithIgnoreCase(speaker_tmp).and(function (SN) { return SN.Name  .reverse().toArray();
+
+     let Verse = await dbT2.SermonNote.where('Name').startsWithIgnoreCase(startWith_date).and(function (SN) { return SN.Speaker == speaker_tmp; }).reverse().toArray();
+
+
+
+     if (Verse) {
+
+        if (Verse.length) {
+
+           var text1;
+           text1 = "Notes List -- indexedDB<br>";
+
+           for (var i = 0; i < Verse.length ; i++) {
+
+              // arg1: Name, arg2: Speaker, arg3:Topic
+
+              var arg1 = Verse[i].Name;
+
+              var arg2 = Verse[i].Speaker;
+
+              var arg3 = Verse[i].Topic; // onClick="Show_Select_Note2('20200729Wed3')
+
+              //text1 += '<a href="" "onClick="\"' + arg1 + '\");return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br>';      
+
+
+              text1 += '<a href="" onClick="Show_Select_Note2(\'' + arg1 + '\');return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br>';      
+
+
+
+           } // End of for (var i = 0; i < Verse.length ; i++)
+
+        } else {
+          //listElem.innerHTML = '<li>No Data</li>'
+
+           var text1;
+           text1 = "Notes List -- indexedDB<br>";
+           text1 += 'No Data';
+
+        }
+
+     }
+     else {
+
+        //listElem.innerHTML = 'No Data';
+
+        var text1;
+        text1 = "Notes List -- indexedDB<br>";
+        text1 += 'No Data';
+
+     }
+
+   }
+
+
+   document.getElementById("tool_area_6").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.height='0px';
+
+   document.getElementById("tool_area_8").style.visibility='visible';
+
+   document.getElementById("Notes_List").innerHTML = text1;
+
+   Delete_Note_Item_No = 0;  // 0 means No Delete action, 1 means delete first item
+
+   document.getElementById("tool_area_10").style.visibility='hidden';
+
+
+}  // End of Show_Notes_List2_Time_and_Speaker_Equal()
+
+
+async function Show_Notes_List2_Time_Between_and_Speaker_Equal() { // show Name and Topic
+                                    // for Notes stored in indexedDB
+
+  //let Verse = await dbT2.SermonNote.get(Name_tmp);
+  //let Verse = await dbT2.SermonNote.reverse().toArray();
+
+  //let Verse = await dbT2.SermonNote.reverse().limit(30).toArray(); // Recent 30
+
+
+  var start_date = document.getElementById("Time_start").value;
+
+  var end_date = document.getElementById("Time_end").value;
+
+  var speaker_tmp = document.getElementById("Speaker_text").value;
+
+
+
+  //if(startWith_date!='') {
+
+  //   let Verse = await dbT2.SermonNote.where('Name').startsWithIgnoreCase(startWith_date).toArray();
+
+  //}
+
+  //let Verse = await dbT2.SermonNote.where('Name').startsWithIgnoreCase('20200729').toArray(); // for test
+
+
+
+  if(start_date=='' || end_date=='') {
+
+     var text1;
+     text1 = "Notes List -- indexedDB<br>";
+     text1 += 'Please input Start Time and End Time.(<b>End Time Not Included</b>) <br>';
+     text1 += 'Ex:Input <b>202007</b> and <b>202009</b> => between <b>202007</b> and <b>202008</b>';
+
+  }
+  else if(speaker_tmp=='') {
+
+     var text1;
+     text1 = "Notes List -- indexedDB<br>";
+     text1 += 'Please input the name of Speaker. Ex:<b>黎為昇傳道</b>';
+
+  }
+  else {
+ 
+     //let Verse = await dbT2.SermonNote.where('Name').startsWithIgnoreCase(startWith_date).reverse().toArray();
+
+     //let Verse = await dbT2.SermonNote.where('Speaker').startsWithIgnoreCase(speaker_tmp).reverse().toArray();
+
+     //let Verse = await dbT2.SermonNote.where('Name').aboveOrEqual(start_date).and(function (SN) { return SN.Name <= end_date; }).reverse().toArray();
+
+     //let Verse = await dbT2.SermonNote.where('Speaker').startsWithIgnoreCase(speaker_tmp).and(function (SN) { return SN.Name  .reverse().toArray();
+
+
+     //let Verse = await dbT2.SermonNote.where('Name').startsWithIgnoreCase(startWith_date).and(function (SN) { return SN.Speaker == speaker_tmp; }).reverse().toArray();
+
+
+     let Verse = await dbT2.SermonNote.where('Name').between(start_date, end_date, true, true).and(function (SN) { return SN.Speaker == speaker_tmp; }).reverse().toArray();
+
+
+     //let Verse = await dbT2.SermonNote.where('Name').between(start_date, end_date, true, true).reverse().toArray();
+
+
+     if (Verse) {
+
+        if (Verse.length) {
+
+           var text1;
+           text1 = "Notes List -- indexedDB<br>";
+
+           for (var i = 0; i < Verse.length ; i++) {
+
+              // arg1: Name, arg2: Speaker, arg3:Topic
+
+              var arg1 = Verse[i].Name;
+
+              var arg2 = Verse[i].Speaker;
+
+              var arg3 = Verse[i].Topic; // onClick="Show_Select_Note2('20200729Wed3')
+
+              //text1 += '<a href="" "onClick="\"' + arg1 + '\");return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br>';      
+
+
+              text1 += '<a href="" onClick="Show_Select_Note2(\'' + arg1 + '\');return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br>';      
+
+
+
+           } // End of for (var i = 0; i < Verse.length ; i++)
+
+        } else {
+          //listElem.innerHTML = '<li>No Data</li>'
+
+           var text1;
+           text1 = "Notes List -- indexedDB<br>";
+           text1 += 'No Data';
+
+        }
+
+     }
+     else {
+
+        //listElem.innerHTML = 'No Data';
+
+        var text1;
+        text1 = "Notes List -- indexedDB<br>";
+        text1 += 'No Data';
+
+     }
+
+   }
+
+
+   document.getElementById("tool_area_6").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.height='0px';
+
+   document.getElementById("tool_area_8").style.visibility='visible';
+
+   document.getElementById("Notes_List").innerHTML = text1;
+
+   Delete_Note_Item_No = 0;  // 0 means No Delete action, 1 means delete first item
+
+   document.getElementById("tool_area_10").style.visibility='hidden';
+
+
+}  // End of Show_Notes_List2_Time_Between_and_Speaker_Equal()
+
+
+
+
 function Show_Between_Ex() {
 
    var text1;
@@ -10167,6 +10415,18 @@ New
      <a href="javascript:;" onclick="Show_Between_Ex();">說明</a>
      </td> 
 
+     </tr>
+     </table>
+
+     <table>
+     <tr>
+     <td>
+     <input type="button" name="B113" style="font-size:16pt;color:black" id="Time= and Speaker=" value="Combine [Time=] & [Speaker=]" onclick="Show_Notes_List2_Time_and_Speaker_Equal(); return false;">
+     </td> 
+     <td></td><td></td><td></td>
+     <td>
+     <input type="button" name="B113" style="font-size:16pt;color:black" id="Time Between and Speaker=" value="Combine [Time Between] & [Speaker=]" onclick="Show_Notes_List2_Time_Between_and_Speaker_Equal(); return false;">
+     </td> 
      </tr>
      </table>
 
