@@ -7301,6 +7301,399 @@ async function Show_Notes_List2() { // show Name and Topic
 }  // End of function Show_Notes_List2()
 
 
+async function Show_Notes_List2_Recent30() { // show Name and Topic
+                                    // for Notes stored in indexedDB
+
+  //let Verse = await dbT2.SermonNote.get(Name_tmp);
+  //let Verse = await dbT2.SermonNote.reverse().toArray();
+
+  //let Verse = await dbT2.books.orderBy('date').reverse().limit(50).toArray();  // order by chap_no, from big to small
+                                                                                // Recent 50
+
+  let Verse = await dbT2.SermonNote.reverse().limit(30).toArray(); // Recent 30
+
+  if (Verse) {
+
+     if (Verse.length) {
+
+        var text1;
+        text1 = "Notes List -- indexedDB<br>";
+
+        for (var i = 0; i < Verse.length ; i++) {
+
+           // arg1: Name, arg2: Speaker, arg3:Topic
+
+           var arg1 = Verse[i].Name;
+
+           var arg2 = Verse[i].Speaker;
+
+           var arg3 = Verse[i].Topic; // onClick="Show_Select_Note2('20200729Wed3')
+
+           //text1 += '<a href="" "onClick="\"' + arg1 + '\");return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br>';      
+
+
+           text1 += '<a href="" onClick="Show_Select_Note2(\'' + arg1 + '\');return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br>';      
+
+
+
+        } // End of for (var i = 0; i < Verse.length ; i++)
+
+     } else {
+       //listElem.innerHTML = '<li>No Data</li>'
+     }
+
+  }
+  else {
+
+     //listElem.innerHTML = 'No Data';
+
+  }
+
+
+   document.getElementById("tool_area_6").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.height='0px';
+
+   document.getElementById("tool_area_8").style.visibility='visible';
+
+   document.getElementById("Notes_List").innerHTML = text1;
+
+   Delete_Note_Item_No = 0;  // 0 means No Delete action, 1 means delete first item
+
+   document.getElementById("tool_area_10").style.visibility='hidden';
+
+
+}  // End of function Show_Notes_List2_Recent30()
+
+
+async function Show_Notes_List2_Time_Equal() { // show Name and Topic
+                                    // for Notes stored in indexedDB
+
+  //let Verse = await dbT2.SermonNote.get(Name_tmp);
+  //let Verse = await dbT2.SermonNote.reverse().toArray();
+
+  //let Verse = await dbT2.SermonNote.reverse().limit(30).toArray(); // Recent 30
+
+
+  var startWith_date = document.getElementById("Time_text").value;
+
+
+
+  //if(startWith_date!='') {
+
+  //   let Verse = await dbT2.SermonNote.where('Name').startsWithIgnoreCase(startWith_date).toArray();
+
+  //}
+
+  //let Verse = await dbT2.SermonNote.where('Name').startsWithIgnoreCase('20200729').toArray(); // for test
+
+
+
+  if(startWith_date=='') {
+
+     var text1;
+     text1 = "Notes List -- indexedDB<br>";
+     text1 += 'Please input Time. Ex:<b>2020</b> or <b>202007</b>';
+
+  }
+  else {
+ 
+     let Verse = await dbT2.SermonNote.where('Name').startsWithIgnoreCase(startWith_date).reverse().toArray();
+
+
+     if (Verse) {
+
+        if (Verse.length) {
+
+           var text1;
+           text1 = "Notes List -- indexedDB<br>";
+
+           for (var i = 0; i < Verse.length ; i++) {
+
+              // arg1: Name, arg2: Speaker, arg3:Topic
+
+              var arg1 = Verse[i].Name;
+
+              var arg2 = Verse[i].Speaker;
+
+              var arg3 = Verse[i].Topic; // onClick="Show_Select_Note2('20200729Wed3')
+
+              //text1 += '<a href="" "onClick="\"' + arg1 + '\");return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br>';      
+
+
+              text1 += '<a href="" onClick="Show_Select_Note2(\'' + arg1 + '\');return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br>';      
+
+
+
+           } // End of for (var i = 0; i < Verse.length ; i++)
+
+        } else {
+          //listElem.innerHTML = '<li>No Data</li>'
+
+           var text1;
+           text1 = "Notes List -- indexedDB<br>";
+           text1 += 'No Data';
+
+        }
+
+     }
+     else {
+
+        //listElem.innerHTML = 'No Data';
+
+        var text1;
+        text1 = "Notes List -- indexedDB<br>";
+        text1 += 'No Data';
+
+     }
+
+   }
+
+
+   document.getElementById("tool_area_6").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.height='0px';
+
+   document.getElementById("tool_area_8").style.visibility='visible';
+
+   document.getElementById("Notes_List").innerHTML = text1;
+
+   Delete_Note_Item_No = 0;  // 0 means No Delete action, 1 means delete first item
+
+   document.getElementById("tool_area_10").style.visibility='hidden';
+
+
+}  // End of function Show_Notes_List2_Time_Equal()
+
+
+
+async function Show_Notes_List2_Time_Between() { // show Name and Topic
+                                    // for Notes stored in indexedDB
+
+
+  var start_date = document.getElementById("Time_start").value;
+
+  var end_date = document.getElementById("Time_end").value;
+
+  //if(startWith_date!='') {
+
+  //   let Verse = await dbT2.SermonNote.where('Name').startsWithIgnoreCase(startWith_date).toArray();
+
+  //}
+
+  //let Verse = await dbT2.SermonNote.where('Name').startsWithIgnoreCase('20200729').toArray(); // for test
+
+
+
+  if(start_date=='' || end_date=='') {
+
+     var text1;
+     text1 = "Notes List -- indexedDB<br>";
+     text1 += 'Please input Start Time and End Time.(<b>End Time Not Included</b>) <br>';
+     text1 += 'Ex:Input <b>202007</b> and <b>202009</b> => between <b>202007</b> and <b>202008</b>';
+
+  }
+  else {
+ 
+     //let Verse = await dbT2.SermonNote.where('Name').startsWithIgnoreCase(startWith_date).reverse().toArray();
+
+     let Verse = await dbT2.SermonNote.where('Name').between(start_date, end_date, true, true).reverse().toArray();
+
+     //let Verse = await dbT2.SermonNote.where('Name').between(start_date, end_date).reverse().toArray();
+
+     //let Verse = await dbT2.SermonNote.where('Name').aboveOrEqual(start_date).and(function (SN) { return SN.Name <= end_date; }).reverse().toArray();
+     // 
+
+
+     if (Verse) {
+
+        if (Verse.length) {
+
+           var text1;
+           text1 = "Notes List -- indexedDB<br>";
+
+           for (var i = 0; i < Verse.length ; i++) {
+
+              // arg1: Name, arg2: Speaker, arg3:Topic
+
+              var arg1 = Verse[i].Name;
+
+              var arg2 = Verse[i].Speaker;
+
+              var arg3 = Verse[i].Topic; // onClick="Show_Select_Note2('20200729Wed3')
+
+              //text1 += '<a href="" "onClick="\"' + arg1 + '\");return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br>';      
+
+
+              text1 += '<a href="" onClick="Show_Select_Note2(\'' + arg1 + '\');return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br>';      
+
+
+
+           } // End of for (var i = 0; i < Verse.length ; i++)
+
+        } else {
+          //listElem.innerHTML = '<li>No Data</li>'
+
+           var text1;
+           text1 = "Notes List -- indexedDB<br>";
+           text1 += 'No Data';
+
+        }
+
+     }
+     else {
+
+        //listElem.innerHTML = 'No Data';
+
+        var text1;
+        text1 = "Notes List -- indexedDB<br>";
+        text1 += 'No Data';
+
+     }
+
+   }
+
+
+   document.getElementById("tool_area_6").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.height='0px';
+
+   document.getElementById("tool_area_8").style.visibility='visible';
+
+   document.getElementById("Notes_List").innerHTML = text1;
+
+   Delete_Note_Item_No = 0;  // 0 means No Delete action, 1 means delete first item
+
+   document.getElementById("tool_area_10").style.visibility='hidden';
+
+
+}  // End of function Show_Notes_List2_Time_Between()
+
+
+function Show_Between_Ex() {
+
+   var text1;
+   text1 = "Notes List -- indexedDB<br>";
+   text1 += 'Please input Start Time and End Time.(<b>End Time Not Included</b>) <br>';
+   text1 += 'Ex:Input <b>202007</b> and <b>202009</b> => between <b>202007</b> and <b>202008</b>';
+
+   document.getElementById("tool_area_6").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.height='0px';
+
+   document.getElementById("tool_area_8").style.visibility='visible';
+
+   document.getElementById("Notes_List").innerHTML = text1;
+
+   Delete_Note_Item_No = 0;  // 0 means No Delete action, 1 means delete first item
+
+   document.getElementById("tool_area_10").style.visibility='hidden';
+
+}
+
+
+async function Show_Notes_List2_Speaker_Equal() { // show Name and Topic
+                                    // for Notes stored in indexedDB
+
+  //let Verse = await dbT2.SermonNote.get(Name_tmp);
+  //let Verse = await dbT2.SermonNote.reverse().toArray();
+
+  //let Verse = await dbT2.SermonNote.reverse().limit(30).toArray(); // Recent 30
+
+
+  var speaker_tmp = document.getElementById("Speaker_text").value;
+
+
+
+  //if(startWith_date!='') {
+
+  //   let Verse = await dbT2.SermonNote.where('Name').startsWithIgnoreCase(startWith_date).toArray();
+
+  //}
+
+  //let Verse = await dbT2.SermonNote.where('Name').startsWithIgnoreCase('20200729').toArray(); // for test
+
+
+
+  if(speaker_tmp=='') {
+
+     var text1;
+     text1 = "Notes List -- indexedDB<br>";
+     text1 += 'Please input the name of Speaker. Ex:<b>黎為昇傳道</b>';
+
+  }
+  else {
+ 
+     let Verse = await dbT2.SermonNote.where('Speaker').startsWithIgnoreCase(speaker_tmp).reverse().toArray();
+
+
+     if (Verse) {
+
+        if (Verse.length) {
+
+           var text1;
+           text1 = "Notes List -- indexedDB<br>";
+
+           for (var i = 0; i < Verse.length ; i++) {
+
+              // arg1: Name, arg2: Speaker, arg3:Topic
+
+              var arg1 = Verse[i].Name;
+
+              var arg2 = Verse[i].Speaker;
+
+              var arg3 = Verse[i].Topic; // onClick="Show_Select_Note2('20200729Wed3')
+
+              //text1 += '<a href="" "onClick="\"' + arg1 + '\");return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br>';      
+
+
+              text1 += '<a href="" onClick="Show_Select_Note2(\'' + arg1 + '\');return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br>';      
+
+
+
+           } // End of for (var i = 0; i < Verse.length ; i++)
+
+        } else {
+          //listElem.innerHTML = '<li>No Data</li>'
+
+           var text1;
+           text1 = "Notes List -- indexedDB<br>";
+           text1 += 'No Data';
+
+        }
+
+     }
+     else {
+
+        //listElem.innerHTML = 'No Data';
+
+        var text1;
+        text1 = "Notes List -- indexedDB<br>";
+        text1 += 'No Data';
+
+     }
+
+   }
+
+
+   document.getElementById("tool_area_6").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.height='0px';
+
+   document.getElementById("tool_area_8").style.visibility='visible';
+
+   document.getElementById("Notes_List").innerHTML = text1;
+
+   Delete_Note_Item_No = 0;  // 0 means No Delete action, 1 means delete first item
+
+   document.getElementById("tool_area_10").style.visibility='hidden';
+
+
+}  // End of function Show_Notes_List2_Speaker_Equal()
+
+
+
+
 function Show_Notes_List() { // show Name and Topic
                              // for Notes stored in LocalStorage
 
@@ -8598,6 +8991,21 @@ function Show_Name(arg){
 
 }
 
+function Show_Name2(arg){
+ 
+   var Topic_Add = arg;
+
+   //document.ANNO_FORM.B22aa.value = Topic_Add;
+
+   document.getElementById("Speaker_text").value = Topic_Add;
+
+   //write_textarea_1();
+
+   Hide_Name_List2();
+
+}
+
+
 function Show_Name_List(){
 
    document.getElementById("Sermon_Speakers").style.height = "40%";
@@ -8607,6 +9015,91 @@ function Show_Name_List(){
 function Hide_Name_List(){
 
    document.getElementById("Sermon_Speakers").style.height = "0%";
+
+}
+
+function Show_Name_List2_Old(){
+
+   document.getElementById("Sermon_Speakers2").style.height = "40%";
+
+}
+
+
+async function Show_Name_List2(){
+
+   document.getElementById("Sermon_Speakers2").style.height = "40%";
+
+   //let Verse = await dbT2.SermonNote.reverse().toArray();
+
+
+   let Verse = await dbT2.SermonNote.orderBy('Speaker').uniqueKeys(function (Speakers) {
+
+      return Speakers;
+ 
+   }); // Store Speaker's name in array Verse[] 
+
+
+   //let Verse = await dbT2.SermonNote.orderBy('Speaker').uniqueKeys(function (SN) { return SN.Speaker!='' ; }).reverse().toArray();
+
+
+   //dbT2.SermonNote.orderBy('Speaker').uniqueKeys(function (Speakers) {
+
+   //   alert ("We have the following speakers: " + Speakers.join(','));
+ 
+   //});
+
+
+   //db.friends.orderBy('firstName').uniqueKeys(function (keysArray) {
+   //    // keysArray is now all firstNames without duplicates even if having multiple
+   //    // friends with same name.
+   //});
+
+
+   if (Verse) {
+
+      if (Verse.length) { 
+
+        var text1;
+
+        for (var i = 0; i < Verse.length ; i++) {
+
+           var arg2 = Verse[i];
+
+           //var arg2 = Verse[i].Speaker;
+
+           // <a href="javascript:;" onclick="Show_Name2('柯宇恆');">柯宇恆</a>
+
+           text1 += '<a href="javascript:;" onclick="Show_Name2(\'' + arg2 + '\');return false;">' + arg2 + '</a>' + ' ';
+  
+           //text1 += '<a href="" onClick="Show_Select_Note2(\'' + arg1 + '\');return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br>';      
+
+        } // End of for (var i = 0; i < Verse.length ; i++)
+
+     } else {
+       //listElem.innerHTML = '<li>No Data</li>'
+     }
+
+  }
+  else {
+
+     //listElem.innerHTML = 'No Data';
+
+  } // End of if (Verse)
+
+   //document.getElementById("tool_area_8").style.visibility='visible';
+
+   //document.getElementById("Notes_List").innerHTML = text1;
+
+   //   <p style="font-size:20pt" id="Speaker_List2"></p>
+
+   document.getElementById("Speaker_List2").innerHTML = text1;
+
+} // End of function Show_Name_List2()
+
+
+function Hide_Name_List2(){
+
+   document.getElementById("Sermon_Speakers2").style.height = "0%";
 
 }
 
@@ -9620,6 +10113,12 @@ New
 
 <div id="tool_area_8" style="visibility:hidden">
 
+ <div id="Sermon_Speakers2" style="font-size:20pt;font-family:標楷體;height:0%;width:100%;overflow:auto;">
+
+   <p style="font-size:20pt" id="Speaker_List2"></p>
+
+ </div>
+
   <div id="tool_area_11" >
 
      <table>
@@ -9629,20 +10128,22 @@ New
      <p style="font-size:20pt" ><b>Search: </b></p>
      </td>
      <td>
-     <input type="button" name="B113" style="font-size:16pt;color:black" id="All" value="All" onclick="; return false;">
+     <input type="button" name="B113" style="font-size:16pt;color:black" id="All" value="All" onclick="Show_Notes_List2(); return false;">
      </td>  
     
      <td></td><td></td><td></td>
 
      <td>
-     <input type="button" name="B113" style="font-size:16pt;color:black" id="Recent 30" value="Recent 30" onclick="; return false;">
+     <input type="button" name="B113" style="font-size:16pt;color:black" id="Recent 30" value="Recent 30" onclick="Show_Notes_List2_Recent30(); return false;">
      </td>  
 
      <td></td><td></td><td></td>
 
      <td>
-     <input type="button" name="B113" style="font-size:16pt;color:black" id="Speaker=" value="Speaker=" onclick="; return false;">
+     <input type="button" name="B113" style="font-size:16pt;color:black" id="Speaker=" value="Speaker=" onclick="Show_Notes_List2_Speaker_Equal(); return false;">
      <input type="text" style="font-size:18pt" size="9" name="Speaker_text" id="Speaker_text" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+     <a href="javascript:;" onclick="Show_Name_List2();">顯領會者</a>
+     <a href="javascript:;" onclick="Hide_Name_List2();">藏領會者</a>
      </td> 
 
      </tr>
@@ -9652,17 +10153,18 @@ New
      <tr>
 
      <td>
-     <input type="button" name="B113" style="font-size:16pt;color:black" id="Time=" value="Time=" onclick="; return false;">
+     <input type="button" name="B113" style="font-size:16pt;color:black" id="Time=" value="Time=" onclick="Show_Notes_List2_Time_Equal(); return false;">
      <input type="text" style="font-size:18pt" size="6" name="Time_text" id="Time_text" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
      </td> 
 
      <td></td><td></td><td></td>
 
      <td>
-     <input type="button" name="B113" style="font-size:16pt;color:black" id="Time Between" value="Time Between" onclick="; return false;">
+     <input type="button" name="B113" style="font-size:16pt;color:black" id="Time Between" value="Time Between" onclick="Show_Notes_List2_Time_Between(); return false;">
      <input type="text" style="font-size:18pt" size="6" name="Time_start" id="Time_start" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
      -
      <input type="text" style="font-size:18pt" size="6" name="Time_end" id="Time_end" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+     <a href="javascript:;" onclick="Show_Between_Ex();">說明</a>
      </td> 
 
      </tr>
