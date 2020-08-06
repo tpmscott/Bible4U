@@ -141,7 +141,7 @@
 <SCRIPT LANGUAGE="JavaScript" SRC="codes4.js"></SCRIPT>
 <SCRIPT LANGUAGE="JavaScript" SRC="KeyFunction.js"></SCRIPT>
 <SCRIPT LANGUAGE="JavaScript" SRC="BookMarks2.js"></SCRIPT>
-<SCRIPT LANGUAGE="JavaScript" SRC="Mark_Line_V11.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="Mark_Line_V12.js"></SCRIPT>
 
 
 
@@ -6045,7 +6045,7 @@ function Qmaxverse(index,index2) {   // find out maximum verse of chapter of boo
 <td></td><td></td><td></td>
 
 <td><button onclick="Hide_ML_Only()">Hide ML</button></td>
-<td><button onclick="">Linked S Note</button></td>
+<td><button onclick="Open_Linked_S_Note();Linked_S_Note_Test()">Linked S Note</button></td>
 
 <td></td><td></td><td></td>
 
@@ -7009,10 +7009,28 @@ async function read_textarea_1_NoteDB_from_indexedDB(){
          var topic = Verse.Topic;
          var content = Verse.Content;
          var verses = Verse.Verses;
+         var mainverses = Verse.MainVerses;  // MainVerses
 
          document.getElementById("IAI_2t").value = speaker;  // Speaker
          document.getElementById("IAI_1t").value = topic;    // Topic
          document.getElementById("A1").value = content;      // Content
+
+         if (mainverses) {
+
+            document.getElementById("Main_Verse1").value = mainverses[0];
+            document.getElementById("Main_Verse2").value = mainverses[1];
+            document.getElementById("Main_Verse3").value = mainverses[2];
+            document.getElementById("Main_Verse4").value = mainverses[3];
+
+         }
+         else {
+
+            document.getElementById("Main_Verse1").value = "";
+            document.getElementById("Main_Verse2").value = "";
+            document.getElementById("Main_Verse3").value = "";
+            document.getElementById("Main_Verse4").value = "";
+
+         }
 
          //document.getElementById("IAI_2t").readOnly = true;  // Mark temparaly
          //document.getElementById("IAI_1t").readOnly = true;  // Mark temparaly
@@ -7036,6 +7054,11 @@ async function read_textarea_1_NoteDB_from_indexedDB(){
          document.getElementById("IAI_2t").value = speaker;  // Speaker
          document.getElementById("IAI_1t").value = topic;    // Topic
          document.getElementById("A1").value = content;      // Content
+
+         document.getElementById("Main_Verse1").value = "";
+         document.getElementById("Main_Verse2").value = "";
+         document.getElementById("Main_Verse3").value = "";
+         document.getElementById("Main_Verse4").value = "";
 
       }
 
@@ -7299,6 +7322,286 @@ async function Show_Notes_List2() { // show Name and Topic
 
 
 }  // End of function Show_Notes_List2()
+
+
+async function Linked_S_Note_Test() {
+
+  //let Verse = await dbT2.SermonNote.reverse().limit(30).toArray(); // Recent 30
+
+  //let Verse = await dbT2.SermonNote.where('Name').startsWithIgnoreCase(startWith_date).reverse().toArray();
+
+
+  //let Verse = await dbT2.SermonNote.where('MainVerses').startsWithIgnoreCase('Exo 2:').reverse().toArray(); // .distinct()
+
+
+   //var Book_tmp = nowbook + '_' + nowchapter;  // ***
+
+   //let Verse = await dbT2.ChapNote.get(Book_tmp);
+
+   //var tmp_B = VersBMNote_B[i];  // arg1
+   //var tmp_C = VersBMNote_C[i];  // arg2
+   //var tmp_V = VersBMNote_V[i];  // arg3  
+   //var tmp_T = VersBMNote_T[i];  // arg4
+
+   //var VBM_Bname = BookAbbr4[tmp_B]; // arg1
+   //var VBM_Chap = tmp_C + 1;
+
+   var tmp_B = nowbook;
+   var tmp_C = nowchapter;
+
+   var VBM_Bname = BookAbbr4[tmp_B];
+   var VBM_Chap = tmp_C + 1;
+
+   var MainVerse_Search_Str = VBM_Bname + ' ' + VBM_Chap + ':'; // 'Exo 2:'
+
+   var MainVerse_Search_Str_Display = MainVerse_Search_Str;
+
+
+
+  let Verse = await dbT2.SermonNote.where('MainVerses').startsWithIgnoreCase(MainVerse_Search_Str).reverse().distinct().toArray(); // .distinct()
+
+  //let Verse = await dbT2.SermonNote.where('MainVerses').startsWithIgnoreCase('Exo 2:').reverse().distinct().toArray(); // .distinct()
+
+
+     if (Verse) {
+
+        if (Verse.length) {
+
+           var text1;
+           text1 = "<b><u>Linked Sermon Notes List</u></b>"
+           text1 += ' ' + '<a id="CL634" href="javascript:;" onclick="Close_Linked_S_Note();Up_to_Top();">[Close]</a>';
+           text1 += "<br><br>";  
+
+           for (var i = 0; i < Verse.length ; i++) {
+
+              // arg1: Name, arg2: Speaker, arg3:Topic
+
+              var arg1 = Verse[i].Name;
+
+              var arg2 = Verse[i].Speaker;
+
+              var arg3 = Verse[i].Topic; // onClick="Show_Select_Note2('20200729Wed3')
+
+              //text1 += '<a href="" "onClick="\"' + arg1 + '\");return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br>';      
+
+
+
+              //var mainverses = Verse[i].MainVerses;  // MainVerses
+
+              //if (mainverses) {
+
+                 //var MainVerse_Search_Str = VBM_Bname + ' ' + VBM_Chap + ':'; // 'Exo 2:' , 
+                                                                                // MainVerse_Search_Str.length = 6
+                                                                                // 0-5
+
+                 var MainVerse_Search_Str_length = MainVerse_Search_Str.length;
+
+                 var Main_Verse1_str = '';
+                 var Main_Verse2_str = '';
+                 var Main_Verse3_str = '';
+                 var Main_Verse4_str = '';
+
+
+                 var Main_Verse1_tmp = Verse[i].MainVerses[0]; 
+                 var Main_Verse2_tmp = Verse[i].MainVerses[1]; // Verse[i].MainVerses[1]
+                 var Main_Verse3_tmp = Verse[i].MainVerses[2];
+                 var Main_Verse4_tmp = Verse[i].MainVerses[3];
+
+
+                 //var str = "Hello world!";
+                 //var res = str.substring(str.length - 1, str.length);
+
+                 if (Main_Verse1_tmp != '') {
+
+                    if (MainVerse_Search_Str_length > Main_Verse1_tmp.length ) {
+
+                       // Do nothing
+ 
+                    }
+                    else {
+
+                       //Main_Verse1_str = Main_Verse1_tmp.substring(0, MainVerse_Search_Str.length - 1);
+                       Main_Verse1_str = Main_Verse1_tmp.substring(0, MainVerse_Search_Str.length );
+
+                    }
+
+                 }
+
+
+                 if (Main_Verse2_tmp != '') {
+
+                    if (MainVerse_Search_Str_length > Main_Verse2_tmp.length ) {
+
+                       // Do nothing
+ 
+                    }
+                    else {
+
+                       //Main_Verse2_str = Main_Verse2_tmp.substring(0, MainVerse_Search_Str.length - 1);
+                       Main_Verse2_str = Main_Verse2_tmp.substring(0, MainVerse_Search_Str.length );
+
+                    }
+
+                 }
+
+
+                 if (Main_Verse3_tmp != '') {
+
+                    if (MainVerse_Search_Str_length > Main_Verse3_tmp.length ) {
+
+                       // Do nothing
+ 
+                    }
+                    else {
+
+                       //Main_Verse2_str = Main_Verse2_tmp.substring(0, MainVerse_Search_Str.length - 1);
+                       Main_Verse3_str = Main_Verse3_tmp.substring(0, MainVerse_Search_Str.length );
+
+                    }
+
+                 }
+
+                 if (Main_Verse4_tmp != '') {
+
+                    if (MainVerse_Search_Str_length > Main_Verse4_tmp.length ) {
+
+                       // Do nothing
+ 
+                    }
+                    else {
+
+                       //Main_Verse2_str = Main_Verse2_tmp.substring(0, MainVerse_Search_Str.length - 1);
+                       Main_Verse4_str = Main_Verse4_tmp.substring(0, MainVerse_Search_Str.length );
+
+                    }
+
+                 }
+
+
+                 //document.getElementById("Main_Verse2").value = mainverses[1];
+                 //document.getElementById("Main_Verse3").value = mainverses[2];
+                 //document.getElementById("Main_Verse4").value = mainverses[3];
+
+              //} // End of if (mainverses) 
+
+              text1 += '<b>* </b>';
+
+              if (MainVerse_Search_Str == Main_Verse1_str) {
+
+                 text1 += '<b>' + Main_Verse1_tmp + ' </b>';
+
+                 //MainVerse_Search_Str_Display = Main_Verse1_tmp;
+
+              }
+              else {
+
+                 if (Main_Verse1_tmp != '')
+                    text1 += Main_Verse1_tmp + ' ';
+
+              }
+
+              if (MainVerse_Search_Str == Main_Verse2_str) {
+
+                 text1 += '<b>' + Main_Verse2_tmp + ' </b>';
+
+                 //MainVerse_Search_Str_Display = Main_Verse2_tmp;
+
+              }
+              else {
+
+                 if (Main_Verse2_tmp != '')
+                    text1 += Main_Verse2_tmp + ' ';
+
+              }
+
+              if (MainVerse_Search_Str == Main_Verse3_str) {
+
+                 text1 += '<b>' + Main_Verse3_tmp + ' </b>';
+
+                 //MainVerse_Search_Str_Display = Main_Verse3_tmp;
+
+              }
+              else {
+
+                 if (Main_Verse3_tmp != '')
+                    text1 += Main_Verse3_tmp + ' ';
+
+              }
+
+              if (MainVerse_Search_Str == Main_Verse4_str) {
+
+                 text1 += '<b>' + Main_Verse4_tmp + ' </b>';
+
+                 //MainVerse_Search_Str_Display = Main_Verse4_tmp;
+
+              }
+              else {
+
+                 if (Main_Verse4_tmp != '')
+                    text1 += Main_Verse4_tmp + ' ';
+
+              }
+
+              //MainVerse_Search_Str_Display = Verse[i].MainVerses; // for test
+              //MainVerse_Search_Str_Display = Verse[i].MainVerses[1]; // for test
+
+              //MainVerse_Search_Str_Display = Main_Verse2_tmp; // for test
+
+              //MainVerse_Search_Str_Display = Main_Verse2_str; // for test
+
+
+              //text1 += '<b>' + MainVerse_Search_Str_Display + '</b>';
+
+              text1 += '<b></b><br><a href="" onClick="Show_Select_Note2(\'' + arg1 + '\');return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br><br>';      
+
+
+
+           } // End of for (var i = 0; i < Verse.length ; i++)
+
+        } else {
+          //listElem.innerHTML = '<li>No Data</li>'
+
+           var text1;
+
+           text1 = "<b><u>Linked Sermon Notes List</u></b>"
+           text1 += ' ' + '<a id="CL634" href="javascript:;" onclick="Close_Linked_S_Note();Up_to_Top();">[Close]</a>';
+           text1 += "<br><br>"; 
+           text1 += 'No Data';
+
+        }
+
+     }
+     else {
+
+        //listElem.innerHTML = 'No Data';
+
+           var text1;
+
+           text1 = "<b><u>Linked Sermon Notes List</u></b>"
+           text1 += ' ' + '<a id="CL634" href="javascript:;" onclick="Close_Linked_S_Note();Up_to_Top();">[Close]</a>';
+           text1 += "<br><br>"; 
+           text1 += 'No Data';
+
+     }
+
+   document.getElementById("Linked_Sermon_Notes_List").innerHTML = text1;
+
+
+   //document.getElementById("tool_area_6").style.visibility='hidden';
+   //document.getElementById("tool_area_9").style.visibility='hidden';
+   //document.getElementById("tool_area_9").style.height='0px';
+
+   //document.getElementById("tool_area_8").style.visibility='visible';
+
+   //document.getElementById("Notes_List").innerHTML = text1;
+
+   //Delete_Note_Item_No = 0;  // 0 means No Delete action, 1 means delete first item
+
+   //document.getElementById("tool_area_10").style.visibility='hidden';
+
+
+} // End of function Linked_S_Note_Test()
+
 
 
 async function Show_Notes_List2_Recent30() { // show Name and Topic
@@ -9194,6 +9497,104 @@ function Hide_DB_Tools() { // Less Mode
 
 }
 
+async function edit_Note_in_DB() {
+
+   if(Note_Seleted == "NoteDB" && NoteDB_reading_from == 2) {
+
+      document.getElementById("tool_area_12").style.visibility='visible';
+      document.getElementById("tool_area_12").style.height='60px';
+
+   //if(startWith_date!='') {
+
+   //  let Verse = await dbT2.ChapNote.where('date').startsWithIgnoreCase(startWith_date).toArray();
+
+      //var N_String = G_N_String;
+
+      //var Name_tmp = N_String;
+
+      //let Verse = await dbT2.SermonNote.get(Name_tmp);
+
+      //if (Verse) {  // Exist
+
+      //   var mainverses = Verse.MainVerses;  // MainVerses
+
+      //   if (mainverses) {
+
+      //      document.getElementById("Main_Verse1").value = mainverses[0];
+      //      document.getElementById("Main_Verse2").value = mainverses[1];
+      //      document.getElementById("Main_Verse3").value = mainverses[2];
+      //      document.getElementById("Main_Verse4").value = mainverses[3];
+
+      //   }
+
+
+      //} 
+
+
+   //let Verse = await dbT2.ChapNote.where('date').startsWithIgnoreCase(startWith_date).toArray();
+
+   }
+
+}
+
+function end_edit_Note_old() { // Save Note & Hide 'edit Note' button
+
+   document.getElementById("tool_area_12").style.visibility='hidden';
+   document.getElementById("tool_area_12").style.height='0px';
+
+}
+
+function end_edit_Note() { // 1. Update & Save Note in indexedDB 
+                           // 2. Hide 'edit Note' button
+
+   // Note_Seleted="NoteDB";  NoteDB_reading_from == 2
+
+     // Update & Save to indexedDB
+     // save Name to indexedDB -- Name can't change ***
+     // Only can update Topic, Speaker, Content
+     // save Topic to indexedDB
+     // save Speaker to indexedDB
+     // save Content to indexedDB
+
+     //let Speaker = document.getElementById("IAI_2t").value; 
+     //let Topic = document.getElementById("IAI_1t").value; 
+     //let Content = document.getElementById("A1").value;
+
+   if(Note_Seleted == "NoteDB" && NoteDB_reading_from == 2) {
+
+      var N_String = document.getElementById("NoteDB").value ;
+
+      var Name = N_String;
+
+      var Speaker_tmp = document.getElementById("IAI_2t").value;
+      var Topic_tmp = document.getElementById("IAI_1t").value;
+      var Content_tmp = document.getElementById("A1").value;
+
+      var Main_Verse1_tmp = document.getElementById("Main_Verse1").value;
+      var Main_Verse2_tmp = document.getElementById("Main_Verse2").value;
+      var Main_Verse3_tmp = document.getElementById("Main_Verse3").value;
+      var Main_Verse4_tmp = document.getElementById("Main_Verse4").value;
+
+      //let Name = Name_tmp; // N_String_New
+      //let Speaker = Speaker_tmp; 
+      //let Topic = Topic_tmp; 
+      //let Content = Content_tmp;
+
+      //dbT2.SermonNote.add({Name,Speaker,Topic,Content,Verses });
+
+      //dbT2.Congregation4.update(CNo, { F_Name: F_Name_tmp, L_Name: L_Name_tmp, Member: Member_tmp, Gender: Gender_tmp, H_No: H_No_tmp, C_F_Name: C_F_Name_tmp, C_L_Name: C_L_Name_tmp, F_Order: F_Order_tmp, Tel: Tel_tmp, Mob: Mob_tmp });
+
+      //dbT2.SermonNote.update( Name, { Speaker: Speaker_tmp, Topic: Topic_tmp, Content: Content_tmp } );
+
+      dbT2.SermonNote.update(Name, { Speaker: Speaker_tmp, Topic: Topic_tmp, Content: Content_tmp, MainVerses: [Main_Verse1_tmp, Main_Verse2_tmp, Main_Verse3_tmp, Main_Verse4_tmp] } );
+
+   }
+
+   document.getElementById("tool_area_12").style.visibility='hidden';
+   document.getElementById("tool_area_12").style.height='0px';
+
+} // End of function end_edit_Note()
+
 function Save_Note_to_DB() {
 
    document.getElementById("tool_area_6").style.visibility='hidden';
@@ -9548,6 +9949,21 @@ function Click_Note5() {
 
 //   <button onclick="Encrypt_and_Save_Key()">Save Key</button> 
 //   <button onclick="Read_and_Decrypt_Key()">Show Key</button> 
+
+
+function Open_Linked_S_Note() {  
+
+      document.getElementById("container7").style.height = "23%"; // 原為 25%, 21%, 22%
+
+}  // End of function Open_Linked_S_Note()
+
+function Close_Linked_S_Note() {  
+
+      document.getElementById("container7").style.height = "0%"; // 原為 25%, 21%, 22%
+
+}  // End of function Close_Linked_S_Note()
+
+
 
 </script>
 
@@ -10117,6 +10533,13 @@ function Click_Note5() {
 </div>
 
 
+<div id="container7" style="height:0%;width:100%;overflow:auto;">
+
+ <p style="font-size:20pt" id="Linked_Sermon_Notes_List"></p>
+
+</div>
+
+
 
 <div id="container0" style="height:0%;width:100%;overflow:auto;">
 
@@ -10236,10 +10659,37 @@ function Click_Note5() {
 <input type="button" name="B216" style="font-size:16pt;color:black;" id="LessDBTool" value="Less" onclick="Hide_DB_Tools(); return false;">
 </td>
 
+
 </tr>
 </table>
 
 <tr><td>&nbsp;</td></tr>
+
+<div id="tool_area_12" style="height:0px;visibility:hidden">
+
+<table>
+<tr>
+
+<td>
+<p style="font-size:20pt" ><b>Main Verses: </b></p>
+</td>
+
+<td>
+<input type="text" style="font-size:18pt" size="9" name="Main_Verse1" id="Main_Verse1" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+<input type="text" style="font-size:18pt" size="9" name="Main_Verse2" id="Main_Verse2" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+<input type="text" style="font-size:18pt" size="9" name="Main_Verse3" id="Main_Verse3" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+<input type="text" style="font-size:18pt" size="9" name="Main_Verse4" id="Main_Verse4" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+</td>
+
+<td>
+<input type="button" name="B113" style="font-size:16pt;color:black" id="end_edit_Note" value="end edit Note" onclick="end_edit_Note(); return false;">
+</td>
+
+</tr>
+</table>
+
+</div>
+
 
 <div id="tool_area_7" style="visibility:hidden">
 
@@ -10263,7 +10713,7 @@ function Click_Note5() {
 <td></td><td></td><td></td><td></td><td></td><td></td>
 
 <td>
-<input type="button" name="B115" style="font-size:16pt;color:black" id="Exp_Imp_DB" value="Exp/Imp DB" onclick="; return false;">
+<input type="button" name="B115" style="font-size:16pt;color:black" id="edit_Note_in_DB" value="edit Note" onclick="edit_Note_in_DB(); return false;">
 </td>
 
 <td></td><td></td><td></td><td></td><td></td><td></td>
