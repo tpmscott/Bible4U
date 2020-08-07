@@ -7368,7 +7368,9 @@ async function Linked_S_Note_Test() {
         if (Verse.length) {
 
            var text1;
-           text1 = "<b><u>Linked Sermon Notes List</u></b>"
+           text1 = '<b><u> ' + MainVerse_Search_Str + ' Linked Sermon Notes List</u></b>'
+
+           //text1 = '<b><u>' + VBM_Bname + ' ' + VBM_Chap + ':' + 'Linked Sermon Notes List</u></b>'
            text1 += ' ' + '<a id="CL634" href="javascript:;" onclick="Close_Linked_S_Note();Up_to_Top();">[Close]</a>';
            text1 += "<br><br>";  
 
@@ -7552,7 +7554,7 @@ async function Linked_S_Note_Test() {
 
               //text1 += '<b>' + MainVerse_Search_Str_Display + '</b>';
 
-              text1 += '<b></b><br><a href="" onClick="Show_Select_Note2(\'' + arg1 + '\');return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br><br>';      
+              text1 += '<b></b><br><a href="" onClick="Show_Select_Note2(\'' + arg1 + '\');Open_Note();return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br><br>';      
 
 
 
@@ -7563,7 +7565,9 @@ async function Linked_S_Note_Test() {
 
            var text1;
 
-           text1 = "<b><u>Linked Sermon Notes List</u></b>"
+           text1 = '<b><u> ' + MainVerse_Search_Str + ' Linked Sermon Notes List</u></b>'
+
+           //text1 = "<b><u>Linked Sermon Notes List</u></b>"
            text1 += ' ' + '<a id="CL634" href="javascript:;" onclick="Close_Linked_S_Note();Up_to_Top();">[Close]</a>';
            text1 += "<br><br>"; 
            text1 += 'No Data';
@@ -7577,7 +7581,9 @@ async function Linked_S_Note_Test() {
 
            var text1;
 
-           text1 = "<b><u>Linked Sermon Notes List</u></b>"
+           text1 = '<b><u> ' + MainVerse_Search_Str + ' Linked Sermon Notes List</u></b>'
+
+           //text1 = "<b><u>Linked Sermon Notes List</u></b>"
            text1 += ' ' + '<a id="CL634" href="javascript:;" onclick="Close_Linked_S_Note();Up_to_Top();">[Close]</a>';
            text1 += "<br><br>"; 
            text1 += 'No Data';
@@ -10675,10 +10681,10 @@ function Close_Linked_S_Note() {
 </td>
 
 <td>
-<input type="text" style="font-size:16pt" size="9" name="Main_Verse1" id="Main_Verse1" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
-<input type="text" style="font-size:16pt" size="9" name="Main_Verse2" id="Main_Verse2" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
-<input type="text" style="font-size:16pt" size="9" name="Main_Verse3" id="Main_Verse3" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
-<input type="text" style="font-size:16pt" size="9" name="Main_Verse4" id="Main_Verse4" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+<input type="text" style="font-size:16pt" size="12" name="Main_Verse1" id="Main_Verse1" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+<input type="text" style="font-size:16pt" size="12" name="Main_Verse2" id="Main_Verse2" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+<input type="text" style="font-size:16pt" size="12" name="Main_Verse3" id="Main_Verse3" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+<input type="text" style="font-size:16pt" size="12" name="Main_Verse4" id="Main_Verse4" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
 </td>
 
 <td>
