@@ -9508,7 +9508,7 @@ async function edit_Note_in_DB() {
    if(Note_Seleted == "NoteDB" && NoteDB_reading_from == 2) {
 
       document.getElementById("tool_area_12").style.visibility='visible';
-      document.getElementById("tool_area_12").style.height='60px';
+      document.getElementById("tool_area_12").style.height='80px';
 
    //if(startWith_date!='') {
 
@@ -10674,24 +10674,37 @@ function Close_Linked_S_Note() {
 <div id="tool_area_12" style="height:0px;visibility:hidden">
 
 <table>
-<tr>
 
+<tr>
 <td>
 <p style="font-size:15pt" ><b>Main Verses: </b></p>
 </td>
 
-<td>
-<input type="text" style="font-size:15pt" size="9" name="Main_Verse1" id="Main_Verse1" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
-<input type="text" style="font-size:15pt" size="9" name="Main_Verse2" id="Main_Verse2" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
-<input type="text" style="font-size:15pt" size="9" name="Main_Verse3" id="Main_Verse3" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
-<input type="text" style="font-size:15pt" size="9" name="Main_Verse4" id="Main_Verse4" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
-</td>
+<td></td><td></td>
 
 <td>
 <input type="button" name="B113" style="font-size:15pt;color:black" id="end_edit_Note" value="end edit Note" onclick="end_edit_Note(); return false;">
 </td>
-
 </tr>
+
+<tr>
+<td>
+<input type="text" style="font-size:15pt" size="12" name="Main_Verse1" id="Main_Verse1" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+</td>
+
+<td>
+<input type="text" style="font-size:15pt" size="12" name="Main_Verse2" id="Main_Verse2" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+</td>
+
+<td>
+<input type="text" style="font-size:15pt" size="12" name="Main_Verse3" id="Main_Verse3" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+</td>
+
+<td>
+<input type="text" style="font-size:15pt" size="12" name="Main_Verse4" id="Main_Verse4" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+</td>
+</tr>
+
 </table>
 
 </div>
