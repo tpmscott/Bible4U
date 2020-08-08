@@ -7275,7 +7275,10 @@ async function Show_Notes_List2() { // show Name and Topic
      if (Verse.length) {
 
         var text1;
-        text1 = "Notes List -- indexedDB<br>";
+
+        //text1 = 'Notes List -- indexedDB ' + '<a href="" onclick="Open_Search_Note();">Open Search Tool</a>' + '<br>';
+
+        text1 = 'Notes List -- indexedDB ' + '<a href="" onclick="Open_Search_Note();return false;">' + 'Open Search Tool</a>' + '<br>';
 
         for (var i = 0; i < Verse.length ; i++) {
 
@@ -9550,6 +9553,30 @@ function end_edit_Note_old() { // Save Note & Hide 'edit Note' button
 
 }
 
+
+function Close_Search_Note() {
+
+   document.getElementById("tool_area_11").style.visibility='hidden';
+   document.getElementById("tool_area_11").style.height='0px';
+
+}
+
+function Open_Search_Note() {
+
+   document.getElementById("tool_area_11").style.visibility='visible';
+   document.getElementById("tool_area_11").style.height='120px';
+
+}
+
+
+function Close_edit_Note() {
+
+   document.getElementById("tool_area_12").style.visibility='hidden';
+   document.getElementById("tool_area_12").style.height='0px';
+
+}
+
+
 function end_edit_Note() { // 1. Update & Save Note in indexedDB 
                            // 2. Hide 'edit Note' button
 
@@ -10677,13 +10704,15 @@ function Close_Linked_S_Note() {
 
 <tr>
 <td>
-<p style="font-size:15pt" ><b>Main Verses: </b></p>
+<input type="button" name="B113" style="font-size:15pt;color:black" id="end_edit_Note" value="Close" onclick="Close_edit_Note(); return false;">
 </td>
 
-<td></td><td></td>
+<td colspan="2">
+<center><p style="font-size:18pt" ><b>Main Verses:</b></p></center>
+</td>
 
-<td>
-<input type="button" name="B113" style="font-size:15pt;color:black" id="end_edit_Note" value="end edit Note" onclick="end_edit_Note(); return false;">
+<td style="text-align:right">
+<input type="button" name="B113" style="font-size:15pt;color:red;" id="end_edit_Note" value="Save & Close" onclick="end_edit_Note(); return false;">
 </td>
 </tr>
 
@@ -10836,7 +10865,7 @@ New
 
  </div>
 
-  <div id="tool_area_11" >
+  <div id="tool_area_11" style="height:0px;visibility:hidden">
 
      <table>
      <tr>
@@ -10882,6 +10911,7 @@ New
      -
      <input type="text" style="font-size:18pt" size="6" name="Time_end" id="Time_end" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
      <a href="javascript:;" onclick="Show_Between_Ex();">»¡©ú</a>
+     <a href="javascript:;" onclick="Close_Search_Note();">Close</a>
      </td> 
 
      </tr>
