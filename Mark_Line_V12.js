@@ -2251,3 +2251,121 @@ async function Exp_from_ChapNote_Test2Db_Recent() { // New for V7
 
 
 } // End of function Exp_from_ChapNote_Test2Db_Recent()
+
+
+async function Exp_from_ChapNote_Test2Db_Book_Chap() { // New for V7
+
+  var Verse_Count = 0;
+
+  var Book_Chap_tmp = document.getElementById("Exp_from_ChapNote_Test2Db_Book_Chap").value; // Exo 32
+
+  var argN = Book_Chap_tmp;
+
+  var res = argN.split(" ");
+
+  var arg1 = res[0];  // Exo
+  var arg2 = res[1];  // 32
+
+  var Bname_tmp = '100'; // 100 means no value, 101 means has valus
+  var VH_Bname = '';
+
+  var VH_Name_tmp = '';
+
+  for (i = 0; i < BookAbbr4.length; i++) {
+
+     if (BookAbbr4[i] == arg1) {
+
+        VH_Bname = i; // 1
+        Bname_tmp = '101';
+
+     }
+
+  }
+
+  var VH_Chap = Number(arg2) - 1; // 31
+
+  if (Bname_tmp == '101') {
+
+     VH_Name_tmp = VH_Bname + '_' + VH_Chap;
+
+  }
+ 
+
+
+  if(Book_Chap_tmp!='' && Bname_tmp == '101' && VH_Name_tmp!='') {
+
+     //let Verse = await dbT2.ChapNote.where('date').startsWithIgnoreCase(startWith_date).toArray();
+
+     // let Verse = await dbT2.ChapNote.orderBy('date').reverse().limit(30).toArray();  // order by chap_no, from big to small
+                                                                                        // Recent 30
+
+     //let Verse = await dbT2.ChapNote.orderBy('date').reverse().limit(Limit_No).toArray();
+
+
+     let Verse = await dbT2.ChapNote.where('name').equals(VH_Name_tmp).toArray(); // 1_31
+
+
+     Verse_Count = Verse.length;
+
+     if (Verse) {
+
+        //var text = 'i!^_^,' + Verse_Count.toString() + ',';
+        //var text = 'i!^_^,' + Verse_Count.toString();
+
+        var text = 'cn^_^|' + Verse_Count.toString();  // change seprator to "|"
+
+        for (i = 0; i < Verse.length; i++) {
+
+           let name = Verse[i].name;
+           let date = Verse[i].date;
+           let content = Verse[i].content;
+
+           // Encrypt Content then Exp
+
+           var Key_input = '2020Chapter03Note15'; // for Encrypt and Decrypt Exp & Imp Chap Note
+
+           var encryptedContent = CryptoJS.AES.encrypt(content, Key_input);
+
+           text += '|' + name + '|' + date + '|' + encryptedContent;  // change seprator to "|"
+
+           //text += ',' + book_no + ',' + chap_no + ',' + vers_no + ',' + date;
+
+        } // End of for (i = 0; i < Verse.length; i++)
+
+        var mesg1 = 'ChapNote ' + Verse_Count + ' exported'
+
+        //var mesg1 = 'ML ' + Verse_Count + ' exported'
+
+        //Exp_to_books_Test2Db.value = mesg1;
+
+        //myExp_Db_Display.innerHTML = text;
+        //Exp_to_books_Test2Db.value = text;  // Imp_to_books_Test2Db
+        //Imp_to_books_Test2Db.value = text;  // Imp_to_books_Test2Db
+
+        document.getElementById("Imp_to_books_Test2Db").value = text;      
+
+        //myExp_Db_Display_area.innerHTML = text;      // new for V6
+
+
+        copyFunction5(mesg1);
+
+        //myExp_Db_Display_area.innerHTML = "";
+
+
+     } // End of if (Verse)
+
+
+  }
+  else {
+
+     myExp_Db_Display.innerHTML = 'ChapNote 0 exported';
+
+  } // End of if(Late_than_date!='')
+
+  //let Verse = await dbT2.books.where('date').above('20200301').toArray();  // 
+
+  //let Verse = await dbT2.books.toArray();  // All
+
+
+
+} // End of function Exp_from_ChapNote_Test2Db_Book_Chap()
