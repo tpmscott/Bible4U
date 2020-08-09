@@ -1527,18 +1527,22 @@ async function Exp_from_books_Test2Db_startWith() { // New for V6
 
 function Open_Chap_Note() {  // New for V7
 
-   //Note_Opened = 1; // 1 means opened, 0 means close
+   var OS_tmp = getOS();
 
-   //if(More_Mode==1) {  // More Mode
+   if (OS_tmp == 'Windows') {
 
-      document.getElementById("container6").style.height = "23%"; // 原為 25%, 21%, 22%
+      document.getElementById("container6").style.height = "46%"; // for Windows
 
-   //}
-   //else if(Less_mode==1) { // Less Mode
+   }
+   else {
 
-   //   document.getElementById("container0").style.height = "35%"; // 原為 40%
+      document.getElementById("container6").style.height = "23%"; // for iPad
 
-   //}
+   }
+
+   //document.getElementById("container6").style.height = "23%"; // 原為 25%, 21%, 22%
+
+
 
 }  // End of function Open_Chap_Note()
 
