@@ -7059,6 +7059,7 @@ async function read_textarea_1_NoteDB_from_indexedDB(){
          var content = Verse.Content;
          var verses = Verse.Verses;
          var mainverses = Verse.MainVerses;  // MainVerses
+         var keywords = Verse.KeyWords;      // KeyWords
 
          document.getElementById("IAI_2t").value = speaker;  // Speaker
          document.getElementById("IAI_1t").value = topic;    // Topic
@@ -7078,6 +7079,23 @@ async function read_textarea_1_NoteDB_from_indexedDB(){
             document.getElementById("Main_Verse2").value = "";
             document.getElementById("Main_Verse3").value = "";
             document.getElementById("Main_Verse4").value = "";
+
+         }
+
+         if (keywords) {
+
+            document.getElementById("Key_Word1").value = keywords[0];
+            document.getElementById("Key_Word2").value = keywords[1];
+            document.getElementById("Key_Word3").value = keywords[2];
+            document.getElementById("Key_Word4").value = keywords[3];
+
+         }
+         else {
+
+            document.getElementById("Key_Word1").value = "";
+            document.getElementById("Key_Word2").value = "";
+            document.getElementById("Key_Word3").value = "";
+            document.getElementById("Key_Word4").value = "";
 
          }
 
@@ -7108,6 +7126,11 @@ async function read_textarea_1_NoteDB_from_indexedDB(){
          document.getElementById("Main_Verse2").value = "";
          document.getElementById("Main_Verse3").value = "";
          document.getElementById("Main_Verse4").value = "";
+
+         document.getElementById("Key_Word1").value = "";
+         document.getElementById("Key_Word2").value = "";
+         document.getElementById("Key_Word3").value = "";
+         document.getElementById("Key_Word4").value = "";
 
       }
 
@@ -8299,6 +8322,254 @@ async function Show_Notes_List2_Speaker_Equal() { // show Name and Topic
 
 
 }  // End of function Show_Notes_List2_Speaker_Equal()
+
+
+async function Show_Notes_List2_Keyword_Equal() { // show Name and Topic
+                                    // for Notes stored in indexedDB
+
+  //let Verse = await dbT2.SermonNote.get(Name_tmp);
+  //let Verse = await dbT2.SermonNote.reverse().toArray();
+
+  //let Verse = await dbT2.SermonNote.reverse().limit(30).toArray(); // Recent 30
+
+
+  var keyword_tmp = document.getElementById("Keyword_text").value;
+
+
+
+  //if(startWith_date!='') {
+
+  //   let Verse = await dbT2.SermonNote.where('Name').startsWithIgnoreCase(startWith_date).toArray();
+
+  //}
+
+  //let Verse = await dbT2.SermonNote.where('Name').startsWithIgnoreCase('20200729').toArray(); // for test
+
+
+
+  if(keyword_tmp=='') {
+
+     var text1;
+     text1 = "Notes List -- indexedDB<br>";
+     text1 += 'Please input the keyword for searching. Ex:<b>¶®¦U</b>';
+
+  }
+  else {
+ 
+     //let Verse = await dbT2.SermonNote.where('Speaker').startsWithIgnoreCase(speaker_tmp).reverse().toArray();
+
+     let Verse = await dbT2.SermonNote.where('KeyWords').startsWithIgnoreCase(keyword_tmp).reverse().distinct().toArray(); // .distinct()
+
+
+
+     if (Verse) {
+
+        if (Verse.length) {
+
+           var text1;
+           text1 = '<b><u> ' + keyword_tmp + ' Linked Sermon Notes List</u></b><br><br>'
+
+           //var text1;
+           //text1 = "Notes List -- indexedDB<br>";
+
+           for (var i = 0; i < Verse.length ; i++) {
+
+              // arg1: Name, arg2: Speaker, arg3:Topic
+
+              var arg1 = Verse[i].Name;
+
+              var arg2 = Verse[i].Speaker;
+
+              var arg3 = Verse[i].Topic; // onClick="Show_Select_Note2('20200729Wed3')
+
+
+              //var MainVerse_Search_Str_length = MainVerse_Search_Str.length;
+
+              var keyword_tmp_length = keyword_tmp.length;
+
+                 var Key_Word1_str = '';
+                 var Key_Word2_str = '';
+                 var Key_Word3_str = '';
+                 var Key_Word4_str = '';
+
+
+                 var Key_Word1_tmp = Verse[i].KeyWords[0]; 
+                 var Key_Word2_tmp = Verse[i].KeyWords[1]; // Verse[i].KeyWords[1]
+                 var Key_Word3_tmp = Verse[i].KeyWords[2];
+                 var Key_Word4_tmp = Verse[i].KeyWords[3];
+
+                 if (Key_Word1_tmp != '') {
+
+                    if (keyword_tmp_length > Key_Word1_tmp.length ) {
+
+                       // Do nothing
+ 
+                    }
+                    else {
+
+                       //Main_Verse1_str = Main_Verse1_tmp.substring(0, MainVerse_Search_Str.length );
+                       Key_Word1_str = Key_Word1_tmp.substring(0, keyword_tmp.length );
+
+                    }
+
+                 }
+
+                 if (Key_Word2_tmp != '') {
+
+                    if (keyword_tmp_length > Key_Word2_tmp.length ) {
+
+                       // Do nothing
+ 
+                    }
+                    else {
+
+                       //Main_Verse1_str = Main_Verse1_tmp.substring(0, MainVerse_Search_Str.length );
+                       Key_Word2_str = Key_Word2_tmp.substring(0, keyword_tmp.length );
+
+                    }
+
+                 }
+
+                 if (Key_Word3_tmp != '') {
+
+                    if (keyword_tmp_length > Key_Word3_tmp.length ) {
+
+                       // Do nothing
+ 
+                    }
+                    else {
+
+                       //Main_Verse1_str = Main_Verse1_tmp.substring(0, MainVerse_Search_Str.length );
+                       Key_Word3_str = Key_Word3_tmp.substring(0, keyword_tmp.length );
+
+                    }
+
+                 }
+
+                 if (Key_Word4_tmp != '') {
+
+                    if (keyword_tmp_length > Key_Word4_tmp.length ) {
+
+                       // Do nothing
+ 
+                    }
+                    else {
+
+                       //Main_Verse1_str = Main_Verse1_tmp.substring(0, MainVerse_Search_Str.length );
+                       Key_Word4_str = Key_Word4_tmp.substring(0, keyword_tmp.length );
+
+                    }
+
+                 }
+
+              text1 += '<b>* </b>';
+
+              if (keyword_tmp == Key_Word1_str) {
+
+                 text1 += '<b>' + Key_Word1_tmp + ' </b>';
+
+              }
+              else {
+
+                 if (Key_Word1_tmp != '')
+                    text1 += Key_Word1_tmp + ' ';
+
+              }
+
+              if (keyword_tmp == Key_Word2_str) {
+
+                 text1 += '<b>' + Key_Word2_tmp + ' </b>';
+
+              }
+              else {
+
+                 if (Key_Word2_tmp != '')
+                    text1 += Key_Word2_tmp + ' ';
+
+              }
+
+              if (keyword_tmp == Key_Word3_str) {
+
+                 text1 += '<b>' + Key_Word3_tmp + ' </b>';
+
+              }
+              else {
+
+                 if (Key_Word3_tmp != '')
+                    text1 += Key_Word3_tmp + ' ';
+
+              }
+
+              if (keyword_tmp == Key_Word4_str) {
+
+                 text1 += '<b>' + Key_Word4_tmp + ' </b>';
+
+              }
+              else {
+
+                 if (Key_Word4_tmp != '')
+                    text1 += Key_Word4_tmp + ' ';
+
+              }
+
+
+
+              //text1 += '<b></b><br><a href="" onClick="Show_Select_Note2(\'' + arg1 + '\');Open_Note();return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br><br>';      
+
+              text1 += '<br><a href="" onClick="Show_Select_Note2(\'' + arg1 + '\');return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br><br>';      
+
+
+              //text1 += '<a href="" onClick="Show_Select_Note2(\'' + arg1 + '\');return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br>';      
+
+
+
+           } // End of for (var i = 0; i < Verse.length ; i++)
+
+        } else {
+          //listElem.innerHTML = '<li>No Data</li>'
+
+           var text1;
+
+           text1 = '<b><u> ' + keyword_tmp + ' Linked Sermon Notes List</u></b>'
+           //text1 = '<b><u> ' + MainVerse_Search_Str + ' Linked Sermon Notes List</u></b>'
+
+           text1 += "<br><br>"; 
+           text1 += 'No Data';
+
+        }
+
+     }
+     else {
+
+        //listElem.innerHTML = 'No Data';
+
+           var text1;
+
+           text1 = '<b><u> ' + keyword_tmp + ' Linked Sermon Notes List</u></b>'
+           //text1 = '<b><u> ' + MainVerse_Search_Str + ' Linked Sermon Notes List</u></b>'
+
+           text1 += "<br><br>"; 
+           text1 += 'No Data';
+
+     }
+
+   }
+
+
+   document.getElementById("tool_area_6").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.visibility='hidden';
+   document.getElementById("tool_area_9").style.height='0px';
+
+   document.getElementById("tool_area_8").style.visibility='visible';
+
+   document.getElementById("Notes_List").innerHTML = text1;
+
+   Delete_Note_Item_No = 0;  // 0 means No Delete action, 1 means delete first item
+
+   document.getElementById("tool_area_10").style.visibility='hidden';
+
+
+}  // End of function Show_Notes_List2_Keyword_Equal()
 
 
 
@@ -9586,7 +9857,7 @@ async function edit_Note_in_DB() {
    if(Note_Seleted == "NoteDB" && NoteDB_reading_from == 2) {
 
       document.getElementById("tool_area_12").style.visibility='visible';
-      document.getElementById("tool_area_12").style.height='110px';
+      document.getElementById("tool_area_12").style.height='210px';
 
    //if(startWith_date!='') {
 
@@ -9683,6 +9954,11 @@ function end_edit_Note() { // 1. Update & Save Note in indexedDB
       var Main_Verse3_tmp = document.getElementById("Main_Verse3").value;
       var Main_Verse4_tmp = document.getElementById("Main_Verse4").value;
 
+      var Key_Word1_tmp = document.getElementById("Key_Word1").value;
+      var Key_Word2_tmp = document.getElementById("Key_Word2").value;
+      var Key_Word3_tmp = document.getElementById("Key_Word3").value;
+      var Key_Word4_tmp = document.getElementById("Key_Word4").value;
+
       //let Name = Name_tmp; // N_String_New
       //let Speaker = Speaker_tmp; 
       //let Topic = Topic_tmp; 
@@ -9694,7 +9970,11 @@ function end_edit_Note() { // 1. Update & Save Note in indexedDB
 
       //dbT2.SermonNote.update( Name, { Speaker: Speaker_tmp, Topic: Topic_tmp, Content: Content_tmp } );
 
-      dbT2.SermonNote.update(Name, { Speaker: Speaker_tmp, Topic: Topic_tmp, Content: Content_tmp, MainVerses: [Main_Verse1_tmp, Main_Verse2_tmp, Main_Verse3_tmp, Main_Verse4_tmp] } );
+      //dbT2.SermonNote.update(Name, { Speaker: Speaker_tmp, Topic: Topic_tmp, Content: Content_tmp, MainVerses: [Main_Verse1_tmp, Main_Verse2_tmp, Main_Verse3_tmp, Main_Verse4_tmp] } );
+
+
+      dbT2.SermonNote.update(Name, { Speaker: Speaker_tmp, Topic: Topic_tmp, Content: Content_tmp, MainVerses: [Main_Verse1_tmp, Main_Verse2_tmp, Main_Verse3_tmp, Main_Verse4_tmp], KeyWords: [Key_Word1_tmp, Key_Word2_tmp, Key_Word3_tmp, Key_Word4_tmp] } );
+
 
    }
 
@@ -10201,7 +10481,7 @@ function Close_Linked_S_Note() {
 </td>
 
 <td>
-  <button onclick="Exp_from_ChapNote_Test2Db_Book_Chap()">Exp Book Chap=</button><INPUT TYPE=TEXT SIZE="3" id="Exp_from_ChapNote_Test2Db_Book_Chap" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">(Format:Psa 85)
+  <button onclick="Exp_from_ChapNote_Test2Db_Book_Chap()">Exp Book Chap=</button><INPUT TYPE=TEXT SIZE="8" id="Exp_from_ChapNote_Test2Db_Book_Chap" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">(Format:Psa 85)
 </td>
 
 
@@ -10819,6 +11099,31 @@ function Close_Linked_S_Note() {
 </td>
 </tr>
 
+<tr>
+<td colspan="4">
+<center><p style="font-size:18pt" ><b>Key Words:</b></p></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<input type="text" style="font-size:15pt" size="12" name="Key_Word1" id="Key_Word1" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+</td>
+
+<td>
+<input type="text" style="font-size:15pt" size="12" name="Key_Word2" id="Key_Word2" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+</td>
+
+<td>
+<input type="text" style="font-size:15pt" size="12" name="Key_Word3" id="Key_Word3" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+</td>
+
+<td>
+<input type="text" style="font-size:15pt" size="12" name="Key_Word4" id="Key_Word4" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+</td>
+</tr>
+
+
 </table>
 
 </div>
@@ -11010,6 +11315,15 @@ New
      <td></td><td></td><td></td>
      <td>
      <input type="button" name="B113" style="font-size:16pt;color:black" id="Time Between and Speaker=" value="Combine [Time Between] & [Speaker=]" onclick="Show_Notes_List2_Time_Between_and_Speaker_Equal(); return false;">
+     </td> 
+     </tr>
+     </table>
+
+     <table>
+     <tr>
+     <td>
+     <input type="button" name="B113" style="font-size:16pt;color:black" id="Keyword=" value="Keyword=" onclick="Show_Notes_List2_Keyword_Equal(); return false;">
+     <input type="text" style="font-size:18pt" size="9" name="Keyword_text" id="Keyword_text" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
      </td> 
      </tr>
      </table>

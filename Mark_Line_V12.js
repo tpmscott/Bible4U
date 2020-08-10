@@ -196,6 +196,18 @@ async function init_Bible4U_DB() {
          Congregation4: 'CNo,F_Name,L_Name,[L_Name+F_Name],H_No,F_Order,Tel,Mob',
          SermonNote: 'Name,Speaker, *MainVerses'     
      });
+     dbT2.version(19).stores({      // New for V12
+         books: 'name,date',
+         ChapNote: 'name,date',
+         Congregation: 'CNo,F_Name,L_Name,[L_Name+F_Name],H_No,F_Order',
+         Attendance: 'Record',
+         Householder: '++H_Seq,H_No',
+         Congregation2: '++CNo,F_Name,L_Name,[L_Name+F_Name],H_No,F_Order',
+         Congregation3: 'CNo,F_Name,L_Name,[L_Name+F_Name],H_No',
+         Roll: '++Roll_No,CNo,F_Name,L_Name,C_F_Name,H_No,E_F_LName,C_F_FName',
+         Congregation4: 'CNo,F_Name,L_Name,[L_Name+F_Name],H_No,F_Order,Tel,Mob',
+         SermonNote: 'Name,Speaker, *MainVerses, *KeyWords'      
+     });
 
    // End of Declare Database
 
