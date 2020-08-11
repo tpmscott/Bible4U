@@ -7071,6 +7071,7 @@ async function read_textarea_1_NoteDB_from_indexedDB(){
             document.getElementById("Main_Verse2").value = mainverses[1];
             document.getElementById("Main_Verse3").value = mainverses[2];
             document.getElementById("Main_Verse4").value = mainverses[3];
+            document.getElementById("Main_Verse5").value = mainverses[4];
 
          }
          else {
@@ -7079,6 +7080,7 @@ async function read_textarea_1_NoteDB_from_indexedDB(){
             document.getElementById("Main_Verse2").value = "";
             document.getElementById("Main_Verse3").value = "";
             document.getElementById("Main_Verse4").value = "";
+            document.getElementById("Main_Verse5").value = "";
 
          }
 
@@ -7088,6 +7090,7 @@ async function read_textarea_1_NoteDB_from_indexedDB(){
             document.getElementById("Key_Word2").value = keywords[1];
             document.getElementById("Key_Word3").value = keywords[2];
             document.getElementById("Key_Word4").value = keywords[3];
+            document.getElementById("Key_Word5").value = keywords[4];
 
          }
          else {
@@ -7096,6 +7099,7 @@ async function read_textarea_1_NoteDB_from_indexedDB(){
             document.getElementById("Key_Word2").value = "";
             document.getElementById("Key_Word3").value = "";
             document.getElementById("Key_Word4").value = "";
+            document.getElementById("Key_Word5").value = "";
 
          }
 
@@ -7126,11 +7130,13 @@ async function read_textarea_1_NoteDB_from_indexedDB(){
          document.getElementById("Main_Verse2").value = "";
          document.getElementById("Main_Verse3").value = "";
          document.getElementById("Main_Verse4").value = "";
+         document.getElementById("Main_Verse5").value = "";
 
          document.getElementById("Key_Word1").value = "";
          document.getElementById("Key_Word2").value = "";
          document.getElementById("Key_Word3").value = "";
          document.getElementById("Key_Word4").value = "";
+         document.getElementById("Key_Word5").value = "";
 
       }
 
@@ -7477,12 +7483,14 @@ async function Linked_S_Note_Test() {
                  var Main_Verse2_str = '';
                  var Main_Verse3_str = '';
                  var Main_Verse4_str = '';
+                 var Main_Verse5_str = '';
 
 
                  var Main_Verse1_tmp = Verse[i].MainVerses[0]; 
                  var Main_Verse2_tmp = Verse[i].MainVerses[1]; // Verse[i].MainVerses[1]
                  var Main_Verse3_tmp = Verse[i].MainVerses[2];
                  var Main_Verse4_tmp = Verse[i].MainVerses[3];
+                 var Main_Verse5_tmp = Verse[i].MainVerses[4];
 
 
                  //var str = "Hello world!";
@@ -7554,6 +7562,22 @@ async function Linked_S_Note_Test() {
 
                  }
 
+                 if (Main_Verse5_tmp != '') {
+
+                    if (MainVerse_Search_Str_length > Main_Verse5_tmp.length ) {
+
+                       // Do nothing
+ 
+                    }
+                    else {
+
+                       //Main_Verse2_str = Main_Verse2_tmp.substring(0, MainVerse_Search_Str.length - 1);
+                       Main_Verse5_str = Main_Verse5_tmp.substring(0, MainVerse_Search_Str.length );
+
+                    }
+
+                 }
+
 
                  //document.getElementById("Main_Verse2").value = mainverses[1];
                  //document.getElementById("Main_Verse3").value = mainverses[2];
@@ -7616,6 +7640,20 @@ async function Linked_S_Note_Test() {
 
                  if (Main_Verse4_tmp != '')
                     text1 += Main_Verse4_tmp + ' ';
+
+              }
+
+              if (MainVerse_Search_Str == Main_Verse5_str) {
+
+                 text1 += '<b>' + Main_Verse5_tmp + ' </b>';
+
+                 //MainVerse_Search_Str_Display = Main_Verse4_tmp;
+
+              }
+              else {
+
+                 if (Main_Verse5_tmp != '')
+                    text1 += Main_Verse5_tmp + ' ';
 
               }
 
@@ -8391,12 +8429,14 @@ async function Show_Notes_List2_Keyword_Equal() { // show Name and Topic
                  var Key_Word2_str = '';
                  var Key_Word3_str = '';
                  var Key_Word4_str = '';
+                 var Key_Word5_str = '';
 
 
                  var Key_Word1_tmp = Verse[i].KeyWords[0]; 
                  var Key_Word2_tmp = Verse[i].KeyWords[1]; // Verse[i].KeyWords[1]
                  var Key_Word3_tmp = Verse[i].KeyWords[2];
                  var Key_Word4_tmp = Verse[i].KeyWords[3];
+                 var Key_Word5_tmp = Verse[i].KeyWords[4];
 
                  if (Key_Word1_tmp != '') {
 
@@ -8462,6 +8502,23 @@ async function Show_Notes_List2_Keyword_Equal() { // show Name and Topic
 
                  }
 
+                 if (Key_Word5_tmp != '') {
+
+                    if (keyword_tmp_length > Key_Word5_tmp.length ) {
+
+                       // Do nothing
+ 
+                    }
+                    else {
+
+                       //Main_Verse1_str = Main_Verse1_tmp.substring(0, MainVerse_Search_Str.length );
+                       Key_Word5_str = Key_Word5_tmp.substring(0, keyword_tmp.length );
+
+                    }
+
+                 }
+
+
               text1 += '<b>* </b>';
 
               if (keyword_tmp == Key_Word1_str) {
@@ -8509,6 +8566,19 @@ async function Show_Notes_List2_Keyword_Equal() { // show Name and Topic
 
                  if (Key_Word4_tmp != '')
                     text1 += Key_Word4_tmp + ' ';
+
+              }
+
+
+              if (keyword_tmp == Key_Word5_str) {
+
+                 text1 += '<b>' + Key_Word5_tmp + ' </b>';
+
+              }
+              else {
+
+                 if (Key_Word5_tmp != '')
+                    text1 += Key_Word5_tmp + ' ';
 
               }
 
@@ -9857,7 +9927,7 @@ async function edit_Note_in_DB() {
    if(Note_Seleted == "NoteDB" && NoteDB_reading_from == 2) {
 
       document.getElementById("tool_area_12").style.visibility='visible';
-      document.getElementById("tool_area_12").style.height='240px';
+      document.getElementById("tool_area_12").style.height='210px';
 
    //if(startWith_date!='') {
 
@@ -9910,7 +9980,7 @@ function Close_Search_Note() {
 function Open_Search_Note() {
 
    document.getElementById("tool_area_11").style.visibility='visible';
-   document.getElementById("tool_area_11").style.height='140px'; // 120
+   document.getElementById("tool_area_11").style.height='180px'; // 120
 
 }
 
@@ -9953,11 +10023,13 @@ function end_edit_Note() { // 1. Update & Save Note in indexedDB
       var Main_Verse2_tmp = document.getElementById("Main_Verse2").value;
       var Main_Verse3_tmp = document.getElementById("Main_Verse3").value;
       var Main_Verse4_tmp = document.getElementById("Main_Verse4").value;
+      var Main_Verse5_tmp = document.getElementById("Main_Verse5").value;
 
       var Key_Word1_tmp = document.getElementById("Key_Word1").value;
       var Key_Word2_tmp = document.getElementById("Key_Word2").value;
       var Key_Word3_tmp = document.getElementById("Key_Word3").value;
       var Key_Word4_tmp = document.getElementById("Key_Word4").value;
+      var Key_Word5_tmp = document.getElementById("Key_Word5").value;
 
       //let Name = Name_tmp; // N_String_New
       //let Speaker = Speaker_tmp; 
@@ -9973,7 +10045,7 @@ function end_edit_Note() { // 1. Update & Save Note in indexedDB
       //dbT2.SermonNote.update(Name, { Speaker: Speaker_tmp, Topic: Topic_tmp, Content: Content_tmp, MainVerses: [Main_Verse1_tmp, Main_Verse2_tmp, Main_Verse3_tmp, Main_Verse4_tmp] } );
 
 
-      dbT2.SermonNote.update(Name, { Speaker: Speaker_tmp, Topic: Topic_tmp, Content: Content_tmp, MainVerses: [Main_Verse1_tmp, Main_Verse2_tmp, Main_Verse3_tmp, Main_Verse4_tmp], KeyWords: [Key_Word1_tmp, Key_Word2_tmp, Key_Word3_tmp, Key_Word4_tmp] } );
+      dbT2.SermonNote.update(Name, { Speaker: Speaker_tmp, Topic: Topic_tmp, Content: Content_tmp, MainVerses: [Main_Verse1_tmp, Main_Verse2_tmp, Main_Verse3_tmp, Main_Verse4_tmp, Main_Verse5_tmp], KeyWords: [Key_Word1_tmp, Key_Word2_tmp, Key_Word3_tmp, Key_Word4_tmp, Key_Word5_tmp] } );
 
 
    }
@@ -11072,7 +11144,7 @@ function Close_Linked_S_Note() {
 <input type="button" name="B113" style="font-size:15pt;color:black" id="end_edit_Note" value="Close" onclick="Close_edit_Note(); return false;">
 </td>
 
-<td colspan="2">
+<td colspan="3">
 <center><p style="font-size:18pt" ><b>Main Verses:</b></p></center>
 </td>
 
@@ -11097,10 +11169,14 @@ function Close_Linked_S_Note() {
 <td>
 <input type="text" style="font-size:15pt" size="12" name="Main_Verse4" id="Main_Verse4" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
 </td>
+
+<td>
+<input type="text" style="font-size:15pt" size="12" name="Main_Verse5" id="Main_Verse5" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+</td>
 </tr>
 
 <tr>
-<td colspan="4">
+<td colspan="5">
 <center><p style="font-size:18pt" ><b>Key Words:</b></p></center>
 </td>
 </tr>
@@ -11120,6 +11196,10 @@ function Close_Linked_S_Note() {
 
 <td>
 <input type="text" style="font-size:15pt" size="12" name="Key_Word4" id="Key_Word4" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+</td>
+
+<td>
+<input type="text" style="font-size:15pt" size="12" name="Key_Word5" id="Key_Word5" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
 </td>
 </tr>
 
