@@ -1323,7 +1323,7 @@ async function Imp_to_books_Test2Db() {  // New for V5
             let Name = N_tmp;
             let Speaker = S_tmp;
             let Topic = T_tmp;
-            let content = decryptedContent_Str;
+            let Content = decryptedContent_Str;
 
             //let Verses = ;     // Need to add in Exp  *** 2020.8.17
 
@@ -1342,7 +1342,7 @@ async function Imp_to_books_Test2Db() {  // New for V5
               //   MainVerses: [M1_tmp, M2_tmp, M3_tmp, M4_tmp, M5_tmp], KeyWords: [K1_tmp, K2_tmp, K3_tmp, K4_tmp, K5_tmp] } );
 
 
-              dbT2.SermonNote.add({Name,Speaker,Topic,content,Verses,MainVerses: [M1_tmp, M2_tmp, M3_tmp, M4_tmp, M5_tmp],KeyWords: [K1_tmp, K2_tmp, K3_tmp, K4_tmp, K5_tmp] });
+              dbT2.SermonNote.add({Name,Speaker,Topic,Content,Verses,MainVerses: [M1_tmp, M2_tmp, M3_tmp, M4_tmp, M5_tmp],KeyWords: [K1_tmp, K2_tmp, K3_tmp, K4_tmp, K5_tmp] });
 
               add_no = add_no + 1;
 
