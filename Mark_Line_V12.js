@@ -2682,3 +2682,169 @@ async function Exp_from_SermonNote_Test2Db_Time_Equal() { // New for V12
 
 
 } // End of function Exp_from_SermonNote_Test2Db_Time_Equal()
+
+
+
+
+async function Exp_from_SermonNote_Test2Db_Time_Between() { // New for V12
+
+  var start_date = document.getElementById("Exp_Time_start").value;
+
+  var end_date = document.getElementById("Exp_Time_end").value;
+
+
+  var Verse_Count = 0;
+
+  //var startWith_date = document.getElementById("Exp_from_SermonNote_Test2Db_Time_Equal").value;
+
+  //if(startWith_date!='') {
+
+  if(start_date!='' && end_date!='') {
+
+     let Verse = await dbT2.SermonNote.where('Name').between(start_date, end_date, true, true).reverse().toArray();
+
+     //let Verse = await dbT2.SermonNote.where('Name').startsWithIgnoreCase(startWith_date).toArray();
+
+
+     Verse_Count = Verse.length;
+
+     if (Verse) {
+
+        //var text = 'i!^_^,' + Verse_Count.toString() + ',';
+        //var text = 'i!^_^,' + Verse_Count.toString();
+
+        //var text = 'cn^_^|' + Verse_Count.toString();  // change seprator to "|"
+
+
+        var text = 'sn^_^|' + Verse_Count.toString();  // change seprator to "|" ,  for SermonNote
+
+
+        for (i = 0; i < Verse.length; i++) {
+
+           let name = Verse[i].Name;
+           let speaker = Verse[i].Speaker;
+           let topic = Verse[i].Topic;
+           let content = Verse[i].Content;
+           //let content = Verse[i].Content;  // MainVerses
+           //let content = Verse[i].Content;  // KeyWords
+
+           let mainverses = Verse[i].MainVerses;  // MainVerses
+           let keywords = Verse[i].KeyWords;      // KeyWords
+
+           var Main_Verse1_tmp = '';
+           var Main_Verse2_tmp = '';
+           var Main_Verse3_tmp = '';
+           var Main_Verse4_tmp = '';
+           var Main_Verse5_tmp = '';
+
+           var Key_Word1_tmp = '';
+           var Key_Word2_tmp = '';
+           var Key_Word3_tmp = '';
+           var Key_Word4_tmp = '';
+           var Key_Word5_tmp = '';
+
+           let verses = Verse[i].Verses;
+
+           //dbT2.SermonNote.add({Name,Speaker,Topic,Content,Verses });
+
+           if (mainverses) {
+
+              Main_Verse1_tmp = mainverses[0];
+              Main_Verse2_tmp = mainverses[1];
+              Main_Verse3_tmp = mainverses[2];
+              Main_Verse4_tmp = mainverses[3];
+              Main_Verse5_tmp = mainverses[4];
+
+           }
+           else {
+
+              Main_Verse1_tmp = "";
+              Main_Verse2_tmp = "";
+              Main_Verse3_tmp = "";
+              Main_Verse4_tmp = "";
+              Main_Verse5_tmp = "";
+
+           }
+
+           if (keywords) {
+
+              Key_Word1_tmp = keywords[0];
+              Key_Word2_tmp = keywords[1];
+              Key_Word3_tmp = keywords[2];
+              Key_Word4_tmp = keywords[3];
+              Key_Word5_tmp = keywords[4];
+
+           }
+           else {
+
+              Key_Word1_tmp = "";
+              Key_Word2_tmp = "";
+              Key_Word3_tmp = "";
+              Key_Word4_tmp = "";
+              Key_Word5_tmp = "";
+
+           }
+
+
+           //let date = Verse[i].date;
+           //let content = Verse[i].content;
+
+           // Encrypt Content then Exp
+
+           var Key_input = '2020Chapter03Note15'; // for Encrypt and Decrypt Exp & Imp Chap Note
+
+           var encryptedContent = CryptoJS.AES.encrypt(content, Key_input);
+
+           text += '|' + name + '|' + speaker + '|' + topic + '|' + encryptedContent;  // change seprator to "|"
+
+           text += '|' + Main_Verse1_tmp + '|' + Main_Verse2_tmp + '|' + Main_Verse3_tmp + '|' + Main_Verse4_tmp + '|' + Main_Verse5_tmp;
+
+           text += '|' + Key_Word1_tmp + '|' + Key_Word2_tmp + '|' + Key_Word3_tmp + '|' + Key_Word4_tmp + '|' + Key_Word5_tmp + '|' + verses;
+
+
+
+           //text += '|' + name + '|' + date + '|' + encryptedContent;  // change seprator to "|"
+
+           //text += ',' + book_no + ',' + chap_no + ',' + vers_no + ',' + date;
+
+        } // End of for (i = 0; i < Verse.length; i++)
+
+        var mesg1 = 'SermonNote ' + Verse_Count + ' exported'
+
+        //var mesg1 = 'ChapNote ' + Verse_Count + ' exported'
+
+        //var mesg1 = 'ML ' + Verse_Count + ' exported'
+
+        //Exp_to_books_Test2Db.value = mesg1;
+
+        //myExp_Db_Display.innerHTML = text;
+        //Exp_to_books_Test2Db.value = text;  // Imp_to_books_Test2Db
+        //Imp_to_books_Test2Db.value = text;  // Imp_to_books_Test2Db
+
+        document.getElementById("Imp_to_books_Test2Db").value = text;      
+
+        //myExp_Db_Display_area.innerHTML = text;      // new for V6
+
+
+        copyFunction5(mesg1);
+
+        //myExp_Db_Display_area.innerHTML = "";
+
+
+     } // End of if (Verse)
+
+
+  }
+  else {
+
+     myExp_Db_Display.innerHTML = 'SermonNote 0 exported';
+
+  } // End of if(Late_than_date!='')
+
+  //let Verse = await dbT2.books.where('date').above('20200301').toArray();  // 
+
+  //let Verse = await dbT2.books.toArray();  // All
+
+
+
+} // End of function Exp_from_SermonNote_Test2Db_Time_Between()
