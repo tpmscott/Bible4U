@@ -10424,6 +10424,30 @@ function Close_Linked_S_Note() {
 }  // End of function Close_Linked_S_Note()
 
 
+var data = [
+   ['Foo', 'programmer'],
+   ['Bar', 'bus driver'],
+   ['Moo', 'Reindeer Hunter'],
+   ['M中', '中文測試']
+];
+ 
+ 
+function download_csv() {
+    var csv = 'Name,Title\n';
+    data.forEach(function(row) {
+            csv += row.join(',');
+            csv += "\n";
+    });
+ 
+    console.log(csv);
+    var hiddenElement = document.createElement('a');
+    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+    hiddenElement.target = '_blank';
+    hiddenElement.download = 'people.txt';
+    hiddenElement.click();
+}
+
+
 
 </script>
 
@@ -10562,9 +10586,14 @@ function Close_Linked_S_Note() {
  SN Db <button onclick="Exp_from_SermonNote_Test2Db_Time_Equal()">Exp Time=</button><INPUT TYPE=TEXT SIZE="12" id="Exp_from_SermonNote_Test2Db_Time_Equal" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
 </td>
 
-
 <td>
  <button onclick="Exp_from_SermonNote_Test2Db_Time_Between()">Exp Time Between</button><INPUT TYPE=TEXT SIZE="12" id="Exp_Time_start" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">-<INPUT TYPE=TEXT SIZE="12" id="Exp_Time_end" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+</td>
+
+<br>
+
+<td>
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button onclick="download_csv()">Download Test</button>
 </td>
 
 
