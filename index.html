@@ -143,6 +143,7 @@
 <SCRIPT LANGUAGE="JavaScript" SRC="BookMarks2.js"></SCRIPT>
 <SCRIPT LANGUAGE="JavaScript" SRC="Mark_Line_V12.js"></SCRIPT>
 
+<SCRIPT LANGUAGE="JavaScript" SRC="Sermon_Notes_Download.js"></SCRIPT>
 
 
 <script src="idb.min.js"></script>
@@ -10447,6 +10448,35 @@ function download_csv() {
     hiddenElement.click();
 }
 
+async function download_csv_1() {  // Could be used on Windows for backup
+                                   // and store in the form of .js
+                                   // when the time need to restore
+                                   // put it in array then transfer to indexedDB
+                                   // Download doesn't work in iPad
+
+    var Verse = await db.books.toArray();
+
+    var csv = 'name,color_no,book_no,chap_no,vers_no\n';
+
+    for (i = 0; i < Verse.length; i++) {
+
+       csv += Verse[i].name + ',' + Verse[i].color_no + ',' + Verse[i].book_no + ',' + Verse[i].chap_no + ',' + Verse[i].vers_no + '\n';
+
+    }
+
+    //Verse.forEach(function(row) {
+    //        csv += row.join(',');
+    //        csv += "\n";
+    //});
+ 
+    console.log(csv);
+    var hiddenElement = document.createElement('a');
+    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+    hiddenElement.target = '_blank';
+    hiddenElement.download = 'books_Db.csv'; // use .txt , then change to .js by manual
+    hiddenElement.click();
+} // End of function download_csv_1()
+
 
 
 </script>
@@ -10593,7 +10623,13 @@ function download_csv() {
 <br>
 
 <td>
-  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button onclick="download_csv()">Download Test</button>
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button onclick="Download_from_SermonNote_Test2Db_Time_Between()">Download Time Between</button><INPUT TYPE=TEXT SIZE="12" id="Download_Time_start" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">-<INPUT TYPE=TEXT SIZE="12" id="Download_Time_end" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+</td>
+
+<br>
+
+<td>
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button onclick="Imp_Db_from_Sermon_Notes_Download()">Imp Db from Sermon_Notes_Download.js</button>
 </td>
 
 
