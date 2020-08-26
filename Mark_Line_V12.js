@@ -1931,6 +1931,23 @@ async function Exp_from_books_Test2Db_startWith() { // New for V6
 } // End of function Exp_from_books_Test2Db_startWith()
 
 
+
+function Open_Pictures_Area() {  // New for V12
+
+      document.getElementById("Pictures_Area").style.height = "46%";
+
+
+} // End of function Open_Pictures_Area()
+
+
+function Close_Pictures_Area() {  // New for V12
+
+      document.getElementById("Pictures_Area").style.height = "0%";
+
+
+} // End of function Close_Pictures_Area()
+
+
 function Open_Chap_Note() {  // New for V7
 
    var OS_tmp = getOS();
