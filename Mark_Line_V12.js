@@ -1985,14 +1985,14 @@ function Open_Pictures_Area() {  // New for V12
 
    if (OS_tmp == 'Windows') {
 
-      document.getElementById("Pictures_Area").style.height = "92%"; // for Windows
+      document.getElementById("Pictures_Area").style.height = "100%"; // for Windows // 92%
 
       //document.getElementById("Picture_Name").innerHTML = "7 Seals 7 Trumpets 7 Bowls"; 
 
    }
    else {
 
-      document.getElementById("Pictures_Area").style.height = "46%"; // for iPad
+      document.getElementById("Pictures_Area").style.height = "55%"; // for iPad // 46%
 
       //document.getElementById("Picture_Name").innerHTML = "7 Seals 7 Trumpets 7 Bowls"; 
 
