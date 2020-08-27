@@ -1931,10 +1931,74 @@ async function Exp_from_books_Test2Db_startWith() { // New for V6
 } // End of function Exp_from_books_Test2Db_startWith()
 
 
+function Show_Picture(arg) {  // New for V12
+
+   if (arg=='1') {
+
+      document.getElementById("myImg").style.height = "140%"; // for Windows
+
+      document.getElementById("Picture_Name").innerHTML = "7 Seals 7 Trumpets 7 Bowls"; 
+
+      document.getElementById("myImg").src = "7Seals7Trumpets7Bowls.png";
+
+   }
+
+   if (arg=='2') {
+
+      document.getElementById("myImg").style.height = "140%"; // for Windows
+
+      document.getElementById("Picture_Name").innerHTML = "Gods's glory departs from Jerusalem"; 
+
+      document.getElementById("myImg").src = "Gods_glory_departs_from_Jerusalem.png";
+
+   }
+
+
+   //var OS_tmp = getOS();
+
+   //if (OS_tmp == 'Windows') {
+
+   //   document.getElementById("myImg").style.height = "100%"; // for Windows
+
+   //   document.getElementById("Picture_Name").innerHTML = "7 Seals 7 Trumpets 7 Bowls"; 
+
+   //   document.getElementById("myImg").src = "7Seals7Trumpets7Bowls.png";
+
+   //}
+   //else {
+
+   //   document.getElementById("Pictures_Area").style.height = "46%"; // for iPad
+
+   //   document.getElementById("Picture_Name").innerHTML = "7 Seals 7 Trumpets 7 Bowls"; 
+
+   //}
+
+     // document.getElementById("Pictures_Area").style.height = "46%";
+
+
+} // End of function Show_Picture()
+
 
 function Open_Pictures_Area() {  // New for V12
 
-      document.getElementById("Pictures_Area").style.height = "46%";
+   var OS_tmp = getOS();
+
+   if (OS_tmp == 'Windows') {
+
+      document.getElementById("Pictures_Area").style.height = "92%"; // for Windows
+
+      //document.getElementById("Picture_Name").innerHTML = "7 Seals 7 Trumpets 7 Bowls"; 
+
+   }
+   else {
+
+      document.getElementById("Pictures_Area").style.height = "46%"; // for iPad
+
+      //document.getElementById("Picture_Name").innerHTML = "7 Seals 7 Trumpets 7 Bowls"; 
+
+   }
+
+     // document.getElementById("Pictures_Area").style.height = "46%";
 
 
 } // End of function Open_Pictures_Area()
