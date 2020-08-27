@@ -1945,7 +1945,7 @@ function Show_Picture(arg) {  // New for V12
 
    if (arg=='2') {
 
-      document.getElementById("myImg").style.height = "140%"; // for Windows
+      document.getElementById("myImg").style.height = "130%"; // for Windows  // 140%
 
       document.getElementById("Picture_Name").innerHTML = "Gods's glory departs from Jerusalem"; 
 
@@ -1992,7 +1992,7 @@ function Open_Pictures_Area() {  // New for V12
    }
    else {
 
-      document.getElementById("Pictures_Area").style.height = "55%"; // for iPad // 46%
+      document.getElementById("Pictures_Area").style.height = "51%"; // for iPad // 46%
 
       //document.getElementById("Picture_Name").innerHTML = "7 Seals 7 Trumpets 7 Bowls"; 
 
