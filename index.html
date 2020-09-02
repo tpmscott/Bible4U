@@ -6105,7 +6105,7 @@ function Qmaxverse(index,index2) {   // find out maximum verse of chapter of boo
 
 <td></td><td></td>
 
-<td><button onclick="Open_Pictures_Area();">Picture</button></td>
+<td><button onclick="Open_Pictures_Area();List_Current_Book_Pictures();">Picture</button></td>
 
 </tr>
 
@@ -7406,6 +7406,188 @@ async function Show_Notes_List2() { // show Name and Topic
 
 
 }  // End of function Show_Notes_List2()
+
+async function List_Current_Book_Pictures() {
+
+   var tmp_B = nowbook;
+   //var tmp_C = nowchapter;
+
+   var VBM_Bname = BookAbbr4[tmp_B];
+   //var VBM_Chap = tmp_C + 1;
+
+   //var MainVerse_Search_Str = VBM_Bname + ' ' + VBM_Chap + ':'; // 'Exo 2:'
+
+   var MainVerse_Search_Str = VBM_Bname; // 'Exo'
+
+   var MainVerse_Search_Str_Display = MainVerse_Search_Str;
+
+   let Verse = await dbT2.Pictures.where('MainVerses').startsWithIgnoreCase(MainVerse_Search_Str).reverse().distinct().toArray(); // .distinct()
+
+     if (Verse) {
+
+        if (Verse.length) {
+
+           var text1;
+           text1 = '<b><u> ' + MainVerse_Search_Str + ' Pictures List:</u></b>';
+
+           //text1 = '<b><u>' + VBM_Bname + ' ' + VBM_Chap + ':' + 'Linked Sermon Notes List</u></b>'
+           //text1 += ' ' + '<a id="CL634" href="javascript:;" onclick="Close_Linked_S_Note();Up_to_Top();">[Close]</a>';
+
+           text1 += '<br><br>';  
+
+           for (var i = 0; i < Verse.length ; i++) {
+
+              var arg1 = Verse[i].ID;
+
+              var arg2 = Verse[i].P_Name; // Picture_Name
+
+              //var arg3 = Verse[i].Topic; // onClick="Show_Select_Note2('20200729Wed3')
+
+              //text1 += '<a href="" "onClick="\"' + arg1 + '\");return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br>';      
+
+                 var MainVerse_Search_Str_length = MainVerse_Search_Str.length;
+
+                 var Main_Verse1_str = '';
+                 var Main_Verse2_str = '';
+                 var Main_Verse3_str = '';
+
+                 var Main_Verse1_tmp = Verse[i].MainVerses[0]; 
+                 var Main_Verse2_tmp = Verse[i].MainVerses[1]; // Verse[i].MainVerses[1]
+                 var Main_Verse3_tmp = Verse[i].MainVerses[2];
+
+                 if (Main_Verse1_tmp != '') {
+
+                    if (MainVerse_Search_Str_length > Main_Verse1_tmp.length ) {
+
+                       // Do nothing
+ 
+                    }
+                    else {
+
+                       //Main_Verse1_str = Main_Verse1_tmp.substring(0, MainVerse_Search_Str.length - 1);
+                       Main_Verse1_str = Main_Verse1_tmp.substring(0, MainVerse_Search_Str.length );
+
+                    }
+
+                 }
+
+                 if (Main_Verse2_tmp != '') {
+
+                    if (MainVerse_Search_Str_length > Main_Verse2_tmp.length ) {
+
+                       // Do nothing
+ 
+                    }
+                    else {
+
+                       //Main_Verse2_str = Main_Verse2_tmp.substring(0, MainVerse_Search_Str.length - 1);
+                       Main_Verse2_str = Main_Verse2_tmp.substring(0, MainVerse_Search_Str.length );
+
+                    }
+
+                 }
+
+                 if (Main_Verse3_tmp != '') {
+
+                    if (MainVerse_Search_Str_length > Main_Verse3_tmp.length ) {
+
+                       // Do nothing
+ 
+                    }
+                    else {
+
+                       //Main_Verse2_str = Main_Verse2_tmp.substring(0, MainVerse_Search_Str.length - 1);
+                       Main_Verse3_str = Main_Verse3_tmp.substring(0, MainVerse_Search_Str.length );
+
+                    }
+
+                 }
+
+              text1 += '<b>* </b>';
+
+              if (MainVerse_Search_Str == Main_Verse1_str) {
+
+                 text1 += '<b>' + Main_Verse1_tmp + ' </b>';
+
+                 //MainVerse_Search_Str_Display = Main_Verse1_tmp;
+
+              }
+              else {
+
+                 if (Main_Verse1_tmp != '')
+                    text1 += Main_Verse1_tmp + ' ';
+
+              }
+
+              if (MainVerse_Search_Str == Main_Verse2_str) {
+
+                 text1 += '<b>' + Main_Verse2_tmp + ' </b>';
+
+                 //MainVerse_Search_Str_Display = Main_Verse2_tmp;
+
+              }
+              else {
+
+                 if (Main_Verse2_tmp != '')
+                    text1 += Main_Verse2_tmp + ' ';
+
+              }
+
+              if (MainVerse_Search_Str == Main_Verse3_str) {
+
+                 text1 += '<b>' + Main_Verse3_tmp + ' </b>';
+
+                 //MainVerse_Search_Str_Display = Main_Verse3_tmp;
+
+              }
+              else {
+
+                 if (Main_Verse3_tmp != '')
+                    text1 += Main_Verse3_tmp + ' ';
+
+              }
+
+              //text1 += '<b></b><br><a href="" onClick="Show_Select_Note2(\'' + arg1 + '\');Open_Note();return false;">' + arg1 + '</a> : ' + arg3 + '----' + arg2 + '<br><br>';      
+
+              text1 += '<b></b><br><a href="" onClick="Show_Picture2(\'' + arg1 + '\');return false;">' + arg2 + '</a><br><br>';      
+
+
+           } // End of for (var i = 0; i < Verse.length ; i++)
+
+        } else {
+          //listElem.innerHTML = '<li>No Data</li>'
+
+           var text1;
+
+
+           text1 = '<b><u> ' + MainVerse_Search_Str + ' Pictures List:</u></b>'
+
+           text1 += "<br><br>";
+
+           text1 += 'No Data';
+
+        }
+
+     }
+     else {
+
+           var text1;
+
+           text1 = '<b><u> ' + MainVerse_Search_Str + ' Pictures List:</u></b>'
+
+           text1 += "<br><br>";
+
+           text1 += 'No Data';
+
+     }
+
+
+   document.getElementById("Book_Picture_List").innerHTML = text1; // 
+
+   //document.getElementById("Linked_Sermon_Notes_List").innerHTML = text1; // 
+
+
+} // End of function List_Current_Book_Pictures()
 
 
 async function Linked_S_Note_Test() {
@@ -11058,15 +11240,95 @@ async function download_csv_1() {  // Could be used on Windows for backup
   <tr>
   <td><a href="" style="font-size:18pt" onClick=";return false;">List All</a></td> 
   <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-  <td><a href="" style="font-size:18pt" onClick=";return false;">List Current Book</a></td>
+  <td><a href="" style="font-size:18pt" onClick="List_Current_Book_Pictures();return false;">List Current Book</a></td>
   <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
   <td><a href="" style="font-size:18pt" onClick="Close_Pictures_Area();return false;">Close</a></td> 
   </tr>
   </table>
 
-  <a href="" style="font-size:18pt" onClick="Show_Picture(1);return false;">7 Seals 7 Trumpets 7 Bowls</a>
 
-  <a href="" style="font-size:18pt" onClick="Show_Picture(2);return false;">Gods's glory departs from Jerusalem</a>
+  <p style="font-size:20pt" id="Book_Picture_List"></p>
+
+  <br>
+
+  <table>
+  <tr>
+  <td>
+  <input type="button" name="B115" style="font-size:16pt;color:black" id="Add_Picture" value="Add New Picture" onclick="Add_Picture_Info_To_DB(); return false;">
+  </td>
+  <td>
+  <input type="button" name="B115" style="font-size:16pt;color:black" id="Update_Picture" value="Update Picture" onclick="Update_Picture_Info_To_DB(); return false;">
+  </td>
+  </tr>
+  </table>
+  <table>
+  <tr>
+  <td>
+  <b><p style="font-size:18pt;color:red" id="Add_Picture_Message"></p></b>
+  </td>
+  </tr>
+  </table>
+
+  <table>
+
+  <tr>
+  <td>  
+  <p style="font-size:18pt" ><b>Name:</b></p>
+  </td>
+  <td colspan="2">
+  <input type="text" style="font-size:15pt" size="30" name="PictureName" id="PictureName" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+  </td>
+  <td>  
+  <p style="font-size:18pt" ><b>File:</b></p>
+  </td>
+  <td colspan="2">
+  <input type="text" style="font-size:15pt" size="30" name="FileName" id="FileName" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+  </td>
+  </tr>
+  </table>
+
+  <table>
+  <tr>
+  <td>  
+  <p style="font-size:18pt" ><b>Height:</b></p>
+  </td>
+  <td style="text-align:left">  
+  <p style="font-size:18pt" ><b>(140%)</b></p>
+  </td>
+  <td>
+  <input type="text" style="font-size:15pt" size="8" name="PictureHeight" id="PictureHeight" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+  </td>
+  <td>  
+  <p style="font-size:18pt" ><b>Width:</b></p>
+  </td>
+  <td style="text-align:left">  
+  <p style="font-size:18pt" ><b>(100%)</b></p>
+  </td>
+  <td>
+  <input type="text" style="font-size:15pt" size="8" name="PictureWidth" id="PictureWidth" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+  </td>
+  <td>
+  <input type="button" name="B115" style="font-size:16pt;color:black" id="Apply1" value="Apply" onclick="Show_Picture_No_Save_To_DB(); return false;">
+  </td>
+  </tr>
+  </table>
+
+  <table>
+  <tr>
+  <td>  
+  <p style="font-size:18pt" ><b>Main Verses:</b></p>
+  </td>
+  <td>
+  <input type="text" style="font-size:15pt" size="12" name="MainVerse1" id="MainVerse1" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+  </td>
+  <td>
+  <input type="text" style="font-size:15pt" size="12" name="MainVerse2" id="MainVerse2" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+  </td>
+  <td>
+  <input type="text" style="font-size:15pt" size="12" name="MainVerse3" id="MainVerse3" onfocus="Mousetrap.pause()" onBlur="Mousetrap.unpause()">
+  </td>
+  </tr>
+  </table>
 
   <b><p id="Picture_Name" style="font-size:22pt"> </p></b>
   <img id="myImg" src="7Seals7Trumpets7Bowls.png" width="100%" height="0%">

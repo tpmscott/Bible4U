@@ -206,7 +206,33 @@ async function init_Bible4U_DB() {
          Congregation3: 'CNo,F_Name,L_Name,[L_Name+F_Name],H_No',
          Roll: '++Roll_No,CNo,F_Name,L_Name,C_F_Name,H_No,E_F_LName,C_F_FName',
          Congregation4: 'CNo,F_Name,L_Name,[L_Name+F_Name],H_No,F_Order,Tel,Mob',
-         SermonNote: 'Name,Speaker, *MainVerses, *KeyWords'      
+         SermonNote: 'Name,Speaker, *MainVerses, *KeyWords'     
+     });
+     dbT2.version(20).stores({      // New for V12
+         books: 'name,date',
+         ChapNote: 'name,date',
+         Congregation: 'CNo,F_Name,L_Name,[L_Name+F_Name],H_No,F_Order',
+         Attendance: 'Record',
+         Householder: '++H_Seq,H_No',
+         Congregation2: '++CNo,F_Name,L_Name,[L_Name+F_Name],H_No,F_Order',
+         Congregation3: 'CNo,F_Name,L_Name,[L_Name+F_Name],H_No',
+         Roll: '++Roll_No,CNo,F_Name,L_Name,C_F_Name,H_No,E_F_LName,C_F_FName',
+         Congregation4: 'CNo,F_Name,L_Name,[L_Name+F_Name],H_No,F_Order,Tel,Mob',
+         SermonNote: 'Name,Speaker, *MainVerses, *KeyWords',
+         Pictures: 'ID, *MainVerses'       
+     });
+     dbT2.version(21).stores({      // New for V12
+         books: 'name,date',
+         ChapNote: 'name,date',
+         Congregation: 'CNo,F_Name,L_Name,[L_Name+F_Name],H_No,F_Order',
+         Attendance: 'Record',
+         Householder: '++H_Seq,H_No',
+         Congregation2: '++CNo,F_Name,L_Name,[L_Name+F_Name],H_No,F_Order',
+         Congregation3: 'CNo,F_Name,L_Name,[L_Name+F_Name],H_No',
+         Roll: '++Roll_No,CNo,F_Name,L_Name,C_F_Name,H_No,E_F_LName,C_F_FName',
+         Congregation4: 'CNo,F_Name,L_Name,[L_Name+F_Name],H_No,F_Order,Tel,Mob',
+         SermonNote: 'Name,Speaker, *MainVerses, *KeyWords',
+         Pictures: 'ID, P_Name, *MainVerses'       
      });
 
    // End of Declare Database
@@ -1931,15 +1957,204 @@ async function Exp_from_books_Test2Db_startWith() { // New for V6
 } // End of function Exp_from_books_Test2Db_startWith()
 
 
-function Show_Picture(arg) {  // New for V12
+function Show_Picture_No_Save_To_DB() {
+
+
+   document.getElementById("Add_Picture_Message").innerHTML = '';
+
+   var P_Name_tmp = document.getElementById("PictureName").value;
+   var F_Name_tmp = document.getElementById("FileName").value;
+   var P_Height_tmp = document.getElementById("PictureHeight").value;
+   var P_Width_tmp = document.getElementById("PictureWidth").value;
+
+   var Main_Verse1_tmp = document.getElementById("MainVerse1").value;
+   var Main_Verse2_tmp = document.getElementById("MainVerse2").value;
+   var Main_Verse3_tmp = document.getElementById("MainVerse3").value;
+
+   if (P_Name_tmp!='' && F_Name_tmp!='' && P_Height_tmp!='' && P_Width_tmp!='' && Main_Verse1_tmp!='') {
+
+         document.getElementById("myImg").style.height = P_Height_tmp; // Height
+
+         document.getElementById("myImg").style.width = P_Width_tmp; // Width
+
+         document.getElementById("Picture_Name").innerHTML = P_Name_tmp; 
+
+         document.getElementById("myImg").src = F_Name_tmp;
+
+   } // End of if (P_Name_tmp!='' && F_Name_tmp!='' && P_Height_tmp!='' && P_Width_tmp!='' && Main_Verse1_tmp!='')
+
+
+} // End of function Show_Picture_No_Save_To_DB() 
+
+
+async function Show_Picture2(arg) {  // New for V12
+
+      // Start Reading from indexedDB
+
+      var ID_tmp = arg; // 'Rev01'
+
+      let Verse = await dbT2.Pictures.get(ID_tmp);
+
+      if (Verse) {  // Exist
+
+         //var P_Name_tmp = document.getElementById("PictureName").value;
+         //var F_Name_tmp = document.getElementById("FileName").value;
+         //var P_Height_tmp = document.getElementById("PictureHeight").value;
+         //var P_Width_tmp = document.getElementById("PictureWidth").value;
+
+         //var Main_Verse1_tmp = document.getElementById("MainVerse1").value;
+         //var Main_Verse2_tmp = document.getElementById("MainVerse2").value;
+         //var Main_Verse3_tmp = document.getElementById("MainVerse3").value;
+
+         var picturerName = Verse.P_Name;
+         var fileName = Verse.F_Name;
+         var pictureHeight = Verse.P_Height;
+         var pictureWidth = Verse.P_Width;
+         var mainverses = Verse.MainVerses;  // MainVerses
+
+         document.getElementById("PictureName").value = picturerName;      // P_Name
+         document.getElementById("FileName").value = fileName;             // F_Name
+         document.getElementById("PictureHeight").value = pictureHeight;   // P_Height
+         document.getElementById("PictureWidth").value = pictureWidth;   // P_Width
+
+         if (mainverses) {
+
+            document.getElementById("MainVerse1").value = mainverses[0];
+            document.getElementById("MainVerse2").value = mainverses[1];
+            document.getElementById("MainVerse3").value = mainverses[2];
+
+         }
+         else {
+
+            document.getElementById("MainVerse1").value = "";
+            document.getElementById("MainVerse2").value = "";
+            document.getElementById("MainVerse3").value = "";
+
+         }
+
+         document.getElementById("myImg").style.height = pictureHeight; // Height
+
+         document.getElementById("myImg").style.width = pictureWidth; // Width
+
+         //document.getElementById("myImg").style.height = "140%"; // for Windows
+
+         //document.getElementById("myImg").style.width = "100%"; // for Windows
+
+         document.getElementById("Picture_Name").innerHTML = picturerName; 
+
+         document.getElementById("myImg").src = fileName;
+
+      }
+      else {
+
+         var picturerName = "";
+         var fileName = "";
+         var pictureHeight = "";
+         var pictureWidth = "";
+
+         document.getElementById("PictureName").value = picturerName;      // P_Name
+         document.getElementById("FileName").value = fileName;             // F_Name
+         document.getElementById("PictureHeight").value = pictureHeight;   // P_Height
+         document.getElementById("PictureWidth").value = pictureWidth;   // P_Width
+
+         document.getElementById("MainVerse1").value = "";
+         document.getElementById("MainVerse2").value = "";
+         document.getElementById("MainVerse3").value = "";
+
+      }
+
+
+} // End of function Show_Picture2(arg)
+
+
+async function Show_Picture(arg) {  // New for V12
+
+
 
    if (arg=='1') {
 
-      document.getElementById("myImg").style.height = "140%"; // for Windows
+      // Start Reading from indexedDB
 
-      document.getElementById("Picture_Name").innerHTML = "7 Seals 7 Trumpets 7 Bowls"; 
+      var ID_tmp = 'Rev01';
 
-      document.getElementById("myImg").src = "7Seals7Trumpets7Bowls.png";
+      let Verse = await dbT2.Pictures.get(ID_tmp);
+
+      if (Verse) {  // Exist
+
+         //var P_Name_tmp = document.getElementById("PictureName").value;
+         //var F_Name_tmp = document.getElementById("FileName").value;
+         //var P_Height_tmp = document.getElementById("PictureHeight").value;
+         //var P_Width_tmp = document.getElementById("PictureWidth").value;
+
+         //var Main_Verse1_tmp = document.getElementById("MainVerse1").value;
+         //var Main_Verse2_tmp = document.getElementById("MainVerse2").value;
+         //var Main_Verse3_tmp = document.getElementById("MainVerse3").value;
+
+         var picturerName = Verse.P_Name;
+         var fileName = Verse.F_Name;
+         var pictureHeight = Verse.P_Height;
+         var pictureWidth = Verse.P_Width;
+         var mainverses = Verse.MainVerses;  // MainVerses
+
+         document.getElementById("PictureName").value = picturerName;      // P_Name
+         document.getElementById("FileName").value = fileName;             // F_Name
+         document.getElementById("PictureHeight").value = pictureHeight;   // P_Height
+         document.getElementById("PictureWidth").value = pictureWidth;   // P_Width
+
+         if (mainverses) {
+
+            document.getElementById("MainVerse1").value = mainverses[0];
+            document.getElementById("MainVerse2").value = mainverses[1];
+            document.getElementById("MainVerse3").value = mainverses[2];
+
+         }
+         else {
+
+            document.getElementById("MainVerse1").value = "";
+            document.getElementById("MainVerse2").value = "";
+            document.getElementById("MainVerse3").value = "";
+
+         }
+
+         document.getElementById("myImg").style.height = pictureHeight; // Height
+
+         document.getElementById("myImg").style.width = pictureWidth; // Width
+
+         //document.getElementById("myImg").style.height = "140%"; // for Windows
+
+         //document.getElementById("myImg").style.width = "100%"; // for Windows
+
+         document.getElementById("Picture_Name").innerHTML = picturerName; 
+
+         document.getElementById("myImg").src = fileName;
+
+      }
+      else {
+
+         var picturerName = "";
+         var fileName = "";
+         var pictureHeight = "";
+         var pictureWidth = "";
+
+         document.getElementById("PictureName").value = picturerName;      // P_Name
+         document.getElementById("FileName").value = fileName;             // F_Name
+         document.getElementById("PictureHeight").value = pictureHeight;   // P_Height
+         document.getElementById("PictureWidth").value = pictureWidth;   // P_Width
+
+         document.getElementById("MainVerse1").value = "";
+         document.getElementById("MainVerse2").value = "";
+         document.getElementById("MainVerse3").value = "";
+
+      }
+
+
+      //document.getElementById("myImg").style.height = "140%"; // for Windows
+
+      //document.getElementById("myImg").style.width = "100%"; // for Windows
+
+      //document.getElementById("Picture_Name").innerHTML = "7 Seals 7 Trumpets 7 Bowls"; 
+
+      //document.getElementById("myImg").src = "7Seals7Trumpets7Bowls.png";
 
    }
 
@@ -3393,3 +3608,234 @@ async function Download_from_SermonNote_Test2Db_Time_Between() { // New for V12
 
 
 } // End of function Download_from_SermonNote_Test2Db_Time_Between()
+
+
+
+async function Update_Picture_Info_To_DB() { // Update 
+
+   document.getElementById("Add_Picture_Message").innerHTML = '';
+
+   var P_Name_tmp = document.getElementById("PictureName").value;
+   var F_Name_tmp = document.getElementById("FileName").value;
+   var P_Height_tmp = document.getElementById("PictureHeight").value;
+   var P_Width_tmp = document.getElementById("PictureWidth").value;
+
+   var Main_Verse1_tmp = document.getElementById("MainVerse1").value;
+   var Main_Verse2_tmp = document.getElementById("MainVerse2").value;
+   var Main_Verse3_tmp = document.getElementById("MainVerse3").value;
+
+   var Book_Picture_Count = 0;
+
+   var Main_Verse1_tmp_3 = Main_Verse1_tmp.substr(0, 3);
+
+   Book_Picture_Count = await dbT2.Pictures.where('MainVerses').startsWithIgnoreCase(Main_Verse1_tmp_3).distinct().count() + 1;
+
+   if (Book_Picture_Count==1)
+      Book_Picture_Count = '01';
+   if (Book_Picture_Count==2)
+      Book_Picture_Count = '02';
+   if (Book_Picture_Count==3)
+      Book_Picture_Count = '03';
+   if (Book_Picture_Count==4)
+      Book_Picture_Count = '04';
+   if (Book_Picture_Count==5)
+      Book_Picture_Count = '05';
+   if (Book_Picture_Count==6)
+      Book_Picture_Count = '06';
+   if (Book_Picture_Count==7)
+      Book_Picture_Count = '07';
+   if (Book_Picture_Count==8)
+      Book_Picture_Count = '08';
+   if (Book_Picture_Count==9)
+      Book_Picture_Count = '09';
+
+   var ID_tmp = Main_Verse1_tmp_3 + Book_Picture_Count;
+
+
+   var Verse_Count = 0;
+
+   var Picture_Exist = 'N';
+
+   var ID_Update_Tmp = '';
+
+   if (P_Name_tmp!='' && F_Name_tmp!='' && P_Height_tmp!='' && P_Width_tmp!='' && Main_Verse1_tmp!='') {
+
+      let Verse = await dbT2.Pictures.where('P_Name').startsWithIgnoreCase(P_Name_tmp).toArray(); // check P_Name_tmp
+
+      //let Verse = await dbT2.Pictures.where('P_Name').equals(P_Name_tmp).toArray(); // check P_Name_tmp
+
+      Verse_Count = Verse.length;
+
+      if (Verse) {  
+
+        for (i = 0; i < Verse.length; i++) {
+
+           let Name_TMP = Verse[i].P_Name;   
+
+           if ( Name_TMP == P_Name_tmp ) { // Exist then Update
+
+              Picture_Exist = 'Y';
+
+              ID_Update_Tmp = Verse[i].ID;
+
+              //dbT2.SermonNote.update(Name, { Speaker: Speaker_tmp, Topic: Topic_tmp, Content: Content_tmp, MainVerses: [Main_Verse1_tmp, Main_Verse2_tmp, Main_Verse3_tmp, Main_Verse4_tmp, Main_Verse5_tmp], KeyWords: [Key_Word1_tmp, Key_Word2_tmp, Key_Word3_tmp, Key_Word4_tmp, Key_Word5_tmp] } );
+
+              //dbT2.Pictures.update(ID, { P_Name: Speaker_tmp, F_Name: Topic_tmp, P_Height: Content_tmp, P_Width: Content_tmp , MainVerses: [Main_Verse1_tmp, Main_Verse2_tmp, Main_Verse3_tmp] } );
+
+              //document.getElementById("Add_Picture_Message").innerHTML = '"' + Name_TMP + '"' + ' exist already';
+
+           }
+                
+        } // End of for (i = 0; i < Verse.length; i++)
+
+      }
+
+
+      if (Picture_Exist == 'Y') { // Exist then Update
+
+         var ID = ID_Update_Tmp;
+
+         dbT2.Pictures.update(ID, { P_Name: P_Name_tmp, F_Name: F_Name_tmp, P_Height: P_Height_tmp, P_Width: P_Width_tmp , MainVerses: [Main_Verse1_tmp, Main_Verse2_tmp, Main_Verse3_tmp] } );
+
+         document.getElementById("Add_Picture_Message").innerHTML = '"' + P_Name_tmp + '"' + ' has been updated';
+
+      } // End of if (Picture_Exist == 'Y')
+      
+      if (Picture_Exist == 'N') { // Not Exist then Click "Add New Picture"
+
+
+         document.getElementById("Add_Picture_Message").innerHTML = 'Please Click [Add New Picture]';
+
+
+      } // End of if (Picture_Exist == 'N')
+   }
+   else {
+
+      document.getElementById("Add_Picture_Message").innerHTML = "Name, File, Height, Width and first Main Verses can't be Null";
+
+   } // End of if (P_Name_tmp!='' && F_Name_tmp!='' && P_Height_tmp!='' && P_Width_tmp!='' && Main_Verse1_tmp!='') 
+
+
+
+
+} // End of function Update_Picture_Info_To_DB()
+
+
+async function Add_Picture_Info_To_DB() { // Add 
+
+   document.getElementById("Add_Picture_Message").innerHTML = '';
+
+   var P_Name_tmp = document.getElementById("PictureName").value;
+   var F_Name_tmp = document.getElementById("FileName").value;
+   var P_Height_tmp = document.getElementById("PictureHeight").value;
+   var P_Width_tmp = document.getElementById("PictureWidth").value;
+
+   var Main_Verse1_tmp = document.getElementById("MainVerse1").value;
+   var Main_Verse2_tmp = document.getElementById("MainVerse2").value;
+   var Main_Verse3_tmp = document.getElementById("MainVerse3").value;
+
+   var Book_Picture_Count = 0;
+
+   //Book_ChapNote_Count = await dbT2.ChapNote.where('name').startsWithIgnoreCase(Book_tmp).count();
+
+   //let Verse = await dbT2.SermonNote.where('MainVerses').startsWithIgnoreCase(MainVerse_Search_Str).reverse().distinct().toArray(); // .distinct()
+
+   //var str = "Hello world!";
+   //var res = str.substr(1, 4);
+
+   var Main_Verse1_tmp_3 = Main_Verse1_tmp.substr(0, 3);
+
+   Book_Picture_Count = await dbT2.Pictures.where('MainVerses').startsWithIgnoreCase(Main_Verse1_tmp_3).distinct().count() + 1;
+
+   if (Book_Picture_Count==1)
+      Book_Picture_Count = '01';
+   if (Book_Picture_Count==2)
+      Book_Picture_Count = '02';
+   if (Book_Picture_Count==3)
+      Book_Picture_Count = '03';
+   if (Book_Picture_Count==4)
+      Book_Picture_Count = '04';
+   if (Book_Picture_Count==5)
+      Book_Picture_Count = '05';
+   if (Book_Picture_Count==6)
+      Book_Picture_Count = '06';
+   if (Book_Picture_Count==7)
+      Book_Picture_Count = '07';
+   if (Book_Picture_Count==8)
+      Book_Picture_Count = '08';
+   if (Book_Picture_Count==9)
+      Book_Picture_Count = '09';
+
+   var ID_tmp = Main_Verse1_tmp_3 + Book_Picture_Count;
+
+   //var ID_tmp = 'Eze05'; // first 3 letter of "MainVerse1" + (count_no + 1) 
+
+   //let Verse = await dbT2.Pictures.get(ID);
+
+   //let Verse = await dbT2.ChapNote.where('name').equals(VH_Name_tmp).toArray(); // 1_31  // startsWithIgnoreCase
+
+   var Verse_Count = 0;
+
+   var Picture_Exist = 'N';
+
+   if (P_Name_tmp!='' && F_Name_tmp!='' && P_Height_tmp!='' && P_Width_tmp!='' && Main_Verse1_tmp!='') {
+
+      let Verse = await dbT2.Pictures.where('P_Name').startsWithIgnoreCase(P_Name_tmp).toArray(); // check P_Name_tmp
+
+      Verse_Count = Verse.length;
+
+      if (Verse) {  // Exist
+
+        for (i = 0; i < Verse.length; i++) {
+
+           let Name_TMP = Verse[i].P_Name;   
+
+           if ( Name_TMP == P_Name_tmp ) {
+
+              Picture_Exist = 'Y';
+              document.getElementById("Add_Picture_Message").innerHTML = '"' + Name_TMP + '"' + ' exist already';
+
+           }
+                
+        } // End of for (i = 0; i < Verse.length; i++)
+
+      }
+
+      
+      if (Picture_Exist == 'N') { 
+         // Add new
+
+         let ID = ID_tmp;
+         let P_Name = P_Name_tmp; 
+         let F_Name = F_Name_tmp; 
+         let P_Height = P_Height_tmp;
+         let P_Width = P_Width_tmp;
+
+         try {
+
+           //dbT2.SermonNote.add({Name,Speaker,Topic,Content,Verses,MainVerses: [M1_tmp, M2_tmp, M3_tmp, M4_tmp, M5_tmp],KeyWords: [K1_tmp, K2_tmp, K3_tmp, K4_tmp, K5_tmp] });
+
+           dbT2.Pictures.add({ID,P_Name,F_Name,P_Height,P_Width, MainVerses: [Main_Verse1_tmp, Main_Verse2_tmp, Main_Verse3_tmp] });
+
+           document.getElementById("Add_Picture_Message").innerHTML = '"' + P_Name + '"' + ' has been added ';
+
+         } catch(err) {
+           if (err.name == 'ConstraintError') {
+             alert("Such Verse exists in indexedDB already");
+           } else {
+             throw err;
+           }
+         }
+
+         // End of Add new      
+
+      } // End of if (Verse)
+   }
+   else {
+
+      document.getElementById("Add_Picture_Message").innerHTML = "Name, File, Height, Width and first Main Verses can't be Null";
+
+   } // End of if (P_Name_tmp!='' && F_Name_tmp!='' && P_Height_tmp!='' && P_Width_tmp!='' && Main_Verse1_tmp!='') 
+
+
+} // End of function Add_Picture_Info_To_DB()
