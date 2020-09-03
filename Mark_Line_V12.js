@@ -2200,12 +2200,12 @@ function Open_Add_or_Update_Pictures_Area() {  // New for V12
 
    if (OS_tmp == 'Windows') {
 
-      document.getElementById("Add_or_Update_Pictures_Area").style.height = "50%";
+      document.getElementById("Add_or_Update_Pictures_Area").style.height = "40%";
 
    }
    else {
 
-      document.getElementById("Add_or_Update_Pictures_Area").style.height = "25%";
+      document.getElementById("Add_or_Update_Pictures_Area").style.height = "35%";
 
    } 
 
