@@ -7407,6 +7407,157 @@ async function Show_Notes_List2() { // show Name and Topic
 
 }  // End of function Show_Notes_List2()
 
+
+async function List_All_Pictures() {
+
+   var text1;
+   text1 = '<b><u>All Pictures List:</u></b>';
+
+   text1 += '<br><br>'; 
+
+   for (var i = 0; i < BookAbbr4.length ; i++) {
+
+      var VBM_Bname = BookAbbr4[i];  // 'Exo'    
+
+      var MainVerse_Search_Str = VBM_Bname; // 'Exo'
+
+      var MainVerse_Search_Str_Display = MainVerse_Search_Str;
+
+      let Verse = await dbT2.Pictures.where('ID').startsWithIgnoreCase(VBM_Bname).toArray(); // .distinct() reverse().distinct()
+
+      if (Verse) {
+
+        if (Verse.length) {
+
+           //text1 += '<br><br>';  
+
+           for (var j = 0; j < Verse.length ; j++) {
+
+              var arg1 = Verse[j].ID;
+
+              var arg2 = Verse[j].P_Name; // Picture_Name
+
+                 var MainVerse_Search_Str_length = MainVerse_Search_Str.length;
+
+                 var Main_Verse1_str = '';
+                 var Main_Verse2_str = '';
+                 var Main_Verse3_str = '';
+
+                 var Main_Verse1_tmp = Verse[j].MainVerses[0]; 
+                 var Main_Verse2_tmp = Verse[j].MainVerses[1]; // Verse[i].MainVerses[1]
+                 var Main_Verse3_tmp = Verse[j].MainVerses[2];
+
+                 if (Main_Verse1_tmp != '') {
+
+                    if (MainVerse_Search_Str_length > Main_Verse1_tmp.length ) {
+
+                       // Do nothing
+ 
+                    }
+                    else {
+
+                       //Main_Verse1_str = Main_Verse1_tmp.substring(0, MainVerse_Search_Str.length - 1);
+                       Main_Verse1_str = Main_Verse1_tmp.substring(0, MainVerse_Search_Str.length );
+
+                    }
+
+                 }
+
+                 if (Main_Verse2_tmp != '') {
+
+                    if (MainVerse_Search_Str_length > Main_Verse2_tmp.length ) {
+
+                       // Do nothing
+ 
+                    }
+                    else {
+
+                       //Main_Verse2_str = Main_Verse2_tmp.substring(0, MainVerse_Search_Str.length - 1);
+                       Main_Verse2_str = Main_Verse2_tmp.substring(0, MainVerse_Search_Str.length );
+
+                    }
+
+                 }
+
+                 if (Main_Verse3_tmp != '') {
+
+                    if (MainVerse_Search_Str_length > Main_Verse3_tmp.length ) {
+
+                       // Do nothing
+ 
+                    }
+                    else {
+
+                       //Main_Verse2_str = Main_Verse2_tmp.substring(0, MainVerse_Search_Str.length - 1);
+                       Main_Verse3_str = Main_Verse3_tmp.substring(0, MainVerse_Search_Str.length );
+
+                    }
+
+                 }
+
+              text1 += '<b>* </b>';
+
+              if (MainVerse_Search_Str == Main_Verse1_str) {
+
+                 text1 += '<b>' + Main_Verse1_tmp + ' </b>';
+
+                 //MainVerse_Search_Str_Display = Main_Verse1_tmp;
+
+              }
+              else {
+
+                 if (Main_Verse1_tmp != '')
+                    text1 += Main_Verse1_tmp + ' ';
+
+              }
+
+              if (MainVerse_Search_Str == Main_Verse2_str) {
+
+                 text1 += '<b>' + Main_Verse2_tmp + ' </b>';
+
+                 //MainVerse_Search_Str_Display = Main_Verse2_tmp;
+
+              }
+              else {
+
+                 if (Main_Verse2_tmp != '')
+                    text1 += Main_Verse2_tmp + ' ';
+
+              }
+
+              if (MainVerse_Search_Str == Main_Verse3_str) {
+
+                 text1 += '<b>' + Main_Verse3_tmp + ' </b>';
+
+                 //MainVerse_Search_Str_Display = Main_Verse3_tmp;
+
+              }
+              else {
+
+                 if (Main_Verse3_tmp != '')
+                    text1 += Main_Verse3_tmp + ' ';
+
+              }
+
+              text1 += '<b></b><br><a href="" onClick="Show_Picture2(\'' + arg1 + '\');return false;">' + arg2 + '</a><br><br>';      
+
+
+           } // End of for (var j = 0; j < Verse.length ; j++)
+
+        } // End of if (Verse.length) 
+
+      } // End of if (Verse)
+
+
+   } // End of for (var i = 0; i < BookAbbr4.length ; i++)
+
+
+   document.getElementById("Book_Picture_List").innerHTML = text1; // 
+
+
+} // End of function List_All_Pictures()
+
+
 async function List_Current_Book_Pictures() {
 
    var tmp_B = nowbook;
@@ -7421,7 +7572,7 @@ async function List_Current_Book_Pictures() {
 
    var MainVerse_Search_Str_Display = MainVerse_Search_Str;
 
-   let Verse = await dbT2.Pictures.where('MainVerses').startsWithIgnoreCase(MainVerse_Search_Str).reverse().distinct().toArray(); // .distinct()
+   let Verse = await dbT2.Pictures.where('MainVerses').startsWithIgnoreCase(MainVerse_Search_Str).distinct().toArray(); // .reverse().distinct().
 
      if (Verse) {
 
@@ -11238,11 +11389,13 @@ async function download_csv_1() {  // Could be used on Windows for backup
 
   <table>
   <tr>
-  <td><a href="" style="font-size:18pt" onClick=";return false;">List All</a></td> 
+  <td><a href="" style="font-size:18pt" onClick="List_All_Pictures();return false;">List All</a></td> 
   <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
   <td><a href="" style="font-size:18pt" onClick="List_Current_Book_Pictures();return false;">List Current Book</a></td>
   <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
   <td><a href="" style="font-size:18pt" onClick="Close_Pictures_Area();return false;">Close</a></td> 
+  <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+  <td><a href="" style="font-size:18pt" onClick="Open_Add_or_Update_Pictures_Area();return false;">Add or Update</a></td>
   </tr>
   </table>
 
@@ -11251,6 +11404,9 @@ async function download_csv_1() {  // Could be used on Windows for backup
 
   <br>
 
+
+<div id="Add_or_Update_Pictures_Area" style="width:100%;height:0%;overflow:auto;" class="center">
+
   <table>
   <tr>
   <td>
@@ -11258,6 +11414,9 @@ async function download_csv_1() {  // Could be used on Windows for backup
   </td>
   <td>
   <input type="button" name="B115" style="font-size:16pt;color:black" id="Update_Picture" value="Update Picture" onclick="Update_Picture_Info_To_DB(); return false;">
+  </td>
+  <td>
+  <input type="button" name="B115" style="font-size:16pt;color:black" id="Clear_Picture" value="Clear" onclick="Clear_Picture_Info(); return false;">
   </td>
   </tr>
   </table>
@@ -11310,6 +11469,9 @@ async function download_csv_1() {  // Could be used on Windows for backup
   <td>
   <input type="button" name="B115" style="font-size:16pt;color:black" id="Apply1" value="Apply" onclick="Show_Picture_No_Save_To_DB(); return false;">
   </td>
+  <td>
+  <a href="" style="font-size:18pt" onClick="Close_Add_or_Update_Pictures_Area();return false;">Close Add/Update</a>
+  </td>
   </tr>
   </table>
 
@@ -11329,6 +11491,8 @@ async function download_csv_1() {  // Could be used on Windows for backup
   </td>
   </tr>
   </table>
+
+</div>
 
   <b><p id="Picture_Name" style="font-size:22pt"> </p></b>
   <img id="myImg" src="7Seals7Trumpets7Bowls.png" width="100%" height="0%">

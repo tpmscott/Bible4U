@@ -2194,6 +2194,32 @@ async function Show_Picture(arg) {  // New for V12
 } // End of function Show_Picture()
 
 
+function Open_Add_or_Update_Pictures_Area() {  // New for V12
+
+   var OS_tmp = getOS();
+
+   if (OS_tmp == 'Windows') {
+
+      document.getElementById("Add_or_Update_Pictures_Area").style.height = "50%";
+
+   }
+   else {
+
+      document.getElementById("Add_or_Update_Pictures_Area").style.height = "25%";
+
+   } 
+
+} // End of Open_Add_or_Update_Pictures_Area()
+
+
+function Close_Add_or_Update_Pictures_Area() {
+
+   document.getElementById("Add_or_Update_Pictures_Area").style.height = "0%";
+
+} // End of Close_Add_or_Update_Pictures_Area()
+
+
+
 function Open_Pictures_Area() {  // New for V12
 
    var OS_tmp = getOS();
@@ -3608,6 +3634,20 @@ async function Download_from_SermonNote_Test2Db_Time_Between() { // New for V12
 
 
 } // End of function Download_from_SermonNote_Test2Db_Time_Between()
+
+
+function Clear_Picture_Info() { // Clear
+
+   document.getElementById("PictureName").value = '';
+   document.getElementById("FileName").value = '';
+   document.getElementById("PictureHeight").value = '';
+   document.getElementById("PictureWidth").value = '';
+
+   document.getElementById("MainVerse1").value = '';
+   document.getElementById("MainVerse2").value = '';
+   document.getElementById("MainVerse3").value = ''; 
+
+} // End of function Clear_Picture_Info()
 
 
 
