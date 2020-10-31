@@ -4608,13 +4608,16 @@ function readchapter(bnum, cnum ,snum , to_snum) {
             clear_area_LC();
             clear_area_RC();
 
+
+            check_n_set_mark_line(bnum,cnum,j,Lnum);  // add on 2020.10.31
+
             document.getElementById(Lnum++).innerHTML = oneline_1_num;
             document.getElementById(Lvers++).innerHTML = oneline_1_vers;
 
             //document.getElementById(Rnum++).innerHTML = oneline_2_num; // j
 
 
-//  '<a href="" id="' + vers_id + '" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a> <br>';
+            //  '<a href="" id="' + vers_id + '" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a> <br>';
 
             // add on 2020.01.28
             oneline_2_num = '<a href="" " onClick="Add_or_Remove_mark_line(' + bnum + ',' + cnum + ',' + j + ');return false;">' + j + '</a>';
