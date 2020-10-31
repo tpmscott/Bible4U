@@ -6448,6 +6448,9 @@ function readchapter2(bnum, cnum ,snum) {  // for next verse or prev verse
             clear_area_LC();
             clear_area_RC();
 
+
+            check_n_set_mark_line(bnum,cnum,j,Lnum);  // add on 2020.10.31
+
             document.getElementById(Lnum++).innerHTML = oneline_1_num;
             document.getElementById(Lvers++).innerHTML = oneline_1_vers;
 
