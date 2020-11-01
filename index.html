@@ -1157,7 +1157,36 @@ function ChineseEng_Mode(){
 
    }
 
-}
+}  // End of function ChineseEng_Mode()
+
+
+function ChineseEng_Mode3(){
+
+   // Add if condition on 2019.03.11
+   if(Mode_Input_Book==0 && Mode_Input_Vers==0 && Mode_Input_ToVers==0){ 
+
+      document.getElementById("container4").style.height = "0%";
+      document.getElementById("container3").style.height = "0%";
+      document.getElementById("container1").style.height = "92%";
+      document.getElementById("container2").style.height = "92%";
+
+      document.getElementById("container1").style.width = "50%";
+      document.getElementById("container2").style.width = "50%";
+
+   }
+   else if(Mode_Show_His_BM==1){ 
+
+      document.getElementById("container4").style.height = "0%";
+      document.getElementById("container3").style.height = "0%";
+      document.getElementById("container1").style.height = "92%";
+      document.getElementById("container2").style.height = "92%";
+
+      document.getElementById("container1").style.width = "50%";
+      document.getElementById("container2").style.width = "50%";
+
+   }
+
+}  // End of function ChineseEng_Mode3()
 
 
 function Eng_Mode(){
@@ -1186,7 +1215,36 @@ function Eng_Mode(){
 
    }
 
-}
+}  // End of function Eng_Mode()
+
+
+function Eng_Mode3(){
+
+   // Add if condition on 2019.03.11
+   if(Mode_Input_Book==0 && Mode_Input_Vers==0 && Mode_Input_ToVers==0){ 
+
+      document.getElementById("container4").style.height = "0%";
+      document.getElementById("container3").style.height = "0%";
+      document.getElementById("container1").style.height = "92%";
+      document.getElementById("container2").style.height = "92%";
+
+      document.getElementById("container1").style.width = "0%";
+      document.getElementById("container2").style.width = "100%";
+
+   }
+   else if(Mode_Show_His_BM==1){ 
+
+      document.getElementById("container4").style.height = "0%";
+      document.getElementById("container3").style.height = "0%";
+      document.getElementById("container1").style.height = "92%";
+      document.getElementById("container2").style.height = "92%";
+
+      document.getElementById("container1").style.width = "50%";
+      document.getElementById("container2").style.width = "50%";
+
+   }
+
+}  // End of function Eng_Mode3()
 
 
 function Chinese_Mode3(){
@@ -5616,9 +5674,23 @@ function Set_15_Verses() {
 
 var One_Chap_Mode = 0; // 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
 
+var Language_Mode = 0; // 0:中/英, 1:Eng, 2:中 
+
 function Set_One_Chap_Mode() {  // only for click on 'Chap Number' Not for 全章
 
    One_Chap_Mode = 1; // 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
+
+   var ct_1 = document.getElementById("container1").style.width;
+   var ct_2 = document.getElementById("container2").style.width;
+
+   if( ct_1 == "0%" && ct_2 == "100%" ) // Eng_Mode
+      Language_Mode = 1;
+
+   if( ct_1 == "50%" && ct_2 == "50%" ) // ChineseEng_Mode
+      Language_Mode = 0;
+
+   if( ct_1 == "100%" && ct_2 == "0%" ) // Chinese_Mode2
+      Language_Mode = 2;
 
 } 
 
