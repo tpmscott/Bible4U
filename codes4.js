@@ -4623,6 +4623,7 @@ function readchapter(bnum, cnum ,snum , to_snum) {
                
                var tmp6666 = '<a href="" ontouchstart="Set_NKJV();Set_15_Verses();readchapter(' + bnum + ',' + cnum + ',' + tmp_snum + ',' + tmp_snum + ');return false;">' + oneline_1_num + '</a>';
 
+               document.getElementById(Lnum++).innerHTML = tmp6666;
 
             }
             else {
