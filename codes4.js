@@ -3906,7 +3906,7 @@ function readchapter(bnum, cnum ,snum , to_snum) {
 
 
   //For Setting Display Verses Number
-  if(document.DVN.DVNumber[0].checked) {
+  if(document.DVN.DVNumber[0].checked) {   // 顯示 1節
 
      disp_secs_a = "1";
 
@@ -3925,7 +3925,7 @@ function readchapter(bnum, cnum ,snum , to_snum) {
 
   }
 
-  if(document.DVN.DVNumber[1].checked) {
+  if(document.DVN.DVNumber[1].checked) {   // 顯示 15節
 
      disp_secs_a = "15"; // 原為 7
 
@@ -3948,7 +3948,7 @@ function readchapter(bnum, cnum ,snum , to_snum) {
 
   }
 
-  if(document.DVN.DVNumber[2].checked) {
+  if(document.DVN.DVNumber[2].checked) {   // 顯示 全章
 
      disp_secs_a = "0";
 
@@ -4611,7 +4611,31 @@ function readchapter(bnum, cnum ,snum , to_snum) {
 
             check_n_set_mark_line_2(bnum,cnum,j,Lvers);  // add on 2020.10.31
 
-            document.getElementById(Lnum++).innerHTML = oneline_1_num;
+
+            if(One_Chap_Mode == 1) { // 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
+
+
+               //var tmp111 = '<a href="" ontouchstart="Set_NKJV();Set_One_Chap();Chinese_Mode3();Pre_Set_Mode();Set_Enter();keyFunction2(\'enter\');efocus();return false;">' + 'Chap ' + c_num + '</a>';
+
+               //function readchapter(bnum, cnum ,snum , to_snum) {
+
+               var tmp_snum = j + 1;
+               
+               var tmp6666 = '<a href="" ontouchstart="Set_NKJV();Set_15_Verses();readchapter(' + bnum + ',' + cnum + ',' + tmp_snum + ',' + tmp_snum + ');return false;">' + oneline_1_num + '</a>';
+
+
+            }
+            else {
+
+               document.getElementById(Lnum++).innerHTML = oneline_1_num;
+
+            }
+ 
+            //document.getElementById(Lnum++).innerHTML = oneline_1_num;
+
+
+
+
             document.getElementById(Lvers++).innerHTML = oneline_1_vers;
 
             //document.getElementById(Rnum++).innerHTML = oneline_2_num; // j
@@ -4764,6 +4788,8 @@ function readchapter(bnum, cnum ,snum , to_snum) {
          //      docObj2.writeln(oneline_1_4);
          //}
       }      // End of for loop
+
+      One_Chap_Mode = 0; // 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
 
 //      docObj.writeln(oneline_1);
 

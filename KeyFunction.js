@@ -1190,7 +1190,7 @@ function keyFunction2(arg1)
 
       readbookchap(b_int,c_int,1);
 
-      var tmp111 = '<a href="" ontouchstart="Set_NKJV();Set_One_Chap();Chinese_Mode3();Pre_Set_Mode();Set_Enter();keyFunction2(\'enter\');efocus();return false;">' + 'Chap ' + c_num + '</a>';
+      var tmp111 = '<a href="" ontouchstart="Set_One_Chap_Mode();Set_NKJV();Set_One_Chap();Chinese_Mode3();Pre_Set_Mode();Set_Enter();keyFunction2(\'enter\');efocus();return false;">' + 'Chap ' + c_num + '</a>';
 
       document.getElementById("Chap_Verse_Disp").innerHTML = tmp111;
 
