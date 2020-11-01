@@ -1189,6 +1189,36 @@ function Eng_Mode(){
 }
 
 
+function Chinese_Mode3(){
+
+   // Add if condition on 2019.03.11
+   if(Mode_Input_Book==0 && Mode_Input_Vers==0 && Mode_Input_ToVers==0){ 
+
+      document.getElementById("container4").style.height = "0%";
+      document.getElementById("container3").style.height = "0%";
+      document.getElementById("container1").style.height = "92%";
+      document.getElementById("container2").style.height = "92%";
+
+      document.getElementById("container1").style.width = "100%";
+      document.getElementById("container2").style.width = "0%";
+
+   }
+   else if(Mode_Show_His_BM==1){
+
+      document.getElementById("container4").style.height = "0%";
+      document.getElementById("container3").style.height = "0%";
+      document.getElementById("container1").style.height = "92%";
+      document.getElementById("container2").style.height = "92%";
+
+      document.getElementById("container1").style.width = "50%";
+      document.getElementById("container2").style.width = "50%";
+
+   }
+
+}
+
+
+
 function Chinese_Mode2(){
 
    // Add if condition on 2019.03.11
