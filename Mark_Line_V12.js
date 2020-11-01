@@ -626,7 +626,7 @@ async function check_n_set_mark_line_2(arg1,arg2,arg3,arg4) {
    //if(arg1==1 && arg2==20 && arg3==15){  // Exo 21:15 , test
    if(Mark_Line_Value=='1'){  // Exo 21:15 , test
 
-      document.getElementById(arg4).style.color = "blue";
+      document.getElementById(arg4).style.color = "red";  // blue
 
    } 
    else {
