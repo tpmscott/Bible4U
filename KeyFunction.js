@@ -1190,7 +1190,11 @@ function keyFunction2(arg1)
 
       readbookchap(b_int,c_int,1);
 
-      document.getElementById("Chap_Verse_Disp").innerHTML = "Chap " + c_num;
+      var tmp111 = '<a href="" onClick="Set_NKJV();Set_One_Chap();Chinese_Mode2();Pre_Set_Mode();Set_Enter();keyFunction2(\'enter\');efocus();return false;">' + 'Chap ' + c_num + '</a>';
+
+      document.getElementById("Chap_Verse_Disp").innerHTML = tmp111;
+
+      //document.getElementById("Chap_Verse_Disp").innerHTML = "Chap " + c_num;
 
 
       //head1();readbookchap(b_int,c_int,1);Send_to_win34(15,b_int,c_int,1,Send_word1,Send_word4,Send_word9);  // for test
