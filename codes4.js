@@ -4846,10 +4846,12 @@ function readchapter(bnum, cnum ,snum , to_snum) {
   c_int = cnum;
   v_int = snum;
 
-  //if(One_Chap_Mode == 1) { // One_Chap_Mode = 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
-                           // Language_Mode = 0; // 0:中/英, 1:Eng, 2:中 
-
-     if(Language_Mode == 1) { // Eng_Mode
+     if(One_Chap_Mode == 1) { // One_Chap_Mode = 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
+                              // Language_Mode = 0; // 0:中/英, 1:Eng, 2:中 
+        // Do Nothing
+     
+     }
+     else if(Language_Mode == 1) { // Eng_Mode
 
         Eng_Mode3();
 
@@ -4867,8 +4869,6 @@ function readchapter(bnum, cnum ,snum , to_snum) {
 
      }
 
-
-  //}
 
   One_Chap_Mode = 0; // 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
 
