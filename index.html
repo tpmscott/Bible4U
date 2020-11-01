@@ -1157,6 +1157,8 @@ function ChineseEng_Mode(){
 
    }
 
+   Language_Mode = 0;  // ChineseEng_Mode
+
 }  // End of function ChineseEng_Mode()
 
 
@@ -1201,6 +1203,8 @@ function Eng_Mode(){
 
       document.getElementById("container1").style.width = "0%";
       document.getElementById("container2").style.width = "100%";
+
+      Language_Mode = 1;  // Eng_Mode
 
    }
    else if(Mode_Show_His_BM==1){ 
@@ -1289,6 +1293,8 @@ function Chinese_Mode2(){
 
       document.getElementById("container1").style.width = "100%";
       document.getElementById("container2").style.width = "0%";
+
+      Language_Mode = 2;  // Chinese_Mode2
 
    }
    else if(Mode_Show_His_BM==1){

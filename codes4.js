@@ -4621,7 +4621,7 @@ function readchapter(bnum, cnum ,snum , to_snum) {
 
                var tmp_snum = j;  // j + 1
                
-               var tmp6666 = '<a href="" ontouchstart="Set_NKJV();Set_15_Verses();readchapter(' + bnum + ',' + cnum + ',' + tmp_snum + ',' + tmp_snum + ');Set_Enter();keyFunction2(\'enter\');efocus();return false;">' + oneline_1_num + '</a>';
+               var tmp6666 = '<a href="" ontouchstart="Set_NKJV();Set_15_Verses();readchapter7(' + bnum + ',' + cnum + ',' + tmp_snum + ',' + tmp_snum + ');Set_Enter();keyFunction2(\'enter\');efocus();return false;">' + oneline_1_num + '</a>';
 
                document.getElementById(Lnum++).innerHTML = tmp6666;
 
@@ -4846,6 +4846,936 @@ function readchapter(bnum, cnum ,snum , to_snum) {
   c_int = cnum;
   v_int = snum;
 
+
+
+  One_Chap_Mode = 0; // 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
+
+} // End of function readchapter()
+
+
+
+
+function readchapter7(bnum, cnum ,snum , to_snum) {
+
+
+   var Total_Line_L = "";  // mark temporary
+   var Total_Line_R = "";  // mark temporary 
+
+  sec_size = "24"; // 24
+
+  bcs_size = "24"; // 24
+
+
+//  bnum : 經卷
+//  cnum : 章
+//  snum : 節
+ 
+  if(snum < 1)
+    snum = 1;
+  if((bnum - 0 < 0) || (bnum - 0 >= 66))
+    bnum = 0;
+  if((bnum - 0 <= 0) && (cnum - 0 < 0))
+    cnum = 0;
+  if((bnum - 0 >= 65) && (cnum - 0 >=22))
+    cnum = 21;
+  if(cnum - 0 < 0) {
+      bnum--;
+      cnum = book_chapters[bnum+1] - book_chapters[bnum]-1;
+  }
+  if(cnum - 0 >= book_chapters[bnum+1] - book_chapters[bnum]) {
+      bnum++;
+      cnum = 0;
+  }
+
+
+  //For Setting Display Verses Number
+  if(document.DVN.DVNumber[0].checked) {   // 顯示 1節
+
+     disp_secs_a = "1";
+
+     if(Mode_7Vers == 1 || Mode_1Chap ==1) {
+
+        clear_area_L();
+        clear_area_R();
+        Mode_7Vers = 0;
+        Mode_1Ver = 1;
+        Mode_1Chap = 0;
+
+     }
+
+     //document.getElementById("conten1t1").scrollTop = 0;
+     //document.getElementById("conten1t2").scrollTop = 0;
+
+  }
+
+  if(document.DVN.DVNumber[1].checked) {   // 顯示 15節
+
+     disp_secs_a = "15"; // 原為 7
+
+     if(Mode_1Chap ==1) {
+
+        clear_area_L();
+        clear_area_R();
+
+     }
+     else {
+
+        clear_area_L_for_7();
+        clear_area_R_for_7();
+
+     }
+
+     Mode_7Vers = 1;
+     Mode_1Ver = 0;
+     Mode_1Chap = 0;
+
+  }
+
+  if(document.DVN.DVNumber[2].checked) {   // 顯示 全章
+
+     disp_secs_a = "0";
+
+     clear_area_L();
+     clear_area_R();
+
+     Mode_7Vers = 0;
+     Mode_1Ver = 0;
+     Mode_1Chap = 1;
+
+  }
+
+
+  if(Mode_Study==0 && Mode_Class==1) {  // Class Mode
+
+     disp_secs_a = "15";
+
+  }
+
+
+  var disp_secs = eval(disp_secs_a);
+  var line1 = chapter_lines[book_chapters[bnum]+cnum];  
+  var line2 = chapter_lines[book_chapters[bnum]+cnum+1];
+  var line3 = line1+snum-1;
+  var line4 = eval(line3 + disp_secs); // +1 表一次顯示1節，+2 表一次顯示2節  
+
+      if(disp_secs==0){
+        line3 = line1;
+        line4 = line2;}
+   
+      if(line3>=31101){
+        line3=31101;
+        line4=31102;
+        snum=21;
+      }
+      if((line3==31087)&&(disp_secs>14)){   // for disp_secs = 15
+        line4=31102;
+      }
+      if((line3==31088)&&(disp_secs>13)){   
+        line4=31102;
+      }
+      if((line3==31089)&&(disp_secs>12)){   
+        line4=31102;
+      }
+      if((line3==31090)&&(disp_secs>11)){   
+        line4=31102;
+      }
+      if((line3==31091)&&(disp_secs>10)){   
+        line4=31102;
+      }
+      if((line3==31092)&&(disp_secs>9)){   
+        line4=31102;
+      }
+      if((line3==31093)&&(disp_secs>8)){   
+        line4=31102;
+      }
+      if((line3==31094)&&(disp_secs>7)){   
+        line4=31102;
+      }
+      if((line3==31095)&&(disp_secs>6)){    // for disp_secs = 7   
+        line4=31102;
+      }
+      if((line3==31096)&&(disp_secs>5)){
+        line4=31102;
+      }
+      if((line3==31097)&&(disp_secs>4)){
+        line4=31102;
+      }
+      if((line3==31098)&&(disp_secs>3)){
+        line4=31102;
+      }
+      if((line3==31099)&&(disp_secs>2)){
+        line4=31102;
+      }
+      if((line3==31100)&&(disp_secs>1)){
+        line4=31102;
+      }
+
+
+//    var bname = profiles[line3].substring(0, profiles[line3].indexOf("^"));
+
+      // 和合本
+      var bname = profiles[line3].substring(profiles[line3].indexOf("%")+1, profiles[line3].indexOf("^"));
+      var cname = profiles[line3].substring(profiles[line3].indexOf("^")+1, profiles[line3].indexOf(":"));
+      var sname = profiles[line3].substring(profiles[line3].indexOf(":")+1, profiles[line3].indexOf(" "));
+
+      // For Display English Book Name & Chapter
+
+      var bname3 = profiles2[line3].substring(profiles2[line3].indexOf("%")+1, profiles2[line3].indexOf("^"));
+      var cname3 = profiles2[line3].substring(profiles2[line3].indexOf("^")+1, profiles2[line3].indexOf(":"));
+
+      // NKJV
+      var bname2 = profiles2[line3].substring(profiles2[line3].indexOf("%")+1, profiles2[line3].indexOf("^"));
+      var cname2 = profiles2[line3].substring(profiles2[line3].indexOf("^")+1, profiles2[line3].indexOf(":"));
+      var sname2 = profiles2[line3].substring(profiles2[line3].indexOf(":")+1, profiles2[line3].indexOf(" "));
+
+      // NIV
+//      var bname = profiles3[line3].substring(profiles3[line3].indexOf("%")+1, profiles3[line3].indexOf("^"));
+//      var cname = profiles3[line3].substring(profiles3[line3].indexOf("^")+1, profiles3[line3].indexOf(":"));
+//      var sname = profiles3[line3].substring(profiles3[line3].indexOf(":")+1, profiles3[line3].indexOf(" "));
+
+
+      if(bnum==21)
+         var bname2= 'Song of Solomon';
+
+
+      if(snum<to_snum){
+         Bcsname1 = bname + ' 第' + cname + '章' + ' 第' + sname + '~' + to_snum + '節' + ' ';
+         Bcsname2 = bname + ' 第' + cname + '篇' + ' 第' + sname + '~' + to_snum + '節' + ' ';
+      }
+      else{
+         Bcsname1 = bname + ' 第' + cname + '章' + ' 第' + sname + '節' + ' ';
+         Bcsname2 = bname + ' 第' + cname + '篇' + ' 第' + sname + '節' + ' ';
+      }
+
+
+      Bname = bname;
+
+      var bcsname1 = bname + ' 第' + cname + '章' + '</ol>';
+      var bcsname2 = bname + ' 第' + cname + '篇' + '</ol>';
+
+      var bcsname3 = bname3 + ' Chapter ' + cname3 + '</ol>';
+
+
+      var to_snum_int = parseInt(to_snum,10);
+      var sname_int = parseInt(sname,10);
+      var sname2_int = parseInt(sname2,10);
+
+      if(to_snum_int>sname_int){                            // add 31/03/2013
+        var snameNew = sname + '~' + to_snum;      // add 31/03/2013
+        nowtosection = to_snum_int;                // add on 2018.08.17
+      }
+      else{                                         // add 31/03/2013
+        var snameNew = sname;                      // add 31/03/2013
+        nowtosection = snum;                // add on 2018.08.17
+      }
+
+
+      if(bnum==30||bnum==56||bnum==62||bnum==63||bnum==64){                   // new
+//         var bcsname1 = bname + ' ' + sname + '節 ' + pname + '頁' + '</ol>'; // modified ,  marked 27/03/2013
+
+        if(bnum<39){
+         var bcsname1 = bname + "&nbsp&nbsp";                 // modified   27/03/2013
+         var bcsname1B = bname2 + ' ' + snameNew;                    // add        27/03/2013
+        }
+        else{
+         var bcsname1 = bname + "&nbsp&nbsp";                 // modified   27/03/2013
+         var bcsname1B = bname2 + ' ' + snameNew;                    // add        27/03/2013
+        }
+
+         //var bcsname1 = bname + ' ' + sname + '節 ' + '    ';                   // modified           27/03/2013
+         //var bcsname1B = bname2 + ' ' + sname2  + '</ol>';                      // add 27/03/2013
+
+         //if(bcsname1.length>23){                                                                     // new
+         //  var bcsname1 = bname + '' + sname + '節 ' + '    ';                   // modified           27/03/2013
+         //  var bcsname1B = bname2 + ' ' + sname2  + '</ol>';                   } // modified           27/03/2013
+      }
+      else {
+        if(bnum<39){
+         var bcsname1 = bname + "&nbsp&nbsp";   // modify 19/03/2013
+         var bcsname1B = bname2 + ' ' + cname + ':' + snameNew;     // add 19/03/2013
+        }
+        else{
+         var bcsname1 = bname + "&nbsp&nbsp";   // modify 19/03/2013
+         var bcsname1B = bname2 + ' ' + cname + ':' + snameNew;     // add 19/03/2013
+        }
+
+         //var bcsname1 = bname + ' ' + cname + '章' + ' ' + sname + '節 ' + '    '; // modified 19/03/2013
+            // bcsname1B for English Ver, add 19/03/2013
+         //var bcsname1B = bname2 + ' ' + cname2 + ':' + sname2  + '</ol>';  // add 19/03/2013
+         //if(bcsname1.length>23){                                                                     // new
+         //  var bcsname1 = bname + '' + cname + '章' + '' + sname + '節 ' + '    '; } // modified 19/03/2013
+      }
+
+      var bcsname2 = '<b><u>' + bname + "&nbsp&nbsp";                  // modified           27/03/2013
+      var bcsname2B = bname2 + ' ' + cname2 + ':' + snameNew  + '</u></b></ol>';                            // add    
+
+      if(bnum==12&&cnum==21){   // cnum 21 表 22 章 , 經節以 英文聖經為主時,  for 代上22章 特別處理，因該章 中英文聖經節數不同 , add 9.5.2013
+
+         var to_snum_int = parseInt(to_snum,10);
+         var sname_int = parseInt(sname,10);
+         var sname2_int = parseInt(sname2,10);
+
+         if(to_snum_int>sname2_int){                            
+           var to_snum_tmp = to_snum - 1;
+           var snameNew = sname + '~' + to_snum_tmp;      
+           var snameNewB = sname2 + '~' + to_snum;
+           var bcsname1 = '代上' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   // add 9/05/2013
+           var bcsname1B = '1Ch' + ' ' + cname2 + ':' + snameNewB;     // add 9/05/2013
+           
+           if(snum==1){
+              var bcsname1 = '代上' + ' ' + cname + ':' + sname + '~' + cname2 + ':' + to_snum_tmp + "&nbsp&nbsp";   // add 9/05/2013
+              var bcsname1B = '1Ch' + ' ' + cname2 + ':' + snameNewB;     // add 9/05/2013
+           }
+
+         }
+         else{                                         
+           var snameNew = sname;                      
+           var snameNewB = sname2;
+           var bcsname1 = '代上' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   // add 9/05/2013
+           var bcsname1B = '1Ch' + ' ' + cname2 + ':' + snameNewB;     // add 9/05/2013
+         }
+
+      }      
+
+      if(bnum==12&&cnum==20&&snum==31){   // cnum 20 表 21 章 , 經節以 英文聖經為主時,  for 代上21章31節 特別處理，因該章 中英文聖經節數不同 , add 23.5.2013
+           var bcsname1 = '代上 21:31' + "&nbsp&nbsp";   
+           var bcsname1B = '1Ch 22:1';     
+      }
+
+      if(bnum==12&&cnum==20&&snum<31&&to_snum==31){   // cnum 20 表 21 章 , 經節以 英文聖經為主時,  for 代上21章31節 特別處理，因該章 中英文聖經節數不同 , add 23.5.2013
+           var bcsname1 = '代上 21:' + snum + '~' + '31' + "&nbsp&nbsp";   
+           var bcsname1B = '1Ch 21:' + snum + '~' + '22:1';     
+      }
+
+      if(bnum==42&&cnum==6){   // cnum 6 表 7 章 , 經節以 英文聖經為主時,  for John Chap7 Verse53 特別處理，因該章 中英文聖經節數不同 , add 17.5.2013
+
+         if(snum==53){
+           var snameNew = sname;                      
+           var snameNewB = sname2;
+           var bcsname1 = '約' + ' ' + cname + ':1(上)' + "&nbsp&nbsp";   
+           var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB;     
+         }
+         if(to_snum==53&&snum<53){
+           var to_snum_tmp = to_snum - 1;
+           var snameNew = sname + '~' + to_snum_tmp;      
+           var snameNewB = sname2 + '~' + to_snum;
+           var bcsname1 = '約' + ' ' + cname + ':' + sname + '~' + '8:1(上)' + "&nbsp&nbsp";   
+           var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB ;    
+         }
+      }
+
+      if(bnum==42&&cnum==7){   // cnum 7 表 8 章 , 經節以 英文聖經為主時,  for John Chap8 Verse1 特別處理，因該章 中英文聖經節數不同 , add 17.5.2013
+
+         if(snum==1&&to_snum==1){
+           var snameNew = sname;                      
+           var snameNewB = sname2;
+           var bcsname1 = '約' + ' ' + cname + ':1(下)' + "&nbsp&nbsp";   
+           var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB;     
+         }
+         if(snum==1&&to_snum>1){
+           var to_snum_tmp = to_snum - 1;
+           var snameNew = '1(下)' + '~' + to_snum;      
+           var snameNewB = sname2 + '~' + to_snum;
+           var bcsname1 = '約' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   
+           var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB ;    
+         }
+      }
+
+      if(bnum==63&&cnum==0){   // cnum 0 表 1 章 , 經節以 英文聖經為主時,  for 3rd John Chap1 Verse14 特別處理，因該章 中英文聖經節數不同 , add 19.5.2013
+
+         var snum_int = parseInt(snum,10);
+         var to_snum_int = parseInt(to_snum,10);
+         //var sname_int = parseInt(sname,10);
+         //var sname2_int = parseInt(sname2,10);
+
+         if(snum_int==14){
+           var snameNew = sname;                      
+           var snameNewB = sname2;
+           var bcsname1 = '約參' + ' ' + '14、15' + "&nbsp&nbsp";   
+           var bcsname1B = '3Jn' + ' ' + snameNewB ;     
+         }
+         if(to_snum_int==14&&snum_int<14){
+           var to_snum_tmp = to_snum_int - 1;
+           var snameNew = sname + '~' + '14、15';      
+           var snameNewB = sname2 + '~' + '14';
+           var bcsname1 = '約參' + ' ' + snameNew + "&nbsp&nbsp";   
+           var bcsname1B = '3Jn' + ' ' + snameNewB ;    
+         }
+         if(snum_int==15){        // for 3rd John Chap1 Verse15 特別處理，因該章 中英文聖經節數不同
+           var snameNew = sname;                      
+           var snameNewB = sname2;
+           var bcsname1 = '約參' + ' ' + '15' + "&nbsp&nbsp";   
+           var bcsname1B = '3Jn' + ' ' + '14(b)';     
+         }
+         if(to_snum_int==15&&snum_int<14){   // for 3rd John Chap1 Verse15 特別處理，因該章 中英文聖經節數不同
+           var to_snum_tmp = to_snum_int - 1;
+           var snameNew = sname + '~' + '14、15';      
+           var snameNewB = sname2 + '~' + '14';
+           var bcsname1 = '約參' + ' ' + snameNew + "&nbsp&nbsp";   
+           var bcsname1B = '3Jn' + ' ' + snameNewB ;  
+         }  
+      }
+
+      var bcsname1_1 =  bcsname1 + bcsname1B ;
+      var bcsname2_1 =  bcsname2 + bcsname2B ;
+
+
+
+      if(bcs_size==8||bcs_size==20||bcs_size==32||bcs_size==44){
+         //var bcsname1_1 = '<span class="1">' + bcsname1 + '</span>';
+         var bcsname2_1 = '<span class="1">' + bcsname2 + '</span>'; }
+
+      if(bcs_size==10||bcs_size==22||bcs_size==34||bcs_size==46){
+         //var bcsname1_1 = '<span class="2">' + bcsname1 + '</span>';
+         var bcsname2_1 = '<span class="2">' + bcsname2 + '</span>'; }
+
+      if(bcs_size==12||bcs_size==24||bcs_size==36||bcs_size==48){
+         //var bcsname1_1 = '<span class="3">' + bcsname1 + '</span>';
+         var bcsname2_1 = '<span class="3">' + bcsname2 + '</span>'; }
+
+      if(bcs_size==14||bcs_size==26||bcs_size==38||bcs_size==50){
+         //var bcsname1_1 = '<span class="4">' + bcsname1 + '</span>';
+         var bcsname2_1 = '<span class="4">' + bcsname2 + '</span>'; }
+
+      if(bcs_size==16||bcs_size==28||bcs_size==40||bcs_size==52){
+         //var bcsname1_1 = '<span class="5">' + bcsname1 + '</span>';
+         var bcsname2_1 = '<span class="5">' + bcsname2 + '</span>'; }
+
+      if(bcs_size==18||bcs_size==30||bcs_size==42||bcs_size==54){
+         //var bcsname1_1 = '<span class="6">' + bcsname1 + '</span>';
+         var bcsname2_1 = '<span class="6">' + bcsname2 + '</span>'; }
+
+
+      if(bcs_size==20){                                                        // Add 2017.05.29 for test
+         //var bcsname1_1 = '<p1>' + bcsname1 + '</p1>';
+         var bcsname2_1 = '<p1>' + bcsname2 + '</p1>'; }
+
+      if(bcs_size==22){                                                        // Add 2017.05.29 for test
+         //var bcsname1_1 = '<p2>' + bcsname1 + '</p2>';
+         var bcsname2_1 = '<p2>' + bcsname2 + '</p2>'; }
+
+      if(bcs_size==24){                                                        // Add 2017.05.29 for test
+         //var bcsname1_1 = '<p3>' + bcsname1 + '</p3>';
+         var bcsname2_1 = '<p3>' + bcsname2 + '</p3>'; }
+
+      if(bcs_size==26){                                                        // Add 2017.05.29 for test
+         //var bcsname1_1 = '<p4>' + bcsname1 + '</p4>';
+         var bcsname2_1 = '<p4>' + bcsname2 + '</p4>'; }
+
+      if(bcs_size==28){                                                        // Add 2017.05.29 for test
+         //var bcsname1_1 = '<p5>' + bcsname1 + '</p5>';
+         var bcsname2_1 = '<p5>' + bcsname2 + '</p5>'; }
+
+      if(bcs_size==30){                                                        // Add 2017.05.29 for test
+         //var bcsname1_1 = '<p6>' + bcsname1 + '</p6>';
+         var bcsname2_1 = '<p6>' + bcsname2 + '</p6>'; }
+
+
+      var RCBName = '<center>' + bcsname1_1 + '</center>';  // readchapter Book Name
+      document.getElementById("p1").innerHTML = RCBName; 
+      Read_Book_Chap_Vers_ToVers =  RCBName;
+
+
+
+      var j=sname-1;
+
+
+
+      // var m = 1;  // Mark temporary
+      var Lnum = 1001;
+      var Lvers = 2001;
+      var Rnum = 3001;
+      var Rvers = 4001;
+
+      var Upnum = 50001;    // for Mode_Class use
+      var Upvers = 60001;   // for Mode_Class use
+
+      // For clear before display
+      document.getElementById("50001").innerHTML = "";
+      document.getElementById("50002").innerHTML = "";
+      document.getElementById("50003").innerHTML = "";
+      document.getElementById("50004").innerHTML = "";
+      document.getElementById("50005").innerHTML = "";
+      document.getElementById("50006").innerHTML = "";
+      document.getElementById("50007").innerHTML = "";
+      document.getElementById("50008").innerHTML = "";
+      document.getElementById("50009").innerHTML = "";
+      document.getElementById("50010").innerHTML = "";
+      document.getElementById("50011").innerHTML = "";
+      document.getElementById("50012").innerHTML = "";
+      document.getElementById("50013").innerHTML = "";
+      document.getElementById("50014").innerHTML = "";
+      document.getElementById("50015").innerHTML = "";
+
+      document.getElementById("60001").innerHTML = "";
+      document.getElementById("60002").innerHTML = "";
+      document.getElementById("60003").innerHTML = "";
+      document.getElementById("60004").innerHTML = "";
+      document.getElementById("60005").innerHTML = "";
+      document.getElementById("60006").innerHTML = "";
+      document.getElementById("60007").innerHTML = "";
+      document.getElementById("60008").innerHTML = "";
+      document.getElementById("60009").innerHTML = "";
+      document.getElementById("60010").innerHTML = "";
+      document.getElementById("60011").innerHTML = "";
+      document.getElementById("60012").innerHTML = "";
+      document.getElementById("60013").innerHTML = "";
+      document.getElementById("60014").innerHTML = "";
+      document.getElementById("60015").innerHTML = "";
+
+
+      for (var i = line3; i < line4 ; i++) { 
+      var oneline = profiles[i].substring(profiles[i].indexOf(" "), profiles[i].length);       // 和合本
+      var oneline2 = profiles2[i].substring(profiles2[i].indexOf(" "), profiles2[i].length);   // NKJV
+      var oneline3 = profiles3[i].substring(profiles3[i].indexOf(" "), profiles3[i].length);   // NIV
+      var oneline4 = profiles4[i].substring(profiles4[i].indexOf(" "), profiles4[i].length);   // 呂振中
+      var cname_1 = profiles[i].substring(profiles[i].indexOf("^")+1, profiles[i].indexOf(":"));
+
+      j++;
+
+      if(sec_size==8||sec_size==20||sec_size==32||sec_size==44){
+         var oneline_1 = '<span class="1">' + oneline + '\n' + '</span>';
+         var oneline_2 = '<span class="1">' + oneline2 + '\n' + '</span>';
+         var oneline_3 = '<span class="1">' + oneline3 + '\n' + '</span>';
+         var oneline_4 = '<span class="1">' + oneline4 + '\n' + '</span>';
+         var sj = '<span class="1">' + j + '</span>';}
+
+      if(sec_size==10||sec_size==22||sec_size==34||sec_size==46){
+         var oneline_1 = '<span class="2">' + oneline + '\n' + '</span>';
+         var oneline_2 = '<span class="1">' + oneline2 + '\n' + '</span>';
+         var oneline_3 = '<span class="1">' + oneline3 + '\n' + '</span>';
+         var oneline_4 = '<span class="1">' + oneline4 + '\n' + '</span>';
+         var sj = '<span class="2">' + j + '</span>';}
+
+      if(sec_size==12||sec_size==24||sec_size==36||sec_size==48){
+         var oneline_1 = '<span class="3">' + oneline + '\n' + '</span>';
+         var oneline_2 = '<span class="1">' + oneline2 + '\n' + '</span>';
+         var oneline_3 = '<span class="1">' + oneline3 + '\n' + '</span>';
+         var oneline_4 = '<span class="1">' + oneline4 + '\n' + '</span>';
+         var sj = '<span class="3">' + j + '</span>';}
+
+      if(sec_size==14||sec_size==26||sec_size==38||sec_size==50){
+         var oneline_1 = '<span class="4">' + oneline + '\n' + '</span>';
+         var oneline_2 = '<span class="1">' + oneline2 + '\n' + '</span>';
+         var oneline_3 = '<span class="1">' + oneline3 + '\n' + '</span>';
+         var oneline_4 = '<span class="1">' + oneline4 + '\n' + '</span>';
+         var sj = '<span class="4">' + j + '</span>';}
+
+      if(sec_size==16||sec_size==28||sec_size==40||sec_size==52){
+         var oneline_1 = '<span class="5">' + oneline + '\n' + '</span>';
+         var oneline_2 = '<span class="1">' + oneline2 + '\n' + '</span>';
+         var oneline_3 = '<span class="1">' + oneline3 + '\n' + '</span>';
+         var oneline_4 = '<span class="1">' + oneline4 + '\n' + '</span>';
+         var sj = '<span class="5">' + j + '</span>';}
+
+      if(sec_size==18||sec_size==30||sec_size==42||sec_size==54){
+         var oneline_1 = '<span class="6">' + oneline + '\n' + '</span>';
+         var oneline_2 = '<span class="1">' + oneline2 + '\n' + '</span>';
+         var oneline_3 = '<span class="1">' + oneline3 + '\n' + '</span>';
+         var oneline_4 = '<span class="1">' + oneline4 + '\n' + '</span>';
+         var sj = '<span class="6">' + j + '</span>';}
+
+
+
+      if(sec_size==20){                                                        // Add 2017.05.29 for test
+         var oneline_1 = '<p1>' + oneline + '\n' + '</p1>';
+         var oneline_2 = '<p1>' + oneline2 + '\n' + '</p1>';
+         var oneline_3 = '<p1>' + oneline3 + '\n' + '</p1>';
+         var oneline_4 = '<p1>' + oneline4 + '\n' + '</p1>';
+         var sj = '<p1>' + j + '</p1>';}
+
+      if(sec_size==22){                                                        // Add 2017.05.29 for test
+         var oneline_1 = '<p2>' + oneline + '\n' + '</p2>';
+         var oneline_2 = '<p2>' + oneline2 + '\n' + '</p2>';
+         var oneline_3 = '<p2>' + oneline3 + '\n' + '</p2>';
+         var oneline_4 = '<p2>' + oneline4 + '\n' + '</p2>';
+         var sj = '<p2>' + j + '</p2>';}
+
+      if(sec_size==24){                                                        // Add 2017.05.29 for test
+         var oneline_1 = '<p3>' + oneline + '\n' + '</p3>';
+         var oneline_2 = '<p3>' + oneline2 + '\n' + '</p3>';
+         var oneline_3 = '<p3>' + oneline3 + '\n' + '</p3>';
+         var oneline_4 = '<p3>' + oneline4 + '\n' + '</p3>';
+         var sj = '<p3>' + j + '</p3>';}
+
+      if(sec_size==26){                                                        // Add 2017.05.29 for test
+         var oneline_1 = '<p4>' + oneline + '\n' + '</p4>';
+         var oneline_2 = '<p4>' + oneline2 + '\n' + '</p4>';
+         var oneline_3 = '<p4>' + oneline3 + '\n' + '</p4>';
+         var oneline_4 = '<p4>' + oneline4 + '\n' + '</p4>';
+         var sj = '<p3>' + j + '</p3>';}
+
+      if(sec_size==28){                                                        // Add 2017.05.29 for test
+         var oneline_1 = '<p5>' + oneline + '\n' + '</p5>';
+         var oneline_2 = '<p5>' + oneline2 + '\n' + '</p5>';
+         var oneline_3 = '<p5>' + oneline3 + '\n' + '</p5>';
+         var oneline_4 = '<p5>' + oneline4 + '\n' + '</p5>';
+         var sj = '<p3>' + j + '</p3>';}
+
+      if(sec_size==30){                                                        // Add 2017.05.29 for test
+         var oneline_1 = '<p6>' + oneline + '\n' + '</p6>';
+         var oneline_2 = '<p6>' + oneline2 + '\n' + '</p6>';
+         var oneline_3 = '<p6>' + oneline3 + '\n' + '</p6>';
+         var oneline_4 = '<p6>' + oneline4 + '\n' + '</p6>';
+         var sj = '<p6>' + j + '</p6>';}
+
+
+      //var oneline_1_1 = '<table><tr><td valign="top">'+'和合本'+'&nbsp'+sj+'</td><td>'+oneline_1+'</td></tr></table>';
+      //var oneline_1_2 = '<table><tr><td valign="top">'+'NKJV'+'&nbsp&nbsp&nbsp'+sj+'</td><td>'+oneline_2+'</td></tr></table>';
+      //var oneline_1_3 = '<table><tr><td valign="top">'+'NIV'+'&nbsp&nbsp&nbsp&nbsp'+sj+'</td><td>'+oneline_3+'</td></tr></table>';
+
+//      var oneline_1_1 = '<table><tr><td valign="top">'+'和合本'+'&nbsp'+'</td><td valign="top">'+sj+'</td><td>'+oneline_1+'</td></tr></table>';
+//      var oneline_1_2 = '<table><tr><td valign="top">'+'NKJV'+'&nbsp&nbsp&nbsp'+'</td><td valign="top">'+sj+'</td><td>'+oneline_2+'</td></tr></table>';
+//      var oneline_1_3 = '<table><tr><td valign="top">'+'NIV'+'&nbsp&nbsp&nbsp&nbsp'+'</td><td valign="top">'+sj+'</td><td>'+oneline_3+'</td></tr></table>';
+
+      var oneline_1_1 = '<table><tr><td valign="top">'+sj+'</td><td>'+oneline_1+'</td></tr></table>';
+      var oneline_1_2 = '<table><tr><td valign="top">'+sj+'</td><td>'+oneline_2+'</td></tr></table>';
+      var oneline_1_3 = '<table><tr><td valign="top">'+sj+'</td><td>'+oneline_3+'</td></tr></table>';
+      var oneline_1_4 = '<table><tr><td valign="top">'+sj+'</td><td>'+oneline_4+'</td></tr></table>';
+
+
+      var oneline_1_num =  j;           // for Display verse number in div id = "1001"
+      var oneline_2_num =  j;           // for Display verse number in div id = "3001"
+      var oneline_3_num =  j;           // for Display verse number
+      var oneline_4_num =  j;           // for Display verse number
+      var oneline_5_num =  j;           // for Display verse number in div id = "50001"
+      var oneline_1_vers =  oneline;    // for Display verse content in div id = "2001"
+      var oneline_2_vers =  oneline2;    // for Display verse content in div id = "4001"
+      var oneline_3_vers =  oneline3;    // for Display verse content
+      var oneline_4_vers =  oneline4;    // for Display verse content
+
+
+      if(j>=sname_int && j<=to_snum_int) {  // Add on 2018.08.23 for black font
+
+         if(Mode2_ChineseEng==1 && Mode_Chinese==0){  // Chinese/Eng Mode
+
+            var oneline_5_vers =  '<b>' + oneline2 + '<br>' + oneline + '</b>';    // for Display verse content in div id = "60001"
+
+         }
+         else{  // Chinese Mode
+
+            var oneline_5_vers =  '<b>' + oneline + '</b>';    // for Display verse content in div id = "60001"
+
+         }
+
+         //var oneline_5_vers =  '<b>' + oneline2 + '<br>' + oneline + '</b>';    // for Display verse content in div id = "60001"
+
+      }
+      else if(j==sname_int){
+
+         if(Mode2_ChineseEng==1 && Mode_Chinese==0){  // Chinese/Eng Mode
+
+            var oneline_5_vers =  '<b>' + oneline2 + '<br>' + oneline + '</b>';    // for Display verse content in div id = "60001"
+
+         }
+         else{  // Chinese Mode
+
+            var oneline_5_vers =  '<b>' + oneline + '</b>';    // for Display verse content in div id = "60001"
+
+         }
+
+         //var oneline_5_vers =  '<b>' + oneline2 + '<br>' + oneline + '</b>';    // for Display verse content in div id = "60001"
+
+      }
+      else {
+
+         if(Mode2_ChineseEng==1 && Mode_Chinese==0){  // Chinese/Eng Mode
+
+            var oneline_5_vers =  oneline2 + '<br>' + oneline;    // for Display verse content in div id = "60001"
+
+         }
+         else{  // Chinese Mode
+
+            var oneline_5_vers =  oneline;    // for Display verse content in div id = "60001"
+
+         }
+
+         //var oneline_5_vers =  oneline2 + '<br>' + oneline;    // for Display verse content in div id = "60001"
+
+      }
+
+
+      var oneline_1_1T =  j+' '+oneline + '<br>';   //        for Display in div id = "1L" or "1R"
+      var oneline_2_2T =  j+' '+oneline2 + '<br>';  // NKJV
+      var oneline_3_3T =  j+' '+oneline3 + '<br>';  // NIV
+      var oneline_4_4T =  j+' '+oneline4 + '<br>';  // 呂振中
+
+
+      if(disp_secs==7 && bnum==30 && j>21) {
+         break;
+      }
+
+      if(disp_secs==7 && bnum==56 && j>25) {
+         break;
+      }
+
+      if(disp_secs==7 && bnum==62 && j>13) {
+         break;
+      }
+
+      if(disp_secs==7 && bnum==63 && j>15) {
+         break;
+      }
+
+      if(disp_secs==7 && bnum==64 && j>25) {
+         break;
+      }
+
+      // Add on 2018.08.22
+      if(disp_secs==15 && bnum==30 && j>21) {   // 原為 disp_secs==7
+         break;
+      }
+
+      if(disp_secs==15 && bnum==56 && j>25) {
+         break;
+      }
+
+      if(disp_secs==15 && bnum==62 && j>13) {
+         break;
+      }
+
+      if(disp_secs==15 && bnum==63 && j>15) {   // 3jn max vers = 15
+         break;
+      }
+
+      if(disp_secs==15 && bnum==64 && j>25) {   // Jud max vers = 25
+         break;
+      }
+
+
+      if(cname==cname_1){
+
+         // Put output section here
+
+
+         if(Mode_Study==0 && Mode_Class==1) {  // Class Mode
+
+            document.getElementById("container3").scrollTop = 0;
+
+            document.getElementById(Upnum++).innerHTML = oneline_5_num;
+            document.getElementById(Upvers++).innerHTML = oneline_5_vers;
+
+         }
+
+
+         if(document.BV.BibleVersion[0].checked){
+
+            BibleVersion_Disp = 0; // Display NKJV
+
+            clear_area_1L();
+            clear_area_1R();
+            clear_area_LC();
+            clear_area_RC();
+
+
+            check_n_set_mark_line_2(bnum,cnum,j,Lvers);  // add on 2020.10.31
+
+
+            if(One_Chap_Mode == 1) { // 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
+
+
+               //var tmp111 = '<a href="" ontouchstart="Set_NKJV();Set_One_Chap();Chinese_Mode3();Pre_Set_Mode();Set_Enter();keyFunction2(\'enter\');efocus();return false;">' + 'Chap ' + c_num + '</a>';
+
+               //function readchapter(bnum, cnum ,snum , to_snum) {
+
+               var tmp_snum = j;  // j + 1
+               
+               var tmp6666 = '<a href="" ontouchstart="Set_NKJV();Set_15_Verses();readchapter(' + bnum + ',' + cnum + ',' + tmp_snum + ',' + tmp_snum + ');Set_Enter();keyFunction2(\'enter\');efocus();return false;">' + oneline_1_num + '</a>';
+
+               document.getElementById(Lnum++).innerHTML = tmp6666;
+
+            }
+            else {
+
+               document.getElementById(Lnum++).innerHTML = oneline_1_num;
+
+            }
+ 
+            //document.getElementById(Lnum++).innerHTML = oneline_1_num;
+
+
+
+
+            document.getElementById(Lvers++).innerHTML = oneline_1_vers;
+
+            //document.getElementById(Rnum++).innerHTML = oneline_2_num; // j
+
+
+            //  '<a href="" id="' + vers_id + '" onClick="Show_His_BM_Vers4(' + VersHis_B[i] + ',' + VersHis_C[i] + ',' + VersHis_V[i] + ',' + VersHis_T[i] + ');return false;">' + VersHis[i] + '</a> <br>';
+
+            // add on 2020.01.28
+            oneline_2_num = '<a href="" " onClick="Add_or_Remove_mark_line(' + bnum + ',' + cnum + ',' + j + ');return false;">' + j + '</a>';
+
+            document.getElementById(Rnum++).innerHTML = oneline_2_num; // j
+
+            check_n_set_mark_line(bnum,cnum,j,Rvers);  // add on 2020.01.28
+
+            // add on 2020.01.27 for test changing mark-line color by 
+            //                        document.getElementById("myP2").style.color = "blue";
+
+            //if(bnum==1 && cnum==20 && j==15){  // Exo 21:15 , test
+
+            //   document.getElementById(Rvers).style.color = "red";
+
+            //} 
+            //else {
+
+            //   document.getElementById(Rvers).style.color = "black";
+
+            //}
+
+            // end of test
+
+            document.getElementById(Rvers++).innerHTML = oneline_2_vers;    
+
+
+
+            if(disp_secs_a == "1") {
+
+               document.getElementById("conten1t1").scrollTop = 0;
+               document.getElementById("content2").scrollTop = 0;
+
+            }
+
+            //Max_Vers_Record = Lnum;
+
+            //Total_Line_L = Total_Line_L + oneline_1_1T;
+            //Total_Line_R = Total_Line_R + oneline_2_2T;
+         }
+
+         if(document.BV.BibleVersion[1].checked){
+
+            BibleVersion_Disp = 1; // Display NIV
+
+            clear_area_1L();
+            clear_area_1R();
+            clear_area_LC();
+            clear_area_RC();
+
+            document.getElementById(Lnum++).innerHTML = oneline_1_num;
+            document.getElementById(Lvers++).innerHTML = oneline_1_vers;
+
+            document.getElementById(Rnum++).innerHTML = oneline_3_num;
+            document.getElementById(Rvers++).innerHTML = oneline_3_vers;
+
+
+            if(disp_secs_a == "1") {
+
+               document.getElementById("conten1t1").scrollTop = 0;
+               document.getElementById("content2").scrollTop = 0;
+
+            }
+
+            //Total_Line_L = Total_Line_L + oneline_1_1T;
+            //Total_Line_R = Total_Line_R + oneline_3_3T;
+
+         }
+
+         if(document.BV.BibleVersion[2].checked){
+
+            BibleVersion_Disp = 2; // Display 呂振中譯本
+
+            clear_area_1L();
+            clear_area_1R();
+            clear_area_LC();
+            clear_area_RC();
+
+            document.getElementById(Lnum++).innerHTML = oneline_1_num;
+            document.getElementById(Lvers++).innerHTML = oneline_1_vers;
+
+            document.getElementById(Rnum++).innerHTML = oneline_4_num;
+            document.getElementById(Rvers++).innerHTML = oneline_4_vers;
+
+
+            if(disp_secs_a == "1") {
+
+               document.getElementById("conten1t1").scrollTop = 0;
+               document.getElementById("content2").scrollTop = 0;
+
+            }
+
+            //Total_Line_L = Total_Line_L + oneline_1_1T;
+            //Total_Line_R = Total_Line_R + oneline_4_4T;
+         }
+
+         if(document.BV.BibleVersion[3].checked){
+
+            BibleVersion_Disp = 3; // Display 全部版本
+
+            clear_area_L();
+            clear_area_R();
+
+            // Mark temporary
+            var oneline_1_1TC =  '<span class="smallfont">'+ '和合本' + '</span><br>' + j + ' ' + oneline + '<br>';
+            var oneline_2_2TC =  '<span class="smallfont">'+ 'NKJV' + '</span><br>' + j + ' ' + oneline2 + '<br>';
+            var oneline_3_3TC =  '<span class="smallfont">'+ 'NIV' + '</span><br>' + j + ' ' + oneline3 + '<br>';
+            var oneline_4_4TC =  '<span class="smallfont">'+ '呂振中譯本' + '</span><br>' + j + ' ' + oneline4 + '<br>';
+
+            Total_Line_L = Total_Line_L + oneline_1_1TC + oneline_4_4TC;
+            Total_Line_R = Total_Line_R + oneline_2_2TC + oneline_3_3TC;
+         }
+
+         // End of output section
+
+
+      }      // End of for loop
+
+      //One_Chap_Mode = 0; // 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
+
+//      docObj.writeln(oneline_1);
+
+      if(document.BV.BibleVersion[3].checked){  // Display 全部版本
+
+
+         if(disp_secs_a==1) {
+
+            clear_area_1L();
+            clear_area_1R();
+
+            document.getElementById("conten1t1").scrollTop = 0;
+            document.getElementById("content2").scrollTop = 0;
+
+            document.getElementById("smallVer1").innerHTML = '和合本';
+            document.getElementById("10002").innerHTML = j;
+            document.getElementById("10003").innerHTML = oneline;
+
+            document.getElementById("smallVer2").innerHTML = '呂振中譯本';
+            document.getElementById("20002").innerHTML = j;
+            document.getElementById("20003").innerHTML = oneline4;
+
+            document.getElementById("smallVer3").innerHTML = 'NKJV';
+            document.getElementById("30002").innerHTML = j;
+            document.getElementById("30003").innerHTML = oneline2;
+
+            document.getElementById("smallVer4").innerHTML = 'NIV';
+            document.getElementById("40002").innerHTML = j;
+            document.getElementById("40003").innerHTML = oneline3;
+
+         }
+         else {
+
+            clear_area_LC();
+            clear_area_RC();
+
+            // Mark temporary
+            document.getElementById("1L").innerHTML = Total_Line_L;
+            document.getElementById("1R").innerHTML = Total_Line_R;
+
+         }
+
+      }  // End of BibleVersion[3].checked
+
+      }
+
+
+  nowbook = bnum;
+  nowchapter = cnum;
+  nowsection = snum;
+
+  b_int = bnum;
+  c_int = cnum;
+  v_int = snum;
+
      if(One_Chap_Mode == 1) { // One_Chap_Mode = 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
                               // Language_Mode = 0; // 0:中/英, 1:Eng, 2:中 
         // Do Nothing
@@ -4872,7 +5802,7 @@ function readchapter(bnum, cnum ,snum , to_snum) {
 
   One_Chap_Mode = 0; // 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
 
-} // End of function readchapter()
+} // End of function readchapter7()
 
 
 
