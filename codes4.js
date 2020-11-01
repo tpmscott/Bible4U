@@ -4621,7 +4621,7 @@ function readchapter(bnum, cnum ,snum , to_snum) {
 
                var tmp_snum = j;  // j + 1
                
-               var tmp6666 = '<a href="" ontouchstart="Set_NKJV();Set_15_Verses();readchapter(' + bnum + ',' + cnum + ',' + tmp_snum + ',' + tmp_snum + ');return false;">' + oneline_1_num + '</a>';
+               var tmp6666 = '<a href="" ontouchstart="Set_NKJV();Set_15_Verses();readchapter(' + bnum + ',' + cnum + ',' + tmp_snum + ',' + tmp_snum + ');Set_Enter();keyFunction2(\'enter\');efocus();return false;">' + oneline_1_num + '</a>';
 
                document.getElementById(Lnum++).innerHTML = tmp6666;
 
