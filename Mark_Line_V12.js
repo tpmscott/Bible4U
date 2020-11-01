@@ -603,6 +603,42 @@ async function check_n_set_mark_line(arg1,arg2,arg3,arg4) {
 
 }
 
+
+async function check_n_set_mark_line_2(arg1,arg2,arg3,arg4) {
+
+
+   // Reading from Indexeddb
+
+   var Mark_Line_String = arg1 + '_' + arg2 + '_' + arg3;
+
+   var Mark_Line_Value = await get5(Mark_Line_String);  // New for V4
+
+   //var Mark_Line_Value = await get4(Mark_Line_String);
+
+   //var Mark_Line_Value = await get3(Mark_Line_String);
+
+   //var Mark_Line_Value = await get2(Mark_Line_String);
+
+   // End of Reading from Indexeddb
+
+
+
+   //if(arg1==1 && arg2==20 && arg3==15){  // Exo 21:15 , test
+   if(Mark_Line_Value=='1'){  // Exo 21:15 , test
+
+      document.getElementById(arg4).style.color = "blue";
+
+   } 
+   else {
+
+      document.getElementById(arg4).style.color = "black";
+
+   }
+
+}
+
+
+
 async function Add_or_Remove_mark_line(arg1,arg2,arg3) {
 
 
@@ -2200,7 +2236,7 @@ function Open_Add_or_Update_Pictures_Area() {  // New for V12
 
    if (OS_tmp == 'Windows') {
 
-      document.getElementById("Add_or_Update_Pictures_Area").style.height = "40%";
+      document.getElementById("Add_or_Update_Pictures_Area").style.height = "35%";
 
    }
    else {
