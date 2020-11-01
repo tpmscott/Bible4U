@@ -4619,7 +4619,7 @@ function readchapter(bnum, cnum ,snum , to_snum) {
 
                //function readchapter(bnum, cnum ,snum , to_snum) {
 
-               var tmp_snum = j + 1;
+               var tmp_snum = j;  // j + 1
                
                var tmp6666 = '<a href="" ontouchstart="Set_NKJV();Set_15_Verses();readchapter(' + bnum + ',' + cnum + ',' + tmp_snum + ',' + tmp_snum + ');return false;">' + oneline_1_num + '</a>';
 
@@ -4790,7 +4790,7 @@ function readchapter(bnum, cnum ,snum , to_snum) {
          //}
       }      // End of for loop
 
-      One_Chap_Mode = 0; // 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
+      //One_Chap_Mode = 0; // 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
 
 //      docObj.writeln(oneline_1);
 
@@ -4845,6 +4845,8 @@ function readchapter(bnum, cnum ,snum , to_snum) {
   b_int = bnum;
   c_int = cnum;
   v_int = snum;
+
+  One_Chap_Mode = 0; // 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
 
 } // End of function readchapter()
 
