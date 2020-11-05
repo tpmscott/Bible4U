@@ -4853,6 +4853,33 @@ function readchapter(bnum, cnum ,snum , to_snum) {
   One_Chap_Mode = 0; // 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
 
 
+     if(One_Chap_Mode_2 == 1) { // One_Chap_Mode = 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
+                                // Language_Mode = 0; // 0:¤¤/­^, 1:Eng, 2:¤¤ 
+
+
+        if(Language_Mode == 0) { // ChineseEng_Mode
+
+           ChineseEng_Mode3();
+
+        }
+        else if(Language_Mode == 1) { // Eng_Mode
+        
+           Eng_Mode3(); 
+
+        }
+        else if(Language_Mode == 2) { // Chinese_Mode2
+
+           Chinese_Mode3();
+
+        }
+
+        One_Chap_Mode_2 = 0;
+
+        Set_15_Verses();
+
+
+     } // End of if(One_Chap_Mode_2 == 1) 
+
 
 
 } // End of function readchapter()
@@ -6767,6 +6794,9 @@ function readchapter7(bnum, cnum ,snum , to_snum) {
 
 
   One_Chap_Mode = 0; // 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
+
+  One_Chap_Mode_2 = 0;
+
 
 } // End of function readchapter7()
 

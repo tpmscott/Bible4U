@@ -5680,11 +5680,15 @@ function Set_15_Verses() {
 
 var One_Chap_Mode = 0; // 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
 
+var One_Chap_Mode_2 = 0; // 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
+
 var Language_Mode = 0; // 0:中/英, 1:Eng, 2:中 
 
 function Set_One_Chap_Mode() {  // only for click on 'Chap Number' Not for 全章
 
    One_Chap_Mode = 1; // 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
+
+   One_Chap_Mode_2 = 1; // 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
 
    var ct_1 = document.getElementById("container1").style.width;
    var ct_2 = document.getElementById("container2").style.width;
