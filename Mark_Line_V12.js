@@ -1463,6 +1463,116 @@ async function Imp_to_books_Test2Db() {  // New for V5
    }  // End of if(Imp_Word!=''...// For Sermon Note import
 
 
+   // -------------------------------------------------
+
+
+   if(Imp_Word!='' && Imp_Word.length>5 && Imp_Word.substr(0, 5)=='pi^_^') { // For Pictures Info import,  New for V12
+                                                                             // Do pre-check
+
+      //Split String "str" into Array "res"
+      //var str = "i!^_^,2,18,18,2,20200302,65,4,9,20200304";  // <-- test Data
+      //var str = "i!^_^,3,18,18,2,20200302,65,4,9,20200304,18,18,4,20200304";  // <-- test Data
+      //var str = "i!^_^,4,18,18,2,20200302,65,4,9,20200304,18,18,4,20200304,65,4,10,20200305";  // <-- test Data
+      //var res = str.split(",");
+
+      var Imp_Word_Real_Str = Imp_Word.substr(6, Imp_Word.length);
+
+      var Imp_Tmp = Imp_Word_Real_Str.split("|");  // Imp_Tmp is an Array 
+
+      var imp_records_no = Imp_Tmp[0];
+
+      var update_no = 0;
+
+      var add_no = 0;
+
+      var del_no = 0;
+
+      for (i = 0; i < imp_records_no; i++) {  // 8
+
+         var ID_tmp = Imp_Tmp[8*i+1];        // ID
+         var P_Name_tmp = Imp_Tmp[8*i+2];    // P_Name
+         var F_Name_tmp = Imp_Tmp[8*i+3];    // F_Name
+         var P_Height_tmp = Imp_Tmp[8*i+4];  // P_Height
+         var P_Width_tmp = Imp_Tmp[8*i+5];   // P_Width
+
+         var M1_tmp = Imp_Tmp[8*i+6];  // Main_Verse1
+         var M2_tmp = Imp_Tmp[8*i+7];  // Main_Verse2
+         var M3_tmp = Imp_Tmp[8*i+8];  // Main_Verse3
+
+
+         let Verse = await dbT2.Pictures.get(ID_tmp);
+
+         if (Verse) {  // Exist so update
+
+            //var content_tmp = C_tmp;
+
+            //var content_tmp = decryptedContent_Str;
+
+            //if (content_tmp == '' ) {
+ 
+               //dbT2.SermonNote.delete(N_tmp);
+
+               //del_no = del_no + 1;
+
+            //}
+            //else {
+            
+               //dbT2.SermonNote.update(N_tmp, {content: content_tmp  });
+
+               dbT2.Pictures.update(ID_tmp, { P_Name: P_Name_tmp, F_Name: F_Name_tmp, P_Height: P_Height_tmp, P_Width: P_Width_tmp , MainVerses: [M1_tmp, M2_tmp, M3_tmp] } );
+
+
+               update_no = update_no + 1;
+
+            //}
+         }
+         else {  // Not Exist so Add new
+
+            // Add new
+
+            let ID = ID_tmp;
+            let P_Name = P_Name_tmp; 
+            let F_Name = F_Name_tmp; 
+            let P_Height = P_Height_tmp;
+            let P_Width = P_Width_tmp;
+
+
+            try {
+
+
+              dbT2.Pictures.add({ID,P_Name,F_Name,P_Height,P_Width, MainVerses: [M1_tmp, M2_tmp, M3_tmp] });
+
+
+              //dbT2.SermonNote.add({Name,Speaker,Topic,Content,Verses,MainVerses: [M1_tmp, M2_tmp, M3_tmp, M4_tmp, M5_tmp],KeyWords: [K1_tmp, K2_tmp, K3_tmp, K4_tmp, K5_tmp] });
+
+              add_no = add_no + 1;
+
+            } catch(err) {
+              if (err.name == 'ConstraintError') {
+                alert("Such Verse exists in DB already");
+              } else {
+                throw err;
+              }
+            }
+
+            // End of Add new
+
+          }
+
+
+      }  // End of for (i = 0; i < imp_records_no; i++)
+
+
+      var imp_mesg = 'Pictures Info ' + update_no + ' updated, ' + add_no + ' added, ' + del_no + ' deleted.';
+
+      myExp_Db_Display.innerHTML = imp_mesg;
+
+
+   }  // End of if(Imp_Word!=''...// For Sermon Note import
+
+
+   // ---------------------------------------------------
+
 }
 
 
@@ -2741,6 +2851,88 @@ async function Exp_from_ChapNote_Test2Db_Old() { // New for V7 ,  Not in Use
   } // End of if (Verse)
 
 } // End of function Exp_from_ChapNote_Test2Db_Old()
+
+
+
+async function Exp_from_Pictures_Test2Db() { // Add on 20201201
+
+
+  let Verse = await dbT2.Pictures.toArray();
+
+  var Verse_Count = Verse.length;
+
+  if (Verse) {
+
+     //var text = 'i!^_^,' + Verse_Count.toString();
+
+     //var text = 'cn^_^,' + Verse_Count.toString();
+
+     //var text = 'cn^_^|' + Verse_Count.toString();  // change seprator to "|"
+
+     var text = 'pi^_^|' + Verse_Count.toString();  // change seprator to "|"
+
+
+     for (i = 0; i < Verse.length; i++) {
+
+        let id = Verse[i].ID;
+        let p_name = Verse[i].P_Name;
+        let f_name = Verse[i].F_Name;
+
+        let p_height = Verse[i].P_Height;
+        let p_width = Verse[i].P_Width;
+
+        let mainverses = Verse[i].MainVerses;  // MainVerses
+
+        var Main_Verse1_tmp = '';
+        var Main_Verse2_tmp = '';
+        var Main_Verse3_tmp = '';
+
+        if (mainverses) {
+
+           Main_Verse1_tmp = mainverses[0];
+           Main_Verse2_tmp = mainverses[1];
+           Main_Verse3_tmp = mainverses[2];
+
+        }
+        else {
+
+           Main_Verse1_tmp = "";
+           Main_Verse2_tmp = "";
+           Main_Verse3_tmp = "";
+
+        }
+
+
+        text += '|' + id + '|' + p_name + '|' + f_name + '|' + p_height + '|' + p_width;  // change seprator to "|"
+
+        text += '|' + Main_Verse1_tmp + '|' + Main_Verse2_tmp + '|' + Main_Verse3_tmp;
+
+
+        //text += '|' + name + '|' + date + '|' + content;  // change seprator to "|"
+
+        //text += ',' + name + ',' + date + ',' + content;
+
+
+     } // End of for (i = 0; i < Verse.length; i++)
+
+     var mesg1 = 'Pictures Info ' + Verse_Count + ' exported'
+
+     //Exp_to_books_Test2Db.value = mesg1;
+
+     //myExp_Db_Display.innerHTML = text;
+     //Exp_to_books_Test2Db.value = text;  // Imp_to_books_Test2Db
+     //Imp_to_books_Test2Db.value = text;  // Imp_to_books_Test2Db
+
+     document.getElementById("Imp_to_books_Test2Db").value = text;
+
+     copyFunction5(mesg1);
+
+     //myExp_Db_Display.innerHTML = "";
+
+
+  } // End of if (Verse)
+
+} // End of function Exp_from_Pictures_Test2Db() 
 
 
 async function Exp_from_ChapNote_Test2Db() { // New for V7
