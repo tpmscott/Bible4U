@@ -7546,6 +7546,8 @@ async function Show_Notes_List2() { // show Name and Topic
 
 async function List_All_Pictures() {
 
+   document.getElementById("Book_Picture_List_Area").style.height = "70%";
+
    var text1;
    text1 = '<b><u>All Pictures List:</u></b>';
 
@@ -7695,6 +7697,8 @@ async function List_All_Pictures() {
 
 
 async function List_Current_Book_Pictures() {
+
+   document.getElementById("Book_Picture_List_Area").style.height = "70%";
 
    var tmp_B = nowbook;
    //var tmp_C = nowchapter;
@@ -11542,10 +11546,13 @@ async function download_csv_1() {  // Could be used on Windows for backup
   </tr>
   </table>
 
+  <div id="Book_Picture_List_Area" style="width:100%;height:0%;overflow:auto;" class="center">
 
   <p style="font-size:20pt" id="Book_Picture_List"></p>
 
   <br>
+
+  </div>
 
 
 <div id="Add_or_Update_Pictures_Area" style="width:100%;height:0%;overflow:auto;" class="center">

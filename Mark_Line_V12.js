@@ -2166,6 +2166,8 @@ function Show_Picture_No_Save_To_DB() {
 
 async function Show_Picture2(arg) {  // New for V12
 
+      document.getElementById("Book_Picture_List_Area").style.height = "0%";
+
       // Start Reading from indexedDB
 
       var ID_tmp = arg; // 'Rev01'
