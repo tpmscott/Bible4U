@@ -265,6 +265,22 @@ async function init_Bible4U_DB() {
          Comparing_Db_1: 'CNo',
          Comparing_Db_2: 'CNo'
      });
+     dbT2.version(24).stores({      // New for V12
+         books: 'name,date',
+         ChapNote: 'name,date',
+         Congregation: 'CNo,F_Name,L_Name,[L_Name+F_Name],H_No,F_Order',
+         Attendance: 'Record',
+         Householder: '++H_Seq,H_No',
+         Congregation2: '++CNo,F_Name,L_Name,[L_Name+F_Name],H_No,F_Order',
+         Congregation3: 'CNo,F_Name,L_Name,[L_Name+F_Name],H_No',
+         Roll: '++Roll_No,CNo,F_Name,L_Name,C_F_Name,H_No,E_F_LName,C_F_FName,Member',
+         Congregation4: 'CNo,F_Name,L_Name,[L_Name+F_Name],H_No,F_Order,Tel,Mob',
+         SermonNote: 'Name,Speaker, *MainVerses, *KeyWords',
+         Pictures: 'ID, P_Name, *MainVerses',
+         Service_Record: 'ID_1,ID_2',
+         Comparing_Db_1: 'CNo',
+         Comparing_Db_2: 'CNo'
+     });
 
    // End of Declare Database
 
@@ -2430,6 +2446,29 @@ function Close_Pictures_Area() {  // New for V12
 
 
 } // End of function Close_Pictures_Area()
+
+
+var Open_or_Close_Pictures_Area_F = 0; // 0 means Close, 1 means Open
+
+function Open_or_Close_Pictures_Area() {
+
+   if ( Open_or_Close_Pictures_Area_F == 0 ) { // 原 為 Close
+
+      Open_Pictures_Area();
+
+      Open_or_Close_Pictures_Area_F = 1;
+
+   }
+   else { // 原 為 Open
+
+      Close_Pictures_Area();
+
+      Open_or_Close_Pictures_Area_F = 0;
+
+   }
+
+
+} // End of function Open_or_Close_Pictures_Area()
 
 
 function Open_Chap_Note() {  // New for V7
