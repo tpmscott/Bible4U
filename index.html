@@ -6322,9 +6322,13 @@ function Input_passWord_1() { // Show Input password area
    document.getElementById("tool_area_6").style.visibility='visible';
    document.getElementById("tool_area_6").style.height='10px';
 
-   document.getElementById("tool_area_8").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.height='0px';
+   //document.getElementById("tool_area_8").style.visibility='hidden';   // mark on 2020.12.25
+   document.getElementById("tool_area_8").style.display='none';         // add on 2020.12.25
+
+
+   //document.getElementById("tool_area_9").style.visibility='hidden';  // mark on 2020.12.24 
+   //document.getElementById("tool_area_9").style.height='0px';         // mark on 2020.12.24 
+   document.getElementById("tool_area_9").style.display='none';         // add on 2020.12.24
 
    document.getElementById("tool_area_10").style.visibility='hidden';
 
@@ -6353,7 +6357,8 @@ function passWord_2() { // Check pass1
 
       if (pass1.toLowerCase() == "jitlomf") {
 
-         document.getElementById("tool_area_8").style.visibility='visible';
+         //document.getElementById("tool_area_8").style.visibility='visible';   // mark on 2020.12.25
+         document.getElementById("tool_area_8").style.display='block';         // add on 2020.12.25
 
          Show_n_Delete_Notes_List();
 
@@ -8253,10 +8258,13 @@ async function Show_Notes_List2_Recent30() { // show Name and Topic
 
 
    document.getElementById("tool_area_6").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.height='0px';
 
-   document.getElementById("tool_area_8").style.visibility='visible';
+   //document.getElementById("tool_area_9").style.visibility='hidden';  // mark on 2020.12.24 
+   //document.getElementById("tool_area_9").style.height='0px';         // mark on 2020.12.24 
+   document.getElementById("tool_area_9").style.display='none';         // add on 2020.12.24
+
+   //document.getElementById("tool_area_8").style.visibility='visible';   // mark on 2020.12.25
+   document.getElementById("tool_area_8").style.display='block';         // add on 2020.12.25
 
    document.getElementById("Notes_List").innerHTML = text1;
 
@@ -8353,10 +8361,13 @@ async function Show_Notes_List2_Time_Equal() { // show Name and Topic
 
 
    document.getElementById("tool_area_6").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.height='0px';
 
-   document.getElementById("tool_area_8").style.visibility='visible';
+   //document.getElementById("tool_area_9").style.visibility='hidden';  // mark on 2020.12.24 
+   //document.getElementById("tool_area_9").style.height='0px';         // mark on 2020.12.24 
+   document.getElementById("tool_area_9").style.display='none';         // add on 2020.12.24
+
+   //document.getElementById("tool_area_8").style.visibility='visible';   // mark on 2020.12.25
+   document.getElementById("tool_area_8").style.display='block';         // add on 2020.12.25
 
    document.getElementById("Notes_List").innerHTML = text1;
 
@@ -8457,10 +8468,14 @@ async function Show_Notes_List2_Time_Between() { // show Name and Topic
 
 
    document.getElementById("tool_area_6").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.height='0px';
 
-   document.getElementById("tool_area_8").style.visibility='visible';
+   //document.getElementById("tool_area_9").style.visibility='hidden';  // mark on 2020.12.24 
+   //document.getElementById("tool_area_9").style.height='0px';         // mark on 2020.12.24 
+   document.getElementById("tool_area_9").style.display='none';         // add on 2020.12.24
+
+
+   //document.getElementById("tool_area_8").style.visibility='visible';   // mark on 2020.12.25
+   document.getElementById("tool_area_8").style.display='block';         // add on 2020.12.25
 
    document.getElementById("Notes_List").innerHTML = text1;
 
@@ -8576,10 +8591,13 @@ async function Show_Notes_List2_Time_and_Speaker_Equal() { // show Name and Topi
 
 
    document.getElementById("tool_area_6").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.height='0px';
 
-   document.getElementById("tool_area_8").style.visibility='visible';
+   //document.getElementById("tool_area_9").style.visibility='hidden';  // mark on 2020.12.24 
+   //document.getElementById("tool_area_9").style.height='0px';         // mark on 2020.12.24 
+   document.getElementById("tool_area_9").style.display='none';         // add on 2020.12.24
+
+   //document.getElementById("tool_area_8").style.visibility='visible';   // mark on 2020.12.25
+   document.getElementById("tool_area_8").style.display='block';         // add on 2020.12.25
 
    document.getElementById("Notes_List").innerHTML = text1;
 
@@ -8703,10 +8721,13 @@ async function Show_Notes_List2_Time_Between_and_Speaker_Equal() { // show Name 
 
 
    document.getElementById("tool_area_6").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.height='0px';
 
-   document.getElementById("tool_area_8").style.visibility='visible';
+   //document.getElementById("tool_area_9").style.visibility='hidden';  // mark on 2020.12.24 
+   //document.getElementById("tool_area_9").style.height='0px';         // mark on 2020.12.24 
+   document.getElementById("tool_area_9").style.display='none';         // add on 2020.12.24
+
+   //document.getElementById("tool_area_8").style.visibility='visible';   // mark on 2020.12.25
+   document.getElementById("tool_area_8").style.display='block';         // add on 2020.12.25
 
    document.getElementById("Notes_List").innerHTML = text1;
 
@@ -8728,10 +8749,13 @@ function Show_Between_Ex() {
    text1 += 'Ex:Input <b>202007</b> and <b>202009</b> => between <b>202007</b> and <b>202008</b>';
 
    document.getElementById("tool_area_6").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.height='0px';
 
-   document.getElementById("tool_area_8").style.visibility='visible';
+   //document.getElementById("tool_area_9").style.visibility='hidden';  // mark on 2020.12.24 
+   //document.getElementById("tool_area_9").style.height='0px';         // mark on 2020.12.24 
+   document.getElementById("tool_area_9").style.display='none';         // add on 2020.12.24
+
+   //document.getElementById("tool_area_8").style.visibility='visible';   // mark on 2020.12.25
+   document.getElementById("tool_area_8").style.display='block';         // add on 2020.12.25
 
    document.getElementById("Notes_List").innerHTML = text1;
 
@@ -8827,10 +8851,13 @@ async function Show_Notes_List2_Speaker_Equal() { // show Name and Topic
 
 
    document.getElementById("tool_area_6").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.height='0px';
 
-   document.getElementById("tool_area_8").style.visibility='visible';
+   //document.getElementById("tool_area_9").style.visibility='hidden';  // mark on 2020.12.24 
+   //document.getElementById("tool_area_9").style.height='0px';         // mark on 2020.12.24 
+   document.getElementById("tool_area_9").style.display='none';         // add on 2020.12.24
+
+   //document.getElementById("tool_area_8").style.visibility='visible';   // mark on 2020.12.25
+   document.getElementById("tool_area_8").style.display='block';         // add on 2020.12.25
 
    document.getElementById("Notes_List").innerHTML = text1;
 
@@ -9107,10 +9134,13 @@ async function Show_Notes_List2_Keyword_Equal() { // show Name and Topic
 
 
    document.getElementById("tool_area_6").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.height='0px';
 
-   document.getElementById("tool_area_8").style.visibility='visible';
+   //document.getElementById("tool_area_9").style.visibility='hidden';  // mark on 2020.12.24 
+   //document.getElementById("tool_area_9").style.height='0px';         // mark on 2020.12.24 
+   document.getElementById("tool_area_9").style.display='none';         // add on 2020.12.24
+
+   //document.getElementById("tool_area_8").style.visibility='visible';   // mark on 2020.12.25
+   document.getElementById("tool_area_8").style.display='block';         // add on 2020.12.25
 
    document.getElementById("Notes_List").innerHTML = text1;
 
@@ -10395,11 +10425,11 @@ function Hide_DB_Tools() { // Less Mode
    document.getElementById("tool_area_7").style.visibility='hidden';
    document.getElementById("tool_area_6").style.visibility='hidden';
 
-   document.getElementById("tool_area_8").style.visibility='hidden';  // mark on 2020.12.24 
+   //document.getElementById("tool_area_8").style.visibility='hidden';  // mark on 2020.12.24 
    document.getElementById("tool_area_8").style.display='none'; // add on 2020.12.24  
 
-   document.getElementById("tool_area_9").style.visibility='hidden';  // mark on 2020.12.24 
-   document.getElementById("tool_area_9").style.height='0px';         // mark on 2020.12.24 
+   //document.getElementById("tool_area_9").style.visibility='hidden';  // mark on 2020.12.24 
+   //document.getElementById("tool_area_9").style.height='0px';         // mark on 2020.12.24 
    document.getElementById("tool_area_9").style.display='none'; // add on 2020.12.24  
 
    Delete_Note_Item_No = 0;  // 0 means No Delete action, 1 means delete first item
