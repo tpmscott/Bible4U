@@ -7481,6 +7481,8 @@ async function Show_Notes_List2() { // show Name and Topic
 
         text1 = 'Notes List -- indexedDB ' + '<a href="" onclick="Open_Search_Note();return false;">' + 'Open Search Tool</a>' + ' ';
 
+        text1 += ' ---- ';
+
         text1 += '<a href="" onclick="Close_Show_Notes_List2();return false;">' + 'Close Notes List</a>' + '<br>';
 
         for (var i = 0; i < Verse.length ; i++) {
@@ -12034,6 +12036,19 @@ New
 <a href="javascript:Close_Save_Note_to_DB()"> Close </a>
 </td>
 </tr>
+
+
+<tr>
+
+<td>
+<button onclick="Hide_Bookmark3_Only()">Hide BM3</button>
+<button onclick="Hide_Bookmark4_Only()">Hide BM4</button>
+<button onclick="Hide_Bookmark5_Only()">Hide BM5</button>
+<button style="color:red"  onclick="Delete_All_History()">Del History</button>
+</td>
+
+</tr>
+
 
 </form>
 </table>
