@@ -137,6 +137,21 @@
 }
 </style>
 
+<style>
+
+#tool_area_9 {
+  position: fixed;
+  right: 0;
+  top: 15%;    
+  width: 25em;
+  height: 8em;  
+  background-color: #f9f9f9;
+}
+
+
+</style>
+
+
 
 <SCRIPT Language="JavaScript" SRC="bible.js"></SCRIPT>
 <SCRIPT Language="JavaScript" SRC="bible2.js"></SCRIPT>
@@ -7484,8 +7499,9 @@ async function Show_Notes_List2() { // show Name and Topic
 
 
    document.getElementById("tool_area_6").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.height='0px';
+   //document.getElementById("tool_area_9").style.visibility='hidden'; // mark on 2020.12.24
+   //document.getElementById("tool_area_9").style.height='0px';        // mark on 2020.12.24
+   document.getElementById("tool_area_9").style.display='none';        // add on 2020.12.24 
 
    document.getElementById("tool_area_8").style.visibility='visible';
 
@@ -10490,8 +10506,9 @@ function Save_Note_to_DB() {
 
    document.getElementById("tool_area_6").style.visibility='hidden';
    document.getElementById("tool_area_8").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.visibility='visible';
-   document.getElementById("tool_area_9").style.height='20px';
+   //document.getElementById("tool_area_9").style.visibility='visible';  // mark on 2020.12.24 
+   //document.getElementById("tool_area_9").style.height='20px';         // mark on 2020.12.24 
+   document.getElementById("tool_area_9").style.display='block';         // add on 2020.12.24
 
    Delete_Note_Item_No = 0;  // 0 means No Delete action, 1 means delete first item
 
@@ -11876,8 +11893,8 @@ async function download_csv_1() {  // Could be used on Windows for backup
 </div>
 
 
+<div id="tool_area_9" style="display:none">
 
-<div id="tool_area_9" style="height:0px;visibility:hidden">
 
 <table>
 <form name="Note_DB_FORM">
