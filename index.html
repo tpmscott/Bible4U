@@ -7527,6 +7527,27 @@ async function Show_Notes_List2() { // show Name and Topic
 }  // End of function Show_Notes_List2()
 
 
+var Open_or_Close_Show_Notes_List2_F = 0; // 0 means Close, 1 means Open
+
+async function Open_or_Close_Show_Notes_List2() {
+
+   if (Open_or_Close_Show_Notes_List2_F == 0) { // 原為 Close
+
+      Show_Notes_List2();
+      Open_or_Close_Show_Notes_List2_F = 1;
+
+   }
+   else {  // 原為 Open
+
+      Close_Show_Notes_List2();
+      Open_or_Close_Show_Notes_List2_F = 0;
+
+   }
+
+
+} // End of function Open_or_Close_Show_Notes_List2()
+
+
 async function List_All_Pictures() {
 
    document.getElementById("Book_Picture_List_Area").style.height = "70%";
@@ -9129,10 +9150,12 @@ function Show_Notes_List() { // show Name and Topic
    }
 
    document.getElementById("tool_area_6").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.height='0px';
+   //document.getElementById("tool_area_9").style.visibility='hidden'; // mark on 2020.12.24 
+   //document.getElementById("tool_area_9").style.height='0px';        // mark on 2020.12.24 
+   document.getElementById("tool_area_9").style.display='none'; // add on 2020.12.24   
 
-   document.getElementById("tool_area_8").style.visibility='visible';
+   //document.getElementById("tool_area_8").style.visibility='visible';  // ***   // mark on 2020.12.25
+   document.getElementById("tool_area_8").style.display='block';         // add on 2020.12.25
 
    document.getElementById("Notes_List").innerHTML = text1;
 
@@ -10371,9 +10394,13 @@ function Hide_DB_Tools() { // Less Mode
 
    document.getElementById("tool_area_7").style.visibility='hidden';
    document.getElementById("tool_area_6").style.visibility='hidden';
-   document.getElementById("tool_area_8").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.visibility='hidden';
-   document.getElementById("tool_area_9").style.height='0px';
+
+   document.getElementById("tool_area_8").style.visibility='hidden';  // mark on 2020.12.24 
+   document.getElementById("tool_area_8").style.display='none'; // add on 2020.12.24  
+
+   document.getElementById("tool_area_9").style.visibility='hidden';  // mark on 2020.12.24 
+   document.getElementById("tool_area_9").style.height='0px';         // mark on 2020.12.24 
+   document.getElementById("tool_area_9").style.display='none'; // add on 2020.12.24  
 
    Delete_Note_Item_No = 0;  // 0 means No Delete action, 1 means delete first item
 
@@ -11902,7 +11929,7 @@ async function download_csv_1() {  // Could be used on Windows for backup
 </td>
 
 <td>
-<input type="button" name="B114" style="font-size:16pt;color:black" id="Notes_List_in_DB2" value="Notes List in indexedDB" onclick="Show_Notes_List2(); return false;">
+<input type="button" name="B114" style="font-size:16pt;color:black" id="Notes_List_in_DB2" value="Notes List in indexedDB" onclick="Open_or_Close_Show_Notes_List2(); return false;">
 </td>
 
 <td></td><td></td><td></td><td></td><td></td><td></td>
