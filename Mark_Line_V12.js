@@ -281,6 +281,24 @@ async function init_Bible4U_DB() {
          Comparing_Db_1: 'CNo',
          Comparing_Db_2: 'CNo'
      });
+     dbT2.version(25).stores({      // New for V13
+         books: 'name,date',
+         ChapNote: 'name,date',
+         Congregation: 'CNo,F_Name,L_Name,[L_Name+F_Name],H_No,F_Order',
+         Attendance: 'Record',
+         Householder: '++H_Seq,H_No',
+         Congregation2: '++CNo,F_Name,L_Name,[L_Name+F_Name],H_No,F_Order',
+         Congregation3: 'CNo,F_Name,L_Name,[L_Name+F_Name],H_No',
+         Roll: '++Roll_No,CNo,F_Name,L_Name,C_F_Name,H_No,E_F_LName,C_F_FName,Member',
+         Congregation4: 'CNo,F_Name,L_Name,[L_Name+F_Name],H_No,F_Order,Tel,Mob',
+         SermonNote: 'Name,Speaker, *MainVerses, *KeyWords',
+         Pictures: 'ID, P_Name, *MainVerses',
+         Service_Record: 'ID_1,ID_2',
+         Comparing_Db_1: 'CNo',
+         Comparing_Db_2: 'CNo',
+         Bible_Db_1: 'Verse_Content'
+     });
+
 
    // End of Declare Database
 
