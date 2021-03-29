@@ -3628,9 +3628,9 @@ function hide_bookmark14() {
 }
 
 
-var cfs=200;
+//var cfs=200;
 
-//var cfs=300; // for test
+var cfs=300; // for test
 
 
 function increase_fontsize_V2(){ // for iphone use
