@@ -13,7 +13,7 @@ var docObj_h    = document;
 var nowbook = 39;
 var nowchapter = 0;
 var nowsection = 0;
-var nowtosection = 0; // add on 2018.08.17 for æ›¸ç±¤
+var nowtosection = 0; // add on 2018.08.17 for ®ÑÅÒ
 
 var now_Book = 39;
 var now_Chap = 0;
@@ -24,20 +24,20 @@ var Read_Book_Chap_Vers_ToVers ="";
 var findbook = new Array();
 var findchapter = new Array();
 var word1 = "";
-var head_size = "64"; //æ¨™é¡Œå­—å‹å¤§å°
-var sing_size = "50"; //å”±è©©å­—å‹å¤§å°
-var bcs_size ; //ç¶“å·å­—å‹å¤§å°
-var sec_size ; //ç¶“æ–‡å­—å‹å¤§å°
-var search_sec_size ; //æŸ¥è©¢çµæœç¶“æ–‡å­—å‹å¤§å°
-var pray_size = "50"; //ç¦±å‘Šå­—å‹å¤§å°
-var head_color = "fff000"; //æ¨™é¡Œå­—å‹é¡è‰²
-var sing_color = "fff000"; //å”±è©©å­—å‹é¡è‰²
-var bcs_color = "ff0000"; //ç¶“å·å­—å‹é¡è‰² 
-var sec_color = "fff000"; //ç¶“æ–‡å­—å‹é¡è‰²
-var disp_secs_a = 7; //ä¸€æ¬¡é¡¯ç¤ºç¶“ç¯€æ•¸
-var open_win = 1; //1:æŸ¥è©¢é€£çµé–‹å•Ÿæ–¼->åŒä¸€è¦–çª— , 2:æŸ¥è©¢é€£çµé–‹å•Ÿæ–¼->æ–°è¦–çª—
+var head_size = "64"; //¼ĞÃD¦r«¬¤j¤p
+var sing_size = "50"; //°Û¸Ö¦r«¬¤j¤p
+var bcs_size ; //¸g¨÷¦r«¬¤j¤p
+var sec_size ; //¸g¤å¦r«¬¤j¤p
+var search_sec_size ; //¬d¸ßµ²ªG¸g¤å¦r«¬¤j¤p
+var pray_size = "50"; //Ã«§i¦r«¬¤j¤p
+var head_color = "fff000"; //¼ĞÃD¦r«¬ÃC¦â
+var sing_color = "fff000"; //°Û¸Ö¦r«¬ÃC¦â
+var bcs_color = "ff0000"; //¸g¨÷¦r«¬ÃC¦â 
+var sec_color = "fff000"; //¸g¤å¦r«¬ÃC¦â
+var disp_secs_a = 7; //¤@¦¸Åã¥Ü¸g¸`¼Æ
+var open_win = 1; //1:¬d¸ß³sµ²¶}±Ò©ó->¦P¤@µøµ¡ , 2:¬d¸ß³sµ²¶}±Ò©ó->·sµøµ¡
 
-var BibleVersion_Disp = 0; // 0:é¡¯ç¤ºNKJV, 1:é¡¯ç¤ºNIV, 2:é¡¯ç¤ºå‘‚æŒ¯ä¸­è­¯æœ¬, 3é¡¯ç¤ºå…¨éƒ¨ç‰ˆæœ¬
+var BibleVersion_Disp = 0; // 0:Åã¥ÜNKJV, 1:Åã¥ÜNIV, 2:Åã¥Ü§f®¶¤¤Ä¶¥», 3Åã¥Ü¥ş³¡ª©¥»
 
 var Bname = "";
 var Bcsname1 = "";
@@ -418,7 +418,7 @@ function write_to_json_1(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 // store1.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
 
-    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // åŸç‚º arg4==1ï¼Œç„¡ arg5
+    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // ­ì¬° arg4==1¡AµL arg5
 
             var minWidth = arg1;
             var minHeight = arg2;
@@ -427,10 +427,10 @@ function write_to_json_1(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
             store1.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -441,15 +441,15 @@ function write_to_json_1(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
        // ---- for dialog 
 
-         if(Bname!="è©©ç¯‡") {
-            var BCSName = 'å„²å­˜ ' + Bcsname1 + ' è‡³ æ›¸ç±¤-1 ?';
+         if(Bname!="¸Ö½g") {
+            var BCSName = 'Àx¦s ' + Bcsname1 + ' ¦Ü ®ÑÅÒ-1 ?';
          }
          else {
-            var BCSName = 'å„²å­˜ ' + Bcsname2 + ' è‡³ æ›¸ç±¤-1 ?';
+            var BCSName = 'Àx¦s ' + Bcsname2 + ' ¦Ü ®ÑÅÒ-1 ?';
          }
 
-         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // åŸç„¡ arg4==99
-            var BCSName = 'æ¸…é™¤æ›¸ç±¤-1 ?';
+         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // ­ìµL arg4==99
+            var BCSName = '²M°£®ÑÅÒ-1 ?';
          }
 
        var buttons = ['OK', 'Cancel'];
@@ -473,10 +473,10 @@ function write_to_json_1(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
             store1.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -527,7 +527,7 @@ function write_to_json_2(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 // store1.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
 
-    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // åŸç‚º arg4==1ï¼Œç„¡ arg5
+    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // ­ì¬° arg4==1¡AµL arg5
 
             var minWidth = arg1;
             var minHeight = arg2;
@@ -536,10 +536,10 @@ function write_to_json_2(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
             store2.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -550,15 +550,15 @@ function write_to_json_2(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
        // ---- for dialog 
 
-         if(Bname!="è©©ç¯‡") {
-            var BCSName = 'å„²å­˜ ' + Bcsname1 + ' è‡³ æ›¸ç±¤-2 ?';
+         if(Bname!="¸Ö½g") {
+            var BCSName = 'Àx¦s ' + Bcsname1 + ' ¦Ü ®ÑÅÒ-2 ?';
          }
          else {
-            var BCSName = 'å„²å­˜ ' + Bcsname2 + ' è‡³ æ›¸ç±¤-2 ?';
+            var BCSName = 'Àx¦s ' + Bcsname2 + ' ¦Ü ®ÑÅÒ-2 ?';
          }
 
-         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // åŸç„¡ arg4==99
-            var BCSName = 'æ¸…é™¤æ›¸ç±¤-2 ?';
+         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // ­ìµL arg4==99
+            var BCSName = '²M°£®ÑÅÒ-2 ?';
          }
 
        var buttons = ['OK', 'Cancel'];
@@ -582,10 +582,10 @@ function write_to_json_2(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
             store2.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -636,7 +636,7 @@ function write_to_json_3(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 // store1.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
 
-    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // åŸç‚º arg4==1ï¼Œç„¡ arg5
+    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // ­ì¬° arg4==1¡AµL arg5
 
             var minWidth = arg1;
             var minHeight = arg2;
@@ -645,10 +645,10 @@ function write_to_json_3(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
             store3.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -659,15 +659,15 @@ function write_to_json_3(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
        // ---- for dialog 
 
-         if(Bname!="è©©ç¯‡") {
-            var BCSName = 'å„²å­˜ ' + Bcsname1 + ' è‡³ æ›¸ç±¤-3 ?';
+         if(Bname!="¸Ö½g") {
+            var BCSName = 'Àx¦s ' + Bcsname1 + ' ¦Ü ®ÑÅÒ-3 ?';
          }
          else {
-            var BCSName = 'å„²å­˜ ' + Bcsname2 + ' è‡³ æ›¸ç±¤-3 ?';
+            var BCSName = 'Àx¦s ' + Bcsname2 + ' ¦Ü ®ÑÅÒ-3 ?';
          }
 
-         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // åŸç„¡ arg4==99
-            var BCSName = 'æ¸…é™¤æ›¸ç±¤-3 ?';
+         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // ­ìµL arg4==99
+            var BCSName = '²M°£®ÑÅÒ-3 ?';
          }
 
        var buttons = ['OK', 'Cancel'];
@@ -691,10 +691,10 @@ function write_to_json_3(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
             store3.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -744,7 +744,7 @@ function write_to_json_4(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 // store1.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
 
-    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // åŸç‚º arg4==1ï¼Œç„¡ arg5
+    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // ­ì¬° arg4==1¡AµL arg5
 
             var minWidth = arg1;
             var minHeight = arg2;
@@ -753,10 +753,10 @@ function write_to_json_4(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
             store4.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -767,15 +767,15 @@ function write_to_json_4(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
        // ---- for dialog 
 
-         if(Bname!="è©©ç¯‡") {
-            var BCSName = 'å„²å­˜ ' + Bcsname1 + ' è‡³ æ›¸ç±¤-4 ?';
+         if(Bname!="¸Ö½g") {
+            var BCSName = 'Àx¦s ' + Bcsname1 + ' ¦Ü ®ÑÅÒ-4 ?';
          }
          else {
-            var BCSName = 'å„²å­˜ ' + Bcsname2 + ' è‡³ æ›¸ç±¤-4 ?';
+            var BCSName = 'Àx¦s ' + Bcsname2 + ' ¦Ü ®ÑÅÒ-4 ?';
          }
 
-         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // åŸç„¡ arg4==99
-            var BCSName = 'æ¸…é™¤æ›¸ç±¤-4 ?';
+         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // ­ìµL arg4==99
+            var BCSName = '²M°£®ÑÅÒ-4 ?';
          }
 
        var buttons = ['OK', 'Cancel'];
@@ -799,10 +799,10 @@ function write_to_json_4(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
             store4.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -852,7 +852,7 @@ function write_to_json_5(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 // store1.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
 
-    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // åŸç‚º arg4==1ï¼Œç„¡ arg5
+    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // ­ì¬° arg4==1¡AµL arg5
 
             var minWidth = arg1;
             var minHeight = arg2;
@@ -861,10 +861,10 @@ function write_to_json_5(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
             store5.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -875,15 +875,15 @@ function write_to_json_5(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
        // ---- for dialog 
 
-         if(Bname!="è©©ç¯‡") {
-            var BCSName = 'å„²å­˜ ' + Bcsname1 + ' è‡³ æ›¸ç±¤-5 ?';
+         if(Bname!="¸Ö½g") {
+            var BCSName = 'Àx¦s ' + Bcsname1 + ' ¦Ü ®ÑÅÒ-5 ?';
          }
          else {
-            var BCSName = 'å„²å­˜ ' + Bcsname2 + ' è‡³ æ›¸ç±¤-5 ?';
+            var BCSName = 'Àx¦s ' + Bcsname2 + ' ¦Ü ®ÑÅÒ-5 ?';
          }
 
-         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // åŸç„¡ arg4==99
-            var BCSName = 'æ¸…é™¤æ›¸ç±¤-5 ?';
+         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // ­ìµL arg4==99
+            var BCSName = '²M°£®ÑÅÒ-5 ?';
          }
 
        var buttons = ['OK', 'Cancel'];
@@ -907,10 +907,10 @@ function write_to_json_5(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
             store5.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -960,7 +960,7 @@ function write_to_json_6(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 // store1.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
 
-    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // åŸç‚º arg4==1ï¼Œç„¡ arg5
+    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // ­ì¬° arg4==1¡AµL arg5
 
             var minWidth = arg1;
             var minHeight = arg2;
@@ -969,10 +969,10 @@ function write_to_json_6(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
             store6.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -983,15 +983,15 @@ function write_to_json_6(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
        // ---- for dialog 
 
-         if(Bname!="è©©ç¯‡") {
-            var BCSName = 'å„²å­˜ ' + Bcsname1 + ' è‡³ æ›¸ç±¤-6 ?';
+         if(Bname!="¸Ö½g") {
+            var BCSName = 'Àx¦s ' + Bcsname1 + ' ¦Ü ®ÑÅÒ-6 ?';
          }
          else {
-            var BCSName = 'å„²å­˜ ' + Bcsname2 + ' è‡³ æ›¸ç±¤-6 ?';
+            var BCSName = 'Àx¦s ' + Bcsname2 + ' ¦Ü ®ÑÅÒ-6 ?';
          }
 
-         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // åŸç„¡ arg4==99
-            var BCSName = 'æ¸…é™¤æ›¸ç±¤-6 ?';
+         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // ­ìµL arg4==99
+            var BCSName = '²M°£®ÑÅÒ-6 ?';
          }
 
        var buttons = ['OK', 'Cancel'];
@@ -1015,10 +1015,10 @@ function write_to_json_6(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
             store6.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -1068,7 +1068,7 @@ function write_to_json_7(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 // store1.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
 
-    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // åŸç‚º arg4==1ï¼Œç„¡ arg5
+    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // ­ì¬° arg4==1¡AµL arg5
 
             var minWidth = arg1;
             var minHeight = arg2;
@@ -1077,10 +1077,10 @@ function write_to_json_7(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
             store7.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -1091,15 +1091,15 @@ function write_to_json_7(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
        // ---- for dialog 
 
-         if(Bname!="è©©ç¯‡") {
-            var BCSName = 'å„²å­˜ ' + Bcsname1 + ' è‡³ æ›¸ç±¤-7 ?';
+         if(Bname!="¸Ö½g") {
+            var BCSName = 'Àx¦s ' + Bcsname1 + ' ¦Ü ®ÑÅÒ-7 ?';
          }
          else {
-            var BCSName = 'å„²å­˜ ' + Bcsname2 + ' è‡³ æ›¸ç±¤-7 ?';
+            var BCSName = 'Àx¦s ' + Bcsname2 + ' ¦Ü ®ÑÅÒ-7 ?';
          }
 
-         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // åŸç„¡ arg4==99
-            var BCSName = 'æ¸…é™¤æ›¸ç±¤-7 ?';
+         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // ­ìµL arg4==99
+            var BCSName = '²M°£®ÑÅÒ-7 ?';
          }
 
        var buttons = ['OK', 'Cancel'];
@@ -1123,10 +1123,10 @@ function write_to_json_7(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
             store7.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -1176,7 +1176,7 @@ function write_to_json_8(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 // store1.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
 
-    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // åŸç‚º arg4==1ï¼Œç„¡ arg5
+    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // ­ì¬° arg4==1¡AµL arg5
 
             var minWidth = arg1;
             var minHeight = arg2;
@@ -1185,10 +1185,10 @@ function write_to_json_8(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
             store8.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -1199,15 +1199,15 @@ function write_to_json_8(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
        // ---- for dialog 
 
-         if(Bname!="è©©ç¯‡") {
-            var BCSName = 'å„²å­˜ ' + Bcsname1 + ' è‡³ æ›¸ç±¤-8 ?';
+         if(Bname!="¸Ö½g") {
+            var BCSName = 'Àx¦s ' + Bcsname1 + ' ¦Ü ®ÑÅÒ-8 ?';
          }
          else {
-            var BCSName = 'å„²å­˜ ' + Bcsname2 + ' è‡³ æ›¸ç±¤-8 ?';
+            var BCSName = 'Àx¦s ' + Bcsname2 + ' ¦Ü ®ÑÅÒ-8 ?';
          }
 
-         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // åŸç„¡ arg4==99
-            var BCSName = 'æ¸…é™¤æ›¸ç±¤-8 ?';
+         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // ­ìµL arg4==99
+            var BCSName = '²M°£®ÑÅÒ-8 ?';
          }
 
        var buttons = ['OK', 'Cancel'];
@@ -1231,10 +1231,10 @@ function write_to_json_8(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
             store8.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -1284,7 +1284,7 @@ function write_to_json_9(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 // store1.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
 
-    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // åŸç‚º arg4==1ï¼Œç„¡ arg5
+    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // ­ì¬° arg4==1¡AµL arg5
 
             var minWidth = arg1;
             var minHeight = arg2;
@@ -1293,10 +1293,10 @@ function write_to_json_9(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
             store9.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -1307,15 +1307,15 @@ function write_to_json_9(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
        // ---- for dialog 
 
-         if(Bname!="è©©ç¯‡") {
-            var BCSName = 'å„²å­˜ ' + Bcsname1 + ' è‡³ æ›¸ç±¤-9 ?';
+         if(Bname!="¸Ö½g") {
+            var BCSName = 'Àx¦s ' + Bcsname1 + ' ¦Ü ®ÑÅÒ-9 ?';
          }
          else {
-            var BCSName = 'å„²å­˜ ' + Bcsname2 + ' è‡³ æ›¸ç±¤-9 ?';
+            var BCSName = 'Àx¦s ' + Bcsname2 + ' ¦Ü ®ÑÅÒ-9 ?';
          }
 
-         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // åŸç„¡ arg4==99
-            var BCSName = 'æ¸…é™¤æ›¸ç±¤-9 ?';
+         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // ­ìµL arg4==99
+            var BCSName = '²M°£®ÑÅÒ-9 ?';
          }
 
        var buttons = ['OK', 'Cancel'];
@@ -1339,10 +1339,10 @@ function write_to_json_9(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear 
 
             store9.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -1392,7 +1392,7 @@ function write_to_json_10(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear
 // store1.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
 
-    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // åŸç‚º arg4==1ï¼Œç„¡ arg5
+    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // ­ì¬° arg4==1¡AµL arg5
 
             var minWidth = arg1;
             var minHeight = arg2;
@@ -1401,10 +1401,10 @@ function write_to_json_10(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear
 
             store10.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -1415,15 +1415,15 @@ function write_to_json_10(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear
 
        // ---- for dialog 
 
-         if(Bname!="è©©ç¯‡") {
-            var BCSName = 'å„²å­˜ ' + Bcsname1 + ' è‡³ æ›¸ç±¤-10 ?';
+         if(Bname!="¸Ö½g") {
+            var BCSName = 'Àx¦s ' + Bcsname1 + ' ¦Ü ®ÑÅÒ-10 ?';
          }
          else {
-            var BCSName = 'å„²å­˜ ' + Bcsname2 + ' è‡³ æ›¸ç±¤-10 ?';
+            var BCSName = 'Àx¦s ' + Bcsname2 + ' ¦Ü ®ÑÅÒ-10 ?';
          }
 
-         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // åŸç„¡ arg4==99
-            var BCSName = 'æ¸…é™¤æ›¸ç±¤-10 ?';
+         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // ­ìµL arg4==99
+            var BCSName = '²M°£®ÑÅÒ-10 ?';
          }
 
        var buttons = ['OK', 'Cancel'];
@@ -1447,10 +1447,10 @@ function write_to_json_10(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear
 
             store10.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -1500,7 +1500,7 @@ function write_to_json_11(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear
 // store1.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
 
-    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // åŸç‚º arg4==1ï¼Œç„¡ arg5
+    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // ­ì¬° arg4==1¡AµL arg5
 
             var minWidth = arg1;
             var minHeight = arg2;
@@ -1509,10 +1509,10 @@ function write_to_json_11(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear
 
             store11.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -1523,15 +1523,15 @@ function write_to_json_11(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear
 
        // ---- for dialog 
 
-         if(Bname!="è©©ç¯‡") {
-            var BCSName = 'å„²å­˜ ' + Bcsname1 + ' è‡³ æ›¸ç±¤-11 ?';
+         if(Bname!="¸Ö½g") {
+            var BCSName = 'Àx¦s ' + Bcsname1 + ' ¦Ü ®ÑÅÒ-11 ?';
          }
          else {
-            var BCSName = 'å„²å­˜ ' + Bcsname2 + ' è‡³ æ›¸ç±¤-11 ?';
+            var BCSName = 'Àx¦s ' + Bcsname2 + ' ¦Ü ®ÑÅÒ-11 ?';
          }
 
-         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // åŸç„¡ arg4==99
-            var BCSName = 'æ¸…é™¤æ›¸ç±¤-11 ?';
+         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // ­ìµL arg4==99
+            var BCSName = '²M°£®ÑÅÒ-11 ?';
          }
 
        var buttons = ['OK', 'Cancel'];
@@ -1555,10 +1555,10 @@ function write_to_json_11(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear
 
             store11.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -1608,7 +1608,7 @@ function write_to_json_12(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear
 // store1.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
 
-    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // åŸç‚º arg4==1ï¼Œç„¡ arg5
+    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // ­ì¬° arg4==1¡AµL arg5
 
             var minWidth = arg1;
             var minHeight = arg2;
@@ -1617,10 +1617,10 @@ function write_to_json_12(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear
 
             store12.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -1631,15 +1631,15 @@ function write_to_json_12(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear
 
        // ---- for dialog 
 
-         if(Bname!="è©©ç¯‡") {
-            var BCSName = 'å„²å­˜ ' + Bcsname1 + ' è‡³ æ›¸ç±¤-12 ?';
+         if(Bname!="¸Ö½g") {
+            var BCSName = 'Àx¦s ' + Bcsname1 + ' ¦Ü ®ÑÅÒ-12 ?';
          }
          else {
-            var BCSName = 'å„²å­˜ ' + Bcsname2 + ' è‡³ æ›¸ç±¤-12 ?';
+            var BCSName = 'Àx¦s ' + Bcsname2 + ' ¦Ü ®ÑÅÒ-12 ?';
          }
 
-         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // åŸç„¡ arg4==99
-            var BCSName = 'æ¸…é™¤æ›¸ç±¤-12 ?';
+         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // ­ìµL arg4==99
+            var BCSName = '²M°£®ÑÅÒ-12 ?';
          }
 
        var buttons = ['OK', 'Cancel'];
@@ -1663,10 +1663,10 @@ function write_to_json_12(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear
 
             store12.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -1716,7 +1716,7 @@ function write_to_json_13(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear
 // store1.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
 
-    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // åŸç‚º arg4==1ï¼Œç„¡ arg5
+    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // ­ì¬° arg4==1¡AµL arg5
 
             var minWidth = arg1;
             var minHeight = arg2;
@@ -1725,10 +1725,10 @@ function write_to_json_13(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear
 
             store13.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -1739,15 +1739,15 @@ function write_to_json_13(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear
 
        // ---- for dialog 
 
-         if(Bname!="è©©ç¯‡") {
-            var BCSName = 'å„²å­˜ ' + Bcsname1 + ' è‡³ æ›¸ç±¤-13 ?';
+         if(Bname!="¸Ö½g") {
+            var BCSName = 'Àx¦s ' + Bcsname1 + ' ¦Ü ®ÑÅÒ-13 ?';
          }
          else {
-            var BCSName = 'å„²å­˜ ' + Bcsname2 + ' è‡³ æ›¸ç±¤-13 ?';
+            var BCSName = 'Àx¦s ' + Bcsname2 + ' ¦Ü ®ÑÅÒ-13 ?';
          }
 
-         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // åŸç„¡ arg4==99
-            var BCSName = 'æ¸…é™¤æ›¸ç±¤-13 ?';
+         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // ­ìµL arg4==99
+            var BCSName = '²M°£®ÑÅÒ-13 ?';
          }
 
        var buttons = ['OK', 'Cancel'];
@@ -1771,10 +1771,10 @@ function write_to_json_13(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear
 
             store13.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -1824,7 +1824,7 @@ function write_to_json_14(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear
 // store1.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
 
-    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // åŸç‚º arg4==1ï¼Œç„¡ arg5
+    if(arg1==99 && arg2==99 && arg3==99 && arg4==99 && arg5==1){  // ­ì¬° arg4==1¡AµL arg5
 
             var minWidth = arg1;
             var minHeight = arg2;
@@ -1833,10 +1833,10 @@ function write_to_json_14(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear
 
             store14.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -1847,15 +1847,15 @@ function write_to_json_14(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear
 
        // ---- for dialog 
 
-         if(Bname!="è©©ç¯‡") {
-            var BCSName = 'å„²å­˜ ' + Bcsname1 + ' è‡³ æ›¸ç±¤-14 ?';
+         if(Bname!="¸Ö½g") {
+            var BCSName = 'Àx¦s ' + Bcsname1 + ' ¦Ü ®ÑÅÒ-14 ?';
          }
          else {
-            var BCSName = 'å„²å­˜ ' + Bcsname2 + ' è‡³ æ›¸ç±¤-14 ?';
+            var BCSName = 'Àx¦s ' + Bcsname2 + ' ¦Ü ®ÑÅÒ-14 ?';
          }
 
-         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // åŸç„¡ arg4==99
-            var BCSName = 'æ¸…é™¤æ›¸ç±¤-14 ?';
+         if(arg1==99 && arg2==99 && arg3==99 && arg4==99){  // ­ìµL arg4==99
+            var BCSName = '²M°£®ÑÅÒ-14 ?';
          }
 
        var buttons = ['OK', 'Cancel'];
@@ -1879,10 +1879,10 @@ function write_to_json_14(arg1, arg2, arg3, arg4, arg5){ // arg5 = 1 means clear
 
             store14.set('windowBounds', { minWidth, minHeight, maxWidth, maxHeight });
 
-            //dialog.showMessageBox({message: 'å·²å„²å­˜'});
+            //dialog.showMessageBox({message: '¤wÀx¦s'});
 
 	    isShow = true;
-	    document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	    document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
             read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
             read_bookmark5();read_bookmark6();read_bookmark7();
             read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -1924,7 +1924,7 @@ function write_to_json_All(){
 
     // ---- for dialog 
 
-    var BCSName = 'æ¸…é™¤æ‰€æœ‰æ›¸ç±¤ ?';
+    var BCSName = '²M°£©Ò¦³®ÑÅÒ ?';
 
     var buttons = ['OK', 'Cancel'];
 
@@ -1942,7 +1942,7 @@ function write_to_json_All(){
          write_to_json_13(99,99,99,99,1);write_to_json_14(99,99,99,99,1);
 
 	 isShow = true;
-	 document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+	 document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
          read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
          read_bookmark5();read_bookmark6();read_bookmark7();
          read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -2509,7 +2509,7 @@ function read_from_json_1(){
    }
 
    isShow = true;
-   document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+   document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
    read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
    read_bookmark5();read_bookmark6();read_bookmark7();
    read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -2564,7 +2564,7 @@ function read_from_json_2(){
    }
 
    isShow = true;
-   document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+   document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
    read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
    read_bookmark5();read_bookmark6();read_bookmark7();
    read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -2619,7 +2619,7 @@ function read_from_json_3(){
    }
 
    isShow = true;
-   document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+   document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
    read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
    read_bookmark5();read_bookmark6();read_bookmark7();
    read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -2674,7 +2674,7 @@ function read_from_json_4(){
    }
 
    isShow = true;
-   document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+   document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
    read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
    read_bookmark5();read_bookmark6();read_bookmark7();
    read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -2729,7 +2729,7 @@ function read_from_json_5(){
    }
 
    isShow = true;
-   document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+   document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
    read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
    read_bookmark5();read_bookmark6();read_bookmark7();
    read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -2784,7 +2784,7 @@ function read_from_json_6(){
    }
 
    isShow = true;
-   document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+   document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
    read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
    read_bookmark5();read_bookmark6();read_bookmark7();
    read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -2838,7 +2838,7 @@ function read_from_json_7(){
    }
 
    isShow = true;
-   document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+   document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
    read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
    read_bookmark5();read_bookmark6();read_bookmark7();
    read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -2892,7 +2892,7 @@ function read_from_json_8(){
    }
 
    isShow = true;
-   document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+   document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
    read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
    read_bookmark5();read_bookmark6();read_bookmark7();
    read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -2946,7 +2946,7 @@ function read_from_json_9(){
    }
 
    isShow = true;
-   document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+   document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
    read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
    read_bookmark5();read_bookmark6();read_bookmark7();
    read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -3000,7 +3000,7 @@ function read_from_json_10(){
    }
 
    isShow = true;
-   document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+   document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
    read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
    read_bookmark5();read_bookmark6();read_bookmark7();
    read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -3054,7 +3054,7 @@ function read_from_json_11(){
    }
 
    isShow = true;
-   document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+   document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
    read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
    read_bookmark5();read_bookmark6();read_bookmark7();
    read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -3108,7 +3108,7 @@ function read_from_json_12(){
    }
 
    isShow = true;
-   document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+   document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
    read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
    read_bookmark5();read_bookmark6();read_bookmark7();
    read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -3162,7 +3162,7 @@ function read_from_json_13(){
    }
 
    isShow = true;
-   document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+   document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
    read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
    read_bookmark5();read_bookmark6();read_bookmark7();
    read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -3216,7 +3216,7 @@ function read_from_json_14(){
    }
 
    isShow = true;
-   document.getElementById('a1').innerText = "éš±è—æ›¸ç±¤";
+   document.getElementById('a1').innerText = "ÁôÂÃ®ÑÅÒ";
    read_bookmark1();read_bookmark2();read_bookmark3();read_bookmark4();
    read_bookmark5();read_bookmark6();read_bookmark7();
    read_bookmark8();read_bookmark9();read_bookmark10();read_bookmark11();
@@ -3280,9 +3280,9 @@ function show_bookmark(bnum, cnum, snum , to_snum, bookmark_num) {
   }
 
 
-//  bnum : ç¶“å·
-//  cnum : ç« 
-//  snum : ç¯€
+//  bnum : ¸g¨÷
+//  cnum : ³¹
+//  snum : ¸`
  
   if(snum < 1)
     snum = 1;
@@ -3305,7 +3305,7 @@ function show_bookmark(bnum, cnum, snum , to_snum, bookmark_num) {
   var line1 = chapter_lines[book_chapters[bnum]+cnum];  
   var line2 = chapter_lines[book_chapters[bnum]+cnum+1];
   var line3 = line1+snum-1;
-  var line4 = eval(line3 + disp_secs); // +1 è¡¨ä¸€æ¬¡é¡¯ç¤º1ç¯€ï¼Œ+2 è¡¨ä¸€æ¬¡é¡¯ç¤º2ç¯€  
+  var line4 = eval(line3 + disp_secs); // +1 ªí¤@¦¸Åã¥Ü1¸`¡A+2 ªí¤@¦¸Åã¥Ü2¸`  
 
       if(disp_secs==0){
         line3 = line1;
@@ -3351,13 +3351,13 @@ function show_bookmark(bnum, cnum, snum , to_snum, bookmark_num) {
       }
 
 
-      // å’Œåˆæœ¬
+      // ©M¦X¥»
       var bname = profiles[line3].substring(profiles[line3].indexOf("%")+1, profiles[line3].indexOf("^"));
       var cname = profiles[line3].substring(profiles[line3].indexOf("^")+1, profiles[line3].indexOf(":"));
       var sname = profiles[line3].substring(profiles[line3].indexOf(":")+1, profiles[line3].indexOf(" "));
 
 
-      // var bcsname1 = bname + ' ç¬¬' + cname + 'ç« ' + ' ç¬¬' + sname + 'ç¯€' + '</ol>';
+      // var bcsname1 = bname + ' ²Ä' + cname + '³¹' + ' ²Ä' + sname + '¸`' + '</ol>';
 
 
       var BookName=BookAbbr[bnum];
@@ -3372,7 +3372,7 @@ function show_bookmark(bnum, cnum, snum , to_snum, bookmark_num) {
       }
 
 
-      if(EmptyBookmark==1){  // ç•¶æ›¸ç±¤ç‚ºç©ºæ™‚ï¼Œadd on 2017/08/12
+      if(EmptyBookmark==1){  // ·í®ÑÅÒ¬°ªÅ®É¡Aadd on 2017/08/12
 
          BookMark="";
 
@@ -3459,7 +3459,7 @@ function clear_area_R() {
 
 function clear_area_L_for_7() { 
 
-   for ( var ii=1001; ii<1016; ii++ ) {  // åŸç‚º ii<1008
+   for ( var ii=1001; ii<1016; ii++ ) {  // ­ì¬° ii<1008
 
       document.getElementById(ii).innerHTML = "";
       document.getElementById(ii+1000).innerHTML = "";
@@ -3470,7 +3470,7 @@ function clear_area_L_for_7() {
 
 function clear_area_R_for_7() {
 
-   for ( var ii=3001; ii<3016; ii++ ) {  // åŸç‚º ii<1008
+   for ( var ii=3001; ii<3016; ii++ ) {  // ­ì¬° ii<1008
 
       document.getElementById(ii).innerHTML = "";
       document.getElementById(ii+1000).innerHTML = "";
@@ -3630,6 +3630,58 @@ function hide_bookmark14() {
 
 var cfs=200;
 
+//var cfs=300; // for test
+
+
+function increase_fontsize_V2(){ // for iphone use
+
+   cfs=300; // for iphone use
+
+   cfs = cfs + 20;
+
+   var cfs_v = cfs + '%';
+
+   for (var i = 1001; i < 1177 ; i++) { 
+
+      // Adjusting Font-size
+      document.getElementById(i).style.fontSize = cfs_v;
+      document.getElementById(i+1000).style.fontSize = cfs_v;
+      document.getElementById(i+2000).style.fontSize = cfs_v;
+      document.getElementById(i+3000).style.fontSize = cfs_v;
+
+   }
+
+   for (var i = 50001; i < 50016 ; i++) { 
+
+      // Adjusting Font-size
+      document.getElementById(i).style.fontSize = cfs_v;
+      document.getElementById(i+10000).style.fontSize = cfs_v;
+
+   }
+
+   //document.getElementById("search_result").style.fontSize = cfs_v;
+
+   //document.getElementById("smallVer1").style.fontSize = cfs_v;
+   document.getElementById("10002").style.fontSize = cfs_v;
+   document.getElementById("10003").style.fontSize = cfs_v;
+
+   //document.getElementById("smallVer2").style.fontSize = cfs_v;
+   document.getElementById("20002").style.fontSize = cfs_v;
+   document.getElementById("20003").style.fontSize = cfs_v;
+
+   //document.getElementById("smallVer3").style.fontSize = cfs_v;
+   document.getElementById("30002").style.fontSize = cfs_v;
+   document.getElementById("30003").style.fontSize = cfs_v;
+
+   //document.getElementById("smallVer4").style.fontSize = cfs_v;
+   document.getElementById("40002").style.fontSize = cfs_v;
+   document.getElementById("40003").style.fontSize = cfs_v;
+
+   document.getElementById("1L").style.fontSize = cfs_v;
+   document.getElementById("1R").style.fontSize = cfs_v;
+
+}
+
 
 function increase_fontsize(){
 
@@ -3734,7 +3786,7 @@ function readchapter(bnum, cnum ,snum , to_snum) {
 
 
      if(One_Chap_Mode_2 == 1) { // One_Chap_Mode = 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
-                                // Language_Mode = 0; // 0:ä¸­/è‹±, 1:Eng, 2:ä¸­ 
+                                // Language_Mode = 0; // 0:¤¤/­^, 1:Eng, 2:¤¤ 
 
 
         if(Language_Mode == 0) { // ChineseEng_Mode
@@ -3815,14 +3867,14 @@ function readchapter(bnum, cnum ,snum , to_snum) {
 
   //if(sec_size<20){
   //   docObj.writeln('<HTML>\n<HEAD>\n' +
-  //   '<style type="text/css">\n' + 'body{font-family:æ¨™æ¥·é«”}\n' +
+  //   '<style type="text/css">\n' + 'body{font-family:¼Ğ·¢Åé}\n' +
   //   '.1{ font-size:8pt }\n' + '.2{ font-size:10pt }\n' + '.3{ font-size:12pt }\n' +
   //   '.4{ font-size:14pt }\n' + '.5{ font-size:16pt }\n' + '.6{ font-size:18pt }\n' +
   //   '</style>\n' +
   //   '<meta http-equiv="Content-Type" content="text/html; charset=big5">\n</HEAD>' +
   //   '<BODY BGCOLOR=WHITE TEXT=BLACK background="back5.jpg">');
   //   docObj2.writeln('<HTML>\n<HEAD>\n' +
-  //   '<style type="text/css">\n' + 'body{font-family:æ¨™æ¥·é«”}\n' +
+  //   '<style type="text/css">\n' + 'body{font-family:¼Ğ·¢Åé}\n' +
   //   '.1{ font-size:8pt }\n' + '.2{ font-size:10pt }\n' + '.3{ font-size:12pt }\n' +
   //   '.4{ font-size:14pt }\n' + '.5{ font-size:16pt }\n' + '.6{ font-size:18pt }\n' +
   //   '</style>\n' +
@@ -3831,14 +3883,14 @@ function readchapter(bnum, cnum ,snum , to_snum) {
   //}
   //else if(sec_size<32){                                                            // Modify 2017.05.29 for test
     // docObj.writeln('<HTML>\n<HEAD>\n' +
-    // '<style type="text/css">\n' + 'body{font-family:æ¨™æ¥·é«”}\n' +
+    // '<style type="text/css">\n' + 'body{font-family:¼Ğ·¢Åé}\n' +
     // 'p1 { font-size:20pt }\n' + 'p2 { font-size:22pt }\n' + 'p3 { font-size:24pt }\n' +
     // 'p4 { font-size:26pt }\n' + 'p5 { font-size:28pt }\n' + 'p6 { font-size:30pt }\n' +
     // '</style>\n' +
     // '<meta http-equiv="Content-Type" content="text/html; charset=big5">\n</HEAD>' +
     // '<BODY BGCOLOR=WHITE TEXT=BLACK background="back5.jpg">');
     // docObj2.writeln('<HTML>\n<HEAD>\n' +
-    // '<style type="text/css">\n' + 'body{font-family:æ¨™æ¥·é«”}\n' +
+    // '<style type="text/css">\n' + 'body{font-family:¼Ğ·¢Åé}\n' +
     // 'p1 { font-size:20pt }\n' + 'p2 { font-size:22pt }\n' + 'p3 { font-size:24pt }\n' +
     // 'p4 { font-size:26pt }\n' + 'p5 { font-size:28pt }\n' + 'p6 { font-size:30pt }\n' +
     // '</style>\n' +
@@ -3847,14 +3899,14 @@ function readchapter(bnum, cnum ,snum , to_snum) {
   //}
   //else if(sec_size<44){
   //   docObj.writeln('<HTML>\n<HEAD>\n' +
-  //   '<style type="text/css">\n' + 'body{font-family:æ¨™æ¥·é«”}\n' +
+  //   '<style type="text/css">\n' + 'body{font-family:¼Ğ·¢Åé}\n' +
   //   '.1{ font-size:32pt }\n' + '.2{ font-size:34pt }\n' + '.3{ font-size:36pt }\n' +
   //   '.4{ font-size:38pt }\n' + '.5{ font-size:40pt }\n' + '.6{ font-size:42pt }\n' +
   //   '</style>\n' +
   //   '<meta http-equiv="Content-Type" content="text/html; charset=big5">\n</HEAD>' +
   //   '<BODY BGCOLOR=WHITE TEXT=BLACK background="back5.jpg">');
   //   docObj2.writeln('<HTML>\n<HEAD>\n' +
-  //   '<style type="text/css">\n' + 'body{font-family:æ¨™æ¥·é«”}\n' +
+  //   '<style type="text/css">\n' + 'body{font-family:¼Ğ·¢Åé}\n' +
   //   '.1{ font-size:32pt }\n' + '.2{ font-size:34pt }\n' + '.3{ font-size:36pt }\n' +
   //   '.4{ font-size:38pt }\n' + '.5{ font-size:40pt }\n' + '.6{ font-size:42pt }\n' +
   //   '</style>\n' +
@@ -3863,14 +3915,14 @@ function readchapter(bnum, cnum ,snum , to_snum) {
   //}
   //else{
   //   docObj.writeln('<HTML>\n<HEAD>\n' +
-  //   '<style type="text/css">\n' + 'body{font-family:æ¨™æ¥·é«”}\n' +
+  //   '<style type="text/css">\n' + 'body{font-family:¼Ğ·¢Åé}\n' +
   //   '.1{ font-size:44pt }\n' + '.2{ font-size:46pt }\n' + '.3{ font-size:48pt }\n' +
   //   '.4{ font-size:50pt }\n' + '.5{ font-size:52pt }\n' + '.6{ font-size:54pt }\n' +
   //   '</style>\n' +
   //   '<meta http-equiv="Content-Type" content="text/html; charset=big5">\n</HEAD>' +
   //   '<BODY BGCOLOR=WHITE TEXT=BLACK background="back5.jpg">');
   //   docObj2.writeln('<HTML>\n<HEAD>\n' +
-  //   '<style type="text/css">\n' + 'body{font-family:æ¨™æ¥·é«”}\n' +
+  //   '<style type="text/css">\n' + 'body{font-family:¼Ğ·¢Åé}\n' +
   //   '.1{ font-size:44pt }\n' + '.2{ font-size:46pt }\n' + '.3{ font-size:48pt }\n' +
   //   '.4{ font-size:50pt }\n' + '.5{ font-size:52pt }\n' + '.6{ font-size:54pt }\n' +
   //   '</style>\n' +
@@ -3880,7 +3932,7 @@ function readchapter(bnum, cnum ,snum , to_snum) {
 
   //if(bcs_size<20)
   //   docObj_h.writeln('<HTML>\n<HEAD>\n' +
-  //   '<style type="text/css">\n' + 'body{font-family:æ¨™æ¥·é«”}\n' +
+  //   '<style type="text/css">\n' + 'body{font-family:¼Ğ·¢Åé}\n' +
   //   '.1{ font-size:8pt }\n' + '.2{ font-size:10pt }\n' + '.3{ font-size:12pt }\n' +
   //   '.4{ font-size:14pt }\n' + '.5{ font-size:16pt }\n' + '.6{ font-size:18pt }\n' +
   //   '</style>\n' +
@@ -3888,7 +3940,7 @@ function readchapter(bnum, cnum ,snum , to_snum) {
   //   '<BODY BGCOLOR=WHITE TEXT=BLACK background="back5.jpg">');
   //else if(bcs_size<32)                                                           // Modify 2017.05.29 for test
     // docObj_h.writeln('<HTML>\n<HEAD>\n' +
-    // '<style type="text/css">\n' + 'body{font-family:æ¨™æ¥·é«”}\n' +
+    // '<style type="text/css">\n' + 'body{font-family:¼Ğ·¢Åé}\n' +
     // 'p1 { font-size:20pt }\n' + 'p2 { font-size:22pt }\n' + 'p3 { font-size:24pt }\n' +
     // 'p4 { font-size:26pt }\n' + 'p5 { font-size:28pt }\n' + 'p6 { font-size:30pt }\n' +
     // '</style>\n' +
@@ -3896,7 +3948,7 @@ function readchapter(bnum, cnum ,snum , to_snum) {
     // '<BODY BGCOLOR=WHITE TEXT=BLACK background="back5.jpg">');
   //else if(bcs_size<44)
   //   docObj_h.writeln('<HTML>\n<HEAD>\n' +
-  //   '<style type="text/css">\n' + 'body{font-family:æ¨™æ¥·é«”}\n' +
+  //   '<style type="text/css">\n' + 'body{font-family:¼Ğ·¢Åé}\n' +
   //   '.1{ font-size:32pt }\n' + '.2{ font-size:34pt }\n' + '.3{ font-size:36pt }\n' +
   //   '.4{ font-size:38pt }\n' + '.5{ font-size:40pt }\n' + '.6{ font-size:42pt }\n' +
   //   '</style>\n' +
@@ -3904,16 +3956,16 @@ function readchapter(bnum, cnum ,snum , to_snum) {
   //   '<BODY BGCOLOR=WHITE TEXT=BLACK background="back5.jpg">');
   //else
   //   docObj_h.writeln('<HTML>\n<HEAD>\n' +
-  //   '<style type="text/css">\n' + 'body{font-family:æ¨™æ¥·é«”}\n' +
+  //   '<style type="text/css">\n' + 'body{font-family:¼Ğ·¢Åé}\n' +
   //   '.1{ font-size:44pt }\n' + '.2{ font-size:46pt }\n' + '.3{ font-size:48pt }\n' +
   //   '.4{ font-size:50pt }\n' + '.5{ font-size:52pt }\n' + '.6{ font-size:54pt }\n' +
   //   '</style>\n' +
   //   '<meta http-equiv="Content-Type" content="text/html; charset=big5">\n</HEAD>' +
   //   '<BODY BGCOLOR=WHITE TEXT=BLACK background="back5.jpg">');
 
-//  bnum : ç¶“å·
-//  cnum : ç« 
-//  snum : ç¯€
+//  bnum : ¸g¨÷
+//  cnum : ³¹
+//  snum : ¸`
  
   if(snum < 1)
     snum = 1;
@@ -3934,7 +3986,7 @@ function readchapter(bnum, cnum ,snum , to_snum) {
 
 
   //For Setting Display Verses Number
-  if(document.DVN.DVNumber[0].checked) {   // é¡¯ç¤º 1ç¯€
+  if(document.DVN.DVNumber[0].checked) {   // Åã¥Ü 1¸`
 
      disp_secs_a = "1";
 
@@ -3953,9 +4005,9 @@ function readchapter(bnum, cnum ,snum , to_snum) {
 
   }
 
-  if(document.DVN.DVNumber[1].checked) {   // é¡¯ç¤º 15ç¯€
+  if(document.DVN.DVNumber[1].checked) {   // Åã¥Ü 15¸`
 
-     disp_secs_a = "15"; // åŸç‚º 7
+     disp_secs_a = "15"; // ­ì¬° 7
 
      if(Mode_1Chap ==1) {
 
@@ -3976,7 +4028,7 @@ function readchapter(bnum, cnum ,snum , to_snum) {
 
   }
 
-  if(document.DVN.DVNumber[2].checked) {   // é¡¯ç¤º å…¨ç« 
+  if(document.DVN.DVNumber[2].checked) {   // Åã¥Ü ¥ş³¹
 
      disp_secs_a = "0";
 
@@ -4001,7 +4053,7 @@ function readchapter(bnum, cnum ,snum , to_snum) {
   var line1 = chapter_lines[book_chapters[bnum]+cnum];  
   var line2 = chapter_lines[book_chapters[bnum]+cnum+1];
   var line3 = line1+snum-1;
-  var line4 = eval(line3 + disp_secs); // +1 è¡¨ä¸€æ¬¡é¡¯ç¤º1ç¯€ï¼Œ+2 è¡¨ä¸€æ¬¡é¡¯ç¤º2ç¯€  
+  var line4 = eval(line3 + disp_secs); // +1 ªí¤@¦¸Åã¥Ü1¸`¡A+2 ªí¤@¦¸Åã¥Ü2¸`  
 
       if(disp_secs==0){
         line3 = line1;
@@ -4058,7 +4110,7 @@ function readchapter(bnum, cnum ,snum , to_snum) {
 
 //    var bname = profiles[line3].substring(0, profiles[line3].indexOf("^"));
 
-      // å’Œåˆæœ¬
+      // ©M¦X¥»
       var bname = profiles[line3].substring(profiles[line3].indexOf("%")+1, profiles[line3].indexOf("^"));
       var cname = profiles[line3].substring(profiles[line3].indexOf("^")+1, profiles[line3].indexOf(":"));
       var sname = profiles[line3].substring(profiles[line3].indexOf(":")+1, profiles[line3].indexOf(" "));
@@ -4084,19 +4136,19 @@ function readchapter(bnum, cnum ,snum , to_snum) {
 
 
       if(snum<to_snum){
-         Bcsname1 = bname + ' ç¬¬' + cname + 'ç« ' + ' ç¬¬' + sname + '~' + to_snum + 'ç¯€' + ' ';
-         Bcsname2 = bname + ' ç¬¬' + cname + 'ç¯‡' + ' ç¬¬' + sname + '~' + to_snum + 'ç¯€' + ' ';
+         Bcsname1 = bname + ' ²Ä' + cname + '³¹' + ' ²Ä' + sname + '~' + to_snum + '¸`' + ' ';
+         Bcsname2 = bname + ' ²Ä' + cname + '½g' + ' ²Ä' + sname + '~' + to_snum + '¸`' + ' ';
       }
       else{
-         Bcsname1 = bname + ' ç¬¬' + cname + 'ç« ' + ' ç¬¬' + sname + 'ç¯€' + ' ';
-         Bcsname2 = bname + ' ç¬¬' + cname + 'ç¯‡' + ' ç¬¬' + sname + 'ç¯€' + ' ';
+         Bcsname1 = bname + ' ²Ä' + cname + '³¹' + ' ²Ä' + sname + '¸`' + ' ';
+         Bcsname2 = bname + ' ²Ä' + cname + '½g' + ' ²Ä' + sname + '¸`' + ' ';
       }
 
 
       Bname = bname;
 
-      var bcsname1 = bname + ' ç¬¬' + cname + 'ç« ' + '</ol>';
-      var bcsname2 = bname + ' ç¬¬' + cname + 'ç¯‡' + '</ol>';
+      var bcsname1 = bname + ' ²Ä' + cname + '³¹' + '</ol>';
+      var bcsname2 = bname + ' ²Ä' + cname + '½g' + '</ol>';
 
       var bcsname3 = bname3 + ' Chapter ' + cname3 + '</ol>';
 
@@ -4116,7 +4168,7 @@ function readchapter(bnum, cnum ,snum , to_snum) {
 
 
       if(bnum==30||bnum==56||bnum==62||bnum==63||bnum==64){                   // new
-//         var bcsname1 = bname + ' ' + sname + 'ç¯€ ' + pname + 'é ' + '</ol>'; // modified ,  marked 27/03/2013
+//         var bcsname1 = bname + ' ' + sname + '¸` ' + pname + '­¶' + '</ol>'; // modified ,  marked 27/03/2013
 
         if(bnum<39){
          var bcsname1 = bname + "&nbsp&nbsp";                 // modified   27/03/2013
@@ -4127,11 +4179,11 @@ function readchapter(bnum, cnum ,snum , to_snum) {
          var bcsname1B = bname2 + ' ' + snameNew;                    // add        27/03/2013
         }
 
-         //var bcsname1 = bname + ' ' + sname + 'ç¯€ ' + '    ';                   // modified           27/03/2013
+         //var bcsname1 = bname + ' ' + sname + '¸` ' + '    ';                   // modified           27/03/2013
          //var bcsname1B = bname2 + ' ' + sname2  + '</ol>';                      // add 27/03/2013
 
          //if(bcsname1.length>23){                                                                     // new
-         //  var bcsname1 = bname + '' + sname + 'ç¯€ ' + '    ';                   // modified           27/03/2013
+         //  var bcsname1 = bname + '' + sname + '¸` ' + '    ';                   // modified           27/03/2013
          //  var bcsname1B = bname2 + ' ' + sname2  + '</ol>';                   } // modified           27/03/2013
       }
       else {
@@ -4144,17 +4196,17 @@ function readchapter(bnum, cnum ,snum , to_snum) {
          var bcsname1B = bname2 + ' ' + cname + ':' + snameNew;     // add 19/03/2013
         }
 
-         //var bcsname1 = bname + ' ' + cname + 'ç« ' + ' ' + sname + 'ç¯€ ' + '    '; // modified 19/03/2013
+         //var bcsname1 = bname + ' ' + cname + '³¹' + ' ' + sname + '¸` ' + '    '; // modified 19/03/2013
             // bcsname1B for English Ver, add 19/03/2013
          //var bcsname1B = bname2 + ' ' + cname2 + ':' + sname2  + '</ol>';  // add 19/03/2013
          //if(bcsname1.length>23){                                                                     // new
-         //  var bcsname1 = bname + '' + cname + 'ç« ' + '' + sname + 'ç¯€ ' + '    '; } // modified 19/03/2013
+         //  var bcsname1 = bname + '' + cname + '³¹' + '' + sname + '¸` ' + '    '; } // modified 19/03/2013
       }
 
       var bcsname2 = '<b><u>' + bname + "&nbsp&nbsp";                  // modified           27/03/2013
       var bcsname2B = bname2 + ' ' + cname2 + ':' + snameNew  + '</u></b></ol>';                            // add    
 
-      if(bnum==12&&cnum==21){   // cnum 21 è¡¨ 22 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for ä»£ä¸Š22ç«  ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 9.5.2013
+      if(bnum==12&&cnum==21){   // cnum 21 ªí 22 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for ¥N¤W22³¹ ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 9.5.2013
 
          var to_snum_int = parseInt(to_snum,10);
          var sname_int = parseInt(sname,10);
@@ -4164,11 +4216,11 @@ function readchapter(bnum, cnum ,snum , to_snum) {
            var to_snum_tmp = to_snum - 1;
            var snameNew = sname + '~' + to_snum_tmp;      
            var snameNewB = sname2 + '~' + to_snum;
-           var bcsname1 = 'ä»£ä¸Š' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   // add 9/05/2013
+           var bcsname1 = '¥N¤W' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   // add 9/05/2013
            var bcsname1B = '1Ch' + ' ' + cname2 + ':' + snameNewB;     // add 9/05/2013
            
            if(snum==1){
-              var bcsname1 = 'ä»£ä¸Š' + ' ' + cname + ':' + sname + '~' + cname2 + ':' + to_snum_tmp + "&nbsp&nbsp";   // add 9/05/2013
+              var bcsname1 = '¥N¤W' + ' ' + cname + ':' + sname + '~' + cname2 + ':' + to_snum_tmp + "&nbsp&nbsp";   // add 9/05/2013
               var bcsname1B = '1Ch' + ' ' + cname2 + ':' + snameNewB;     // add 9/05/2013
            }
 
@@ -4176,57 +4228,57 @@ function readchapter(bnum, cnum ,snum , to_snum) {
          else{                                         
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ä»£ä¸Š' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   // add 9/05/2013
+           var bcsname1 = '¥N¤W' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   // add 9/05/2013
            var bcsname1B = '1Ch' + ' ' + cname2 + ':' + snameNewB;     // add 9/05/2013
          }
 
       }      
 
-      if(bnum==12&&cnum==20&&snum==31){   // cnum 20 è¡¨ 21 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for ä»£ä¸Š21ç« 31ç¯€ ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 23.5.2013
-           var bcsname1 = 'ä»£ä¸Š 21:31' + "&nbsp&nbsp";   
+      if(bnum==12&&cnum==20&&snum==31){   // cnum 20 ªí 21 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for ¥N¤W21³¹31¸` ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 23.5.2013
+           var bcsname1 = '¥N¤W 21:31' + "&nbsp&nbsp";   
            var bcsname1B = '1Ch 22:1';     
       }
 
-      if(bnum==12&&cnum==20&&snum<31&&to_snum==31){   // cnum 20 è¡¨ 21 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for ä»£ä¸Š21ç« 31ç¯€ ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 23.5.2013
-           var bcsname1 = 'ä»£ä¸Š 21:' + snum + '~' + '31' + "&nbsp&nbsp";   
+      if(bnum==12&&cnum==20&&snum<31&&to_snum==31){   // cnum 20 ªí 21 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for ¥N¤W21³¹31¸` ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 23.5.2013
+           var bcsname1 = '¥N¤W 21:' + snum + '~' + '31' + "&nbsp&nbsp";   
            var bcsname1B = '1Ch 21:' + snum + '~' + '22:1';     
       }
 
-      if(bnum==42&&cnum==6){   // cnum 6 è¡¨ 7 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for John Chap7 Verse53 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 17.5.2013
+      if(bnum==42&&cnum==6){   // cnum 6 ªí 7 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for John Chap7 Verse53 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 17.5.2013
 
          if(snum==53){
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ç´„' + ' ' + cname + ':1(ä¸Š)' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù' + ' ' + cname + ':1(¤W)' + "&nbsp&nbsp";   
            var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB;     
          }
          if(to_snum==53&&snum<53){
            var to_snum_tmp = to_snum - 1;
            var snameNew = sname + '~' + to_snum_tmp;      
            var snameNewB = sname2 + '~' + to_snum;
-           var bcsname1 = 'ç´„' + ' ' + cname + ':' + sname + '~' + '8:1(ä¸Š)' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù' + ' ' + cname + ':' + sname + '~' + '8:1(¤W)' + "&nbsp&nbsp";   
            var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB ;    
          }
       }
 
-      if(bnum==42&&cnum==7){   // cnum 7 è¡¨ 8 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for John Chap8 Verse1 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 17.5.2013
+      if(bnum==42&&cnum==7){   // cnum 7 ªí 8 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for John Chap8 Verse1 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 17.5.2013
 
          if(snum==1&&to_snum==1){
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ç´„' + ' ' + cname + ':1(ä¸‹)' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù' + ' ' + cname + ':1(¤U)' + "&nbsp&nbsp";   
            var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB;     
          }
          if(snum==1&&to_snum>1){
            var to_snum_tmp = to_snum - 1;
-           var snameNew = '1(ä¸‹)' + '~' + to_snum;      
+           var snameNew = '1(¤U)' + '~' + to_snum;      
            var snameNewB = sname2 + '~' + to_snum;
-           var bcsname1 = 'ç´„' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   
            var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB ;    
          }
       }
 
-      if(bnum==63&&cnum==0){   // cnum 0 è¡¨ 1 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for 3rd John Chap1 Verse14 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 19.5.2013
+      if(bnum==63&&cnum==0){   // cnum 0 ªí 1 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for 3rd John Chap1 Verse14 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 19.5.2013
 
          var snum_int = parseInt(snum,10);
          var to_snum_int = parseInt(to_snum,10);
@@ -4236,27 +4288,27 @@ function readchapter(bnum, cnum ,snum , to_snum) {
          if(snum_int==14){
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ç´„åƒ' + ' ' + '14ã€15' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù°Ñ' + ' ' + '14¡B15' + "&nbsp&nbsp";   
            var bcsname1B = '3Jn' + ' ' + snameNewB ;     
          }
          if(to_snum_int==14&&snum_int<14){
            var to_snum_tmp = to_snum_int - 1;
-           var snameNew = sname + '~' + '14ã€15';      
+           var snameNew = sname + '~' + '14¡B15';      
            var snameNewB = sname2 + '~' + '14';
-           var bcsname1 = 'ç´„åƒ' + ' ' + snameNew + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù°Ñ' + ' ' + snameNew + "&nbsp&nbsp";   
            var bcsname1B = '3Jn' + ' ' + snameNewB ;    
          }
-         if(snum_int==15){        // for 3rd John Chap1 Verse15 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ
+         if(snum_int==15){        // for 3rd John Chap1 Verse15 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ç´„åƒ' + ' ' + '15' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù°Ñ' + ' ' + '15' + "&nbsp&nbsp";   
            var bcsname1B = '3Jn' + ' ' + '14(b)';     
          }
-         if(to_snum_int==15&&snum_int<14){   // for 3rd John Chap1 Verse15 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ
+         if(to_snum_int==15&&snum_int<14){   // for 3rd John Chap1 Verse15 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P
            var to_snum_tmp = to_snum_int - 1;
-           var snameNew = sname + '~' + '14ã€15';      
+           var snameNew = sname + '~' + '14¡B15';      
            var snameNewB = sname2 + '~' + '14';
-           var bcsname1 = 'ç´„åƒ' + ' ' + snameNew + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù°Ñ' + ' ' + snameNew + "&nbsp&nbsp";   
            var bcsname1B = '3Jn' + ' ' + snameNewB ;  
          }  
       }
@@ -4316,7 +4368,7 @@ function readchapter(bnum, cnum ,snum , to_snum) {
          var bcsname2_1 = '<p6>' + bcsname2 + '</p6>'; }
 
 
-      //if(bname!="è©©ç¯‡") {
+      //if(bname!="¸Ö½g") {
       //   //docObj_h.writeln(bcsname1_1.fontcolor(bcs_color));
       //   document.getElementById("p1").innerHTML = bcsname1;
       //}
@@ -4394,10 +4446,10 @@ function readchapter(bnum, cnum ,snum , to_snum) {
 
 
       for (var i = line3; i < line4 ; i++) { 
-      var oneline = profiles[i].substring(profiles[i].indexOf(" "), profiles[i].length);       // å’Œåˆæœ¬
+      var oneline = profiles[i].substring(profiles[i].indexOf(" "), profiles[i].length);       // ©M¦X¥»
       var oneline2 = profiles2[i].substring(profiles2[i].indexOf(" "), profiles2[i].length);   // NKJV
       var oneline3 = profiles3[i].substring(profiles3[i].indexOf(" "), profiles3[i].length);   // NIV
-      var oneline4 = profiles4[i].substring(profiles4[i].indexOf(" "), profiles4[i].length);   // å‘‚æŒ¯ä¸­
+      var oneline4 = profiles4[i].substring(profiles4[i].indexOf(" "), profiles4[i].length);   // §f®¶¤¤
       var cname_1 = profiles[i].substring(profiles[i].indexOf("^")+1, profiles[i].indexOf(":"));
 
       j++;
@@ -4489,11 +4541,11 @@ function readchapter(bnum, cnum ,snum , to_snum) {
          var sj = '<p6>' + j + '</p6>';}
 
 
-      //var oneline_1_1 = '<table><tr><td valign="top">'+'å’Œåˆæœ¬'+'&nbsp'+sj+'</td><td>'+oneline_1+'</td></tr></table>';
+      //var oneline_1_1 = '<table><tr><td valign="top">'+'©M¦X¥»'+'&nbsp'+sj+'</td><td>'+oneline_1+'</td></tr></table>';
       //var oneline_1_2 = '<table><tr><td valign="top">'+'NKJV'+'&nbsp&nbsp&nbsp'+sj+'</td><td>'+oneline_2+'</td></tr></table>';
       //var oneline_1_3 = '<table><tr><td valign="top">'+'NIV'+'&nbsp&nbsp&nbsp&nbsp'+sj+'</td><td>'+oneline_3+'</td></tr></table>';
 
-//      var oneline_1_1 = '<table><tr><td valign="top">'+'å’Œåˆæœ¬'+'&nbsp'+'</td><td valign="top">'+sj+'</td><td>'+oneline_1+'</td></tr></table>';
+//      var oneline_1_1 = '<table><tr><td valign="top">'+'©M¦X¥»'+'&nbsp'+'</td><td valign="top">'+sj+'</td><td>'+oneline_1+'</td></tr></table>';
 //      var oneline_1_2 = '<table><tr><td valign="top">'+'NKJV'+'&nbsp&nbsp&nbsp'+'</td><td valign="top">'+sj+'</td><td>'+oneline_2+'</td></tr></table>';
 //      var oneline_1_3 = '<table><tr><td valign="top">'+'NIV'+'&nbsp&nbsp&nbsp&nbsp'+'</td><td valign="top">'+sj+'</td><td>'+oneline_3+'</td></tr></table>';
 
@@ -4567,7 +4619,7 @@ function readchapter(bnum, cnum ,snum , to_snum) {
       var oneline_1_1T =  j+' '+oneline + '<br>';   //        for Display in div id = "1L" or "1R"
       var oneline_2_2T =  j+' '+oneline2 + '<br>';  // NKJV
       var oneline_3_3T =  j+' '+oneline3 + '<br>';  // NIV
-      var oneline_4_4T =  j+' '+oneline4 + '<br>';  // å‘‚æŒ¯ä¸­
+      var oneline_4_4T =  j+' '+oneline4 + '<br>';  // §f®¶¤¤
 
 
       if(disp_secs==7 && bnum==30 && j>21) {
@@ -4591,7 +4643,7 @@ function readchapter(bnum, cnum ,snum , to_snum) {
       }
 
       // Add on 2018.08.22
-      if(disp_secs==15 && bnum==30 && j>21) {   // åŸç‚º disp_secs==7
+      if(disp_secs==15 && bnum==30 && j>21) {   // ­ì¬° disp_secs==7
          break;
       }
 
@@ -4744,7 +4796,7 @@ function readchapter(bnum, cnum ,snum , to_snum) {
 
          if(document.BV.BibleVersion[2].checked){
 
-            BibleVersion_Disp = 2; // Display å‘‚æŒ¯ä¸­è­¯æœ¬
+            BibleVersion_Disp = 2; // Display §f®¶¤¤Ä¶¥»
 
             clear_area_1L();
             clear_area_1R();
@@ -4771,16 +4823,16 @@ function readchapter(bnum, cnum ,snum , to_snum) {
 
          if(document.BV.BibleVersion[3].checked){
 
-            BibleVersion_Disp = 3; // Display å…¨éƒ¨ç‰ˆæœ¬
+            BibleVersion_Disp = 3; // Display ¥ş³¡ª©¥»
 
             clear_area_L();
             clear_area_R();
 
             // Mark temporary
-            var oneline_1_1TC =  '<span class="smallfont">'+ 'å’Œåˆæœ¬' + '</span><br>' + j + ' ' + oneline + '<br>';
+            var oneline_1_1TC =  '<span class="smallfont">'+ '©M¦X¥»' + '</span><br>' + j + ' ' + oneline + '<br>';
             var oneline_2_2TC =  '<span class="smallfont">'+ 'NKJV' + '</span><br>' + j + ' ' + oneline2 + '<br>';
             var oneline_3_3TC =  '<span class="smallfont">'+ 'NIV' + '</span><br>' + j + ' ' + oneline3 + '<br>';
-            var oneline_4_4TC =  '<span class="smallfont">'+ 'å‘‚æŒ¯ä¸­è­¯æœ¬' + '</span><br>' + j + ' ' + oneline4 + '<br>';
+            var oneline_4_4TC =  '<span class="smallfont">'+ '§f®¶¤¤Ä¶¥»' + '</span><br>' + j + ' ' + oneline4 + '<br>';
 
             Total_Line_L = Total_Line_L + oneline_1_1TC + oneline_4_4TC;
             Total_Line_R = Total_Line_R + oneline_2_2TC + oneline_3_3TC;
@@ -4790,11 +4842,11 @@ function readchapter(bnum, cnum ,snum , to_snum) {
 
          //if(parent.command.document.BV.BibleVersion[3].checked){
 
-         //   var oneline_1_1_v = '<table><tr><td valign="top">'+ 'å’Œåˆæœ¬' +'</td></tr></table>';
+         //   var oneline_1_1_v = '<table><tr><td valign="top">'+ '©M¦X¥»' +'</td></tr></table>';
          //   docObj.writeln(oneline_1_1_v);
          //   docObj.writeln(oneline_1_1);
 
-         //   var oneline_1_4_v = '<table><tr><td valign="top">'+ 'å‘‚æŒ¯ä¸­è­¯æœ¬' +'</td></tr></table>';
+         //   var oneline_1_4_v = '<table><tr><td valign="top">'+ '§f®¶¤¤Ä¶¥»' +'</td></tr></table>';
          //   docObj.writeln(oneline_1_4_v);
          //   docObj.writeln(oneline_1_4);
 
@@ -4824,7 +4876,7 @@ function readchapter(bnum, cnum ,snum , to_snum) {
 
 //      docObj.writeln(oneline_1);
 
-      if(document.BV.BibleVersion[3].checked){  // Display å…¨éƒ¨ç‰ˆæœ¬
+      if(document.BV.BibleVersion[3].checked){  // Display ¥ş³¡ª©¥»
 
 
          if(disp_secs_a==1) {
@@ -4835,11 +4887,11 @@ function readchapter(bnum, cnum ,snum , to_snum) {
             document.getElementById("conten1t1").scrollTop = 0;
             document.getElementById("content2").scrollTop = 0;
 
-            document.getElementById("smallVer1").innerHTML = 'å’Œåˆæœ¬';
+            document.getElementById("smallVer1").innerHTML = '©M¦X¥»';
             document.getElementById("10002").innerHTML = j;
             document.getElementById("10003").innerHTML = oneline;
 
-            document.getElementById("smallVer2").innerHTML = 'å‘‚æŒ¯ä¸­è­¯æœ¬';
+            document.getElementById("smallVer2").innerHTML = '§f®¶¤¤Ä¶¥»';
             document.getElementById("20002").innerHTML = j;
             document.getElementById("20003").innerHTML = oneline4;
 
@@ -4900,9 +4952,9 @@ function readchapter8(bnum, cnum ,snum , to_snum) {
   bcs_size = "24"; // 24
 
 
-//  bnum : ç¶“å·
-//  cnum : ç« 
-//  snum : ç¯€
+//  bnum : ¸g¨÷
+//  cnum : ³¹
+//  snum : ¸`
  
   if(snum < 1)
     snum = 1;
@@ -4923,7 +4975,7 @@ function readchapter8(bnum, cnum ,snum , to_snum) {
 
 
   //For Setting Display Verses Number
-  if(document.DVN.DVNumber[0].checked) {   // é¡¯ç¤º 1ç¯€
+  if(document.DVN.DVNumber[0].checked) {   // Åã¥Ü 1¸`
 
      disp_secs_a = "1";
 
@@ -4942,9 +4994,9 @@ function readchapter8(bnum, cnum ,snum , to_snum) {
 
   }
 
-  if(document.DVN.DVNumber[1].checked) {   // é¡¯ç¤º 15ç¯€
+  if(document.DVN.DVNumber[1].checked) {   // Åã¥Ü 15¸`
 
-     disp_secs_a = "15"; // åŸç‚º 7
+     disp_secs_a = "15"; // ­ì¬° 7
 
      if(Mode_1Chap ==1) {
 
@@ -4965,7 +5017,7 @@ function readchapter8(bnum, cnum ,snum , to_snum) {
 
   }
 
-  if(document.DVN.DVNumber[2].checked) {   // é¡¯ç¤º å…¨ç« 
+  if(document.DVN.DVNumber[2].checked) {   // Åã¥Ü ¥ş³¹
 
      disp_secs_a = "0";
 
@@ -4990,7 +5042,7 @@ function readchapter8(bnum, cnum ,snum , to_snum) {
   var line1 = chapter_lines[book_chapters[bnum]+cnum];  
   var line2 = chapter_lines[book_chapters[bnum]+cnum+1];
   var line3 = line1+snum-1;
-  var line4 = eval(line3 + disp_secs); // +1 è¡¨ä¸€æ¬¡é¡¯ç¤º1ç¯€ï¼Œ+2 è¡¨ä¸€æ¬¡é¡¯ç¤º2ç¯€  
+  var line4 = eval(line3 + disp_secs); // +1 ªí¤@¦¸Åã¥Ü1¸`¡A+2 ªí¤@¦¸Åã¥Ü2¸`  
 
       if(disp_secs==0){
         line3 = line1;
@@ -5047,7 +5099,7 @@ function readchapter8(bnum, cnum ,snum , to_snum) {
 
 //    var bname = profiles[line3].substring(0, profiles[line3].indexOf("^"));
 
-      // å’Œåˆæœ¬
+      // ©M¦X¥»
       var bname = profiles[line3].substring(profiles[line3].indexOf("%")+1, profiles[line3].indexOf("^"));
       var cname = profiles[line3].substring(profiles[line3].indexOf("^")+1, profiles[line3].indexOf(":"));
       var sname = profiles[line3].substring(profiles[line3].indexOf(":")+1, profiles[line3].indexOf(" "));
@@ -5073,19 +5125,19 @@ function readchapter8(bnum, cnum ,snum , to_snum) {
 
 
       if(snum<to_snum){
-         Bcsname1 = bname + ' ç¬¬' + cname + 'ç« ' + ' ç¬¬' + sname + '~' + to_snum + 'ç¯€' + ' ';
-         Bcsname2 = bname + ' ç¬¬' + cname + 'ç¯‡' + ' ç¬¬' + sname + '~' + to_snum + 'ç¯€' + ' ';
+         Bcsname1 = bname + ' ²Ä' + cname + '³¹' + ' ²Ä' + sname + '~' + to_snum + '¸`' + ' ';
+         Bcsname2 = bname + ' ²Ä' + cname + '½g' + ' ²Ä' + sname + '~' + to_snum + '¸`' + ' ';
       }
       else{
-         Bcsname1 = bname + ' ç¬¬' + cname + 'ç« ' + ' ç¬¬' + sname + 'ç¯€' + ' ';
-         Bcsname2 = bname + ' ç¬¬' + cname + 'ç¯‡' + ' ç¬¬' + sname + 'ç¯€' + ' ';
+         Bcsname1 = bname + ' ²Ä' + cname + '³¹' + ' ²Ä' + sname + '¸`' + ' ';
+         Bcsname2 = bname + ' ²Ä' + cname + '½g' + ' ²Ä' + sname + '¸`' + ' ';
       }
 
 
       Bname = bname;
 
-      var bcsname1 = bname + ' ç¬¬' + cname + 'ç« ' + '</ol>';
-      var bcsname2 = bname + ' ç¬¬' + cname + 'ç¯‡' + '</ol>';
+      var bcsname1 = bname + ' ²Ä' + cname + '³¹' + '</ol>';
+      var bcsname2 = bname + ' ²Ä' + cname + '½g' + '</ol>';
 
       var bcsname3 = bname3 + ' Chapter ' + cname3 + '</ol>';
 
@@ -5105,7 +5157,7 @@ function readchapter8(bnum, cnum ,snum , to_snum) {
 
 
       if(bnum==30||bnum==56||bnum==62||bnum==63||bnum==64){                   // new
-//         var bcsname1 = bname + ' ' + sname + 'ç¯€ ' + pname + 'é ' + '</ol>'; // modified ,  marked 27/03/2013
+//         var bcsname1 = bname + ' ' + sname + '¸` ' + pname + '­¶' + '</ol>'; // modified ,  marked 27/03/2013
 
         if(bnum<39){
          var bcsname1 = bname + "&nbsp&nbsp";                 // modified   27/03/2013
@@ -5116,11 +5168,11 @@ function readchapter8(bnum, cnum ,snum , to_snum) {
          var bcsname1B = bname2 + ' ' + snameNew;                    // add        27/03/2013
         }
 
-         //var bcsname1 = bname + ' ' + sname + 'ç¯€ ' + '    ';                   // modified           27/03/2013
+         //var bcsname1 = bname + ' ' + sname + '¸` ' + '    ';                   // modified           27/03/2013
          //var bcsname1B = bname2 + ' ' + sname2  + '</ol>';                      // add 27/03/2013
 
          //if(bcsname1.length>23){                                                                     // new
-         //  var bcsname1 = bname + '' + sname + 'ç¯€ ' + '    ';                   // modified           27/03/2013
+         //  var bcsname1 = bname + '' + sname + '¸` ' + '    ';                   // modified           27/03/2013
          //  var bcsname1B = bname2 + ' ' + sname2  + '</ol>';                   } // modified           27/03/2013
       }
       else {
@@ -5133,17 +5185,17 @@ function readchapter8(bnum, cnum ,snum , to_snum) {
          var bcsname1B = bname2 + ' ' + cname + ':' + snameNew;     // add 19/03/2013
         }
 
-         //var bcsname1 = bname + ' ' + cname + 'ç« ' + ' ' + sname + 'ç¯€ ' + '    '; // modified 19/03/2013
+         //var bcsname1 = bname + ' ' + cname + '³¹' + ' ' + sname + '¸` ' + '    '; // modified 19/03/2013
             // bcsname1B for English Ver, add 19/03/2013
          //var bcsname1B = bname2 + ' ' + cname2 + ':' + sname2  + '</ol>';  // add 19/03/2013
          //if(bcsname1.length>23){                                                                     // new
-         //  var bcsname1 = bname + '' + cname + 'ç« ' + '' + sname + 'ç¯€ ' + '    '; } // modified 19/03/2013
+         //  var bcsname1 = bname + '' + cname + '³¹' + '' + sname + '¸` ' + '    '; } // modified 19/03/2013
       }
 
       var bcsname2 = '<b><u>' + bname + "&nbsp&nbsp";                  // modified           27/03/2013
       var bcsname2B = bname2 + ' ' + cname2 + ':' + snameNew  + '</u></b></ol>';                            // add    
 
-      if(bnum==12&&cnum==21){   // cnum 21 è¡¨ 22 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for ä»£ä¸Š22ç«  ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 9.5.2013
+      if(bnum==12&&cnum==21){   // cnum 21 ªí 22 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for ¥N¤W22³¹ ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 9.5.2013
 
          var to_snum_int = parseInt(to_snum,10);
          var sname_int = parseInt(sname,10);
@@ -5153,11 +5205,11 @@ function readchapter8(bnum, cnum ,snum , to_snum) {
            var to_snum_tmp = to_snum - 1;
            var snameNew = sname + '~' + to_snum_tmp;      
            var snameNewB = sname2 + '~' + to_snum;
-           var bcsname1 = 'ä»£ä¸Š' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   // add 9/05/2013
+           var bcsname1 = '¥N¤W' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   // add 9/05/2013
            var bcsname1B = '1Ch' + ' ' + cname2 + ':' + snameNewB;     // add 9/05/2013
            
            if(snum==1){
-              var bcsname1 = 'ä»£ä¸Š' + ' ' + cname + ':' + sname + '~' + cname2 + ':' + to_snum_tmp + "&nbsp&nbsp";   // add 9/05/2013
+              var bcsname1 = '¥N¤W' + ' ' + cname + ':' + sname + '~' + cname2 + ':' + to_snum_tmp + "&nbsp&nbsp";   // add 9/05/2013
               var bcsname1B = '1Ch' + ' ' + cname2 + ':' + snameNewB;     // add 9/05/2013
            }
 
@@ -5165,57 +5217,57 @@ function readchapter8(bnum, cnum ,snum , to_snum) {
          else{                                         
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ä»£ä¸Š' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   // add 9/05/2013
+           var bcsname1 = '¥N¤W' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   // add 9/05/2013
            var bcsname1B = '1Ch' + ' ' + cname2 + ':' + snameNewB;     // add 9/05/2013
          }
 
       }      
 
-      if(bnum==12&&cnum==20&&snum==31){   // cnum 20 è¡¨ 21 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for ä»£ä¸Š21ç« 31ç¯€ ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 23.5.2013
-           var bcsname1 = 'ä»£ä¸Š 21:31' + "&nbsp&nbsp";   
+      if(bnum==12&&cnum==20&&snum==31){   // cnum 20 ªí 21 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for ¥N¤W21³¹31¸` ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 23.5.2013
+           var bcsname1 = '¥N¤W 21:31' + "&nbsp&nbsp";   
            var bcsname1B = '1Ch 22:1';     
       }
 
-      if(bnum==12&&cnum==20&&snum<31&&to_snum==31){   // cnum 20 è¡¨ 21 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for ä»£ä¸Š21ç« 31ç¯€ ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 23.5.2013
-           var bcsname1 = 'ä»£ä¸Š 21:' + snum + '~' + '31' + "&nbsp&nbsp";   
+      if(bnum==12&&cnum==20&&snum<31&&to_snum==31){   // cnum 20 ªí 21 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for ¥N¤W21³¹31¸` ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 23.5.2013
+           var bcsname1 = '¥N¤W 21:' + snum + '~' + '31' + "&nbsp&nbsp";   
            var bcsname1B = '1Ch 21:' + snum + '~' + '22:1';     
       }
 
-      if(bnum==42&&cnum==6){   // cnum 6 è¡¨ 7 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for John Chap7 Verse53 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 17.5.2013
+      if(bnum==42&&cnum==6){   // cnum 6 ªí 7 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for John Chap7 Verse53 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 17.5.2013
 
          if(snum==53){
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ç´„' + ' ' + cname + ':1(ä¸Š)' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù' + ' ' + cname + ':1(¤W)' + "&nbsp&nbsp";   
            var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB;     
          }
          if(to_snum==53&&snum<53){
            var to_snum_tmp = to_snum - 1;
            var snameNew = sname + '~' + to_snum_tmp;      
            var snameNewB = sname2 + '~' + to_snum;
-           var bcsname1 = 'ç´„' + ' ' + cname + ':' + sname + '~' + '8:1(ä¸Š)' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù' + ' ' + cname + ':' + sname + '~' + '8:1(¤W)' + "&nbsp&nbsp";   
            var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB ;    
          }
       }
 
-      if(bnum==42&&cnum==7){   // cnum 7 è¡¨ 8 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for John Chap8 Verse1 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 17.5.2013
+      if(bnum==42&&cnum==7){   // cnum 7 ªí 8 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for John Chap8 Verse1 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 17.5.2013
 
          if(snum==1&&to_snum==1){
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ç´„' + ' ' + cname + ':1(ä¸‹)' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù' + ' ' + cname + ':1(¤U)' + "&nbsp&nbsp";   
            var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB;     
          }
          if(snum==1&&to_snum>1){
            var to_snum_tmp = to_snum - 1;
-           var snameNew = '1(ä¸‹)' + '~' + to_snum;      
+           var snameNew = '1(¤U)' + '~' + to_snum;      
            var snameNewB = sname2 + '~' + to_snum;
-           var bcsname1 = 'ç´„' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   
            var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB ;    
          }
       }
 
-      if(bnum==63&&cnum==0){   // cnum 0 è¡¨ 1 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for 3rd John Chap1 Verse14 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 19.5.2013
+      if(bnum==63&&cnum==0){   // cnum 0 ªí 1 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for 3rd John Chap1 Verse14 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 19.5.2013
 
          var snum_int = parseInt(snum,10);
          var to_snum_int = parseInt(to_snum,10);
@@ -5225,27 +5277,27 @@ function readchapter8(bnum, cnum ,snum , to_snum) {
          if(snum_int==14){
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ç´„åƒ' + ' ' + '14ã€15' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù°Ñ' + ' ' + '14¡B15' + "&nbsp&nbsp";   
            var bcsname1B = '3Jn' + ' ' + snameNewB ;     
          }
          if(to_snum_int==14&&snum_int<14){
            var to_snum_tmp = to_snum_int - 1;
-           var snameNew = sname + '~' + '14ã€15';      
+           var snameNew = sname + '~' + '14¡B15';      
            var snameNewB = sname2 + '~' + '14';
-           var bcsname1 = 'ç´„åƒ' + ' ' + snameNew + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù°Ñ' + ' ' + snameNew + "&nbsp&nbsp";   
            var bcsname1B = '3Jn' + ' ' + snameNewB ;    
          }
-         if(snum_int==15){        // for 3rd John Chap1 Verse15 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ
+         if(snum_int==15){        // for 3rd John Chap1 Verse15 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ç´„åƒ' + ' ' + '15' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù°Ñ' + ' ' + '15' + "&nbsp&nbsp";   
            var bcsname1B = '3Jn' + ' ' + '14(b)';     
          }
-         if(to_snum_int==15&&snum_int<14){   // for 3rd John Chap1 Verse15 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ
+         if(to_snum_int==15&&snum_int<14){   // for 3rd John Chap1 Verse15 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P
            var to_snum_tmp = to_snum_int - 1;
-           var snameNew = sname + '~' + '14ã€15';      
+           var snameNew = sname + '~' + '14¡B15';      
            var snameNewB = sname2 + '~' + '14';
-           var bcsname1 = 'ç´„åƒ' + ' ' + snameNew + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù°Ñ' + ' ' + snameNew + "&nbsp&nbsp";   
            var bcsname1B = '3Jn' + ' ' + snameNewB ;  
          }  
       }
@@ -5305,7 +5357,7 @@ function readchapter8(bnum, cnum ,snum , to_snum) {
          var bcsname2_1 = '<p6>' + bcsname2 + '</p6>'; }
 
 
-      //if(bname!="è©©ç¯‡") {
+      //if(bname!="¸Ö½g") {
       //   //docObj_h.writeln(bcsname1_1.fontcolor(bcs_color));
       //   document.getElementById("p1").innerHTML = bcsname1;
       //}
@@ -5383,10 +5435,10 @@ function readchapter8(bnum, cnum ,snum , to_snum) {
 
 
       for (var i = line3; i < line4 ; i++) { 
-      var oneline = profiles[i].substring(profiles[i].indexOf(" "), profiles[i].length);       // å’Œåˆæœ¬
+      var oneline = profiles[i].substring(profiles[i].indexOf(" "), profiles[i].length);       // ©M¦X¥»
       var oneline2 = profiles2[i].substring(profiles2[i].indexOf(" "), profiles2[i].length);   // NKJV
       var oneline3 = profiles3[i].substring(profiles3[i].indexOf(" "), profiles3[i].length);   // NIV
-      var oneline4 = profiles4[i].substring(profiles4[i].indexOf(" "), profiles4[i].length);   // å‘‚æŒ¯ä¸­
+      var oneline4 = profiles4[i].substring(profiles4[i].indexOf(" "), profiles4[i].length);   // §f®¶¤¤
       var cname_1 = profiles[i].substring(profiles[i].indexOf("^")+1, profiles[i].indexOf(":"));
 
       j++;
@@ -5478,11 +5530,11 @@ function readchapter8(bnum, cnum ,snum , to_snum) {
          var sj = '<p6>' + j + '</p6>';}
 
 
-      //var oneline_1_1 = '<table><tr><td valign="top">'+'å’Œåˆæœ¬'+'&nbsp'+sj+'</td><td>'+oneline_1+'</td></tr></table>';
+      //var oneline_1_1 = '<table><tr><td valign="top">'+'©M¦X¥»'+'&nbsp'+sj+'</td><td>'+oneline_1+'</td></tr></table>';
       //var oneline_1_2 = '<table><tr><td valign="top">'+'NKJV'+'&nbsp&nbsp&nbsp'+sj+'</td><td>'+oneline_2+'</td></tr></table>';
       //var oneline_1_3 = '<table><tr><td valign="top">'+'NIV'+'&nbsp&nbsp&nbsp&nbsp'+sj+'</td><td>'+oneline_3+'</td></tr></table>';
 
-//      var oneline_1_1 = '<table><tr><td valign="top">'+'å’Œåˆæœ¬'+'&nbsp'+'</td><td valign="top">'+sj+'</td><td>'+oneline_1+'</td></tr></table>';
+//      var oneline_1_1 = '<table><tr><td valign="top">'+'©M¦X¥»'+'&nbsp'+'</td><td valign="top">'+sj+'</td><td>'+oneline_1+'</td></tr></table>';
 //      var oneline_1_2 = '<table><tr><td valign="top">'+'NKJV'+'&nbsp&nbsp&nbsp'+'</td><td valign="top">'+sj+'</td><td>'+oneline_2+'</td></tr></table>';
 //      var oneline_1_3 = '<table><tr><td valign="top">'+'NIV'+'&nbsp&nbsp&nbsp&nbsp'+'</td><td valign="top">'+sj+'</td><td>'+oneline_3+'</td></tr></table>';
 
@@ -5556,7 +5608,7 @@ function readchapter8(bnum, cnum ,snum , to_snum) {
       var oneline_1_1T =  j+' '+oneline + '<br>';   //        for Display in div id = "1L" or "1R"
       var oneline_2_2T =  j+' '+oneline2 + '<br>';  // NKJV
       var oneline_3_3T =  j+' '+oneline3 + '<br>';  // NIV
-      var oneline_4_4T =  j+' '+oneline4 + '<br>';  // å‘‚æŒ¯ä¸­
+      var oneline_4_4T =  j+' '+oneline4 + '<br>';  // §f®¶¤¤
 
 
       if(disp_secs==7 && bnum==30 && j>21) {
@@ -5580,7 +5632,7 @@ function readchapter8(bnum, cnum ,snum , to_snum) {
       }
 
       // Add on 2018.08.22
-      if(disp_secs==15 && bnum==30 && j>21) {   // åŸç‚º disp_secs==7
+      if(disp_secs==15 && bnum==30 && j>21) {   // ­ì¬° disp_secs==7
          break;
       }
 
@@ -5733,7 +5785,7 @@ function readchapter8(bnum, cnum ,snum , to_snum) {
 
          if(document.BV.BibleVersion[2].checked){
 
-            BibleVersion_Disp = 2; // Display å‘‚æŒ¯ä¸­è­¯æœ¬
+            BibleVersion_Disp = 2; // Display §f®¶¤¤Ä¶¥»
 
             clear_area_1L();
             clear_area_1R();
@@ -5760,16 +5812,16 @@ function readchapter8(bnum, cnum ,snum , to_snum) {
 
          if(document.BV.BibleVersion[3].checked){
 
-            BibleVersion_Disp = 3; // Display å…¨éƒ¨ç‰ˆæœ¬
+            BibleVersion_Disp = 3; // Display ¥ş³¡ª©¥»
 
             clear_area_L();
             clear_area_R();
 
             // Mark temporary
-            var oneline_1_1TC =  '<span class="smallfont">'+ 'å’Œåˆæœ¬' + '</span><br>' + j + ' ' + oneline + '<br>';
+            var oneline_1_1TC =  '<span class="smallfont">'+ '©M¦X¥»' + '</span><br>' + j + ' ' + oneline + '<br>';
             var oneline_2_2TC =  '<span class="smallfont">'+ 'NKJV' + '</span><br>' + j + ' ' + oneline2 + '<br>';
             var oneline_3_3TC =  '<span class="smallfont">'+ 'NIV' + '</span><br>' + j + ' ' + oneline3 + '<br>';
-            var oneline_4_4TC =  '<span class="smallfont">'+ 'å‘‚æŒ¯ä¸­è­¯æœ¬' + '</span><br>' + j + ' ' + oneline4 + '<br>';
+            var oneline_4_4TC =  '<span class="smallfont">'+ '§f®¶¤¤Ä¶¥»' + '</span><br>' + j + ' ' + oneline4 + '<br>';
 
             Total_Line_L = Total_Line_L + oneline_1_1TC + oneline_4_4TC;
             Total_Line_R = Total_Line_R + oneline_2_2TC + oneline_3_3TC;
@@ -5784,7 +5836,7 @@ function readchapter8(bnum, cnum ,snum , to_snum) {
 
 //      docObj.writeln(oneline_1);
 
-      if(document.BV.BibleVersion[3].checked){  // Display å…¨éƒ¨ç‰ˆæœ¬
+      if(document.BV.BibleVersion[3].checked){  // Display ¥ş³¡ª©¥»
 
 
          if(disp_secs_a==1) {
@@ -5795,11 +5847,11 @@ function readchapter8(bnum, cnum ,snum , to_snum) {
             document.getElementById("conten1t1").scrollTop = 0;
             document.getElementById("content2").scrollTop = 0;
 
-            document.getElementById("smallVer1").innerHTML = 'å’Œåˆæœ¬';
+            document.getElementById("smallVer1").innerHTML = '©M¦X¥»';
             document.getElementById("10002").innerHTML = j;
             document.getElementById("10003").innerHTML = oneline;
 
-            document.getElementById("smallVer2").innerHTML = 'å‘‚æŒ¯ä¸­è­¯æœ¬';
+            document.getElementById("smallVer2").innerHTML = '§f®¶¤¤Ä¶¥»';
             document.getElementById("20002").innerHTML = j;
             document.getElementById("20003").innerHTML = oneline4;
 
@@ -5859,9 +5911,9 @@ function readchapter7(bnum, cnum ,snum , to_snum) {
   bcs_size = "24"; // 24
 
 
-//  bnum : ç¶“å·
-//  cnum : ç« 
-//  snum : ç¯€
+//  bnum : ¸g¨÷
+//  cnum : ³¹
+//  snum : ¸`
  
   if(snum < 1)
     snum = 1;
@@ -5882,7 +5934,7 @@ function readchapter7(bnum, cnum ,snum , to_snum) {
 
 
   //For Setting Display Verses Number
-  if(document.DVN.DVNumber[0].checked) {   // é¡¯ç¤º 1ç¯€
+  if(document.DVN.DVNumber[0].checked) {   // Åã¥Ü 1¸`
 
      disp_secs_a = "1";
 
@@ -5901,9 +5953,9 @@ function readchapter7(bnum, cnum ,snum , to_snum) {
 
   }
 
-  if(document.DVN.DVNumber[1].checked) {   // é¡¯ç¤º 15ç¯€
+  if(document.DVN.DVNumber[1].checked) {   // Åã¥Ü 15¸`
 
-     disp_secs_a = "15"; // åŸç‚º 7
+     disp_secs_a = "15"; // ­ì¬° 7
 
      if(Mode_1Chap ==1) {
 
@@ -5924,7 +5976,7 @@ function readchapter7(bnum, cnum ,snum , to_snum) {
 
   }
 
-  if(document.DVN.DVNumber[2].checked) {   // é¡¯ç¤º å…¨ç« 
+  if(document.DVN.DVNumber[2].checked) {   // Åã¥Ü ¥ş³¹
 
      disp_secs_a = "0";
 
@@ -5949,7 +6001,7 @@ function readchapter7(bnum, cnum ,snum , to_snum) {
   var line1 = chapter_lines[book_chapters[bnum]+cnum];  
   var line2 = chapter_lines[book_chapters[bnum]+cnum+1];
   var line3 = line1+snum-1;
-  var line4 = eval(line3 + disp_secs); // +1 è¡¨ä¸€æ¬¡é¡¯ç¤º1ç¯€ï¼Œ+2 è¡¨ä¸€æ¬¡é¡¯ç¤º2ç¯€  
+  var line4 = eval(line3 + disp_secs); // +1 ªí¤@¦¸Åã¥Ü1¸`¡A+2 ªí¤@¦¸Åã¥Ü2¸`  
 
       if(disp_secs==0){
         line3 = line1;
@@ -6006,7 +6058,7 @@ function readchapter7(bnum, cnum ,snum , to_snum) {
 
 //    var bname = profiles[line3].substring(0, profiles[line3].indexOf("^"));
 
-      // å’Œåˆæœ¬
+      // ©M¦X¥»
       var bname = profiles[line3].substring(profiles[line3].indexOf("%")+1, profiles[line3].indexOf("^"));
       var cname = profiles[line3].substring(profiles[line3].indexOf("^")+1, profiles[line3].indexOf(":"));
       var sname = profiles[line3].substring(profiles[line3].indexOf(":")+1, profiles[line3].indexOf(" "));
@@ -6032,19 +6084,19 @@ function readchapter7(bnum, cnum ,snum , to_snum) {
 
 
       if(snum<to_snum){
-         Bcsname1 = bname + ' ç¬¬' + cname + 'ç« ' + ' ç¬¬' + sname + '~' + to_snum + 'ç¯€' + ' ';
-         Bcsname2 = bname + ' ç¬¬' + cname + 'ç¯‡' + ' ç¬¬' + sname + '~' + to_snum + 'ç¯€' + ' ';
+         Bcsname1 = bname + ' ²Ä' + cname + '³¹' + ' ²Ä' + sname + '~' + to_snum + '¸`' + ' ';
+         Bcsname2 = bname + ' ²Ä' + cname + '½g' + ' ²Ä' + sname + '~' + to_snum + '¸`' + ' ';
       }
       else{
-         Bcsname1 = bname + ' ç¬¬' + cname + 'ç« ' + ' ç¬¬' + sname + 'ç¯€' + ' ';
-         Bcsname2 = bname + ' ç¬¬' + cname + 'ç¯‡' + ' ç¬¬' + sname + 'ç¯€' + ' ';
+         Bcsname1 = bname + ' ²Ä' + cname + '³¹' + ' ²Ä' + sname + '¸`' + ' ';
+         Bcsname2 = bname + ' ²Ä' + cname + '½g' + ' ²Ä' + sname + '¸`' + ' ';
       }
 
 
       Bname = bname;
 
-      var bcsname1 = bname + ' ç¬¬' + cname + 'ç« ' + '</ol>';
-      var bcsname2 = bname + ' ç¬¬' + cname + 'ç¯‡' + '</ol>';
+      var bcsname1 = bname + ' ²Ä' + cname + '³¹' + '</ol>';
+      var bcsname2 = bname + ' ²Ä' + cname + '½g' + '</ol>';
 
       var bcsname3 = bname3 + ' Chapter ' + cname3 + '</ol>';
 
@@ -6064,7 +6116,7 @@ function readchapter7(bnum, cnum ,snum , to_snum) {
 
 
       if(bnum==30||bnum==56||bnum==62||bnum==63||bnum==64){                   // new
-//         var bcsname1 = bname + ' ' + sname + 'ç¯€ ' + pname + 'é ' + '</ol>'; // modified ,  marked 27/03/2013
+//         var bcsname1 = bname + ' ' + sname + '¸` ' + pname + '­¶' + '</ol>'; // modified ,  marked 27/03/2013
 
         if(bnum<39){
          var bcsname1 = bname + "&nbsp&nbsp";                 // modified   27/03/2013
@@ -6075,11 +6127,11 @@ function readchapter7(bnum, cnum ,snum , to_snum) {
          var bcsname1B = bname2 + ' ' + snameNew;                    // add        27/03/2013
         }
 
-         //var bcsname1 = bname + ' ' + sname + 'ç¯€ ' + '    ';                   // modified           27/03/2013
+         //var bcsname1 = bname + ' ' + sname + '¸` ' + '    ';                   // modified           27/03/2013
          //var bcsname1B = bname2 + ' ' + sname2  + '</ol>';                      // add 27/03/2013
 
          //if(bcsname1.length>23){                                                                     // new
-         //  var bcsname1 = bname + '' + sname + 'ç¯€ ' + '    ';                   // modified           27/03/2013
+         //  var bcsname1 = bname + '' + sname + '¸` ' + '    ';                   // modified           27/03/2013
          //  var bcsname1B = bname2 + ' ' + sname2  + '</ol>';                   } // modified           27/03/2013
       }
       else {
@@ -6092,17 +6144,17 @@ function readchapter7(bnum, cnum ,snum , to_snum) {
          var bcsname1B = bname2 + ' ' + cname + ':' + snameNew;     // add 19/03/2013
         }
 
-         //var bcsname1 = bname + ' ' + cname + 'ç« ' + ' ' + sname + 'ç¯€ ' + '    '; // modified 19/03/2013
+         //var bcsname1 = bname + ' ' + cname + '³¹' + ' ' + sname + '¸` ' + '    '; // modified 19/03/2013
             // bcsname1B for English Ver, add 19/03/2013
          //var bcsname1B = bname2 + ' ' + cname2 + ':' + sname2  + '</ol>';  // add 19/03/2013
          //if(bcsname1.length>23){                                                                     // new
-         //  var bcsname1 = bname + '' + cname + 'ç« ' + '' + sname + 'ç¯€ ' + '    '; } // modified 19/03/2013
+         //  var bcsname1 = bname + '' + cname + '³¹' + '' + sname + '¸` ' + '    '; } // modified 19/03/2013
       }
 
       var bcsname2 = '<b><u>' + bname + "&nbsp&nbsp";                  // modified           27/03/2013
       var bcsname2B = bname2 + ' ' + cname2 + ':' + snameNew  + '</u></b></ol>';                            // add    
 
-      if(bnum==12&&cnum==21){   // cnum 21 è¡¨ 22 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for ä»£ä¸Š22ç«  ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 9.5.2013
+      if(bnum==12&&cnum==21){   // cnum 21 ªí 22 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for ¥N¤W22³¹ ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 9.5.2013
 
          var to_snum_int = parseInt(to_snum,10);
          var sname_int = parseInt(sname,10);
@@ -6112,11 +6164,11 @@ function readchapter7(bnum, cnum ,snum , to_snum) {
            var to_snum_tmp = to_snum - 1;
            var snameNew = sname + '~' + to_snum_tmp;      
            var snameNewB = sname2 + '~' + to_snum;
-           var bcsname1 = 'ä»£ä¸Š' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   // add 9/05/2013
+           var bcsname1 = '¥N¤W' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   // add 9/05/2013
            var bcsname1B = '1Ch' + ' ' + cname2 + ':' + snameNewB;     // add 9/05/2013
            
            if(snum==1){
-              var bcsname1 = 'ä»£ä¸Š' + ' ' + cname + ':' + sname + '~' + cname2 + ':' + to_snum_tmp + "&nbsp&nbsp";   // add 9/05/2013
+              var bcsname1 = '¥N¤W' + ' ' + cname + ':' + sname + '~' + cname2 + ':' + to_snum_tmp + "&nbsp&nbsp";   // add 9/05/2013
               var bcsname1B = '1Ch' + ' ' + cname2 + ':' + snameNewB;     // add 9/05/2013
            }
 
@@ -6124,57 +6176,57 @@ function readchapter7(bnum, cnum ,snum , to_snum) {
          else{                                         
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ä»£ä¸Š' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   // add 9/05/2013
+           var bcsname1 = '¥N¤W' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   // add 9/05/2013
            var bcsname1B = '1Ch' + ' ' + cname2 + ':' + snameNewB;     // add 9/05/2013
          }
 
       }      
 
-      if(bnum==12&&cnum==20&&snum==31){   // cnum 20 è¡¨ 21 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for ä»£ä¸Š21ç« 31ç¯€ ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 23.5.2013
-           var bcsname1 = 'ä»£ä¸Š 21:31' + "&nbsp&nbsp";   
+      if(bnum==12&&cnum==20&&snum==31){   // cnum 20 ªí 21 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for ¥N¤W21³¹31¸` ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 23.5.2013
+           var bcsname1 = '¥N¤W 21:31' + "&nbsp&nbsp";   
            var bcsname1B = '1Ch 22:1';     
       }
 
-      if(bnum==12&&cnum==20&&snum<31&&to_snum==31){   // cnum 20 è¡¨ 21 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for ä»£ä¸Š21ç« 31ç¯€ ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 23.5.2013
-           var bcsname1 = 'ä»£ä¸Š 21:' + snum + '~' + '31' + "&nbsp&nbsp";   
+      if(bnum==12&&cnum==20&&snum<31&&to_snum==31){   // cnum 20 ªí 21 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for ¥N¤W21³¹31¸` ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 23.5.2013
+           var bcsname1 = '¥N¤W 21:' + snum + '~' + '31' + "&nbsp&nbsp";   
            var bcsname1B = '1Ch 21:' + snum + '~' + '22:1';     
       }
 
-      if(bnum==42&&cnum==6){   // cnum 6 è¡¨ 7 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for John Chap7 Verse53 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 17.5.2013
+      if(bnum==42&&cnum==6){   // cnum 6 ªí 7 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for John Chap7 Verse53 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 17.5.2013
 
          if(snum==53){
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ç´„' + ' ' + cname + ':1(ä¸Š)' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù' + ' ' + cname + ':1(¤W)' + "&nbsp&nbsp";   
            var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB;     
          }
          if(to_snum==53&&snum<53){
            var to_snum_tmp = to_snum - 1;
            var snameNew = sname + '~' + to_snum_tmp;      
            var snameNewB = sname2 + '~' + to_snum;
-           var bcsname1 = 'ç´„' + ' ' + cname + ':' + sname + '~' + '8:1(ä¸Š)' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù' + ' ' + cname + ':' + sname + '~' + '8:1(¤W)' + "&nbsp&nbsp";   
            var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB ;    
          }
       }
 
-      if(bnum==42&&cnum==7){   // cnum 7 è¡¨ 8 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for John Chap8 Verse1 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 17.5.2013
+      if(bnum==42&&cnum==7){   // cnum 7 ªí 8 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for John Chap8 Verse1 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 17.5.2013
 
          if(snum==1&&to_snum==1){
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ç´„' + ' ' + cname + ':1(ä¸‹)' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù' + ' ' + cname + ':1(¤U)' + "&nbsp&nbsp";   
            var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB;     
          }
          if(snum==1&&to_snum>1){
            var to_snum_tmp = to_snum - 1;
-           var snameNew = '1(ä¸‹)' + '~' + to_snum;      
+           var snameNew = '1(¤U)' + '~' + to_snum;      
            var snameNewB = sname2 + '~' + to_snum;
-           var bcsname1 = 'ç´„' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   
            var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB ;    
          }
       }
 
-      if(bnum==63&&cnum==0){   // cnum 0 è¡¨ 1 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for 3rd John Chap1 Verse14 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 19.5.2013
+      if(bnum==63&&cnum==0){   // cnum 0 ªí 1 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for 3rd John Chap1 Verse14 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 19.5.2013
 
          var snum_int = parseInt(snum,10);
          var to_snum_int = parseInt(to_snum,10);
@@ -6184,27 +6236,27 @@ function readchapter7(bnum, cnum ,snum , to_snum) {
          if(snum_int==14){
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ç´„åƒ' + ' ' + '14ã€15' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù°Ñ' + ' ' + '14¡B15' + "&nbsp&nbsp";   
            var bcsname1B = '3Jn' + ' ' + snameNewB ;     
          }
          if(to_snum_int==14&&snum_int<14){
            var to_snum_tmp = to_snum_int - 1;
-           var snameNew = sname + '~' + '14ã€15';      
+           var snameNew = sname + '~' + '14¡B15';      
            var snameNewB = sname2 + '~' + '14';
-           var bcsname1 = 'ç´„åƒ' + ' ' + snameNew + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù°Ñ' + ' ' + snameNew + "&nbsp&nbsp";   
            var bcsname1B = '3Jn' + ' ' + snameNewB ;    
          }
-         if(snum_int==15){        // for 3rd John Chap1 Verse15 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ
+         if(snum_int==15){        // for 3rd John Chap1 Verse15 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ç´„åƒ' + ' ' + '15' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù°Ñ' + ' ' + '15' + "&nbsp&nbsp";   
            var bcsname1B = '3Jn' + ' ' + '14(b)';     
          }
-         if(to_snum_int==15&&snum_int<14){   // for 3rd John Chap1 Verse15 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ
+         if(to_snum_int==15&&snum_int<14){   // for 3rd John Chap1 Verse15 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P
            var to_snum_tmp = to_snum_int - 1;
-           var snameNew = sname + '~' + '14ã€15';      
+           var snameNew = sname + '~' + '14¡B15';      
            var snameNewB = sname2 + '~' + '14';
-           var bcsname1 = 'ç´„åƒ' + ' ' + snameNew + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù°Ñ' + ' ' + snameNew + "&nbsp&nbsp";   
            var bcsname1B = '3Jn' + ' ' + snameNewB ;  
          }  
       }
@@ -6318,10 +6370,10 @@ function readchapter7(bnum, cnum ,snum , to_snum) {
 
 
       for (var i = line3; i < line4 ; i++) { 
-      var oneline = profiles[i].substring(profiles[i].indexOf(" "), profiles[i].length);       // å’Œåˆæœ¬
+      var oneline = profiles[i].substring(profiles[i].indexOf(" "), profiles[i].length);       // ©M¦X¥»
       var oneline2 = profiles2[i].substring(profiles2[i].indexOf(" "), profiles2[i].length);   // NKJV
       var oneline3 = profiles3[i].substring(profiles3[i].indexOf(" "), profiles3[i].length);   // NIV
-      var oneline4 = profiles4[i].substring(profiles4[i].indexOf(" "), profiles4[i].length);   // å‘‚æŒ¯ä¸­
+      var oneline4 = profiles4[i].substring(profiles4[i].indexOf(" "), profiles4[i].length);   // §f®¶¤¤
       var cname_1 = profiles[i].substring(profiles[i].indexOf("^")+1, profiles[i].indexOf(":"));
 
       j++;
@@ -6413,11 +6465,11 @@ function readchapter7(bnum, cnum ,snum , to_snum) {
          var sj = '<p6>' + j + '</p6>';}
 
 
-      //var oneline_1_1 = '<table><tr><td valign="top">'+'å’Œåˆæœ¬'+'&nbsp'+sj+'</td><td>'+oneline_1+'</td></tr></table>';
+      //var oneline_1_1 = '<table><tr><td valign="top">'+'©M¦X¥»'+'&nbsp'+sj+'</td><td>'+oneline_1+'</td></tr></table>';
       //var oneline_1_2 = '<table><tr><td valign="top">'+'NKJV'+'&nbsp&nbsp&nbsp'+sj+'</td><td>'+oneline_2+'</td></tr></table>';
       //var oneline_1_3 = '<table><tr><td valign="top">'+'NIV'+'&nbsp&nbsp&nbsp&nbsp'+sj+'</td><td>'+oneline_3+'</td></tr></table>';
 
-//      var oneline_1_1 = '<table><tr><td valign="top">'+'å’Œåˆæœ¬'+'&nbsp'+'</td><td valign="top">'+sj+'</td><td>'+oneline_1+'</td></tr></table>';
+//      var oneline_1_1 = '<table><tr><td valign="top">'+'©M¦X¥»'+'&nbsp'+'</td><td valign="top">'+sj+'</td><td>'+oneline_1+'</td></tr></table>';
 //      var oneline_1_2 = '<table><tr><td valign="top">'+'NKJV'+'&nbsp&nbsp&nbsp'+'</td><td valign="top">'+sj+'</td><td>'+oneline_2+'</td></tr></table>';
 //      var oneline_1_3 = '<table><tr><td valign="top">'+'NIV'+'&nbsp&nbsp&nbsp&nbsp'+'</td><td valign="top">'+sj+'</td><td>'+oneline_3+'</td></tr></table>';
 
@@ -6491,7 +6543,7 @@ function readchapter7(bnum, cnum ,snum , to_snum) {
       var oneline_1_1T =  j+' '+oneline + '<br>';   //        for Display in div id = "1L" or "1R"
       var oneline_2_2T =  j+' '+oneline2 + '<br>';  // NKJV
       var oneline_3_3T =  j+' '+oneline3 + '<br>';  // NIV
-      var oneline_4_4T =  j+' '+oneline4 + '<br>';  // å‘‚æŒ¯ä¸­
+      var oneline_4_4T =  j+' '+oneline4 + '<br>';  // §f®¶¤¤
 
 
       if(disp_secs==7 && bnum==30 && j>21) {
@@ -6515,7 +6567,7 @@ function readchapter7(bnum, cnum ,snum , to_snum) {
       }
 
       // Add on 2018.08.22
-      if(disp_secs==15 && bnum==30 && j>21) {   // åŸç‚º disp_secs==7
+      if(disp_secs==15 && bnum==30 && j>21) {   // ­ì¬° disp_secs==7
          break;
       }
 
@@ -6666,7 +6718,7 @@ function readchapter7(bnum, cnum ,snum , to_snum) {
 
          if(document.BV.BibleVersion[2].checked){
 
-            BibleVersion_Disp = 2; // Display å‘‚æŒ¯ä¸­è­¯æœ¬
+            BibleVersion_Disp = 2; // Display §f®¶¤¤Ä¶¥»
 
             clear_area_1L();
             clear_area_1R();
@@ -6693,16 +6745,16 @@ function readchapter7(bnum, cnum ,snum , to_snum) {
 
          if(document.BV.BibleVersion[3].checked){
 
-            BibleVersion_Disp = 3; // Display å…¨éƒ¨ç‰ˆæœ¬
+            BibleVersion_Disp = 3; // Display ¥ş³¡ª©¥»
 
             clear_area_L();
             clear_area_R();
 
             // Mark temporary
-            var oneline_1_1TC =  '<span class="smallfont">'+ 'å’Œåˆæœ¬' + '</span><br>' + j + ' ' + oneline + '<br>';
+            var oneline_1_1TC =  '<span class="smallfont">'+ '©M¦X¥»' + '</span><br>' + j + ' ' + oneline + '<br>';
             var oneline_2_2TC =  '<span class="smallfont">'+ 'NKJV' + '</span><br>' + j + ' ' + oneline2 + '<br>';
             var oneline_3_3TC =  '<span class="smallfont">'+ 'NIV' + '</span><br>' + j + ' ' + oneline3 + '<br>';
-            var oneline_4_4TC =  '<span class="smallfont">'+ 'å‘‚æŒ¯ä¸­è­¯æœ¬' + '</span><br>' + j + ' ' + oneline4 + '<br>';
+            var oneline_4_4TC =  '<span class="smallfont">'+ '§f®¶¤¤Ä¶¥»' + '</span><br>' + j + ' ' + oneline4 + '<br>';
 
             Total_Line_L = Total_Line_L + oneline_1_1TC + oneline_4_4TC;
             Total_Line_R = Total_Line_R + oneline_2_2TC + oneline_3_3TC;
@@ -6717,7 +6769,7 @@ function readchapter7(bnum, cnum ,snum , to_snum) {
 
 //      docObj.writeln(oneline_1);
 
-      if(document.BV.BibleVersion[3].checked){  // Display å…¨éƒ¨ç‰ˆæœ¬
+      if(document.BV.BibleVersion[3].checked){  // Display ¥ş³¡ª©¥»
 
 
          if(disp_secs_a==1) {
@@ -6728,11 +6780,11 @@ function readchapter7(bnum, cnum ,snum , to_snum) {
             document.getElementById("conten1t1").scrollTop = 0;
             document.getElementById("content2").scrollTop = 0;
 
-            document.getElementById("smallVer1").innerHTML = 'å’Œåˆæœ¬';
+            document.getElementById("smallVer1").innerHTML = '©M¦X¥»';
             document.getElementById("10002").innerHTML = j;
             document.getElementById("10003").innerHTML = oneline;
 
-            document.getElementById("smallVer2").innerHTML = 'å‘‚æŒ¯ä¸­è­¯æœ¬';
+            document.getElementById("smallVer2").innerHTML = '§f®¶¤¤Ä¶¥»';
             document.getElementById("20002").innerHTML = j;
             document.getElementById("20003").innerHTML = oneline4;
 
@@ -6770,7 +6822,7 @@ function readchapter7(bnum, cnum ,snum , to_snum) {
   v_int = snum;
 
      if(One_Chap_Mode == 1) { // One_Chap_Mode = 0 : for Normal Display, 1 : for One_Chap_Mode Display -- have click link 
-                              // Language_Mode = 0; // 0:ä¸­/è‹±, 1:Eng, 2:ä¸­ 
+                              // Language_Mode = 0; // 0:¤¤/­^, 1:Eng, 2:¤¤ 
         // Do Nothing
      
      }
@@ -6815,9 +6867,9 @@ function readchapter3(bnum, cnum ,snum , to_snum) {
   bcs_size = "24"; // 24
 
 
-//  bnum : ç¶“å·
-//  cnum : ç« 
-//  snum : ç¯€
+//  bnum : ¸g¨÷
+//  cnum : ³¹
+//  snum : ¸`
  
   if(snum < 1)
     snum = 1;
@@ -6859,7 +6911,7 @@ function readchapter3(bnum, cnum ,snum , to_snum) {
 
   if(document.DVN.DVNumber[1].checked) {
 
-     disp_secs_a = "15"; // åŸç‚º 7
+     disp_secs_a = "15"; // ­ì¬° 7
 
      if(Mode_1Chap ==1) {
 
@@ -6905,7 +6957,7 @@ function readchapter3(bnum, cnum ,snum , to_snum) {
   var line1 = chapter_lines[book_chapters[bnum]+cnum];  
   var line2 = chapter_lines[book_chapters[bnum]+cnum+1];
   var line3 = line1+snum-1;
-  var line4 = eval(line3 + disp_secs); // +1 è¡¨ä¸€æ¬¡é¡¯ç¤º1ç¯€ï¼Œ+2 è¡¨ä¸€æ¬¡é¡¯ç¤º2ç¯€  
+  var line4 = eval(line3 + disp_secs); // +1 ªí¤@¦¸Åã¥Ü1¸`¡A+2 ªí¤@¦¸Åã¥Ü2¸`  
 
       if(disp_secs==0){
         line3 = line1;
@@ -6962,7 +7014,7 @@ function readchapter3(bnum, cnum ,snum , to_snum) {
 
 //    var bname = profiles[line3].substring(0, profiles[line3].indexOf("^"));
 
-      // å’Œåˆæœ¬
+      // ©M¦X¥»
       var bname = profiles[line3].substring(profiles[line3].indexOf("%")+1, profiles[line3].indexOf("^"));
       var cname = profiles[line3].substring(profiles[line3].indexOf("^")+1, profiles[line3].indexOf(":"));
       var sname = profiles[line3].substring(profiles[line3].indexOf(":")+1, profiles[line3].indexOf(" "));
@@ -6988,19 +7040,19 @@ function readchapter3(bnum, cnum ,snum , to_snum) {
 
 
       if(snum<to_snum){
-         Bcsname1 = bname + ' ç¬¬' + cname + 'ç« ' + ' ç¬¬' + sname + '~' + to_snum + 'ç¯€' + ' ';
-         Bcsname2 = bname + ' ç¬¬' + cname + 'ç¯‡' + ' ç¬¬' + sname + '~' + to_snum + 'ç¯€' + ' ';
+         Bcsname1 = bname + ' ²Ä' + cname + '³¹' + ' ²Ä' + sname + '~' + to_snum + '¸`' + ' ';
+         Bcsname2 = bname + ' ²Ä' + cname + '½g' + ' ²Ä' + sname + '~' + to_snum + '¸`' + ' ';
       }
       else{
-         Bcsname1 = bname + ' ç¬¬' + cname + 'ç« ' + ' ç¬¬' + sname + 'ç¯€' + ' ';
-         Bcsname2 = bname + ' ç¬¬' + cname + 'ç¯‡' + ' ç¬¬' + sname + 'ç¯€' + ' ';
+         Bcsname1 = bname + ' ²Ä' + cname + '³¹' + ' ²Ä' + sname + '¸`' + ' ';
+         Bcsname2 = bname + ' ²Ä' + cname + '½g' + ' ²Ä' + sname + '¸`' + ' ';
       }
 
 
       Bname = bname;
 
-      var bcsname1 = bname + ' ç¬¬' + cname + 'ç« ' + '</ol>';
-      var bcsname2 = bname + ' ç¬¬' + cname + 'ç¯‡' + '</ol>';
+      var bcsname1 = bname + ' ²Ä' + cname + '³¹' + '</ol>';
+      var bcsname2 = bname + ' ²Ä' + cname + '½g' + '</ol>';
 
       var bcsname3 = bname3 + ' Chapter ' + cname3 + '</ol>';
 
@@ -7020,7 +7072,7 @@ function readchapter3(bnum, cnum ,snum , to_snum) {
 
 
       if(bnum==30||bnum==56||bnum==62||bnum==63||bnum==64){                   // new
-//         var bcsname1 = bname + ' ' + sname + 'ç¯€ ' + pname + 'é ' + '</ol>'; // modified ,  marked 27/03/2013
+//         var bcsname1 = bname + ' ' + sname + '¸` ' + pname + '­¶' + '</ol>'; // modified ,  marked 27/03/2013
 
         if(bnum<39){
          var bcsname1 = bname + "&nbsp&nbsp";                 // modified   27/03/2013
@@ -7031,11 +7083,11 @@ function readchapter3(bnum, cnum ,snum , to_snum) {
          var bcsname1B = bname2 + ' ' + snameNew;                    // add        27/03/2013
         }
 
-         //var bcsname1 = bname + ' ' + sname + 'ç¯€ ' + '    ';                   // modified           27/03/2013
+         //var bcsname1 = bname + ' ' + sname + '¸` ' + '    ';                   // modified           27/03/2013
          //var bcsname1B = bname2 + ' ' + sname2  + '</ol>';                      // add 27/03/2013
 
          //if(bcsname1.length>23){                                                                     // new
-         //  var bcsname1 = bname + '' + sname + 'ç¯€ ' + '    ';                   // modified           27/03/2013
+         //  var bcsname1 = bname + '' + sname + '¸` ' + '    ';                   // modified           27/03/2013
          //  var bcsname1B = bname2 + ' ' + sname2  + '</ol>';                   } // modified           27/03/2013
       }
       else {
@@ -7048,17 +7100,17 @@ function readchapter3(bnum, cnum ,snum , to_snum) {
          var bcsname1B = bname2 + ' ' + cname + ':' + snameNew;     // add 19/03/2013
         }
 
-         //var bcsname1 = bname + ' ' + cname + 'ç« ' + ' ' + sname + 'ç¯€ ' + '    '; // modified 19/03/2013
+         //var bcsname1 = bname + ' ' + cname + '³¹' + ' ' + sname + '¸` ' + '    '; // modified 19/03/2013
             // bcsname1B for English Ver, add 19/03/2013
          //var bcsname1B = bname2 + ' ' + cname2 + ':' + sname2  + '</ol>';  // add 19/03/2013
          //if(bcsname1.length>23){                                                                     // new
-         //  var bcsname1 = bname + '' + cname + 'ç« ' + '' + sname + 'ç¯€ ' + '    '; } // modified 19/03/2013
+         //  var bcsname1 = bname + '' + cname + '³¹' + '' + sname + '¸` ' + '    '; } // modified 19/03/2013
       }
 
       var bcsname2 = '<b><u>' + bname + "&nbsp&nbsp";                  // modified           27/03/2013
       var bcsname2B = bname2 + ' ' + cname2 + ':' + snameNew  + '</u></b></ol>';                            // add    
 
-      if(bnum==12&&cnum==21){   // cnum 21 è¡¨ 22 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for ä»£ä¸Š22ç«  ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 9.5.2013
+      if(bnum==12&&cnum==21){   // cnum 21 ªí 22 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for ¥N¤W22³¹ ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 9.5.2013
 
          var to_snum_int = parseInt(to_snum,10);
          var sname_int = parseInt(sname,10);
@@ -7068,11 +7120,11 @@ function readchapter3(bnum, cnum ,snum , to_snum) {
            var to_snum_tmp = to_snum - 1;
            var snameNew = sname + '~' + to_snum_tmp;      
            var snameNewB = sname2 + '~' + to_snum;
-           var bcsname1 = 'ä»£ä¸Š' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   // add 9/05/2013
+           var bcsname1 = '¥N¤W' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   // add 9/05/2013
            var bcsname1B = '1Ch' + ' ' + cname2 + ':' + snameNewB;     // add 9/05/2013
            
            if(snum==1){
-              var bcsname1 = 'ä»£ä¸Š' + ' ' + cname + ':' + sname + '~' + cname2 + ':' + to_snum_tmp + "&nbsp&nbsp";   // add 9/05/2013
+              var bcsname1 = '¥N¤W' + ' ' + cname + ':' + sname + '~' + cname2 + ':' + to_snum_tmp + "&nbsp&nbsp";   // add 9/05/2013
               var bcsname1B = '1Ch' + ' ' + cname2 + ':' + snameNewB;     // add 9/05/2013
            }
 
@@ -7080,57 +7132,57 @@ function readchapter3(bnum, cnum ,snum , to_snum) {
          else{                                         
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ä»£ä¸Š' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   // add 9/05/2013
+           var bcsname1 = '¥N¤W' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   // add 9/05/2013
            var bcsname1B = '1Ch' + ' ' + cname2 + ':' + snameNewB;     // add 9/05/2013
          }
 
       }      
 
-      if(bnum==12&&cnum==20&&snum==31){   // cnum 20 è¡¨ 21 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for ä»£ä¸Š21ç« 31ç¯€ ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 23.5.2013
-           var bcsname1 = 'ä»£ä¸Š 21:31' + "&nbsp&nbsp";   
+      if(bnum==12&&cnum==20&&snum==31){   // cnum 20 ªí 21 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for ¥N¤W21³¹31¸` ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 23.5.2013
+           var bcsname1 = '¥N¤W 21:31' + "&nbsp&nbsp";   
            var bcsname1B = '1Ch 22:1';     
       }
 
-      if(bnum==12&&cnum==20&&snum<31&&to_snum==31){   // cnum 20 è¡¨ 21 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for ä»£ä¸Š21ç« 31ç¯€ ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 23.5.2013
-           var bcsname1 = 'ä»£ä¸Š 21:' + snum + '~' + '31' + "&nbsp&nbsp";   
+      if(bnum==12&&cnum==20&&snum<31&&to_snum==31){   // cnum 20 ªí 21 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for ¥N¤W21³¹31¸` ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 23.5.2013
+           var bcsname1 = '¥N¤W 21:' + snum + '~' + '31' + "&nbsp&nbsp";   
            var bcsname1B = '1Ch 21:' + snum + '~' + '22:1';     
       }
 
-      if(bnum==42&&cnum==6){   // cnum 6 è¡¨ 7 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for John Chap7 Verse53 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 17.5.2013
+      if(bnum==42&&cnum==6){   // cnum 6 ªí 7 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for John Chap7 Verse53 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 17.5.2013
 
          if(snum==53){
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ç´„' + ' ' + cname + ':1(ä¸Š)' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù' + ' ' + cname + ':1(¤W)' + "&nbsp&nbsp";   
            var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB;     
          }
          if(to_snum==53&&snum<53){
            var to_snum_tmp = to_snum - 1;
            var snameNew = sname + '~' + to_snum_tmp;      
            var snameNewB = sname2 + '~' + to_snum;
-           var bcsname1 = 'ç´„' + ' ' + cname + ':' + sname + '~' + '8:1(ä¸Š)' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù' + ' ' + cname + ':' + sname + '~' + '8:1(¤W)' + "&nbsp&nbsp";   
            var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB ;    
          }
       }
 
-      if(bnum==42&&cnum==7){   // cnum 7 è¡¨ 8 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for John Chap8 Verse1 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 17.5.2013
+      if(bnum==42&&cnum==7){   // cnum 7 ªí 8 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for John Chap8 Verse1 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 17.5.2013
 
          if(snum==1&&to_snum==1){
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ç´„' + ' ' + cname + ':1(ä¸‹)' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù' + ' ' + cname + ':1(¤U)' + "&nbsp&nbsp";   
            var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB;     
          }
          if(snum==1&&to_snum>1){
            var to_snum_tmp = to_snum - 1;
-           var snameNew = '1(ä¸‹)' + '~' + to_snum;      
+           var snameNew = '1(¤U)' + '~' + to_snum;      
            var snameNewB = sname2 + '~' + to_snum;
-           var bcsname1 = 'ç´„' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   
            var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB ;    
          }
       }
 
-      if(bnum==63&&cnum==0){   // cnum 0 è¡¨ 1 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for 3rd John Chap1 Verse14 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 19.5.2013
+      if(bnum==63&&cnum==0){   // cnum 0 ªí 1 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for 3rd John Chap1 Verse14 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 19.5.2013
 
          var snum_int = parseInt(snum,10);
          var to_snum_int = parseInt(to_snum,10);
@@ -7140,27 +7192,27 @@ function readchapter3(bnum, cnum ,snum , to_snum) {
          if(snum_int==14){
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ç´„åƒ' + ' ' + '14ã€15' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù°Ñ' + ' ' + '14¡B15' + "&nbsp&nbsp";   
            var bcsname1B = '3Jn' + ' ' + snameNewB ;     
          }
          if(to_snum_int==14&&snum_int<14){
            var to_snum_tmp = to_snum_int - 1;
-           var snameNew = sname + '~' + '14ã€15';      
+           var snameNew = sname + '~' + '14¡B15';      
            var snameNewB = sname2 + '~' + '14';
-           var bcsname1 = 'ç´„åƒ' + ' ' + snameNew + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù°Ñ' + ' ' + snameNew + "&nbsp&nbsp";   
            var bcsname1B = '3Jn' + ' ' + snameNewB ;    
          }
-         if(snum_int==15){        // for 3rd John Chap1 Verse15 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ
+         if(snum_int==15){        // for 3rd John Chap1 Verse15 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ç´„åƒ' + ' ' + '15' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù°Ñ' + ' ' + '15' + "&nbsp&nbsp";   
            var bcsname1B = '3Jn' + ' ' + '14(b)';     
          }
-         if(to_snum_int==15&&snum_int<14){   // for 3rd John Chap1 Verse15 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ
+         if(to_snum_int==15&&snum_int<14){   // for 3rd John Chap1 Verse15 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P
            var to_snum_tmp = to_snum_int - 1;
-           var snameNew = sname + '~' + '14ã€15';      
+           var snameNew = sname + '~' + '14¡B15';      
            var snameNewB = sname2 + '~' + '14';
-           var bcsname1 = 'ç´„åƒ' + ' ' + snameNew + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù°Ñ' + ' ' + snameNew + "&nbsp&nbsp";   
            var bcsname1B = '3Jn' + ' ' + snameNewB ;  
          }  
       }
@@ -7220,7 +7272,7 @@ function readchapter3(bnum, cnum ,snum , to_snum) {
          var bcsname2_1 = '<p6>' + bcsname2 + '</p6>'; }
 
 
-      //if(bname!="è©©ç¯‡") {
+      //if(bname!="¸Ö½g") {
       //   //docObj_h.writeln(bcsname1_1.fontcolor(bcs_color));
       //   document.getElementById("p1").innerHTML = bcsname1;
       //}
@@ -7298,10 +7350,10 @@ function readchapter3(bnum, cnum ,snum , to_snum) {
 
 
       for (var i = line3; i < line4 ; i++) { 
-      var oneline = profiles[i].substring(profiles[i].indexOf(" "), profiles[i].length);       // å’Œåˆæœ¬
+      var oneline = profiles[i].substring(profiles[i].indexOf(" "), profiles[i].length);       // ©M¦X¥»
       var oneline2 = profiles2[i].substring(profiles2[i].indexOf(" "), profiles2[i].length);   // NKJV
       var oneline3 = profiles3[i].substring(profiles3[i].indexOf(" "), profiles3[i].length);   // NIV
-      var oneline4 = profiles4[i].substring(profiles4[i].indexOf(" "), profiles4[i].length);   // å‘‚æŒ¯ä¸­
+      var oneline4 = profiles4[i].substring(profiles4[i].indexOf(" "), profiles4[i].length);   // §f®¶¤¤
       var cname_1 = profiles[i].substring(profiles[i].indexOf("^")+1, profiles[i].indexOf(":"));
 
       j++;
@@ -7393,11 +7445,11 @@ function readchapter3(bnum, cnum ,snum , to_snum) {
          var sj = '<p6>' + j + '</p6>';}
 
 
-      //var oneline_1_1 = '<table><tr><td valign="top">'+'å’Œåˆæœ¬'+'&nbsp'+sj+'</td><td>'+oneline_1+'</td></tr></table>';
+      //var oneline_1_1 = '<table><tr><td valign="top">'+'©M¦X¥»'+'&nbsp'+sj+'</td><td>'+oneline_1+'</td></tr></table>';
       //var oneline_1_2 = '<table><tr><td valign="top">'+'NKJV'+'&nbsp&nbsp&nbsp'+sj+'</td><td>'+oneline_2+'</td></tr></table>';
       //var oneline_1_3 = '<table><tr><td valign="top">'+'NIV'+'&nbsp&nbsp&nbsp&nbsp'+sj+'</td><td>'+oneline_3+'</td></tr></table>';
 
-//      var oneline_1_1 = '<table><tr><td valign="top">'+'å’Œåˆæœ¬'+'&nbsp'+'</td><td valign="top">'+sj+'</td><td>'+oneline_1+'</td></tr></table>';
+//      var oneline_1_1 = '<table><tr><td valign="top">'+'©M¦X¥»'+'&nbsp'+'</td><td valign="top">'+sj+'</td><td>'+oneline_1+'</td></tr></table>';
 //      var oneline_1_2 = '<table><tr><td valign="top">'+'NKJV'+'&nbsp&nbsp&nbsp'+'</td><td valign="top">'+sj+'</td><td>'+oneline_2+'</td></tr></table>';
 //      var oneline_1_3 = '<table><tr><td valign="top">'+'NIV'+'&nbsp&nbsp&nbsp&nbsp'+'</td><td valign="top">'+sj+'</td><td>'+oneline_3+'</td></tr></table>';
 
@@ -7438,7 +7490,7 @@ function readchapter3(bnum, cnum ,snum , to_snum) {
       var oneline_1_1T =  j+' '+oneline + '<br>';   //        for Display in div id = "1L" or "1R"
       var oneline_2_2T =  j+' '+oneline2 + '<br>';  // NKJV
       var oneline_3_3T =  j+' '+oneline3 + '<br>';  // NIV
-      var oneline_4_4T =  j+' '+oneline4 + '<br>';  // å‘‚æŒ¯ä¸­
+      var oneline_4_4T =  j+' '+oneline4 + '<br>';  // §f®¶¤¤
 
 
       if(disp_secs==7 && bnum==30 && j>21) {
@@ -7462,7 +7514,7 @@ function readchapter3(bnum, cnum ,snum , to_snum) {
       }
 
       // Add on 2018.08.22
-      if(disp_secs==15 && bnum==30 && j>21) {   // åŸç‚º disp_secs==7
+      if(disp_secs==15 && bnum==30 && j>21) {   // ­ì¬° disp_secs==7
          break;
       }
 
@@ -7557,7 +7609,7 @@ function readchapter3(bnum, cnum ,snum , to_snum) {
 
          if(document.BV.BibleVersion[2].checked){
 
-            BibleVersion_Disp = 2; // Display å‘‚æŒ¯ä¸­è­¯æœ¬
+            BibleVersion_Disp = 2; // Display §f®¶¤¤Ä¶¥»
 
             clear_area_1L();
             clear_area_1R();
@@ -7584,16 +7636,16 @@ function readchapter3(bnum, cnum ,snum , to_snum) {
 
          if(document.BV.BibleVersion[3].checked){
 
-            BibleVersion_Disp = 3; // Display å…¨éƒ¨ç‰ˆæœ¬
+            BibleVersion_Disp = 3; // Display ¥ş³¡ª©¥»
 
             clear_area_L();
             clear_area_R();
 
             // Mark temporary
-            var oneline_1_1TC =  '<span class="smallfont">'+ 'å’Œåˆæœ¬' + '</span><br>' + j + ' ' + oneline + '<br>';
+            var oneline_1_1TC =  '<span class="smallfont">'+ '©M¦X¥»' + '</span><br>' + j + ' ' + oneline + '<br>';
             var oneline_2_2TC =  '<span class="smallfont">'+ 'NKJV' + '</span><br>' + j + ' ' + oneline2 + '<br>';
             var oneline_3_3TC =  '<span class="smallfont">'+ 'NIV' + '</span><br>' + j + ' ' + oneline3 + '<br>';
-            var oneline_4_4TC =  '<span class="smallfont">'+ 'å‘‚æŒ¯ä¸­è­¯æœ¬' + '</span><br>' + j + ' ' + oneline4 + '<br>';
+            var oneline_4_4TC =  '<span class="smallfont">'+ '§f®¶¤¤Ä¶¥»' + '</span><br>' + j + ' ' + oneline4 + '<br>';
 
             Total_Line_L = Total_Line_L + oneline_1_1TC + oneline_4_4TC;
             Total_Line_R = Total_Line_R + oneline_2_2TC + oneline_3_3TC;
@@ -7603,11 +7655,11 @@ function readchapter3(bnum, cnum ,snum , to_snum) {
 
          //if(parent.command.document.BV.BibleVersion[3].checked){
 
-         //   var oneline_1_1_v = '<table><tr><td valign="top">'+ 'å’Œåˆæœ¬' +'</td></tr></table>';
+         //   var oneline_1_1_v = '<table><tr><td valign="top">'+ '©M¦X¥»' +'</td></tr></table>';
          //   docObj.writeln(oneline_1_1_v);
          //   docObj.writeln(oneline_1_1);
 
-         //   var oneline_1_4_v = '<table><tr><td valign="top">'+ 'å‘‚æŒ¯ä¸­è­¯æœ¬' +'</td></tr></table>';
+         //   var oneline_1_4_v = '<table><tr><td valign="top">'+ '§f®¶¤¤Ä¶¥»' +'</td></tr></table>';
          //   docObj.writeln(oneline_1_4_v);
          //   docObj.writeln(oneline_1_4);
 
@@ -7635,7 +7687,7 @@ function readchapter3(bnum, cnum ,snum , to_snum) {
 
 //      docObj.writeln(oneline_1);
 
-      if(document.BV.BibleVersion[3].checked){  // Display å…¨éƒ¨ç‰ˆæœ¬
+      if(document.BV.BibleVersion[3].checked){  // Display ¥ş³¡ª©¥»
 
 
          if(disp_secs_a==1) {
@@ -7646,11 +7698,11 @@ function readchapter3(bnum, cnum ,snum , to_snum) {
             document.getElementById("conten1t1").scrollTop = 0;
             document.getElementById("content2").scrollTop = 0;
 
-            document.getElementById("smallVer1").innerHTML = 'å’Œåˆæœ¬';
+            document.getElementById("smallVer1").innerHTML = '©M¦X¥»';
             document.getElementById("10002").innerHTML = j;
             document.getElementById("10003").innerHTML = oneline;
 
-            document.getElementById("smallVer2").innerHTML = 'å‘‚æŒ¯ä¸­è­¯æœ¬';
+            document.getElementById("smallVer2").innerHTML = '§f®¶¤¤Ä¶¥»';
             document.getElementById("20002").innerHTML = j;
             document.getElementById("20003").innerHTML = oneline4;
 
@@ -7703,9 +7755,9 @@ function readchapter2(bnum, cnum ,snum) {  // for next verse or prev verse
    bcs_size = "24";
 
 
-//  bnum : ç¶“å·
-//  cnum : ç« 
-//  snum : ç¯€
+//  bnum : ¸g¨÷
+//  cnum : ³¹
+//  snum : ¸`
  
   if(snum < 1)
     snum = 1;
@@ -7744,7 +7796,7 @@ function readchapter2(bnum, cnum ,snum) {  // for next verse or prev verse
 
   if(document.DVN.DVNumber[1].checked) {
 
-     disp_secs_a = "15"; // åŸç‚º 7
+     disp_secs_a = "15"; // ­ì¬° 7
 
      if(Mode_1Chap ==1) {
 
@@ -7791,7 +7843,7 @@ function readchapter2(bnum, cnum ,snum) {  // for next verse or prev verse
   var line1 = chapter_lines[book_chapters[bnum]+cnum];  
   var line2 = chapter_lines[book_chapters[bnum]+cnum+1];
   var line3 = line1+snum-1;
-  var line4 = eval(line3 + disp_secs); // +1 è¡¨ä¸€æ¬¡é¡¯ç¤º1ç¯€ï¼Œ+2 è¡¨ä¸€æ¬¡é¡¯ç¤º2ç¯€  
+  var line4 = eval(line3 + disp_secs); // +1 ªí¤@¦¸Åã¥Ü1¸`¡A+2 ªí¤@¦¸Åã¥Ü2¸`  
 
       if(disp_secs==0){
         line3 = line1;
@@ -7848,7 +7900,7 @@ function readchapter2(bnum, cnum ,snum) {  // for next verse or prev verse
 
 //    var bname = profiles[line3].substring(0, profiles[line3].indexOf("^"));
 
-      // å’Œåˆæœ¬
+      // ©M¦X¥»
       var bname = profiles[line3].substring(profiles[line3].indexOf("%")+1, profiles[line3].indexOf("^"));
       var cname = profiles[line3].substring(profiles[line3].indexOf("^")+1, profiles[line3].indexOf(":"));
       var sname = profiles[line3].substring(profiles[line3].indexOf(":")+1, profiles[line3].indexOf(" "));
@@ -7873,12 +7925,12 @@ function readchapter2(bnum, cnum ,snum) {  // for next verse or prev verse
          var bname2= 'Song of Solomon';
 
 
-      Bcsname1 = bname + ' ç¬¬' + cname + 'ç« ' + ' ç¬¬' + sname + 'ç¯€' + ' ';
-      Bcsname2 = bname + ' ç¬¬' + cname + 'ç¯‡' + ' ç¬¬' + sname + 'ç¯€' + ' ';
+      Bcsname1 = bname + ' ²Ä' + cname + '³¹' + ' ²Ä' + sname + '¸`' + ' ';
+      Bcsname2 = bname + ' ²Ä' + cname + '½g' + ' ²Ä' + sname + '¸`' + ' ';
       Bname = bname;
 
-      var bcsname1 = bname + ' ç¬¬' + cname + 'ç« ' + '</ol>';
-      var bcsname2 = bname + ' ç¬¬' + cname + 'ç¯‡' + '</ol>';
+      var bcsname1 = bname + ' ²Ä' + cname + '³¹' + '</ol>';
+      var bcsname2 = bname + ' ²Ä' + cname + '½g' + '</ol>';
 
       var bcsname3 = bname3 + ' Chapter ' + cname3 + '</ol>';
 
@@ -7899,7 +7951,7 @@ function readchapter2(bnum, cnum ,snum) {  // for next verse or prev verse
 
 
       if(bnum==30||bnum==56||bnum==62||bnum==63||bnum==64){                   // new
-//         var bcsname1 = bname + ' ' + sname + 'ç¯€ ' + pname + 'é ' + '</ol>'; // modified ,  marked 27/03/2013
+//         var bcsname1 = bname + ' ' + sname + '¸` ' + pname + '­¶' + '</ol>'; // modified ,  marked 27/03/2013
 
         if(bnum<39){
          var bcsname1 = bname + "&nbsp&nbsp";                 // modified   27/03/2013
@@ -7910,11 +7962,11 @@ function readchapter2(bnum, cnum ,snum) {  // for next verse or prev verse
          var bcsname1B = bname2 + ' ' + snameNew;                    // add        27/03/2013
         }
 
-         //var bcsname1 = bname + ' ' + sname + 'ç¯€ ' + '    ';                   // modified           27/03/2013
+         //var bcsname1 = bname + ' ' + sname + '¸` ' + '    ';                   // modified           27/03/2013
          //var bcsname1B = bname2 + ' ' + sname2  + '</ol>';                      // add 27/03/2013
 
          //if(bcsname1.length>23){                                                                     // new
-         //  var bcsname1 = bname + '' + sname + 'ç¯€ ' + '    ';                   // modified           27/03/2013
+         //  var bcsname1 = bname + '' + sname + '¸` ' + '    ';                   // modified           27/03/2013
          //  var bcsname1B = bname2 + ' ' + sname2  + '</ol>';                   } // modified           27/03/2013
       }
       else {
@@ -7927,17 +7979,17 @@ function readchapter2(bnum, cnum ,snum) {  // for next verse or prev verse
          var bcsname1B = bname2 + ' ' + cname + ':' + snameNew;     // add 19/03/2013
         }
 
-         //var bcsname1 = bname + ' ' + cname + 'ç« ' + ' ' + sname + 'ç¯€ ' + '    '; // modified 19/03/2013
+         //var bcsname1 = bname + ' ' + cname + '³¹' + ' ' + sname + '¸` ' + '    '; // modified 19/03/2013
             // bcsname1B for English Ver, add 19/03/2013
          //var bcsname1B = bname2 + ' ' + cname2 + ':' + sname2  + '</ol>';  // add 19/03/2013
          //if(bcsname1.length>23){                                                                     // new
-         //  var bcsname1 = bname + '' + cname + 'ç« ' + '' + sname + 'ç¯€ ' + '    '; } // modified 19/03/2013
+         //  var bcsname1 = bname + '' + cname + '³¹' + '' + sname + '¸` ' + '    '; } // modified 19/03/2013
       }
 
       var bcsname2 = '<b><u>' + bname + "&nbsp&nbsp";                  // modified           27/03/2013
       var bcsname2B = bname2 + ' ' + cname2 + ':' + snameNew  + '</u></b></ol>';                            // add    
 
-      if(bnum==12&&cnum==21){   // cnum 21 è¡¨ 22 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for ä»£ä¸Š22ç«  ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 9.5.2013
+      if(bnum==12&&cnum==21){   // cnum 21 ªí 22 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for ¥N¤W22³¹ ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 9.5.2013
 
          var to_snum_int = parseInt(to_snum,10);
          var sname_int = parseInt(sname,10);
@@ -7947,11 +7999,11 @@ function readchapter2(bnum, cnum ,snum) {  // for next verse or prev verse
            var to_snum_tmp = to_snum - 1;
            var snameNew = sname + '~' + to_snum_tmp;      
            var snameNewB = sname2 + '~' + to_snum;
-           var bcsname1 = 'ä»£ä¸Š' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   // add 9/05/2013
+           var bcsname1 = '¥N¤W' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   // add 9/05/2013
            var bcsname1B = '1Ch' + ' ' + cname2 + ':' + snameNewB;     // add 9/05/2013
            
            if(snum==1){
-              var bcsname1 = 'ä»£ä¸Š' + ' ' + cname + ':' + sname + '~' + cname2 + ':' + to_snum_tmp + "&nbsp&nbsp";   // add 9/05/2013
+              var bcsname1 = '¥N¤W' + ' ' + cname + ':' + sname + '~' + cname2 + ':' + to_snum_tmp + "&nbsp&nbsp";   // add 9/05/2013
               var bcsname1B = '1Ch' + ' ' + cname2 + ':' + snameNewB;     // add 9/05/2013
            }
 
@@ -7959,57 +8011,57 @@ function readchapter2(bnum, cnum ,snum) {  // for next verse or prev verse
          else{                                         
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ä»£ä¸Š' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   // add 9/05/2013
+           var bcsname1 = '¥N¤W' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   // add 9/05/2013
            var bcsname1B = '1Ch' + ' ' + cname2 + ':' + snameNewB;     // add 9/05/2013
          }
 
       }      
 
-      if(bnum==12&&cnum==20&&snum==31){   // cnum 20 è¡¨ 21 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for ä»£ä¸Š21ç« 31ç¯€ ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 23.5.2013
-           var bcsname1 = 'ä»£ä¸Š 21:31' + "&nbsp&nbsp";   
+      if(bnum==12&&cnum==20&&snum==31){   // cnum 20 ªí 21 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for ¥N¤W21³¹31¸` ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 23.5.2013
+           var bcsname1 = '¥N¤W 21:31' + "&nbsp&nbsp";   
            var bcsname1B = '1Ch 22:1';     
       }
 
-      if(bnum==12&&cnum==20&&snum<31&&to_snum==31){   // cnum 20 è¡¨ 21 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for ä»£ä¸Š21ç« 31ç¯€ ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 23.5.2013
-           var bcsname1 = 'ä»£ä¸Š 21:' + snum + '~' + '31' + "&nbsp&nbsp";   
+      if(bnum==12&&cnum==20&&snum<31&&to_snum==31){   // cnum 20 ªí 21 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for ¥N¤W21³¹31¸` ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 23.5.2013
+           var bcsname1 = '¥N¤W 21:' + snum + '~' + '31' + "&nbsp&nbsp";   
            var bcsname1B = '1Ch 21:' + snum + '~' + '22:1';     
       }
 
-      if(bnum==42&&cnum==6){   // cnum 6 è¡¨ 7 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for John Chap7 Verse53 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 17.5.2013
+      if(bnum==42&&cnum==6){   // cnum 6 ªí 7 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for John Chap7 Verse53 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 17.5.2013
 
          if(snum==53){
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ç´„' + ' ' + cname + ':1(ä¸Š)' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù' + ' ' + cname + ':1(¤W)' + "&nbsp&nbsp";   
            var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB;     
          }
          if(to_snum==53&&snum<53){
            var to_snum_tmp = to_snum - 1;
            var snameNew = sname + '~' + to_snum_tmp;      
            var snameNewB = sname2 + '~' + to_snum;
-           var bcsname1 = 'ç´„' + ' ' + cname + ':' + sname + '~' + '8:1(ä¸Š)' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù' + ' ' + cname + ':' + sname + '~' + '8:1(¤W)' + "&nbsp&nbsp";   
            var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB ;    
          }
       }
 
-      if(bnum==42&&cnum==7){   // cnum 7 è¡¨ 8 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for John Chap8 Verse1 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 17.5.2013
+      if(bnum==42&&cnum==7){   // cnum 7 ªí 8 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for John Chap8 Verse1 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 17.5.2013
 
          if(snum==1&&to_snum==1){
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ç´„' + ' ' + cname + ':1(ä¸‹)' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù' + ' ' + cname + ':1(¤U)' + "&nbsp&nbsp";   
            var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB;     
          }
          if(snum==1&&to_snum>1){
            var to_snum_tmp = to_snum - 1;
-           var snameNew = '1(ä¸‹)' + '~' + to_snum;      
+           var snameNew = '1(¤U)' + '~' + to_snum;      
            var snameNewB = sname2 + '~' + to_snum;
-           var bcsname1 = 'ç´„' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù' + ' ' + cname + ':' + snameNew + "&nbsp&nbsp";   
            var bcsname1B = 'Jn' + ' ' + cname2 + ':' + snameNewB ;    
          }
       }
 
-      if(bnum==63&&cnum==0){   // cnum 0 è¡¨ 1 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for 3rd John Chap1 Verse14 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 19.5.2013
+      if(bnum==63&&cnum==0){   // cnum 0 ªí 1 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for 3rd John Chap1 Verse14 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 19.5.2013
 
          var snum_int = parseInt(snum,10);
          var to_snum_int = parseInt(to_snum,10);
@@ -8019,27 +8071,27 @@ function readchapter2(bnum, cnum ,snum) {  // for next verse or prev verse
          if(snum_int==14){
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ç´„åƒ' + ' ' + '14ã€15' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù°Ñ' + ' ' + '14¡B15' + "&nbsp&nbsp";   
            var bcsname1B = '3Jn' + ' ' + snameNewB ;     
          }
          if(to_snum_int==14&&snum_int<14){
            var to_snum_tmp = to_snum_int - 1;
-           var snameNew = sname + '~' + '14ã€15';      
+           var snameNew = sname + '~' + '14¡B15';      
            var snameNewB = sname2 + '~' + '14';
-           var bcsname1 = 'ç´„åƒ' + ' ' + snameNew + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù°Ñ' + ' ' + snameNew + "&nbsp&nbsp";   
            var bcsname1B = '3Jn' + ' ' + snameNewB ;    
          }
-         if(snum_int==15){        // for 3rd John Chap1 Verse15 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ
+         if(snum_int==15){        // for 3rd John Chap1 Verse15 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P
            var snameNew = sname;                      
            var snameNewB = sname2;
-           var bcsname1 = 'ç´„åƒ' + ' ' + '15' + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù°Ñ' + ' ' + '15' + "&nbsp&nbsp";   
            var bcsname1B = '3Jn' + ' ' + '14(b)';     
          }
-         if(to_snum_int==15&&snum_int<14){   // for 3rd John Chap1 Verse15 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ
+         if(to_snum_int==15&&snum_int<14){   // for 3rd John Chap1 Verse15 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P
            var to_snum_tmp = to_snum_int - 1;
-           var snameNew = sname + '~' + '14ã€15';      
+           var snameNew = sname + '~' + '14¡B15';      
            var snameNewB = sname2 + '~' + '14';
-           var bcsname1 = 'ç´„åƒ' + ' ' + snameNew + "&nbsp&nbsp";   
+           var bcsname1 = '¬ù°Ñ' + ' ' + snameNew + "&nbsp&nbsp";   
            var bcsname1B = '3Jn' + ' ' + snameNewB ;  
          }  
       }
@@ -8099,7 +8151,7 @@ function readchapter2(bnum, cnum ,snum) {  // for next verse or prev verse
          var bcsname2_1 = '<p6>' + bcsname2 + '</p6>'; }
 
 
-      //if(bname!="è©©ç¯‡") {
+      //if(bname!="¸Ö½g") {
       //   //docObj_h.writeln(bcsname1_1.fontcolor(bcs_color));
       //   document.getElementById("p1").innerHTML = bcsname1;
       //}
@@ -8197,10 +8249,10 @@ function readchapter2(bnum, cnum ,snum) {  // for next verse or prev verse
 
 
       for (var i = line3; i < line4 ; i++) { 
-      var oneline = profiles[i].substring(profiles[i].indexOf(" "), profiles[i].length);       // å’Œåˆæœ¬
+      var oneline = profiles[i].substring(profiles[i].indexOf(" "), profiles[i].length);       // ©M¦X¥»
       var oneline2 = profiles2[i].substring(profiles2[i].indexOf(" "), profiles2[i].length);   // NKJV
       var oneline3 = profiles3[i].substring(profiles3[i].indexOf(" "), profiles3[i].length);   // NIV
-      var oneline4 = profiles4[i].substring(profiles4[i].indexOf(" "), profiles4[i].length);   // å‘‚æŒ¯ä¸­
+      var oneline4 = profiles4[i].substring(profiles4[i].indexOf(" "), profiles4[i].length);   // §f®¶¤¤
       var cname_1 = profiles[i].substring(profiles[i].indexOf("^")+1, profiles[i].indexOf(":"));
 
       j++;
@@ -8292,11 +8344,11 @@ function readchapter2(bnum, cnum ,snum) {  // for next verse or prev verse
          var sj = '<p6>' + j + '</p6>';}
 
 
-      //var oneline_1_1 = '<table><tr><td valign="top">'+'å’Œåˆæœ¬'+'&nbsp'+sj+'</td><td>'+oneline_1+'</td></tr></table>';
+      //var oneline_1_1 = '<table><tr><td valign="top">'+'©M¦X¥»'+'&nbsp'+sj+'</td><td>'+oneline_1+'</td></tr></table>';
       //var oneline_1_2 = '<table><tr><td valign="top">'+'NKJV'+'&nbsp&nbsp&nbsp'+sj+'</td><td>'+oneline_2+'</td></tr></table>';
       //var oneline_1_3 = '<table><tr><td valign="top">'+'NIV'+'&nbsp&nbsp&nbsp&nbsp'+sj+'</td><td>'+oneline_3+'</td></tr></table>';
 
-//      var oneline_1_1 = '<table><tr><td valign="top">'+'å’Œåˆæœ¬'+'&nbsp'+'</td><td valign="top">'+sj+'</td><td>'+oneline_1+'</td></tr></table>';
+//      var oneline_1_1 = '<table><tr><td valign="top">'+'©M¦X¥»'+'&nbsp'+'</td><td valign="top">'+sj+'</td><td>'+oneline_1+'</td></tr></table>';
 //      var oneline_1_2 = '<table><tr><td valign="top">'+'NKJV'+'&nbsp&nbsp&nbsp'+'</td><td valign="top">'+sj+'</td><td>'+oneline_2+'</td></tr></table>';
 //      var oneline_1_3 = '<table><tr><td valign="top">'+'NIV'+'&nbsp&nbsp&nbsp&nbsp'+'</td><td valign="top">'+sj+'</td><td>'+oneline_3+'</td></tr></table>';
 
@@ -8357,7 +8409,7 @@ function readchapter2(bnum, cnum ,snum) {  // for next verse or prev verse
       var oneline_1_1T =  j+' '+oneline + '<br>';   //        for Display in div id = "1L" or "1R"
       var oneline_2_2T =  j+' '+oneline2 + '<br>';  // NKJV
       var oneline_3_3T =  j+' '+oneline3 + '<br>';  // NIV
-      var oneline_4_4T =  j+' '+oneline4 + '<br>';  // å‘‚æŒ¯ä¸­
+      var oneline_4_4T =  j+' '+oneline4 + '<br>';  // §f®¶¤¤
 
 
       if(disp_secs==7 && bnum==30 && j>21) {
@@ -8381,7 +8433,7 @@ function readchapter2(bnum, cnum ,snum) {  // for next verse or prev verse
       }
 
       // Add on 2018.08.22
-      if(disp_secs==15 && bnum==30 && j>21) {   // åŸç‚º disp_secs==7
+      if(disp_secs==15 && bnum==30 && j>21) {   // ­ì¬° disp_secs==7
          break;
       }
 
@@ -8488,7 +8540,7 @@ function readchapter2(bnum, cnum ,snum) {  // for next verse or prev verse
 
          if(document.BV.BibleVersion[2].checked){
 
-            BibleVersion_Disp = 2; // Display å‘‚æŒ¯ä¸­è­¯æœ¬
+            BibleVersion_Disp = 2; // Display §f®¶¤¤Ä¶¥»
 
             clear_area_1L();
             clear_area_1R();
@@ -8514,16 +8566,16 @@ function readchapter2(bnum, cnum ,snum) {  // for next verse or prev verse
 
          if(document.BV.BibleVersion[3].checked){
 
-            BibleVersion_Disp = 3; // Display å…¨éƒ¨ç‰ˆæœ¬
+            BibleVersion_Disp = 3; // Display ¥ş³¡ª©¥»
 
             clear_area_L();
             clear_area_R();
 
             // Mark temporary
-            var oneline_1_1TC =  '<span class="smallfont">'+ 'å’Œåˆæœ¬' + '</span><br>' + j + ' ' + oneline + '<br>';
+            var oneline_1_1TC =  '<span class="smallfont">'+ '©M¦X¥»' + '</span><br>' + j + ' ' + oneline + '<br>';
             var oneline_2_2TC =  '<span class="smallfont">'+ 'NKJV' + '</span><br>' + j + ' ' + oneline2 + '<br>';
             var oneline_3_3TC =  '<span class="smallfont">'+ 'NIV' + '</span><br>' + j + ' ' + oneline3 + '<br>';
-            var oneline_4_4TC =  '<span class="smallfont">'+ 'å‘‚æŒ¯ä¸­è­¯æœ¬' + '</span><br>' + j + ' ' + oneline4 + '<br>';
+            var oneline_4_4TC =  '<span class="smallfont">'+ '§f®¶¤¤Ä¶¥»' + '</span><br>' + j + ' ' + oneline4 + '<br>';
 
             Total_Line_L = Total_Line_L + oneline_1_1TC + oneline_4_4TC;
             Total_Line_R = Total_Line_R + oneline_2_2TC + oneline_3_3TC;
@@ -8533,11 +8585,11 @@ function readchapter2(bnum, cnum ,snum) {  // for next verse or prev verse
 
          //if(parent.command.document.BV.BibleVersion[3].checked){
 
-         //   var oneline_1_1_v = '<table><tr><td valign="top">'+ 'å’Œåˆæœ¬' +'</td></tr></table>';
+         //   var oneline_1_1_v = '<table><tr><td valign="top">'+ '©M¦X¥»' +'</td></tr></table>';
          //   docObj.writeln(oneline_1_1_v);
          //   docObj.writeln(oneline_1_1);
 
-         //   var oneline_1_4_v = '<table><tr><td valign="top">'+ 'å‘‚æŒ¯ä¸­è­¯æœ¬' +'</td></tr></table>';
+         //   var oneline_1_4_v = '<table><tr><td valign="top">'+ '§f®¶¤¤Ä¶¥»' +'</td></tr></table>';
          //   docObj.writeln(oneline_1_4_v);
          //   docObj.writeln(oneline_1_4);
 
@@ -8565,7 +8617,7 @@ function readchapter2(bnum, cnum ,snum) {  // for next verse or prev verse
 
 //      docObj.writeln(oneline_1);
 
-      if(document.BV.BibleVersion[3].checked){  // Display å…¨éƒ¨ç‰ˆæœ¬
+      if(document.BV.BibleVersion[3].checked){  // Display ¥ş³¡ª©¥»
 
 
          if(disp_secs_a==1) {
@@ -8576,11 +8628,11 @@ function readchapter2(bnum, cnum ,snum) {  // for next verse or prev verse
             document.getElementById("conten1t1").scrollTop = 0;
             document.getElementById("content2").scrollTop = 0;
 
-            document.getElementById("smallVer1").innerHTML = 'å’Œåˆæœ¬';
+            document.getElementById("smallVer1").innerHTML = '©M¦X¥»';
             document.getElementById("10002").innerHTML = j;
             document.getElementById("10003").innerHTML = oneline;
 
-            document.getElementById("smallVer2").innerHTML = 'å‘‚æŒ¯ä¸­è­¯æœ¬';
+            document.getElementById("smallVer2").innerHTML = '§f®¶¤¤Ä¶¥»';
             document.getElementById("20002").innerHTML = j;
             document.getElementById("20003").innerHTML = oneline4;
 
@@ -8629,14 +8681,14 @@ function readbook(bnum,cnum,snum) { // for display Book, on top area for input f
    var Total_Line_R = "";  // mark temporary 
 
 
-  sec_size = "24";  // æ­¤ç‰ˆæœ¬ä¸­ç„¡ç”¨
+  sec_size = "24";  // ¦¹ª©¥»¤¤µL¥Î
 
-  bcs_size = "24";  // æ­¤ç‰ˆæœ¬ä¸­ç„¡ç”¨
+  bcs_size = "24";  // ¦¹ª©¥»¤¤µL¥Î
 
 
-//  bnum : ç¶“å·
-//  cnum : ç« 
-//  snum : ç¯€
+//  bnum : ¸g¨÷
+//  cnum : ³¹
+//  snum : ¸`
  
   if(snum < 1)
     snum = 1;
@@ -8663,7 +8715,7 @@ function readbook(bnum,cnum,snum) { // for display Book, on top area for input f
   var line1 = chapter_lines[book_chapters[bnum]+cnum];  
   var line2 = chapter_lines[book_chapters[bnum]+cnum+1];
   var line3 = line1+snum-1;
-  var line4 = eval(line3 + disp_secs); // +1 è¡¨ä¸€æ¬¡é¡¯ç¤º1ç¯€ï¼Œ+2 è¡¨ä¸€æ¬¡é¡¯ç¤º2ç¯€  
+  var line4 = eval(line3 + disp_secs); // +1 ªí¤@¦¸Åã¥Ü1¸`¡A+2 ªí¤@¦¸Åã¥Ü2¸`  
 
       if(disp_secs==0){
         line3 = line1;
@@ -8711,7 +8763,7 @@ function readbook(bnum,cnum,snum) { // for display Book, on top area for input f
 
 //    var bname = profiles[line3].substring(0, profiles[line3].indexOf("^"));
 
-      // å’Œåˆæœ¬
+      // ©M¦X¥»
       var bname = profiles[line3].substring(profiles[line3].indexOf("%")+1, profiles[line3].indexOf("^"));
       var cname = profiles[line3].substring(profiles[line3].indexOf("^")+1, profiles[line3].indexOf(":"));
       var sname = profiles[line3].substring(profiles[line3].indexOf(":")+1, profiles[line3].indexOf(" "));
@@ -8731,8 +8783,8 @@ function readbook(bnum,cnum,snum) { // for display Book, on top area for input f
 //      var cname = profiles3[line3].substring(profiles3[line3].indexOf("^")+1, profiles3[line3].indexOf(":"));
 //      var sname = profiles3[line3].substring(profiles3[line3].indexOf(":")+1, profiles3[line3].indexOf(" "));
 
-      Bcsname1 = bname + ' ç¬¬' + cname + 'ç« ' + ' ç¬¬' + sname + 'ç¯€' + ' ';
-      Bcsname2 = bname + ' ç¬¬' + cname + 'ç¯‡' + ' ç¬¬' + sname + 'ç¯€' + ' ';
+      Bcsname1 = bname + ' ²Ä' + cname + '³¹' + ' ²Ä' + sname + '¸`' + ' ';
+      Bcsname2 = bname + ' ²Ä' + cname + '½g' + ' ²Ä' + sname + '¸`' + ' ';
       Bname = bname;
 
       var bcsname1 = bname + '</ol>';
@@ -8791,7 +8843,7 @@ function readbook(bnum,cnum,snum) { // for display Book, on top area for input f
          var bcsname2_1 = '<p6>' + bcsname2 + '</p6>'; }
 
 
-      //if(bname!="è©©ç¯‡") {
+      //if(bname!="¸Ö½g") {
       //   //docObj_h.writeln(bcsname1_1.fontcolor(bcs_color));
       //   document.getElementById("p1").innerHTML = bcsname1;
       //}
@@ -8819,10 +8871,10 @@ function readbook(bnum,cnum,snum) { // for display Book, on top area for input f
 
 
       for (var i = line3; i < line4 ; i++) { 
-      var oneline = profiles[i].substring(profiles[i].indexOf(" "), profiles[i].length);       // å’Œåˆæœ¬
+      var oneline = profiles[i].substring(profiles[i].indexOf(" "), profiles[i].length);       // ©M¦X¥»
       var oneline2 = profiles2[i].substring(profiles2[i].indexOf(" "), profiles2[i].length);   // NKJV
       var oneline3 = profiles3[i].substring(profiles3[i].indexOf(" "), profiles3[i].length);   // NIV
-      var oneline4 = profiles4[i].substring(profiles4[i].indexOf(" "), profiles4[i].length);   // å‘‚æŒ¯ä¸­
+      var oneline4 = profiles4[i].substring(profiles4[i].indexOf(" "), profiles4[i].length);   // §f®¶¤¤
       var cname_1 = profiles[i].substring(profiles[i].indexOf("^")+1, profiles[i].indexOf(":"));
 
       j++;
@@ -8933,7 +8985,7 @@ function readbook(bnum,cnum,snum) { // for display Book, on top area for input f
       var oneline_1_1T =  j+' '+oneline + '<br>';   //        for Display in div id = "1L" or "1R"
       var oneline_2_2T =  j+' '+oneline2 + '<br>';  // NKJV
       var oneline_3_3T =  j+' '+oneline3 + '<br>';  // NIV
-      var oneline_4_4T =  j+' '+oneline4 + '<br>';  // å‘‚æŒ¯ä¸­
+      var oneline_4_4T =  j+' '+oneline4 + '<br>';  // §f®¶¤¤
 
 
       if(disp_secs==7 && bnum==30 && j>21) {
@@ -8975,13 +9027,13 @@ function readbook(bnum,cnum,snum) { // for display Book, on top area for input f
 
          if(document.BV.BibleVersion[2].checked){
 
-            BibleVersion_Disp = 2; // Display å‘‚æŒ¯ä¸­è­¯æœ¬
+            BibleVersion_Disp = 2; // Display §f®¶¤¤Ä¶¥»
 
          }
 
          if(document.BV.BibleVersion[3].checked){
 
-            BibleVersion_Disp = 3; // Display å…¨éƒ¨ç‰ˆæœ¬
+            BibleVersion_Disp = 3; // Display ¥ş³¡ª©¥»
 
          }
 
@@ -8991,7 +9043,7 @@ function readbook(bnum,cnum,snum) { // for display Book, on top area for input f
       }      // End of for loop
 
 
-      if(document.BV.BibleVersion[3].checked){  // Display å…¨éƒ¨ç‰ˆæœ¬
+      if(document.BV.BibleVersion[3].checked){  // Display ¥ş³¡ª©¥»
 
 
          if(disp_secs_a==1) {
@@ -9018,14 +9070,14 @@ function readbookchap(bnum, cnum ,snum) { // for display Book,Chap on top area f
    var Total_Line_R = "";  // mark temporary 
 
 
-  sec_size = "24";  // æ­¤ç‰ˆæœ¬ä¸­ç„¡ç”¨
+  sec_size = "24";  // ¦¹ª©¥»¤¤µL¥Î
 
-  bcs_size = "24";  // æ­¤ç‰ˆæœ¬ä¸­ç„¡ç”¨
+  bcs_size = "24";  // ¦¹ª©¥»¤¤µL¥Î
 
 
-//  bnum : ç¶“å·
-//  cnum : ç« 
-//  snum : ç¯€
+//  bnum : ¸g¨÷
+//  cnum : ³¹
+//  snum : ¸`
  
   if(snum < 1)
     snum = 1;
@@ -9052,7 +9104,7 @@ function readbookchap(bnum, cnum ,snum) { // for display Book,Chap on top area f
   var line1 = chapter_lines[book_chapters[bnum]+cnum];  
   var line2 = chapter_lines[book_chapters[bnum]+cnum+1];
   var line3 = line1+snum-1;
-  var line4 = eval(line3 + disp_secs); // +1 è¡¨ä¸€æ¬¡é¡¯ç¤º1ç¯€ï¼Œ+2 è¡¨ä¸€æ¬¡é¡¯ç¤º2ç¯€  
+  var line4 = eval(line3 + disp_secs); // +1 ªí¤@¦¸Åã¥Ü1¸`¡A+2 ªí¤@¦¸Åã¥Ü2¸`  
 
       if(disp_secs==0){
         line3 = line1;
@@ -9100,7 +9152,7 @@ function readbookchap(bnum, cnum ,snum) { // for display Book,Chap on top area f
 
 //    var bname = profiles[line3].substring(0, profiles[line3].indexOf("^"));
 
-      // å’Œåˆæœ¬
+      // ©M¦X¥»
       var bname = profiles[line3].substring(profiles[line3].indexOf("%")+1, profiles[line3].indexOf("^"));
       var cname = profiles[line3].substring(profiles[line3].indexOf("^")+1, profiles[line3].indexOf(":"));
       var sname = profiles[line3].substring(profiles[line3].indexOf(":")+1, profiles[line3].indexOf(" "));
@@ -9120,12 +9172,12 @@ function readbookchap(bnum, cnum ,snum) { // for display Book,Chap on top area f
 //      var cname = profiles3[line3].substring(profiles3[line3].indexOf("^")+1, profiles3[line3].indexOf(":"));
 //      var sname = profiles3[line3].substring(profiles3[line3].indexOf(":")+1, profiles3[line3].indexOf(" "));
 
-      Bcsname1 = bname + ' ç¬¬' + cname + 'ç« ' + ' ç¬¬' + sname + 'ç¯€' + ' ';
-      Bcsname2 = bname + ' ç¬¬' + cname + 'ç¯‡' + ' ç¬¬' + sname + 'ç¯€' + ' ';
+      Bcsname1 = bname + ' ²Ä' + cname + '³¹' + ' ²Ä' + sname + '¸`' + ' ';
+      Bcsname2 = bname + ' ²Ä' + cname + '½g' + ' ²Ä' + sname + '¸`' + ' ';
       Bname = bname;
 
-      var bcsname1 = bname + ' ' + cname + 'ç« ' + '</ol>';
-      var bcsname2 = bname + ' ' + cname + 'ç¯‡' + '</ol>';
+      var bcsname1 = bname + ' ' + cname + '³¹' + '</ol>';
+      var bcsname2 = bname + ' ' + cname + '½g' + '</ol>';
 
       var bcsname3 = bname3 + ' Chapter ' + cname3 + '</ol>';
 
@@ -9179,7 +9231,7 @@ function readbookchap(bnum, cnum ,snum) { // for display Book,Chap on top area f
          var bcsname2_1 = '<p6>' + bcsname2 + '</p6>'; }
 
 
-      //if(bname!="è©©ç¯‡") {
+      //if(bname!="¸Ö½g") {
       //   //docObj_h.writeln(bcsname1_1.fontcolor(bcs_color));
       //   document.getElementById("p1").innerHTML = bcsname1;
       //}
@@ -9207,10 +9259,10 @@ function readbookchap(bnum, cnum ,snum) { // for display Book,Chap on top area f
 
 
       for (var i = line3; i < line4 ; i++) { 
-      var oneline = profiles[i].substring(profiles[i].indexOf(" "), profiles[i].length);       // å’Œåˆæœ¬
+      var oneline = profiles[i].substring(profiles[i].indexOf(" "), profiles[i].length);       // ©M¦X¥»
       var oneline2 = profiles2[i].substring(profiles2[i].indexOf(" "), profiles2[i].length);   // NKJV
       var oneline3 = profiles3[i].substring(profiles3[i].indexOf(" "), profiles3[i].length);   // NIV
-      var oneline4 = profiles4[i].substring(profiles4[i].indexOf(" "), profiles4[i].length);   // å‘‚æŒ¯ä¸­
+      var oneline4 = profiles4[i].substring(profiles4[i].indexOf(" "), profiles4[i].length);   // §f®¶¤¤
       var cname_1 = profiles[i].substring(profiles[i].indexOf("^")+1, profiles[i].indexOf(":"));
 
       j++;
@@ -9321,7 +9373,7 @@ function readbookchap(bnum, cnum ,snum) { // for display Book,Chap on top area f
       var oneline_1_1T =  j+' '+oneline + '<br>';   //        for Display in div id = "1L" or "1R"
       var oneline_2_2T =  j+' '+oneline2 + '<br>';  // NKJV
       var oneline_3_3T =  j+' '+oneline3 + '<br>';  // NIV
-      var oneline_4_4T =  j+' '+oneline4 + '<br>';  // å‘‚æŒ¯ä¸­
+      var oneline_4_4T =  j+' '+oneline4 + '<br>';  // §f®¶¤¤
 
 
       if(disp_secs==7 && bnum==30 && j>21) {
@@ -9363,13 +9415,13 @@ function readbookchap(bnum, cnum ,snum) { // for display Book,Chap on top area f
 
          if(document.BV.BibleVersion[2].checked){
 
-            BibleVersion_Disp = 2; // Display å‘‚æŒ¯ä¸­è­¯æœ¬
+            BibleVersion_Disp = 2; // Display §f®¶¤¤Ä¶¥»
 
          }
 
          if(document.BV.BibleVersion[3].checked){
 
-            BibleVersion_Disp = 3; // Display å…¨éƒ¨ç‰ˆæœ¬
+            BibleVersion_Disp = 3; // Display ¥ş³¡ª©¥»
 
          }
 
@@ -9379,7 +9431,7 @@ function readbookchap(bnum, cnum ,snum) { // for display Book,Chap on top area f
       }      // End of for loop
 
 
-      if(document.BV.BibleVersion[3].checked){  // Display å…¨éƒ¨ç‰ˆæœ¬
+      if(document.BV.BibleVersion[3].checked){  // Display ¥ş³¡ª©¥»
 
 
          if(disp_secs_a==1) {
@@ -9406,14 +9458,14 @@ function readbookchapvers(bnum, cnum ,snum) { // for display Book,Chap,Verse on 
    var Total_Line_R = "";  // mark temporary 
 
 
-  sec_size = "24";  // æ­¤ç‰ˆæœ¬ä¸­ç„¡ç”¨
+  sec_size = "24";  // ¦¹ª©¥»¤¤µL¥Î
 
-  bcs_size = "24";  // æ­¤ç‰ˆæœ¬ä¸­ç„¡ç”¨
+  bcs_size = "24";  // ¦¹ª©¥»¤¤µL¥Î
 
 
-//  bnum : ç¶“å·
-//  cnum : ç« 
-//  snum : ç¯€
+//  bnum : ¸g¨÷
+//  cnum : ³¹
+//  snum : ¸`
  
   if(snum < 1)
     snum = 1;
@@ -9440,7 +9492,7 @@ function readbookchapvers(bnum, cnum ,snum) { // for display Book,Chap,Verse on 
   var line1 = chapter_lines[book_chapters[bnum]+cnum];  
   var line2 = chapter_lines[book_chapters[bnum]+cnum+1];
   var line3 = line1+snum-1;
-  var line4 = eval(line3 + disp_secs); // +1 è¡¨ä¸€æ¬¡é¡¯ç¤º1ç¯€ï¼Œ+2 è¡¨ä¸€æ¬¡é¡¯ç¤º2ç¯€  
+  var line4 = eval(line3 + disp_secs); // +1 ªí¤@¦¸Åã¥Ü1¸`¡A+2 ªí¤@¦¸Åã¥Ü2¸`  
 
       if(disp_secs==0){
         line3 = line1;
@@ -9488,7 +9540,7 @@ function readbookchapvers(bnum, cnum ,snum) { // for display Book,Chap,Verse on 
 
 //    var bname = profiles[line3].substring(0, profiles[line3].indexOf("^"));
 
-      // å’Œåˆæœ¬
+      // ©M¦X¥»
       var bname = profiles[line3].substring(profiles[line3].indexOf("%")+1, profiles[line3].indexOf("^"));
       var cname = profiles[line3].substring(profiles[line3].indexOf("^")+1, profiles[line3].indexOf(":"));
       var sname = profiles[line3].substring(profiles[line3].indexOf(":")+1, profiles[line3].indexOf(" "));
@@ -9508,12 +9560,12 @@ function readbookchapvers(bnum, cnum ,snum) { // for display Book,Chap,Verse on 
 //      var cname = profiles3[line3].substring(profiles3[line3].indexOf("^")+1, profiles3[line3].indexOf(":"));
 //      var sname = profiles3[line3].substring(profiles3[line3].indexOf(":")+1, profiles3[line3].indexOf(" "));
 
-      Bcsname1 = bname + ' ç¬¬' + cname + 'ç« ' + ' ç¬¬' + sname + 'ç¯€' + ' ';
-      Bcsname2 = bname + ' ç¬¬' + cname + 'ç¯‡' + ' ç¬¬' + sname + 'ç¯€' + ' ';
+      Bcsname1 = bname + ' ²Ä' + cname + '³¹' + ' ²Ä' + sname + '¸`' + ' ';
+      Bcsname2 = bname + ' ²Ä' + cname + '½g' + ' ²Ä' + sname + '¸`' + ' ';
       Bname = bname;
 
-      var bcsname1 = bname + ' ' + cname + 'ç«  ' + sname + 'ç¯€' + '</ol>';
-      var bcsname2 = bname + ' ' + cname + 'ç¯‡ ' + sname + 'ç¯€' + '</ol>';
+      var bcsname1 = bname + ' ' + cname + '³¹ ' + sname + '¸`' + '</ol>';
+      var bcsname2 = bname + ' ' + cname + '½g ' + sname + '¸`' + '</ol>';
 
       var bcsname3 = bname3 + ' Chapter ' + cname3 + ' Verse ' + sname + '</ol>';
 
@@ -9567,7 +9619,7 @@ function readbookchapvers(bnum, cnum ,snum) { // for display Book,Chap,Verse on 
          var bcsname2_1 = '<p6>' + bcsname2 + '</p6>'; }
 
 
-      //if(bname!="è©©ç¯‡") {
+      //if(bname!="¸Ö½g") {
       //   //docObj_h.writeln(bcsname1_1.fontcolor(bcs_color));
       //   document.getElementById("p1").innerHTML = bcsname1;
       //}
@@ -9578,7 +9630,7 @@ function readbookchapvers(bnum, cnum ,snum) { // for display Book,Chap,Verse on 
 
       //document.getElementById("p2").innerHTML = bcsname3;
 
-      //var bcsname1 = bname + ' ' + cname + 'ç«  ' + sname + 'ç¯€' + '</ol>';
+      //var bcsname1 = bname + ' ' + cname + '³¹ ' + sname + '¸`' + '</ol>';
 
 
       // add 2018.08.15
@@ -9597,10 +9649,10 @@ function readbookchapvers(bnum, cnum ,snum) { // for display Book,Chap,Verse on 
 
 
       for (var i = line3; i < line4 ; i++) { 
-      var oneline = profiles[i].substring(profiles[i].indexOf(" "), profiles[i].length);       // å’Œåˆæœ¬
+      var oneline = profiles[i].substring(profiles[i].indexOf(" "), profiles[i].length);       // ©M¦X¥»
       var oneline2 = profiles2[i].substring(profiles2[i].indexOf(" "), profiles2[i].length);   // NKJV
       var oneline3 = profiles3[i].substring(profiles3[i].indexOf(" "), profiles3[i].length);   // NIV
-      var oneline4 = profiles4[i].substring(profiles4[i].indexOf(" "), profiles4[i].length);   // å‘‚æŒ¯ä¸­
+      var oneline4 = profiles4[i].substring(profiles4[i].indexOf(" "), profiles4[i].length);   // §f®¶¤¤
       var cname_1 = profiles[i].substring(profiles[i].indexOf("^")+1, profiles[i].indexOf(":"));
 
       j++;
@@ -9711,7 +9763,7 @@ function readbookchapvers(bnum, cnum ,snum) { // for display Book,Chap,Verse on 
       var oneline_1_1T =  j+' '+oneline + '<br>';   //        for Display in div id = "1L" or "1R"
       var oneline_2_2T =  j+' '+oneline2 + '<br>';  // NKJV
       var oneline_3_3T =  j+' '+oneline3 + '<br>';  // NIV
-      var oneline_4_4T =  j+' '+oneline4 + '<br>';  // å‘‚æŒ¯ä¸­
+      var oneline_4_4T =  j+' '+oneline4 + '<br>';  // §f®¶¤¤
 
 
       if(disp_secs==7 && bnum==30 && j>21) {
@@ -9753,13 +9805,13 @@ function readbookchapvers(bnum, cnum ,snum) { // for display Book,Chap,Verse on 
 
          if(document.BV.BibleVersion[2].checked){
 
-            BibleVersion_Disp = 2; // Display å‘‚æŒ¯ä¸­è­¯æœ¬
+            BibleVersion_Disp = 2; // Display §f®¶¤¤Ä¶¥»
 
          }
 
          if(document.BV.BibleVersion[3].checked){
 
-            BibleVersion_Disp = 3; // Display å…¨éƒ¨ç‰ˆæœ¬
+            BibleVersion_Disp = 3; // Display ¥ş³¡ª©¥»
 
          }
 
@@ -9769,7 +9821,7 @@ function readbookchapvers(bnum, cnum ,snum) { // for display Book,Chap,Verse on 
       }      // End of for loop
 
 
-      if(document.BV.BibleVersion[3].checked){  // Display å…¨éƒ¨ç‰ˆæœ¬
+      if(document.BV.BibleVersion[3].checked){  // Display ¥ş³¡ª©¥»
 
 
          if(disp_secs_a==1) {
@@ -9796,20 +9848,20 @@ function readbookchapvers2(bnum, cnum ,snum ,to_snum) { // for display Book,Chap
    var Total_Line_R = "";  // mark temporary 
 
 
-  sec_size = "24";  // æ­¤ç‰ˆæœ¬ä¸­ç„¡ç”¨
+  sec_size = "24";  // ¦¹ª©¥»¤¤µL¥Î
 
-  bcs_size = "24";  // æ­¤ç‰ˆæœ¬ä¸­ç„¡ç”¨
+  bcs_size = "24";  // ¦¹ª©¥»¤¤µL¥Î
 
 
-  if(bnum==63&&cnum==0&&snum==15){   // for 3rd John Chap1 Verse15 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ
+  if(bnum==63&&cnum==0&&snum==15){   // for 3rd John Chap1 Verse15 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P
      snum = 14;
      var Trd_Jn_C1_V15 = 1;
   }
 
 
-//  bnum : ç¶“å·
-//  cnum : ç« 
-//  snum : ç¯€
+//  bnum : ¸g¨÷
+//  cnum : ³¹
+//  snum : ¸`
  
   if(snum < 1)
     snum = 1;
@@ -9836,7 +9888,7 @@ function readbookchapvers2(bnum, cnum ,snum ,to_snum) { // for display Book,Chap
   var line1 = chapter_lines[book_chapters[bnum]+cnum];  
   var line2 = chapter_lines[book_chapters[bnum]+cnum+1];
   var line3 = line1+snum-1;
-  var line4 = eval(line3 + disp_secs); // +1 è¡¨ä¸€æ¬¡é¡¯ç¤º1ç¯€ï¼Œ+2 è¡¨ä¸€æ¬¡é¡¯ç¤º2ç¯€  
+  var line4 = eval(line3 + disp_secs); // +1 ªí¤@¦¸Åã¥Ü1¸`¡A+2 ªí¤@¦¸Åã¥Ü2¸`  
 
       if(disp_secs==0){
         line3 = line1;
@@ -9884,7 +9936,7 @@ function readbookchapvers2(bnum, cnum ,snum ,to_snum) { // for display Book,Chap
 
 //    var bname = profiles[line3].substring(0, profiles[line3].indexOf("^"));
 
-      // å’Œåˆæœ¬
+      // ©M¦X¥»
       var bname = profiles[line3].substring(profiles[line3].indexOf("%")+1, profiles[line3].indexOf("^"));
       var cname = profiles[line3].substring(profiles[line3].indexOf("^")+1, profiles[line3].indexOf(":"));
       var sname = profiles[line3].substring(profiles[line3].indexOf(":")+1, profiles[line3].indexOf(" "));
@@ -9942,10 +9994,10 @@ function readbookchapvers2(bnum, cnum ,snum ,to_snum) { // for display Book,Chap
          //var bcsname1 = '<b>' + bname + "&nbsp&nbsp";                 // modified   27/03/2013
          //var bcsname1B = bname2 + ' ' + snameNew  + '</b></ol>';                    // add        27/03/2013
         }
-         //var bcsname1 = bname + ' ' + sname + 'ç¯€ ' + '    ';                 // modified   27/03/2013
+         //var bcsname1 = bname + ' ' + sname + '¸` ' + '    ';                 // modified   27/03/2013
          //var bcsname1B = bname2 + ' ' + sname2  + '</ol>';                    // add        27/03/2013
          //if(bcsname1.length>23){                                                                     // new
-         //  var bcsname1 = bname + '' + sname + 'ç¯€ ' + '    ';                // modified   27/03/2013
+         //  var bcsname1 = bname + '' + sname + '¸` ' + '    ';                // modified   27/03/2013
          //  var bcsname1B = bname2 + ' ' + sname2  + '</ol>';                } // add        27/03/2013
       }
       else {
@@ -9957,28 +10009,28 @@ function readbookchapvers2(bnum, cnum ,snum ,to_snum) { // for display Book,Chap
          var bcsname1 = bname + "&nbsp&nbsp";   // modify 19/03/2013
          var bcsname1B = bname2 + ' ' + cname2 + ':' + snameNew;     // add 19/03/2013
         }
-         //var bcsname1 = bname + ' ' + cname + 'ç« ' + ' ' + sname + 'ç¯€' ;   // modify 19/03/2013
+         //var bcsname1 = bname + ' ' + cname + '³¹' + ' ' + sname + '¸`' ;   // modify 19/03/2013
          //var bcsname1B = bname2 + ' ' + cname + ':' + sname + '</ol>';     // add 19/03/2013
          //if(bcsname1.length>23){                                                                     // new
-         //  var bcsname1 = 'æ–°ç´„è–ç¶“ ' + "&nbsp&nbsp&nbsp" + "&nbsp&nbsp&nbsp" + bname + '' + cname + 'ç« ' + '' + sname + 'ç¯€' + '</ol>'; } // modify 19/03/2013
+         //  var bcsname1 = '·s¬ù¸t¸g ' + "&nbsp&nbsp&nbsp" + "&nbsp&nbsp&nbsp" + bname + '' + cname + '³¹' + '' + sname + '¸`' + '</ol>'; } // modify 19/03/2013
       }
 
       var bcsname2 = '<b>' + bname + "&nbsp&nbsp";                  // modified           27/03/2013
       var bcsname2B = bname2 + ' ' + cname2 + ':' + snameNew  + '</b></ol>';                            // add    
 
-      if(Trd_Jn_C1_V15==1){   // for 3rd John Chap1 Verse15 ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ
+      if(Trd_Jn_C1_V15==1){   // for 3rd John Chap1 Verse15 ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P
          var bcsname1 = bname + "&nbsp&nbsp";   // modify 19/03/2013
          var bcsname1B = bname2 + ' ' + '15'; 
       }
 
-      if(bnum==12&&cnum==20&&snum==31){   // cnum 20 è¡¨ 21 ç«  , ç¶“ç¯€ä»¥ è‹±æ–‡è–ç¶“ç‚ºä¸»æ™‚,  for ä»£ä¸Š21ç« 31ç¯€ ç‰¹åˆ¥è™•ç†ï¼Œå› è©²ç«  ä¸­è‹±æ–‡è–ç¶“ç¯€æ•¸ä¸åŒ , add 23.5.2013
+      if(bnum==12&&cnum==20&&snum==31){   // cnum 20 ªí 21 ³¹ , ¸g¸`¥H ­^¤å¸t¸g¬°¥D®É,  for ¥N¤W21³¹31¸` ¯S§O³B²z¡A¦]¸Ó³¹ ¤¤­^¤å¸t¸g¸`¼Æ¤£¦P , add 23.5.2013
          var bcsname1 =  bname + "&nbsp&nbsp";   // modify 19/03/2013
          var bcsname1B = bname2 + ' ' + '21:31'; 
       }
 
 
-   //   Bcsname1 = bname + ' ç¬¬' + cname + 'ç« ' + ' ç¬¬' + sname + 'ç¯€' + ' ';
-   //   Bcsname2 = bname + ' ç¬¬' + cname + 'ç¯‡' + ' ç¬¬' + sname + 'ç¯€' + ' ';
+   //   Bcsname1 = bname + ' ²Ä' + cname + '³¹' + ' ²Ä' + sname + '¸`' + ' ';
+   //   Bcsname2 = bname + ' ²Ä' + cname + '½g' + ' ²Ä' + sname + '¸`' + ' ';
    //   Bname = bname;
 
    //   var bcsname1 = bname + ' ' + bname3 + " " + cname + ':' + sname + '</ol>';
@@ -10040,7 +10092,7 @@ function readbookchapvers2(bnum, cnum ,snum ,to_snum) { // for display Book,Chap
       var bcsname2_1 =  bcsname2 + bcsname2B ;   // modify 27/03/2013
 
 
-      //if(bname!="è©©ç¯‡") {
+      //if(bname!="¸Ö½g") {
       //   //docObj_h.writeln(bcsname1_1.fontcolor(bcs_color));
       //   document.getElementById("p1").innerHTML = bcsname1_1;
       //}
@@ -10071,10 +10123,10 @@ function readbookchapvers2(bnum, cnum ,snum ,to_snum) { // for display Book,Chap
 
 
       for (var i = line3; i < line4 ; i++) { 
-      var oneline = profiles[i].substring(profiles[i].indexOf(" "), profiles[i].length);       // å’Œåˆæœ¬
+      var oneline = profiles[i].substring(profiles[i].indexOf(" "), profiles[i].length);       // ©M¦X¥»
       var oneline2 = profiles2[i].substring(profiles2[i].indexOf(" "), profiles2[i].length);   // NKJV
       var oneline3 = profiles3[i].substring(profiles3[i].indexOf(" "), profiles3[i].length);   // NIV
-      var oneline4 = profiles4[i].substring(profiles4[i].indexOf(" "), profiles4[i].length);   // å‘‚æŒ¯ä¸­
+      var oneline4 = profiles4[i].substring(profiles4[i].indexOf(" "), profiles4[i].length);   // §f®¶¤¤
       var cname_1 = profiles[i].substring(profiles[i].indexOf("^")+1, profiles[i].indexOf(":"));
 
       j++;
@@ -10185,7 +10237,7 @@ function readbookchapvers2(bnum, cnum ,snum ,to_snum) { // for display Book,Chap
       var oneline_1_1T =  j+' '+oneline + '<br>';   //        for Display in div id = "1L" or "1R"
       var oneline_2_2T =  j+' '+oneline2 + '<br>';  // NKJV
       var oneline_3_3T =  j+' '+oneline3 + '<br>';  // NIV
-      var oneline_4_4T =  j+' '+oneline4 + '<br>';  // å‘‚æŒ¯ä¸­
+      var oneline_4_4T =  j+' '+oneline4 + '<br>';  // §f®¶¤¤
 
 
       if(disp_secs==7 && bnum==30 && j>21) {
@@ -10227,13 +10279,13 @@ function readbookchapvers2(bnum, cnum ,snum ,to_snum) { // for display Book,Chap
 
          //if(document.BV.BibleVersion[2].checked){
 
-         //   BibleVersion_Disp = 2; // Display å‘‚æŒ¯ä¸­è­¯æœ¬
+         //   BibleVersion_Disp = 2; // Display §f®¶¤¤Ä¶¥»
 
          //}
 
          //if(document.BV.BibleVersion[3].checked){
 
-         //   BibleVersion_Disp = 3; // Display å…¨éƒ¨ç‰ˆæœ¬
+         //   BibleVersion_Disp = 3; // Display ¥ş³¡ª©¥»
 
          //}
 
@@ -10243,7 +10295,7 @@ function readbookchapvers2(bnum, cnum ,snum ,to_snum) { // for display Book,Chap
       }      // End of for loop
 
 
-      //if(document.BV.BibleVersion[3].checked){  // Display å…¨éƒ¨ç‰ˆæœ¬
+      //if(document.BV.BibleVersion[3].checked){  // Display ¥ş³¡ª©¥»
 
 
       //   if(disp_secs_a==1) {
@@ -10270,7 +10322,7 @@ function writehead(word1) {
 
   if(head_size<42)
      docObj_h.writeln('<HTML>\n<HEAD>\n' +
-     '<style type="text/css">\n' + 'body{font-family:æ¨™æ¥·é«”}\n' +
+     '<style type="text/css">\n' + 'body{font-family:¼Ğ·¢Åé}\n' +
      'h1{ font-size:30pt }\n' + 'h2{ font-size:32pt }\n' + 'h3{ font-size:34pt }\n' +
      'h4{ font-size:36pt }\n' + 'h5{ font-size:38pt }\n' + 'h6{ font-size:40pt }\n' +
      '</style>\n' +
@@ -10278,7 +10330,7 @@ function writehead(word1) {
      '<BODY BGCOLOR=#00008f TEXT=YELLOW >');
   else if(head_size<54)
      docObj_h.writeln('<HTML>\n<HEAD>\n' +
-     '<style type="text/css">\n' + 'body{font-family:æ¨™æ¥·é«”}\n' +
+     '<style type="text/css">\n' + 'body{font-family:¼Ğ·¢Åé}\n' +
      'h1{ font-size:42pt }\n' + 'h2{ font-size:44pt }\n' + 'h3{ font-size:46pt }\n' +
      'h4{ font-size:48pt }\n' + 'h5{ font-size:50pt }\n' + 'h6{ font-size:52pt }\n' +
      '</style>\n' +
@@ -10286,7 +10338,7 @@ function writehead(word1) {
      '<BODY BGCOLOR=#00008f TEXT=YELLOW >');
   else if(head_size<66)
      docObj_h.writeln('<HTML>\n<HEAD>\n' +
-     '<style type="text/css">\n' + 'body{font-family:æ¨™æ¥·é«”}\n' +
+     '<style type="text/css">\n' + 'body{font-family:¼Ğ·¢Åé}\n' +
      'h1{ font-size:54pt }\n' + 'h2{ font-size:56pt }\n' + 'h3{ font-size:58pt }\n' +
      'h4{ font-size:60pt }\n' + 'h5{ font-size:62pt }\n' + 'h6{ font-size:64pt }\n' +
      '</style>\n' +
@@ -10294,7 +10346,7 @@ function writehead(word1) {
      '<BODY BGCOLOR=#00008f TEXT=YELLOW >');
   else
      docObj_h.writeln('<HTML>\n<HEAD>\n' +
-     '<style type="text/css">\n' + 'body{font-family:æ¨™æ¥·é«”}\n' +
+     '<style type="text/css">\n' + 'body{font-family:¼Ğ·¢Åé}\n' +
      'h1{ font-size:66pt }\n' + 'h2{ font-size:68pt }\n' + 'h3{ font-size:70pt }\n' +
      'h4{ font-size:72pt }\n' + 'h5{ font-size:74pt }\n' + 'h6{ font-size:76pt }\n' +
      '</style>\n' +
@@ -10331,7 +10383,7 @@ function writebody(word1) {
 
   if(sing_size<42)
      docObj.writeln('<HTML>\n<HEAD>\n' +
-     '<style type="text/css">\n' + 'body{font-family:æ¨™æ¥·é«”}\n' +
+     '<style type="text/css">\n' + 'body{font-family:¼Ğ·¢Åé}\n' +
      'h1{ font-size:30pt }\n' + 'h2{ font-size:32pt }\n' + 'h3{ font-size:34pt }\n' +
      'h4{ font-size:36pt }\n' + 'h5{ font-size:38pt }\n' + 'h6{ font-size:40pt }\n' +
      '</style>\n' +
@@ -10339,7 +10391,7 @@ function writebody(word1) {
      '<BODY BGCOLOR=#00008f TEXT=YELLOW >');
   else if(sing_size<54)
      docObj.writeln('<HTML>\n<HEAD>\n' +
-     '<style type="text/css">\n' + 'body{font-family:æ¨™æ¥·é«”}\n' +
+     '<style type="text/css">\n' + 'body{font-family:¼Ğ·¢Åé}\n' +
      'h1{ font-size:42pt }\n' + 'h2{ font-size:44pt }\n' + 'h3{ font-size:46pt }\n' +
      'h4{ font-size:48pt }\n' + 'h5{ font-size:50pt }\n' + 'h6{ font-size:52pt }\n' +
      '</style>\n' +
@@ -10347,7 +10399,7 @@ function writebody(word1) {
      '<BODY BGCOLOR=#00008f TEXT=YELLOW >');
   else
      docObj.writeln('<HTML>\n<HEAD>\n' +
-     '<style type="text/css">\n' + 'body{font-family:æ¨™æ¥·é«”}\n' +
+     '<style type="text/css">\n' + 'body{font-family:¼Ğ·¢Åé}\n' +
      'h1{ font-size:54pt }\n' + 'h2{ font-size:56pt }\n' + 'h3{ font-size:58pt }\n' +
      'h4{ font-size:60pt }\n' + 'h5{ font-size:62pt }\n' + 'h6{ font-size:64pt }\n' +
      '</style>\n' +
@@ -10356,27 +10408,27 @@ function writebody(word1) {
 
   if(sing_size==30||sing_size==42||sing_size==54){
      var word_1 = '<center><h1><b>' + word1 + '</b></h1></ol></center>';
-     var word_2 = '<center><h1><b>' + "å”± è©©" + '</b></h1></ol></center>'; }
+     var word_2 = '<center><h1><b>' + "°Û ¸Ö" + '</b></h1></ol></center>'; }
 
   if(sing_size==32||sing_size==44||sing_size==56){
      var word_1 = '<center><h2><b>' + word1 + '</b></h2></ol></center>';
-     var word_2 = '<center><h2><b>' + "å”± è©©" + '</b></h2></ol></center>'; }
+     var word_2 = '<center><h2><b>' + "°Û ¸Ö" + '</b></h2></ol></center>'; }
 
   if(sing_size==34||sing_size==46||sing_size==58){
      var word_1 = '<center><h3><b>' + word1 + '</b></h3></ol></center>';
-     var word_2 = '<center><h3><b>' + "å”± è©©" + '</b></h3></ol></center>'; }
+     var word_2 = '<center><h3><b>' + "°Û ¸Ö" + '</b></h3></ol></center>'; }
 
   if(sing_size==36||sing_size==48||sing_size==60){
      var word_1 = '<center><h4><b>' + word1 + '</b></h4></ol></center>';
-     var word_2 = '<center><h4><b>' + "å”± è©©" + '</b></h4></ol></center>'; }
+     var word_2 = '<center><h4><b>' + "°Û ¸Ö" + '</b></h4></ol></center>'; }
 
   if(sing_size==38||sing_size==50||sing_size==62){
      var word_1 = '<center><h5><b>' + word1 + '</b></h5></ol></center>';
-     var word_2 = '<center><h5><b>' + "å”± è©©" + '</b></h5></ol></center>'; }
+     var word_2 = '<center><h5><b>' + "°Û ¸Ö" + '</b></h5></ol></center>'; }
 
   if(sing_size==40||sing_size==52||sing_size==64){
      var word_1 = '<center><h6><b>' + word1 + '</b></h6></ol></center>';
-     var word_2 = '<center><h6><b>' + "å”± è©©" + '</b></h6></ol></center>'; }
+     var word_2 = '<center><h6><b>' + "°Û ¸Ö" + '</b></h6></ol></center>'; }
 
   docObj.writeln(word_2.fontcolor(sing_color));
   docObj.writeln(word_1.fontcolor(sing_color));
@@ -10389,7 +10441,7 @@ function writebody2(word1) {
   docObj.open();
 
      docObj.writeln('<HTML>\n<HEAD>\n' +
-     '<style type="text/css">\n' + 'body{font-family:æ¨™æ¥·é«”}\n' +
+     '<style type="text/css">\n' + 'body{font-family:¼Ğ·¢Åé}\n' +
      'h1{ font-size:30pt }\n' + 'h2{ font-size:32pt }\n' + 'h3{ font-size:34pt }\n' +
      'h4{ font-size:36pt }\n' + 'h5{ font-size:38pt }\n' + 'h6{ font-size:40pt }\n' +
      '</style>\n' +
@@ -10410,7 +10462,7 @@ function pray() {
 
 
      docObj.writeln('<HTML>\n<HEAD>\n' +
-     '<style type="text/css">\n' + 'body{font-family:æ¨™æ¥·é«”}\n' +
+     '<style type="text/css">\n' + 'body{font-family:¼Ğ·¢Åé}\n' +
      '.30{ font-size:30pt }\n' + '.32{ font-size:32pt }\n' + '.34{ font-size:34pt }\n' +
      '.36{ font-size:36pt }\n' + '.38{ font-size:38pt }\n' + '.40{ font-size:40pt }\n' +
      '.42{ font-size:42pt }\n' + '.44{ font-size:44pt }\n' + '.46{ font-size:46pt }\n' +
@@ -10422,7 +10474,7 @@ function pray() {
      '<BODY BGCOLOR=#00008f TEXT=YELLOW >');
 
      docObj_h.writeln('<HTML>\n<HEAD>\n' +
-     '<style type="text/css">\n' + 'body{font-family:æ¨™æ¥·é«”}\n' +
+     '<style type="text/css">\n' + 'body{font-family:¼Ğ·¢Åé}\n' +
      '.30{ font-size:30pt }\n' + '.32{ font-size:32pt }\n' + '.34{ font-size:34pt }\n' +
      '.36{ font-size:36pt }\n' + '.38{ font-size:38pt }\n' + '.40{ font-size:40pt }\n' +
      '.42{ font-size:42pt }\n' + '.44{ font-size:44pt }\n' + '.46{ font-size:46pt }\n' +
@@ -10435,80 +10487,80 @@ function pray() {
 
 
   if(pray_size==30){
-    var word_0 = '<span class="30"><font color=ffffff><b>'+"ç¦±å‘Šæ–¹å¼"+'</b></font></span>';
+    var word_0 = '<span class="30"><font color=ffffff><b>'+"Ã«§i¤è¦¡"+'</b></font></span>';
     var word_a = '<table class="30">'; }
 
   if(pray_size==32){
-    var word_0 = '<span class="32"><font color=ffffff><b>'+"ç¦±å‘Šæ–¹å¼"+'</b></font></span>';
+    var word_0 = '<span class="32"><font color=ffffff><b>'+"Ã«§i¤è¦¡"+'</b></font></span>';
     var word_a = '<table class="32">'; }
 
   if(pray_size==34){
-    var word_0 = '<span class="34"><font color=ffffff><b>'+"ç¦±å‘Šæ–¹å¼"+'</b></font></span>';
+    var word_0 = '<span class="34"><font color=ffffff><b>'+"Ã«§i¤è¦¡"+'</b></font></span>';
     var word_a = '<table class="34">'; }
 
   if(pray_size==36){
-    var word_0 = '<span class="36"><font color=ffffff><b>'+"ç¦±å‘Šæ–¹å¼"+'</b></font></span>';
+    var word_0 = '<span class="36"><font color=ffffff><b>'+"Ã«§i¤è¦¡"+'</b></font></span>';
     var word_a = '<table class="36">'; }
 
   if(pray_size==38){
-    var word_0 = '<span class="38"><font color=ffffff><b>'+"ç¦±å‘Šæ–¹å¼"+'</b></font></span>';
+    var word_0 = '<span class="38"><font color=ffffff><b>'+"Ã«§i¤è¦¡"+'</b></font></span>';
     var word_a = '<table class="38">'; }
 
   if(pray_size==40){
-    var word_0 = '<span class="40"><font color=ffffff><b>'+"ç¦±å‘Šæ–¹å¼"+'</b></font></span>';
+    var word_0 = '<span class="40"><font color=ffffff><b>'+"Ã«§i¤è¦¡"+'</b></font></span>';
     var word_a = '<table class="40">'; }
 
   if(pray_size==42){
-    var word_0 = '<span class="42"><font color=ffffff><b>'+"ç¦±å‘Šæ–¹å¼"+'</b></font></span>';
+    var word_0 = '<span class="42"><font color=ffffff><b>'+"Ã«§i¤è¦¡"+'</b></font></span>';
     var word_a = '<table class="42">'; }
 
   if(pray_size==44){
-    var word_0 = '<span class="44"><font color=ffffff><b>'+"ç¦±å‘Šæ–¹å¼"+'</b></font></span>';
+    var word_0 = '<span class="44"><font color=ffffff><b>'+"Ã«§i¤è¦¡"+'</b></font></span>';
     var word_a = '<table class="44">'; }
 
   if(pray_size==46){
-    var word_0 = '<span class="46"><font color=ffffff><b>'+"ç¦±å‘Šæ–¹å¼"+'</b></font></span>';
+    var word_0 = '<span class="46"><font color=ffffff><b>'+"Ã«§i¤è¦¡"+'</b></font></span>';
     var word_a = '<table class="46">'; }
 
   if(pray_size==48){
-    var word_0 = '<span class="48"><font color=ffffff><b>'+"ç¦±å‘Šæ–¹å¼"+'</b></font></span>';
+    var word_0 = '<span class="48"><font color=ffffff><b>'+"Ã«§i¤è¦¡"+'</b></font></span>';
     var word_a = '<table class="48">'; }
 
   if(pray_size==50){
-    var word_0 = '<span class="50"><font color=ffffff><b>'+"ç¦±å‘Šæ–¹å¼"+'</b></font></span>';
+    var word_0 = '<span class="50"><font color=ffffff><b>'+"Ã«§i¤è¦¡"+'</b></font></span>';
     var word_a = '<table class="50">'; }
 
   if(pray_size==52){
-    var word_0 = '<span class="52"><font color=ffffff><b>'+"ç¦±å‘Šæ–¹å¼"+'</b></font></span>';
+    var word_0 = '<span class="52"><font color=ffffff><b>'+"Ã«§i¤è¦¡"+'</b></font></span>';
     var word_a = '<table class="52">'; }
 
   if(pray_size==54){
-    var word_0 = '<span class="54"><font color=ffffff><b>'+"ç¦±å‘Šæ–¹å¼"+'</b></font></span>';
+    var word_0 = '<span class="54"><font color=ffffff><b>'+"Ã«§i¤è¦¡"+'</b></font></span>';
     var word_a = '<table class="54">'; }
 
   if(pray_size==56){
-    var word_0 = '<span class="56"><font color=ffffff><b>'+"ç¦±å‘Šæ–¹å¼"+'</b></font></span>';
+    var word_0 = '<span class="56"><font color=ffffff><b>'+"Ã«§i¤è¦¡"+'</b></font></span>';
     var word_a = '<table class="56">'; }
 
   if(pray_size==58){
-    var word_0 = '<span class="58"><font color=ffffff><b>'+"ç¦±å‘Šæ–¹å¼"+'</b></font></span>';
+    var word_0 = '<span class="58"><font color=ffffff><b>'+"Ã«§i¤è¦¡"+'</b></font></span>';
     var word_a = '<table class="58">'; }
 
   if(pray_size==60){
-    var word_0 = '<span class="60"><font color=ffffff><b>'+"ç¦±å‘Šæ–¹å¼"+'</b></font></span>';
+    var word_0 = '<span class="60"><font color=ffffff><b>'+"Ã«§i¤è¦¡"+'</b></font></span>';
     var word_a = '<table class="60">'; }
 
   if(pray_size==62){
-    var word_0 = '<span class="62"><font color=ffffff><b>'+"ç¦±å‘Šæ–¹å¼"+'</b></font></span>';
+    var word_0 = '<span class="62"><font color=ffffff><b>'+"Ã«§i¤è¦¡"+'</b></font></span>';
     var word_a = '<table class="62">'; }
 
   if(pray_size==64){
-    var word_0 = '<span class="64"><font color=ffffff><b>'+"ç¦±å‘Šæ–¹å¼"+'</b></font></span>';
+    var word_0 = '<span class="64"><font color=ffffff><b>'+"Ã«§i¤è¦¡"+'</b></font></span>';
     var word_a = '<table class="64">'; }
 
-  var word_b = '<tr><td><sup><font color=ffffff>'+"é–‹å§‹æ™‚å”¸ï¼š"+'</font></sup></td>'+'<td><font color=fff000>'+"å¥‰ä¸»è€¶ç©Œè–åç¦±å‘Š" + '</font></td></tr>';
-  var word_d = '<tr><td><sup><font color=ffffff>'+"åè¦†çš„å”¸ï¼š"+'</font></sup></td>'+'<td><font color=fff000>'+"å“ˆåˆ©è·¯äºï¼Œè®šç¾ä¸»è€¶ç©Œ" + '</font></td></tr>';
-  var word_f = '<tr><td><sup><font color=ffffff>'+"çµæŸæ™‚å”¸ï¼š"+'</font></sup></td>'+'<td><font color=fff000>'+"é˜¿å€‘" + '</font></td></tr></table>';
+  var word_b = '<tr><td><sup><font color=ffffff>'+"¶}©l®É°á¡G"+'</font></sup></td>'+'<td><font color=fff000>'+"©^¥D­C¿q¸t¦WÃ«§i" + '</font></td></tr>';
+  var word_d = '<tr><td><sup><font color=ffffff>'+"¤ÏÂĞªº°á¡G"+'</font></sup></td>'+'<td><font color=fff000>'+"«¢§Q¸ô¨È¡AÆg¬ü¥D­C¿q" + '</font></td></tr>';
+  var word_f = '<tr><td><sup><font color=ffffff>'+"µ²§ô®É°á¡G"+'</font></sup></td>'+'<td><font color=fff000>'+"ªü­Ì" + '</font></td></tr></table>';
 
 
      var word_01 = '<center>' + word_0 + '</center>';
@@ -10922,7 +10974,7 @@ function noMatch() {
   //docObj.close();
   //document.search.query.select();
 
-   document.getElementById("search_result").innerHTML = '<b><center>'+'ç„¡ç¬¦åˆä¹‹è³‡æ–™'+'</center></b>';
+   document.getElementById("search_result").innerHTML = '<b><center>'+'µL²Å¦X¤§¸ê®Æ'+'</center></b>';
 
 }
 
@@ -10948,7 +11000,7 @@ function formatResults(results, reference, offset) {
 
   //docObj.open();
   //docObj.writeln('<HTML>\n<HEAD>\n<TITLE>Search Results</TITLE>\n' + 
-  //'<style type="text/css">\n' + 'body{font-family:æ¨™æ¥·é«”}\n' +
+  //'<style type="text/css">\n' + 'body{font-family:¼Ğ·¢Åé}\n' +
   //'p1 { font-size:14pt }\n' + 'p2 { font-size:16pt }\n' + 'p3 { font-size:18pt }\n' +
   //'p4 { font-size:20pt }\n' + 'p5 { font-size:22pt }\n' + 'p6 { font-size:24pt }\n' +
   //'</style>\n' +
@@ -10959,7 +11011,7 @@ function formatResults(results, reference, offset) {
   //               'function query_open(fb,fc,fs)\n' +
   //               '{\n' +
   //               '  if(parent.command.win1.closed)\n' +
-  //               '     alert("è«‹å…ˆé¸å–æŸ¥è©¢é€£çµé–‹å•Ÿæ–¼->æ–°è¦–çª—ï¼Œä¸¦æŒ‰ <è¨­å®šæŸ¥è©¢é€£çµ> éˆ•!!");\n' +
+  //               '     alert("½Ğ¥ı¿ï¨ú¬d¸ß³sµ²¶}±Ò©ó->·sµøµ¡¡A¨Ã«ö <³]©w¬d¸ß³sµ²> ¶s!!");\n' +
   //               '  else\n' +
   //               '   { parent.command.win1.frames[0].readchapter(fb,fc,fs);\n' +
   //               '     parent.command.win1.focus();return false; }\n' +
@@ -10974,8 +11026,8 @@ function formatResults(results, reference, offset) {
   //var open_win_l = eval(open_win);
 
 //  if (open_win_l==2)
-//     docObj.writeln('â€» æ¬²é»é¸æŸ¥è©¢çµæœï¼Œè«‹å…ˆ'+'<a href="" onClick="open_win1(); return false;">' + 'é–‹å•Ÿæ–°è¦–çª—' + '</a>\n '+
-//                    'ï¼ŒæŸ¥è©¢çµæœå°‡é¡¯ç¤ºæ–¼æ–°é–‹å•Ÿè¦–çª—ä¸­ï¼Œé‡æ–°æŸ¥è©¢è«‹é‡é–‹æ–°è¦–çª— â€»');  
+//     docObj.writeln('¡° ±ıÂI¿ï¬d¸ßµ²ªG¡A½Ğ¥ı'+'<a href="" onClick="open_win1(); return false;">' + '¶}±Ò·sµøµ¡' + '</a>\n '+
+//                    '¡A¬d¸ßµ²ªG±NÅã¥Ü©ó·s¶}±Òµøµ¡¤¤¡A­«·s¬d¸ß½Ğ­«¶}·sµøµ¡ ¡°');  
 
   if (searchType == SEARCHURL) {
     for (var i = reference; i < currentRecord; i++) {
@@ -11039,7 +11091,7 @@ function formatResults(results, reference, offset) {
       var findchap = cname - 1;
       var findsec = sname;
 
-//      var bcsname2 = bname + ' ç¬¬' + cname + 'ç¯‡' + ' ç¬¬' + sname + 'ç¯€' + '</ol>';
+//      var bcsname2 = bname + ' ²Ä' + cname + '½g' + ' ²Ä' + sname + '¸`' + '</ol>';
 
 //      var temp = results[i].substring(0, results[i].indexOf(" "));
 
